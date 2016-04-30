@@ -2,21 +2,35 @@
 <html>
 <head>
 	<title>Design Web Dengan Table</title>
+	<style type="text/css">
+	#menu li{
+		display: inline;;
+		list-style: none;
+		margin: 0 10px;
+	}
+	</style>
 </head>
 <body>
-	<table border="1" width="600" align="center" cellpadding="10">
+	<table border="1" width="900" align="center" cellpadding="10">
 		<tr>
-			<td colspan="2">Header</td>
+			<td colspan="2" height="100">Header</td>
 		</tr>
 		<tr>
-			<td colspan="2">Menu</td>
+			<td colspan="2" height="30" id="menu">
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Produk</a></li>
+					<li><a href="#">Help</a></li>
+				</ul>
+			</td>
 		</tr>
 		<tr>
-			<td>Sidebar</td>
+			<td height="300" width="20%">Sidebar</td>
 			<td>Content</td>
 		</tr>
 		<tr>
-			<td colspan="2">Footer</td>
+			<td colspan="2" height="50">Footer</td>
 		</tr>
 	</table>
 </body>
