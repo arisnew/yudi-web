@@ -1,0 +1,16 @@
+
+Kursus (Project E-Learning) Yudi.
+---------------------------------
+- HTML
+- CSS -> Bootstrap
+- JS -> JQuery -> AJAX
+- PHP -> CodeIgniter
+- MySQL
+-> Develop Aplikasi E-Learning:
+	- User Management (Siswa, Admin, Guru)
+	- Manage Data Pelajaran/Materi
+	- Jadwal KBM
+	- Manage Data Kelas & Jurusan
+	- Data Soal & Jawaban
+	- Manage Ujian
+	- Reporting Email & Data
