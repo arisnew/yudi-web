@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pertemuan 1 (HTML)</title>
+		<meta>
+		<link rel="stylesheet" type="text/css" href="">
+		<script type="text/javascript"></script>
+
+	</head>
+	<body>
+		<h1>Title H1</h1>
+		<h6>Title H6</h6>
+		<p>
+			Paragraf <br>
+			Line 2
+		</p>
+		<p id="p-utama" class="p-biru" >Paragraf</p>
+		<font size="20" face="arial" color="red">Tulisan</font><br>
+		<i>Miring</i><br>
+		<b>Bold</b><br>
+		<u>Underline</u><br>
+		<div>Area DIV</div>
+		<span>Area Span</span>
+		<label>Label</label><br>
+		<blockquote>Blockquote</blockquote><br>
+		<ul>
+			<li>Satu</li>
+			<li>Dua</li>
+		</ul>
+		<ol type="a">
+			<li>Satu</li>
+			<li>Dua</li>
+		</ol>
+		<table border="1" cellpadding="2">
+			<tr>
+				<th>No</th>
+				<th colspan="2">Desc</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Agus Budiono</td>
+				<td rowspan="2">Karawang</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Agus S</td>
+			</tr>
+		</table>
+		<hr>
+		<form action="proses.php" method="post">
+			<label>Nama :</label>
+			<input type="text" name="nama" value="" placeholder="Tulis nama">
+			<br>
+			<label>Password :</label>
+			<input type="password" name="pass" value="" placeholder="Type your password">
+			<br>
+			<label>Jurusan :</label><br>
+			<input type="radio" name="jur" value="Teknik Industri"> Teknik Industri<br>
+			<input type="radio" name="jur" value="Teknik Mesin" checked=""> Teknik Mesin<br>
+			<label>Jenis Kelamin :</label><br>
+			<select name="jk" >
+				<option value="Laki-laki">Laki-laki</option>
+				<option value="Perempuan" selected="">Perempuan</option>
+			</select>
+			<br>
+			<label>Hobi :</label><br>
+			<input type="checkbox" name="hobbi1" value="Main">Main<br>
+			<input type="checkbox" name="hobbi2" value="Main">Makan<br>
+			<input type="checkbox" name="hobbi3" value="Main">Belajar</br>
+			<label>Alamat</label><br>
+			<textarea name="alamat"></textarea>
+			<br>
+			<label>Foto :</label>
+			<input type="file" name="foto">
+			<br>
+			<input type="submit" name="Submit" value="Simpan">
+			<input type="reset" value="Batal">
+		</form>
+	</body>
+</html>
