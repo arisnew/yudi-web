@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="myscript.js"></script>
 	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-		//script js here \
+		//script js here
 		/* comment multi lines */
 		$(document).ready(function () {
 			$("#x").click(function () {
@@ -15,6 +15,8 @@
 				//$("#input1").val("");
 
 				$(this).toggleClass("btn-primary");
+
+				$("#input1,#input2").attr("readonly","");
 			});
 		});
 
