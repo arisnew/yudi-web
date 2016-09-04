@@ -16,4 +16,4 @@ Kursus (Project E-Learning) Yudi.
 	- Reporting Email & Data
 
 
-	Netx -> PHP (Penanganan form, input-output, database);
+	Netx -> CI & tugas buat CRUD guru
