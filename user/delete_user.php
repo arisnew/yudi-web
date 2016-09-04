@@ -1,7 +1,4 @@
 <?php
-//variable
-$username = '';
-
 //koneksi
 include_once '../koneksi.php';
 $query = "DELETE FROM user WHERE username = '". $_GET['id'] ."'";
