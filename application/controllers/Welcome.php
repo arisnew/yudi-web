@@ -22,4 +22,9 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+
+	public function tamu($nama = '')
+	{
+		$this->load->view('halaman_tamu', array('nama'=>$nama));
+	}
 }

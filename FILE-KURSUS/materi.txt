@@ -16,4 +16,4 @@ Kursus (Project E-Learning) Yudi.
 	- Reporting Email & Data
 
 
-	Netx -> CI & tugas buat CRUD guru
+	Netx -> CI CRUD & tugas buat halaman minimal 3 yang saling berhubungan 1 atau lebih controller
