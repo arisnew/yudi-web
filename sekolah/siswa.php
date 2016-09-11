@@ -32,11 +32,11 @@ include('../koneksi.php');
           <td p align="center" bgcolor="#FFFFFF">
             <a href="edit.php?nis=<?php echo $data['nis']; ?>">|| edit ||</a>
             <a href="delete.php?nis=<?php echo $data['nis']; ?>">|| hapus ||</a>
-        </td>
-    </tr>
-    <?php
-}
-?>
-</table>
-</body>
-</html>
+          </td>
+        </tr>
+        <?php
+      }
+      ?>
+    </table>
+  </body>
+  </html>

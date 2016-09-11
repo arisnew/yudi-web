@@ -23,7 +23,7 @@
 			while ($data = mysql_fetch_array($eksekusi)) {
 				?>
 				<tr>
-					<td><?$no?></td>
+					<td><?=$no?></td>
 					<td><?=$data['username']?></td>
 					<td><?=$data['nama']?></td>
 					<td><?=$data['email']?></td>
@@ -34,8 +34,8 @@
 				</tr>
 				<?php
 				$no++;
-				}
-			} ?>
+			}
+		} ?>
 	</table>
 </body>
 </html>
