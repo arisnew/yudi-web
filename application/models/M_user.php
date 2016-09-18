@@ -44,5 +44,12 @@ class M_user extends CI_Model {
 		$sql = $this->db->update($this->table_name, $data);
 		return $sql;
 	}
+
+	public function delete_data($id)
+	{
+		$this->db->where('username', $id);
+		$sql = $this->db->delete($this->table_name);
+		return $sql;
+	}
 }
 ?>

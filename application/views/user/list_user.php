@@ -25,6 +25,7 @@
 				echo '<td>' . $row->email . '</td>';
 				echo '<td>
 					<a href="'.base_url('user/edit/'. $row->username).'">Edit</a> 
+					<a onclick="return confirm(\'Yakin HAPUS DATA????\')" href="'.base_url('user/delete/'. $row->username).'">Delete</a> 
 				</td>';
 				echo '</tr>';
 				$no++;

@@ -26,9 +26,9 @@ class User extends CI_Controller {
 				);
 			$eksekusi = $this->m_user->create_data($data);
 			if ($eksekusi == TRUE) {
-				echo '<script>alert("Simpan data berhasil"); window.location="index"</script>';
+				echo '<script>alert("Simpan data berhasil"); window.location="lists"</script>';
 			} else {
-				echo '<script>alert("Simpan data gagal"); window.location="index"</script>';
+				echo '<script>alert("Simpan data gagal"); window.location="lists"</script>';
 			}
 		}
 	}
@@ -61,6 +61,17 @@ class User extends CI_Controller {
 			} else {
 				echo '<script>alert("Update data gagal"); window.location="lists"</script>';
 			}
+		}
+	}
+
+	public function delete($id = '')
+	{
+		//$id = $this->uri->segment(3);
+		$eksekusi = $this->m_user->delete_data($id);
+		if ($eksekusi == TRUE) {
+			echo '<script>alert("Delete data berhasil"); window.location="'.base_url('user/lists').'"</script>';
+		} else {
+			echo '<script>alert("Delete data gagal"); window.location="'.base_url('user/lists').'"</script>';
 		}
 	}
 }
