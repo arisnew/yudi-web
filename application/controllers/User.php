@@ -38,4 +38,29 @@ class User extends CI_Controller {
 		$dt['user'] = $this->m_user->read_data();
 		$this->load->view('user/list_user',$dt);
 	}
+
+	public function edit($id = '')
+	{
+		//$id = $this->uri->segment(3);
+		$dt['user'] = $this->m_user->get_data($id);
+		$this->load->view('user/edit_user', $dt);
+	}
+
+	public function update()
+	{
+		if ($_POST) {
+			//proses
+			$data = array(
+				'nama' => $this->input->post('nama'),
+				'email' => $this->input->post('email'),
+				'password' => $this->input->post('password')
+				);
+			$eksekusi = $this->m_user->update_data($data, $this->input->post('username'));
+			if ($eksekusi == TRUE) {
+				echo '<script>alert("Update data berhasil"); window.location="lists"</script>';
+			} else {
+				echo '<script>alert("Update data gagal"); window.location="lists"</script>';
+			}
+		}
+	}
 }

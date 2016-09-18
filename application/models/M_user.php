@@ -30,5 +30,19 @@ class M_user extends CI_Model {
 		}
 		return $data;
 	}
+
+	public function get_data($id)
+	{
+		$this->db->where('username', $id);
+		$sql = $this->db->get($this->table_name);
+		return $sql->row();
+	}
+
+	public function update_data($data, $id = '')
+	{
+		$this->db->where('username', $id);
+		$sql = $this->db->update($this->table_name, $data);
+		return $sql;
+	}
 }
 ?>

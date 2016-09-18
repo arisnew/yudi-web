@@ -19,7 +19,7 @@
 		<input type="text" name="password" value="">
 		<br>
 		<input type="submit" value="Simpan">
-		<input type="reset" value="Batal">
+		<input type="reset" value="Batal" onclick="history.back()">
 	</form>
 </body>
 </html>
