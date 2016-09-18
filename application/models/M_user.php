@@ -18,5 +18,17 @@ class M_user extends CI_Model {
 		$query = $this->db->insert($this->table_name, $data);
 		return $query;
 	}
+
+	public function read_data()
+	{
+		$data = null;
+		$sql = $this->db->get($this->table_name);
+		if ($sql->num_rows() > 0) {
+			foreach ($sql->result() as $row) {
+				$data[] = $row;
+			}
+		}
+		return $data;
+	}
 }
 ?>

@@ -32,4 +32,10 @@ class User extends CI_Controller {
 			}
 		}
 	}
+
+	public function lists()
+	{
+		$dt['user'] = $this->m_user->read_data();
+		$this->load->view('user/list_user',$dt);
+	}
 }
