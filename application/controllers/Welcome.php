@@ -27,4 +27,9 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('halaman_tamu', array('nama'=>$nama));
 	}
+
+	public function test($nama = '')
+	{
+		$this->load->view('template/index');
+	}
 }

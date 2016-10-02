@@ -11,7 +11,9 @@ class User extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('user/form_user');
+		$data['_TITLE'] = 'Form User';
+		$data['_CONTENT'] = $this->load->view('user/form_user','', TRUE);
+		$this->load->view('template/index', $data);
 	}
 
 	public function simpan()
