@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>List USER</title>
+	<title>List GURU</title>
 </head>
 <body>
-	<h3>List User</h3>
-	<a href="<?php echo base_url('user/index');?>">Add User</a>
+	<h3>List GURU</h3>
+	<a href="<?php echo base_url('guru/index');?>">Add User</a>
 	<table border="1" width="80%">
 		<tr>
 			<th>No</th>
-			<th>Username</th>
+			<th>ID</th>
 			<th>Nama</th>
+			<th>Mata Pelajaran</th>
 			<th>Email</th>
 			<th>Pilihan</th>
 		</tr>
 		<?php
-		if (isset($user)) {
+		if (isset($guru)) {
 			$no = 1;
-			foreach ($user as $row) {
+			foreach ($guru as $row) {
 				echo '<tr>';
 				echo '<td>' . $no . '</td>';
-				echo '<td>' . $row->username . '</td>';
+				echo '<td>' . $row->id_guru . '</td>';
 				echo '<td>' . $row->nama . '</td>';
+				echo '<td>' . $row->matapelajaran . '</td>';
 				echo '<td>' . $row->email . '</td>';
 				echo '<td>
-					<a href="'.base_url('user/edit/'. $row->username).'">Edit</a> 
-					<a onclick="return confirm(\'Yakin HAPUS DATA????\')" href="'.base_url('user/delete/'. $row->username).'">Delete</a> 
+					<a href="'.base_url('guru/edit/'. $row->id_guru).'">Edit</a> 
+					<a onclick="return confirm(\'Yakin HAPUS DATA????\')" href="'.base_url('guru/delete/'. $row->id_guru).'">Delete</a> 
 				</td>';
 				echo '</tr>';
 				$no++;

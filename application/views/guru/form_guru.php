@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Form USER</title>
+	<title></title>
 </head>
 <body>
-	<h2>Form USER</h2>
-	<form action="<?php echo base_url('user/simpan');?>" method="POST">
-		<label>Username :</label>
-		<input type="text" name="username" value="">
-		<br>
-		<label>Nama :</label>
-		<input type="text" name="nama" value="">
-		<br>
-		<label>Email :</label>
-		<input type="text" name="email" value="">
-		<br>
-		<label>Password :</label>
-		<input type="text" name="password" value="">
-		<br>
-		<input type="submit" value="Simpan">
-		<input type="reset" value="Batal" onclick="history.back()">
+	<form method="POST" action="<?php echo site_url('guru/simpan');?>">
+
+		ID<input type="text" id="id_guru" name="id_guru"><br>
+		Nama<input type="text" id="nama" name="nama"><br>
+		Mata Pelajaran<input type="text" id="matapelajran" name="matapelajaran"><br>
+		Email<input type="text" id="email" name="email"><br>
+		<input type="submit" name="submit" value="simpan">
 	</form>
 </body>
 </html>

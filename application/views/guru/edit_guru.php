@@ -1,24 +1,24 @@
 <?php 
-if (isset($user)) {
-	$username = $user->username;
-	$nama = $user->nama;
-	$email = $user->email;
-	$password = $user->password;
+if (isset($guru)) {
+	$id_guru = $guru->id_guru;
+	$nama = $guru->nama;
+	$email = $guru->email;
+	$mapel = $guru->matapelajaran;
 } else {
-	$username = $nama = $email = $password = '';
+	$id_guru = $nama = $email = $mapel = '';
 }
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Form USER</title>
+	<title>Form Guru</title>
 </head>
 <body>
-	<h2>Form USER</h2>
-	<form action="<?php echo base_url('user/update');?>" method="POST">
-		<label>Username :</label>
-		<input type="text" name="username" value="<?=$username;?>" readonly="">
+	<h2>Form Guru</h2>
+	<form action="<?php echo base_url('guru/update');?>" method="POST">
+		<label>ID Guru :</label>
+		<input type="text" name="id_guru" value="<?=$id_guru;?>" readonly="">
 		<br>
 		<label>Nama :</label>
 		<input type="text" name="nama" value="<?=$nama;?>">
@@ -26,8 +26,8 @@ if (isset($user)) {
 		<label>Email :</label>
 		<input type="text" name="email" value="<?=$email;?>">
 		<br>
-		<label>Password :</label>
-		<input type="text" name="password" value="<?=$password;?>">
+		<label>Matapelajaran :</label>
+		<input type="text" name="matapelajaran" value="<?=$mapel;?>">
 		<br>
 		<input type="submit" value="Simpan">
 		<input type="reset" value="Batal" onclick="history.back()">

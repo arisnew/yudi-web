@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class Guru extends CI_Controller {
 
 	public function __construct()
 	{
@@ -19,12 +19,12 @@ class User extends CI_Controller {
 		if ($_POST) {
 			//proses
 			$data = array(
-				'id_guru' => $this->input->post('username'),
+				'id_guru' => $this->input->post('id_guru'),
 				'nama' => $this->input->post('nama'),
 				'matapelajaran' => $this->input->post('matapelajaran'),
 				'email' => $this->input->post('email')
 				);
-			$eksekusi = $this->m_user->create_data($data);
+			$eksekusi = $this->m_guru->create_data($data);
 			if ($eksekusi == TRUE) {
 				echo '<script>alert("Simpan data berhasil"); window.location="lists"</script>';
 			} else {
