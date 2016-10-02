@@ -13,5 +13,9 @@ class Profil extends CI_Controller {
 	{
 		$this->load->view('materi');
 	}
+	public function pendaftaran()
+	{
+		$this->load->view('pendaftaran');
+	}
 
 }
