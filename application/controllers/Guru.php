@@ -2,18 +2,25 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Guru extends CI_Controller {
+	private $sessID = null;
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('m_guru');
+		$this->sessID = $this->session->userdata('_USER_ID');
 	}
 	
 	public function index()
 	{
-		$data['_TITLE'] = 'Form GURU';
-		$data['_CONTENT'] = $this->load->view('guru/form_guru', '', TRUE);
-		$this->load->view('template/index',$data, FALSE);
+		if ($this->sessID != null) {
+			$data['_TITLE'] = 'Form GURU';
+			$data['_CONTENT'] = $this->load->view('guru/form_guru', '', TRUE);
+			$this->load->view('template/index',$data, FALSE);
+		} else {
+			$this->load->view('login');
+		}
+		
 	}
 
 	public function simpan()
