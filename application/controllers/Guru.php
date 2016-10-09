@@ -11,7 +11,9 @@ class Guru extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('guru/form_guru');
+		$data['_TITLE'] = 'Form GURU';
+		$data['_CONTENT'] = $this->load->view('guru/form_guru', '', TRUE);
+		$this->load->view('template/index',$data, FALSE);
 	}
 
 	public function simpan()
@@ -36,14 +38,18 @@ class Guru extends CI_Controller {
 	public function lists()
 	{
 		$dt['guru'] = $this->m_guru->read_data();
-		$this->load->view('guru/list_guru',$dt);
+		$data['_TITLE'] = 'Data GURU';
+		$data['_CONTENT'] = $this->load->view('guru/list_guru',$dt, TRUE);
+		$this->load->view('template/index',$data, FALSE);
 	}
 
 	public function edit($id = '')
 	{
 		//$id = $this->uri->segment(3);
 		$dt['guru'] = $this->m_guru->get_data($id);
-		$this->load->view('guru/edit_guru', $dt);
+		$data['_TITLE'] = 'Edit Data GURU';
+		$data['_CONTENT'] = $this->load->view('guru/edit_guru', $dt, TRUE);
+		$this->load->view('template/index',$data, FALSE);
 	}
 
 	public function update()
