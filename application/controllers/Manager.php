@@ -6,7 +6,7 @@ class Manager extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->activeSession = $this->session->userdata('_USER_ID');
+        $this->activeSession = 'demo';// $this->session->userdata('_USER_ID');
         $this->load->library('form_validation');
     }
 
