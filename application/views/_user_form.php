@@ -24,20 +24,26 @@
 			</div>
 		</div>
 		<div class="box-body">
-			<form action="<?php echo base_url('user/simpan');?>" method="POST">
+			<div id="loading"></div>
+			<form id="form-user">
 				<label>Username :</label>
-				<input class="form-control" type="text" name="username" value="">
+				<input class="form-control" type="text" name="username-input" id="username-input" value="">
 				<br>
 				<label>Nama :</label>
-				<input class="form-control" type="text" name="nama" value="">
+				<input class="form-control" type="text" name="nama-input" id="nama-input" value="">
 				<br>
 				<label>Email :</label>
-				<input class="form-control" type="text" name="email" value="">
+				<input class="form-control" type="text" name="email-input" id="email-input" value="">
 				<br>
 				<label>Password :</label>
-				<input class="form-control" type="text" name="password" value="">
+				<input class="form-control" type="text" name="password-input" id="password-input" value="">
 				<br>
-				<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Simpan</button>
+				<input type="hidden" name="model-input" id="model-input" value="user">
+				<input type="hidden" name="action-input" id="action-input" value="1">
+				<input type="hidden" name="key-input" id="key-input" value="username">
+				<input type="hidden" name="value-input" id="value-input" value="0">
+
+				<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
 				<input type="reset" value="Batal" onclick="history.back()">
 			</form>
 		</div>
@@ -51,3 +57,37 @@
 
 </section>
 <!-- /.content -->
+<script type="text/javascript">
+	$(document).ready(function () {
+		//
+	});
+
+	function simpan_data() {
+		loading('loading', true);
+		setTimeout(function() {
+            $.ajax({
+                url: base_url + 'manage',
+                data: $("#form-user").serialize(),
+                dataType: 'json',
+                type: 'POST',
+                cache: false,
+                success: function(json) {
+                    loading('loading',false);
+
+                    if (json['data'].code === 1) {
+                        alert('Penyimpanan data berhasil');
+                        //loadContent(base_url + 'view/_user_table');
+                    } else if(json['data'].code === 2){
+                        alert('Penyimpanan data tidak berhasil');
+                    } else{
+                        alert(json['data'].message);
+                    }
+                },
+                error: function () {
+                    loading('loading',false);
+                    alert('An error accurred');
+                }
+            });
+        }, 2000);
+    }
+</script>
