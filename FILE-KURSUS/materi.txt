@@ -17,3 +17,9 @@ Kursus (Project E-Learning) Yudi.
 
 
 	Netx -> tugas : update semua page menggunakan template
+
+
+	for change smartgit license type -> delete setting.xml in smartgit app data folder
+	-> run (win + R) -> type %APPDATA%\
+	-> look/search like => syntevo -> smartgit -> {major version} -> setting.xml (delete this file)
+	-> open smartgit again :D
