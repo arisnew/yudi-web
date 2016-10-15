@@ -55,3 +55,5 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['view/(:any)'] = 'viewer/pathGuide/$1';
 $route['view/(:any)/(:any)'] = 'viewer/pathGuide/$1/$2';
+
+$route['manage'] = 'manager/process';

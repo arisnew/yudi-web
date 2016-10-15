@@ -17,7 +17,7 @@ class Manager extends CI_Controller {
     /*
     *	login or logout
     */
-    public function identify($action) {
+    /*public function identify($action) {
         if ($action == 'acknowledge') { // for login
             /*
             * code info:
@@ -25,7 +25,7 @@ class Manager extends CI_Controller {
             *	- 1 = user granted
             *	- 2 = user ID tidak dikenal
             *	- 3 = user Password salah
-            */
+            * /
             $code = 0;
             $message = '';
             $id_user = '';
@@ -77,7 +77,7 @@ class Manager extends CI_Controller {
             }
             redirect(site_url());
         }
-    }
+    }*/
 
     /*
     *	create, update, or delete
@@ -94,7 +94,7 @@ class Manager extends CI_Controller {
         $message = '';
         /* collect request */
         $action = $this->input->post('action-input'); // create, update, delete
-        $model = $this->input->post('model-input') . 'model';
+        $model = $this->input->post('model-input') . 'mo   del';
 
         if ($this->activeSession != null) {
             $this->load->model($model);
@@ -105,36 +105,15 @@ class Manager extends CI_Controller {
                 $result = self::_do_delete($this->$model, $this->input->post(null));
                 $code = ($result) ? 1 : 2;
             } else {
-                if($action == $this->$model->COMPLETE){
-                    $this->form_validation->set_rules($this->$model->getRulesComplete());
-                } else {
-                    $this->form_validation->set_rules($this->$model->getRules());
-                }
+                $this->form_validation->set_rules($this->$model->getRules());
 
                 if ($this->form_validation->run() == FALSE) {
                     $delimiter = '- ';
-                    $this->form_validation->set_error_delimiters($delimiter, '.<br>');
+                    //$this->form_validation->set_error_delimiters($delimiter, '.<br>');
                     $message = validation_errors();
                 } else {
                     $isExist = '';
-                    //khusus privilege
-                    if ($this->input->post('model-input') == 'privilege') {
-                        if ($action != $this->$model->DELETE) {
-                            $results = self::_privilegeRecord($this->input->post(null), $action);
-                            $result = $results;
-                        } else {
-                            $result = self::_do($this->$model, $action, $this->input->post(null));
-                        }
-                    
-                    } else {
-                        //if complete
-                        if ($action == $this->$model->COMPLETE) {
-                            $result = self::_do_complete($this->$model, $this->input->post(null));
-                            $message = $result;
-                        } else {
-                            $result = self::_do($this->$model, $action, $this->input->post(null));
-                        }
-                    }
+                    $result = self::_do($this->$model, $action, $this->input->post(null));
 
                     $last_id = ($action == $this->$model->CREATE) ? $this->$model->getLastID() : $this->input->post('value-input') ;
                     $code = ($result) ? 1 : 2;
@@ -176,27 +155,5 @@ class Manager extends CI_Controller {
             ) // clause for model
         );
         return $model->action($query); // do...
-    }
-
-    //untuk privilege
-    private function _privilegeRecord($inputs, $action) {
-        // prevent duplicate privilege
-        $this->load->model('privilegemodel');
-        $this->privilegemodel->isNew(true); // if action is for creating new data, ignore unique field
-        $privilegeExist = $this->privilegemodel->getRecord(array(
-            'table' => 'privilege', 'where' => array(
-                'KdUser' => $inputs['user-input'], 'Type' => $inputs['type-input']
-            )
-        ));
-        $lastRecord = 0;
-        $status = 'error';
-
-        if ($privilegeExist == null) {
-            $result = self::_do($this->privilegemodel, $this->privilegemodel->CREATE, $inputs);
-        } else {
-            $inputs['value-input'] = $privilegeExist->id;
-            $result = self::_do($this->privilegemodel, $this->privilegemodel->UPDATE, $inputs);
-        }
-        return $result;
     }
 }
