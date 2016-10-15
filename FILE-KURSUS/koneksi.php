@@ -3,7 +3,7 @@
 //var
 $host		='localhost';
 $user		='root';
-$pass		='Admin';
+$pass		='';
 $db_name	='learning';
 
 //koneksi

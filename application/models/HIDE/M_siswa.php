@@ -1,5 +1,5 @@
 <?php
-class M_user extends CI_Model {
+class M_siswa extends CI_Model {
 
 	private $table_name;
 
