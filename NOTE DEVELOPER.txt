@@ -1,0 +1,24 @@
+====================
+# DEVELOPER NOTE
+====================
+
+Skenario akses:
+	- untuk akses halaman gunakan url http://[SITE_URL]/view/[page] {contoh: http://localhost/cms/view/home}
+
+Skenario CRUD:
+	- FULL AJAX
+	- data request selalu dengan method POST
+	- gunakan ajax url http://[SITE_URL]/manage untuk proses create, update, dan delete data
+	- ketentuan penambahan var data ajax request untuk kelola data:
+		> action-input (action flag: create, update, delete), diisi sesuai dengan ketentuan pada config_system
+		> model-input (nama tabel yang sederhana), nanti konfirmasi saja dengan saya utk penamaannya
+		> key-input (PK, atau field untuk query clause)
+		> value-input, diisikan value untuk key-input
+		contoh:
+			+ jika mau ubah data user, maka key-input itu isikan "id", dan value-input isikan misal "1"
+	- gunakan ajax url http://[SITE_URL]/object untuk read/retrieve data
+	- ketentuan penambahan var data ajax request untuk menampilkan data secara rinci:
+		> model-input, isikan nama tabel
+		> key-input (PK, atau field untuk query clause)
+		> value-input, diisikan value untuk key-input
+	- 
