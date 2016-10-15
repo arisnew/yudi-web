@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>List USER</title>
+	<title>List SISWA</title>
 </head>
 <body>
 	<h3>List Siswa</h3>
