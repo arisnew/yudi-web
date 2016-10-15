@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class Siswa extends CI_Controller {
 
 	public function __construct()
 	{
@@ -11,7 +11,9 @@ class User extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('siswa/form_siswa');
+		$data['_TITLE'] = 'Form Siswa';
+		$data['_CONTENT'] = $this->load->view('siswa/form_siswa','', TRUE);
+		$this->load->view('template/index', $data);
 	}
 
 	public function simpan()
@@ -35,7 +37,7 @@ class User extends CI_Controller {
 
 	public function lists()
 	{
-		$dt['siswa'] = $this->m_user->read_data();
+		$dt['siswa'] = $this->m_siswa->read_data();
 		$this->load->view('siswa/list_siswa',$dt);
 	}
 

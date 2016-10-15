@@ -2,25 +2,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Guru extends CI_Controller {
-	private $sessID = null;
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('m_guru');
-		$this->sessID = $this->session->userdata('_USER_ID');
 	}
 	
 	public function index()
 	{
-		if ($this->sessID != null) {
-			$data['_TITLE'] = 'Form GURU';
-			$data['_CONTENT'] = $this->load->view('guru/form_guru', '', TRUE);
-			$this->load->view('template/index',$data, FALSE);
-		} else {
-			$this->load->view('login');
-		}
-		
+		$data['_TITLE'] = 'Form_Guru';
+		$data['_CONTENT'] = $this->load->view('guru/form_guru','', TRUE);
+		$this->load->view('template/index', $data);
 	}
 
 	public function simpan()
@@ -45,18 +38,14 @@ class Guru extends CI_Controller {
 	public function lists()
 	{
 		$dt['guru'] = $this->m_guru->read_data();
-		$data['_TITLE'] = 'Data GURU';
-		$data['_CONTENT'] = $this->load->view('guru/list_guru',$dt, TRUE);
-		$this->load->view('template/index',$data, FALSE);
+		$this->load->view('guru/list_guru',$dt);
 	}
 
 	public function edit($id = '')
 	{
 		//$id = $this->uri->segment(3);
 		$dt['guru'] = $this->m_guru->get_data($id);
-		$data['_TITLE'] = 'Edit Data GURU';
-		$data['_CONTENT'] = $this->load->view('guru/edit_guru', $dt, TRUE);
-		$this->load->view('template/index',$data, FALSE);
+		$this->load->view('guru/edit_guru', $dt);
 	}
 
 	public function update()
