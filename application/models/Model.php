@@ -5,7 +5,6 @@ class Model extends CI_Model {
     public $CREATE = 1, $UPDATE = 2, $DELETE = 3; // action flag
     private $numData = 0; // num of record
     protected $table = '', $isNew = true;
-    protected $NewNumber = 0;
 
     public function __construct() {
         parent::__construct();

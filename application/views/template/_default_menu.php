@@ -12,7 +12,7 @@
 	</a>
 	<ul class="treeview-menu">
 		<li><a href="#" onclick="loadContent(base_url + 'view/_user_form')"><i class="fa fa-user"></i> User</a></li>
-		<li><a href="#" onclick="loadContent(base_url + 'view/_guru_form')"><i class="fa fa-users"></i> Guru</a></li>
+		<li><a href="#" onclick="loadContent(base_url + 'view/_guru_form')"><i class="fa fa-user-secret"></i> Guru</a></li>
 		<li><a href="#" onclick="loadContent(base_url + 'view/_siswa_form')"><i class="fa fa-users"></i> Siswa</a></li>
 
 	</ul>

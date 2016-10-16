@@ -94,7 +94,7 @@ class Manager extends CI_Controller {
         $message = '';
         /* collect request */
         $action = $this->input->post('action-input'); // create, update, delete
-        $model = $this->input->post('model-input') . 'mo   del';
+        $model = $this->input->post('model-input') . 'model';
 
         if ($this->activeSession != null) {
             $this->load->model($model);

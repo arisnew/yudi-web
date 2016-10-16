@@ -158,7 +158,6 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		<?php echo (isset($_EXTRA_JS))? $_EXTRA_JS : '';?>
-
 	});
 
 </script>
