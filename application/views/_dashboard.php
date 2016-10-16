@@ -4,3 +4,6 @@
 
 <a href="#" class="btn btn-info"
 	onclick="loadContent(base_url + 'view/_profile');">Ke Halaman MProfile</a>
+
+<hr>
+<a class="btn btn-link" href="#" onclick="loadContent(base_url + 'view/_about');">About App</a>	
