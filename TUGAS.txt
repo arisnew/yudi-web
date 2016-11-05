@@ -1,0 +1,3 @@
+tugas: buat CRUD full via AJAX untuk data siswa/guru
+
+next meeting : DEVELOPMENT (design database)
