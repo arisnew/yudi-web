@@ -36,7 +36,7 @@
 				<input class="form-control" type="text" name="email-input" id="email-input" value="">
 				<br>
 				<label>Password :</label>
-				<input class="form-control" type="text" name="password-input" id="password-input" value="">
+				<input class="form-control" type="password" name="password-input" id="password-input" value="">
 				<br>
 				<input type="hidden" name="model-input" id="model-input" value="user">
 				<input type="hidden" name="action-input" id="action-input" value="1">

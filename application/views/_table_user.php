@@ -12,6 +12,7 @@
 		</div>
 		<div class="box-body">
 			<div id="loading"></div>
+            <a href="#" onclick="loadContent(base_url + 'view/_user_form');" class="btn btn-success pull-right"> Add User</a>
 			<table id="tabel-user" class="table table-bordered">
 				<thead>
 					<tr>
