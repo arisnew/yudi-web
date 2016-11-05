@@ -13,9 +13,14 @@ class Usermodel extends Model {
         $fields = array(
             'username' => $inputs['username-input'],
             'nama' => $inputs['nama-input'],
-            'email' => $inputs['email-input'],
-            'password' => $inputs['password-input']
+            'email' => $inputs['email-input']
+            //'password' => $inputs['password-input']
         );
+
+        if ($inputs['password-input'] != '') {
+            $fields['password'] = $inputs['password-input'];
+        }
+        
         return $fields;
     }
 

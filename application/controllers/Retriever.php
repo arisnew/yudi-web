@@ -74,7 +74,7 @@ class Retriever extends CI_Controller {
 			} elseif ($picker == 'no') {
 				//$linkBtn = '<a href="#' . $record->username . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
 				$linkBtn = ' <a href="#' . $record->username . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				//$linkBtn .= ' <a href="#' . $record->username . '" class="btn btn-xs btn-danger removeBtn role-complete"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn .= ' <a href="#' . $record->username . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
 			}
 			
 			$data[] = array(
@@ -94,9 +94,7 @@ class Retriever extends CI_Controller {
 			if ($picker == 'yes') {
 				$linkBtn = ' <a href="#' . $record->id_guru . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				//$linkBtn = '<a href="#' . $record->id_guru . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
 				$linkBtn = ' <a href="#' . $record->id_guru . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				//$linkBtn .= ' <a href="#' . $record->id_guru . '" class="btn btn-xs btn-danger removeBtn role-complete"><i class="fa fa-trash-o"></i> Delete</a>';
 			}
 			
 			$data[] = array(

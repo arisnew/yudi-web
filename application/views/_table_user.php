@@ -64,7 +64,37 @@
         });
 
         $("#tabel-user .removeBtn").on("click",function(){
-            //konfirmasiHapus($(this).attr('href').substring(1));
+            konfirmasiHapus($(this).attr('href').substring(1));
         });
+    }
+
+    function konfirmasiHapus(x){
+    	if(confirm("Yakin hapus Data???!")){
+            loading('loading', true);
+            setTimeout(function() {
+                $.ajax({
+                    url: base_url + 'manage',
+                    data: 'model-input=user&key-input=username&action-input=3&value-input=' + x,
+                    dataType: 'json',
+                    type: 'POST',
+                    cache: false,
+                    success: function(json) {
+                        loading('loading',false);
+                        if (json['data'].code === 1) {
+                            alert('Hapus data berhasil');
+                            loadContent(base_url + "view/_table_user");
+                        } else if(json['data'].code === 2){
+                            alert('Hapus data tidak berhasil!');
+                        } else{
+                            alert(json['data'].message);
+                        }
+                    },
+                    error: function () {
+                        loading('loading',false);
+                        alert('Hapus data tidak berhasil, terjadi kesalahan!');
+                    }
+                });
+            }, 1000);
+        }
     }
 </script>

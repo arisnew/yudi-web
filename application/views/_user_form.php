@@ -59,7 +59,11 @@
 <!-- /.content -->
 <script type="text/javascript">
 	$(document).ready(function () {
-		//
+		<?php
+		if ($param) {
+			echo 'fillForm("'.$param.'");';
+		}
+		?>
 	});
 
 	function simpan_data() {
@@ -76,7 +80,7 @@
 
                     if (json['data'].code === 1) {
                         alert('Penyimpanan data berhasil');
-                        //loadContent(base_url + 'view/_user_table');
+                        loadContent(base_url + 'view/_table_user');
                     } else if(json['data'].code === 2){
                         alert('Penyimpanan data tidak berhasil');
                     } else{
@@ -89,5 +93,24 @@
                 }
             });
         }, 2000);
+    }
+
+    function fillForm(x) {
+        $.ajax({
+            url: base_url + 'object',
+            data: 'model-input=user&key-input=username&value-input=' + x,
+            dataType: 'json',
+            type: 'POST',
+            cache: false,
+            success: function(json) {
+                if (json['data'].code === 1) {
+                    $("#username-input").val(json.data.object.username).attr("readonly","");
+                    $("#nama-input").val(json.data.object.nama);
+                    $("#email-input").val(json.data.object.email);
+                    $("#action-input").val("2");
+                    $("#value-input").val(x);
+                }
+            }
+        });
     }
 </script>

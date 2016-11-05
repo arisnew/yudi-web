@@ -60,3 +60,4 @@ $route['manage'] = 'manager/process';
 
 $route['objects/(:any)'] = 'retriever/records/$1/null/null/no';
 $route['objects/(:any)/(:any)/(:any)'] = 'retriever/records/$1/$2/$3/yes';
+$route['object'] = 'retriever/record';
