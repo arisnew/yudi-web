@@ -17,6 +17,7 @@
 <!-- AdminLTE Skins. Choose a skin from the css/skins
 	folder instead of downloading all of them to reduce the load. -->
 	<link rel="stylesheet" href="<?php echo base_url();?>asset/dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>asset/plugins/datatables/dataTables.bootstrap.css">
 	<script type="text/javascript">var base_url = '<?php echo base_url();?>';</script>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,7 +32,7 @@
 
 		<header class="main-header">
 			<!-- Logo -->
-			<a href="<?php echo base_url();?>asset/index2.html" class="logo">
+			<a href="<?php echo base_url();?>" class="logo">
 				<!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>A</b>LT</span>
 				<!-- logo for regular state and mobile devices -->
@@ -155,6 +156,8 @@
 <script src="<?php echo base_url();?>asset/dist/js/demo.js"></script>
 <script src="<?php echo base_url();?>asset/js/jquery.blockUI.js"></script>
 <script src="<?php echo base_url();?>asset/js/function.js"></script>
+<script src="<?php echo base_url();?>asset/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url();?>asset/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
 		<?php echo (isset($_EXTRA_JS))? $_EXTRA_JS : '';?>

@@ -10,7 +10,7 @@ class Gurumodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            'id_gu   ru'        => $inputs['id-input'],
+            'id_guru'        => $inputs['id-input'],
             'nama'          => $inputs['nama-input'],
             'matapelajaran' => $inputs['mp-input'],
             'email'         => $inputs['email-input']
