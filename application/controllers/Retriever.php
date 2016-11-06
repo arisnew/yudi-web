@@ -107,4 +107,25 @@ class Retriever extends CI_Controller {
 		}
 		return $data;
 	}
+
+	private function _kelas($records, $picker = 'no') {
+		$data = array();
+
+		foreach ($records as $record) {
+			if ($picker == 'yes') {
+				$linkBtn = ' <a href="#' . $record->id_kelas . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
+			} elseif ($picker == 'no') {
+				$linkBtn = ' <a href="#' . $record->id_kelas . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn .= ' <a href="#' . $record->id_kelas . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+			}
+			
+			$data[] = array(
+				'nama' => $record->nama_kelas,
+				'deskripsi' => $record->deskripsi,
+				'status' => $record->status,
+				'aksi' => $linkBtn
+				);
+		}
+		return $data;
+	}
 }
