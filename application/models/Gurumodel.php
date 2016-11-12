@@ -20,7 +20,7 @@ class Gurumodel extends Model {
 
     public function getRules() {    //set rule validasi form
         $id = array(
-            'field' => 'id-input', 'label' => 'ID Guru',
+            'field' => 'id_guru-input', 'label' => 'ID Guru',
             'rules' => 'trim|required|max_length[11]|numeric'
         );
 

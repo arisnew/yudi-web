@@ -1,7 +1,8 @@
 <section class="content">
 	<div class="box">
 		<div class="box-header with-border">
-			<h3 class="box-title">Data Guru</h3>
+			<h3 class="box-title">DATA Guru</h3>
+
 			<div class="box-tools pull-right">
 				<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
 				<i class="fa fa-minus"></i></button>
@@ -11,13 +12,14 @@
 		</div>
 		<div class="box-body">
 			<div id="loading"></div>
+            <a href="#" onclick="loadContent(base_url + 'view/_guru_form');" class="btn btn-success pull-right"> Add Guru</a>
 			<table id="tabel-guru" class="table table-bordered">
 				<thead>
 					<tr>
-						<th>ID Guru</th>
+						<th>Id_Guru</th>
 						<th>Nama</th>
-						<th>Email</th>
 						<th>Mata Pelajaran</th>
+						<th>Email</th>
 						<th>Pilihan</th>
 					</tr>
 				</thead>
@@ -43,10 +45,10 @@
             table = $('#tabel-guru').DataTable({
                 "ajax": base_url + 'objects/guru',
                 "columns": [
-	                {"data": "id"},
+	                {"data": "id_guru"},
 	                {"data": "nama"},
-	                {"data": "email"},
 	                {"data": "mapel"},
+	                {"data": "email"},
 	                {"data": "aksi"}
                 ],
                 "ordering": true,
@@ -61,11 +63,41 @@
 
     function utils() {
         $("#tabel-guru .editBtn").on("click",function(){
-            //loadContent(base_url + 'view/_user_form/' + $(this).attr('href').substring(1));
+            loadContent(base_url + 'view/_guru_form/' + $(this).attr('href').substring(1));
         });
 
         $("#tabel-guru .removeBtn").on("click",function(){
-            //konfirmasiHapus($(this).attr('href').substring(1));
+            konfirmasiHapus($(this).attr('href').substring(1));
         });
+    }
+
+    function konfirmasiHapus(x){
+    	if(confirm("Yakin hapus Data???")){
+            loading('loading', true);
+            setTimeout(function() {
+                $.ajax({
+                    url: base_url + 'manage',
+                    data: 'model-input=id_guru&key-input=id_guru&action-input=3&value-input=' + x,
+                    dataType: 'json',
+                    type: 'POST',
+                    cache: false,
+                    success: function(json) {
+                        loading('loading',false);
+                        if (json['data'].code === 1) {
+                            alert('Hapus data berhasil');
+                            loadContent(base_url + "view/_table_guru");
+                        } else if(json['data'].code === 2){
+                            alert('Hapus data tidak berhasil!');
+                        } else{
+                            alert(json['data'].message);
+                        }
+                    },
+                    error: function () {
+                        loading('loading',false);
+                        alert('Hapus data tidak berhasil, terjadi kesalahan!');
+                    }
+                });
+            }, 1000);
+        }
     }
 </script>

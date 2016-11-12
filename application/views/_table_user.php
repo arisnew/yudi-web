@@ -70,7 +70,7 @@
     }
 
     function konfirmasiHapus(x){
-    	if(confirm("Yakin hapus Data???!")){
+    	if(confirm("Yakin hapus Data???")){
             loading('loading', true);
             setTimeout(function() {
                 $.ajax({
