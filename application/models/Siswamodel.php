@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Usermodel extends Model {
+class Siswamodel extends Model {
 
     public function __construct() {
         parent::__construct();
@@ -19,11 +19,9 @@ class Usermodel extends Model {
         );
 
         //if ($inputs['password-input'] != '') {
-            //$fields['password'] = $inputs['password-input'];
-        }
-        
+            //$fields['password'] = $inputs['password-input'];        
         return $fields;
-
+    }
 
     public function getRules() {    //set rule validasi form
 
