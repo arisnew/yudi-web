@@ -43,7 +43,7 @@
 				<input type="hidden" name="key-input" id="key-input" value="id_guru">
 				<input type="hidden" name="value-input" id="value-input" value="0">
 
-				<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
+				<button class="btn btn-primary" type="submit" onclick="proses_simpan(); return false;"><i class="fa fa-save"></i> Simpan</button>
 				<input type="reset" value="Batal" onclick="history.back()">
 			</form>
 		</div>

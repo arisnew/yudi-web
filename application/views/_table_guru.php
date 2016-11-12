@@ -45,7 +45,7 @@
             table = $('#tabel-guru').DataTable({
                 "ajax": base_url + 'objects/guru',
                 "columns": [
-	                {"data": "id_guru"},
+	                {"data": "id"},
 	                {"data": "nama"},
 	                {"data": "mapel"},
 	                {"data": "email"},
