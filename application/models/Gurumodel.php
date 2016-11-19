@@ -10,25 +10,39 @@ class Gurumodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            'id_guru'        => $inputs['id_guru-input'],
-            'nama'          => $inputs['nama-input'],
-            'matapelajaran' => $inputs['matapelajaran-input'],
-            'email'         => $inputs['email-input']
+            'nip'            => $inputs['nip-input'],
+            'nama'           => $inputs['nama-input'],
+            'alamat'         => $inputs['alamat-input'],
+            'tempat_lahir'   => $inputs['tempat_lahir-input'],
+            'jenis_kelamin'  => $inputs['jenis_kelamin-input'],
+            'agama'          => $inputs['agama-input'],
+            'no_telp'        => $inputs['no_telp-input'],
+            'email'          => $inputs['email-input'],
+            'status_pegawai' => $inputs['status_pegawai-input'],
+            'username'       => $inputs['username-input'],
+            'level'          =>  'Admin',
+            'status'         => $inputs['status-input'],
+            
         );
+
+        if ($inputs['password-input'] != '') {
+            $fields['password'] = $inputs['password-input'];
+        }
+
         return $fields;
     }
 
     public function getRules() {    //set rule validasi form
         $id = array(
-            'field' => 'id_guru-input', 'label' => 'ID Guru',
-            'rules' => 'trim|required|max_length[11]|numeric'
+            'field' => 'nip-input', 'label' => 'nip',
+            'rules' => 'trim|required|max_length[20]|numeric'
         );
 
         $nama = array(
             'field' => 'nama-input', 'label' => 'Nama',
-            'rules' => 'trim|required|max_length[20]'
+            'rules' => 'trim|required|max_length[200]'
         );
 
-        return array($id, $nama);
+        return array($nip, $nama);
     }
 }

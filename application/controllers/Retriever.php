@@ -93,18 +93,25 @@ class Retriever extends CI_Controller {
 
 		foreach ($records as $record) {
 			if ($picker == 'yes') {
-				$linkBtn = ' <a href="#' . $record->id_guru . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
+				$linkBtn = ' <a href="#' . $record->nip . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				$linkBtn = ' <a href="#' . $record->id_guru . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->id_guru . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn = ' <a href="#' . $record->nip . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn .= ' <a href="#' . $record->nip . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
 			}
 			
 			$data[] = array(
-				'id' => $record->id_guru,
-				'nama' => $record->nama,
-				'email' => $record->email,
-				'mapel' => $record->matapelajaran,
-				'aksi' => $linkBtn
+				'nip'			=> $record->nip,
+				'nama' 			=> $record->nama,
+				'alamat' 		=> $record->alamat,
+				'tempat_lahir' 	=> $record->tempat_lahir,
+				'jenis_kelamin' => $record->jenis_kelamin,
+				'agama' 		=> $record->agama,
+				'no_telp'		=> $record->no_telp,
+				'email'			=> $record->email,
+				'status_pegawai'=> $record->status_pegawai,
+				'username' 		=> $record->username,
+				'status' 		=> $record->status,
+				'aksi' 			=> $linkBtn
 				);
 		}
 		return $data;
