@@ -14,26 +14,27 @@ class Gurumodel extends Model {
             'nama'           => $inputs['nama-input'],
             'alamat'         => $inputs['alamat-input'],
             'tempat_lahir'   => $inputs['tempat_lahir-input'],
+            'tgl_lahir'      => $inputs['tgl_lahir-input'],
             'jenis_kelamin'  => $inputs['jenis_kelamin-input'],
             'agama'          => $inputs['agama-input'],
             'no_telp'        => $inputs['no_telp-input'],
             'email'          => $inputs['email-input'],
             'status_pegawai' => $inputs['status_pegawai-input'],
             'username'       => $inputs['username-input'],
-            'level'          =>  'Admin',
+            'level'          =>  'Guru',
             'status'         => $inputs['status-input'],
             
         );
 
         if ($inputs['password-input'] != '') {
-            $fields['password'] = $inputs['password-input'];
+            $fields['password'] = md5($inputs['password-input']);
         }
 
         return $fields;
     }
 
     public function getRules() {    //set rule validasi form
-        $id = array(
+        $nip = array(
             'field' => 'nip-input', 'label' => 'nip',
             'rules' => 'trim|required|max_length[20]|numeric'
         );

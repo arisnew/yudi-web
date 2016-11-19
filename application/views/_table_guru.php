@@ -18,14 +18,8 @@
 					<tr>
 						<th>Nip</th>
 						<th>Nama</th>
-                        <th>Alamat</th>
-                        <th>Tempat lahir</th>
                         <th>Jenis Kelamin</th>
-                        <th>Agama</th>
-                        <th>Nomer Telepon</th>
-                        <th>Email</th>
-                        <th>Status pegawai</th>
-                        <th>Username</th>
+                        <th>Status Pegawai</th>
 						<th>Status</th>
 						<th>Pilihan</th>
 					</tr>
@@ -54,14 +48,8 @@
                 "columns": [
 	                {"data": "nip"},
 	                {"data": "nama"},
-                    {"data": "alamat"},
-                    {"data": "tempat_lahir"},
-                    {"data": "jeis_kelamin"},
-                    {"data": "agama"},
-                    {"data": "no_telp"},
-                    {"data": "email"},
+                    {"data": "jenis_kelamin"},
                     {"data": "status_pegawai"},
-	                {"data": "username"},
 	                {"data": "status"},
 	                {"data": "aksi"}
                 ],
@@ -91,7 +79,7 @@
             setTimeout(function() {
                 $.ajax({
                     url: base_url + 'manage',
-                    data: 'model-input=nip&key-input=nip&action-input=3&value-input=' + x,
+                    data: 'model-input=guru&key-input=nip&action-input=3&value-input=' + x,
                     dataType: 'json',
                     type: 'POST',
                     cache: false,

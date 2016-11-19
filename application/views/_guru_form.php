@@ -24,9 +24,12 @@
 				<label>Tempat Lahir :</label>
 				<input class="form-control" type="text" name="tempat_lahir-input" id="tempat_lahir-input" value="">
 				<br>
+				<label>Tanggal Lahir :</label>
+				<input class="form-control" type="text" name="tgl_lahir-input" id="tgl_lahir-input" value="" placeholder="yyyy-mm-dd">
+				<br>
 				<label>Jenis Kelamin :</label>
-				<select class="form-control" name="jens_kelamin-input" id="jens_kelamin-input">
-					<option value="Laki_laki">Laki-laki</option>
+				<select class="form-control" name="jenis_kelamin-input" id="jenis_kelamin-input">
+					<option value="Laki-laki">Laki-laki</option>
 					<option value="Perempuan">Perempuan</option>
 				</select>
 				<label>Agama :</label>
@@ -111,7 +114,7 @@
 					alert("Respon server gagal!");
 				}
 			});
-		}, 2000);
+		}, 100);
 	}
 
 	function fillForm(x) {
