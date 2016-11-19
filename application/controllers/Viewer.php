@@ -6,7 +6,7 @@ class Viewer extends CI_Controller {
 
 	public function __construct() {
 	    parent::__construct();
-	    $this->activeSession = 'DEMO'; // $this->session->userdata('_USER_ID');
+	    $this->activeSession = $this->session->userdata('_USER_ID');
 	}
 
 	public function index() {
@@ -25,7 +25,8 @@ class Viewer extends CI_Controller {
 	public function pathGuide($page = 'home', $param = null) {
 		if ($this->activeSession == null) {
 			//$this->output->set_output('');
-			$this->load->view('redirect');
+			//$this->load->view('redirect');
+			$this->load->view('login');
 		} else {
 			$this->load->view($page, array('param' => $param));
 		}

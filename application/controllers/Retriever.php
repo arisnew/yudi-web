@@ -6,7 +6,7 @@ class Retriever extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->activeSession = 'DEMO'; // $this->session->userdata('_USER_ID');
+		$this->activeSession = $this->session->userdata('_USER_ID');
 	}
 
 	public function index() {

@@ -18,7 +18,7 @@ class Usermodel extends Model {
         );
 
         if ($inputs['password-input'] != '') {
-            $fields['password'] = $inputs['password-input'];
+            $fields['password'] = md5($inputs['password-input']);
         }
         
         return $fields;

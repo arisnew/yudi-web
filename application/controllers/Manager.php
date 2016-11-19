@@ -6,7 +6,7 @@ class Manager extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->activeSession = 'demo';// $this->session->userdata('_USER_ID');
+        $this->activeSession = $this->session->userdata('_USER_ID');
         $this->load->library('form_validation');
     }
 
@@ -17,7 +17,7 @@ class Manager extends CI_Controller {
     /*
     *	login or logout
     */
-    /*public function identify($action) {
+    public function identify($action) {
         if ($action == 'acknowledge') { // for login
             /*
             * code info:
@@ -25,7 +25,7 @@ class Manager extends CI_Controller {
             *	- 1 = user granted
             *	- 2 = user ID tidak dikenal
             *	- 3 = user Password salah
-            * /
+            */
             $code = 0;
             $message = '';
             $id_user = '';
@@ -48,18 +48,14 @@ class Manager extends CI_Controller {
                     if ($actor == null) {
                         $code = 2;
                     } else {
-                        $this->load->library('cryptorgram');
-
-                        if ($this->cryptorgram->decrypt($actor->password) == $this->input->post('password-input')) {
+                        if ($actor->password == md5($this->input->post('password-input'))) {
                             $this->session->set_userdata(array(
                                 '_USER_ID' => $actor->username,
                                 '_NAME' => $actor->nama,
                                 '_LEVEL' => $actor->level,
-                                '_IMG' => $actor->foto
+                                //'_IMG' => $actor->foto
                             ));
                             $code = 1;
-                            //untuk keperluan log
-                            //$id_user = $actor->entity_id;
                         } else {
                             $code = 3;
                         }
@@ -77,7 +73,7 @@ class Manager extends CI_Controller {
             }
             redirect(site_url());
         }
-    }*/
+    }
 
     /*
     *	create, update, or delete
