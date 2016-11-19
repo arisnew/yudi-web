@@ -81,6 +81,7 @@ class Retriever extends CI_Controller {
 				'username' => $record->username,
 				'nama' => $record->nama,
 				'email' => $record->email,
+				'status' => $record->status,
 				'aksi' => $linkBtn
 				);
 		}

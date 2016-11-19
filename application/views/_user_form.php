@@ -1,17 +1,4 @@
-<section class="content-header">
-	<h1>
-		Form USER
-		<small>it all starts here</small>
-	</h1>
-	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li><a href="#">Examples</a></li>
-		<li class="active">Blank page</li>
-	</ol>
-</section>
-<!-- Main content -->
 <section class="content">
-	<!-- Default box -->
 	<div class="box">
 		<div class="box-header with-border">
 			<h3 class="box-title">Form USER</h3>
@@ -38,6 +25,12 @@
 				<label>Password :</label>
 				<input class="form-control" type="password" name="password-input" id="password-input" value="">
 				<br>
+				<label>Status :</label>
+				<select class="form-control" name="status-input" id="status-input">
+					<option value="Aktif">Aktif</option>
+					<option value="Nonaktif">Nonaktif</option>
+				</select>
+				<br>
 				<input type="hidden" name="model-input" id="model-input" value="user">
 				<input type="hidden" name="action-input" id="action-input" value="1">
 				<input type="hidden" name="key-input" id="key-input" value="username">
@@ -47,16 +40,11 @@
 				<input type="reset" value="Batal" onclick="history.back()">
 			</form>
 		</div>
-		<!-- /.box-body -->
 		<div class="box-footer">
 			Footer
 		</div>
-		<!-- /.box-footer-->
 	</div>
-	<!-- /.box -->
-
 </section>
-<!-- /.content -->
 <script type="text/javascript">
 	$(document).ready(function () {
 		<?php
@@ -77,7 +65,6 @@
                 cache: false,
                 success: function(json) {
                     loading('loading',false);
-
                     if (json['data'].code === 1) {
                         alert('Penyimpanan data berhasil');
                         loadContent(base_url + 'view/_table_user');
@@ -92,7 +79,7 @@
                     alert('An error accurred');
                 }
             });
-        }, 2000);
+        }, 100);
     }
 
     function fillForm(x) {
@@ -107,6 +94,7 @@
                     $("#username-input").val(json.data.object.username).attr("readonly","");
                     $("#nama-input").val(json.data.object.nama);
                     $("#email-input").val(json.data.object.email);
+                    $("#status-input").val(json.data.object.status);
                     $("#action-input").val("2");
                     $("#value-input").val(x);
                 }

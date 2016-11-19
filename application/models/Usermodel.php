@@ -6,15 +6,15 @@ class Usermodel extends Model {
         parent::__construct();
         $this->table = 'user';  //choose table
         $this->isNew = false;
-        //$this->load->library('formatdate');
     }
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
             'username' => $inputs['username-input'],
             'nama' => $inputs['nama-input'],
-            'email' => $inputs['email-input']
-            //'password' => $inputs['password-input']
+            'email' => $inputs['email-input'],
+            'level' =>  'Admin',
+            'status' => $inputs['status-input']
         );
 
         if ($inputs['password-input'] != '') {

@@ -19,6 +19,7 @@
 						<th>Username</th>
 						<th>Nama</th>
 						<th>Email</th>
+                        <th>Status</th>
 						<th>Pilihan</th>
 					</tr>
 				</thead>
@@ -47,6 +48,7 @@
 	                {"data": "username"},
 	                {"data": "nama"},
 	                {"data": "email"},
+                    {"data": "status"},
 	                {"data": "aksi"}
                 ],
                 "ordering": true,
