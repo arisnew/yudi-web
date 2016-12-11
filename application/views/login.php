@@ -42,6 +42,13 @@
                             <div class="form-group">
                                 <input class="form-control" placeholder="Password" id="password-input" name="password-input" type="password" value="">
                             </div>
+                            <div class="form-group">
+                                <select class="form-control" id="type-input" name="type-input">
+                                    <option value="Siswa">Siswa</option>
+                                    <option value="Guru">Guru</option>
+                                    <option value="User" selected="">Admin</option>
+                                </select>
+                            </div>
                             <input type="submit" value="Login" class="btn btn-lg btn-success btn-block" onclick="proses_login(); return false;">
                         </fieldset>
                     </form>

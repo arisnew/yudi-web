@@ -39,7 +39,8 @@ class Manager extends CI_Controller {
                     $this->form_validation->set_error_delimiters($delimiter, '. ');
                     $message = validation_errors();
                 } else {
-                    $query['table'] = 'user';
+                    $tbl_name = strtolower($this->input->post('type-input'));
+                    $query['table'] = $tbl_name; //'user';   //???
                     $query['where'] = array(
                         'username' => $this->input->post('username-input'), 'status' => 'Aktif' // is alive
                     );
@@ -49,7 +50,15 @@ class Manager extends CI_Controller {
                         $code = 2;
                     } else {
                         if ($actor->password == md5($this->input->post('password-input'))) {
+                            if ($tbl_name == 'siswa') {
+                                $id = $actor->nis;
+                            } else if ($tbl_name == 'guru') {
+                                $id = $actor->nip;
+                            } else {
+                                $id = $actor->username;
+                            }
                             $this->session->set_userdata(array(
+                                '_ID' => $id,
                                 '_USER_ID' => $actor->username,
                                 '_NAME' => $actor->nama,
                                 '_LEVEL' => $actor->level,
