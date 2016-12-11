@@ -44,6 +44,11 @@ class Gurumodel extends Model {
             'rules' => 'trim|required|max_length[200]'
             );
 
-        return array($nip, $nama);
+        $username = array(
+            'field' => 'username-input', 'label' => 'Username',
+            'rules' => 'trim|required|max_length[20]'
+            );
+
+        return array($nip, $nama, $username);
     }
 }
