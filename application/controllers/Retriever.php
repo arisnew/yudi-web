@@ -192,7 +192,7 @@ class Retriever extends CI_Controller {
 		return $data;
 	}
 
-	private function _matapelajaran($records, $picker = 'no') {
+	private function _mata_pelajaran($records, $picker = 'no') {
 		$data = array();
 
 		foreach ($records as $record) {
