@@ -19,3 +19,8 @@
 		<li><a href="#" onclick="loadContent(base_url + 'view/_table_matapelajaran')"><i class="fa fa-user-secret"></i> Mata Pelajaran</a></li>
 	</ul>
 </li>
+<li>
+	<a href="#" onclick="loadContent(base_url + 'view/_table_materi')">
+		<i class="fa fa-book"></i> <span>Materi</span>
+	</a>
+</li>
