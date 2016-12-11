@@ -10,26 +10,30 @@ class Kelasmodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            'nama_kelas'    => $inputs['nama-input'],
-            'status'        => $inputs['status-input'],
-            'deskripsi'     => $inputs['deskripsi-input']
-        );
-        
+            'kode_kelas' => $inputs['kode_kelas-input'],
+            'nama_kelas' => $inputs['nama_kelas-input'],
+            'status' => $inputs['status-input']
+            );
+
+        //if ($inputs['password-input'] != '') {
+            //$fields['password'] = md5($inputs['password-input']);
+        //}
+
         return $fields;
     }
 
     public function getRules() {    //set rule validasi form
 
-        $nama = array(
-            'field' => 'nama-input', 'label' => 'Nama Kelas',
+        $kode_kelas = array(
+            'field' => 'kode_kelas-input', 'label' => 'Kode kelas',
+            'rules' => 'trim|required|max_length[20]'
+            );
+
+        $nama_kelas = array(
+            'field' => 'nama_kelas-input', 'label' => 'Nama kelas',
             'rules' => 'trim|required|max_length[200]'
-        );
+            );
 
-        $deskripsi = array(
-            'field' => 'deskripsi-input', 'label' => 'Deskripsi',
-            'rules' => 'trim'
-        );
-
-        return array($nama, $deskripsi);
+        return array($kode_kelas, $nama_kelas);
     }
 }

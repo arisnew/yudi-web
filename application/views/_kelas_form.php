@@ -13,14 +13,14 @@
 		<div class="box-body">
 			<div id="loading"></div>
 			<form id="form-kelas">
-				<label>Nama Kelas :</label>
-				<input class="form-control" type="text" name="nama-input" id="nama-input" value="" autofocus="">
+				<label>Kode Kelas :</label>
+				<input class="form-control" type="text" name="kode_kelas-input" id="kode_kelas-input" value="">
 				<br>
-				<label>Deskripsi :</label>
-				<textarea class="form-control" name="deskripsi-input" id="deskripsi-input"></textarea>
+				<label>Nama Kelas :</label>
+				<input class="form-control" type="text" name="nama_kelas-input" id="nama_kelas-input" value="">
 				<br>
 				<label>Status :</label>
-				<select name="status-input" id="status-input" class="form-control">
+				<select class="form-control" name="status-input" id="status-input">
 					<option value="Aktif">Aktif</option>
 					<option value="Nonaktif">Nonaktif</option>
 				</select>
@@ -28,7 +28,7 @@
 				<br>
 				<input type="hidden" name="model-input" id="model-input" value="kelas">
 				<input type="hidden" name="action-input" id="action-input" value="1">
-				<input type="hidden" name="key-input" id="key-input" value="id_kelas">
+				<input type="hidden" name="key-input" id="key-input" value="kode_kelas">
 				<input type="hidden" name="value-input" id="value-input" value="0">
 
 				<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
@@ -79,14 +79,14 @@
     function fillForm(x) {
         $.ajax({
             url: base_url + 'object',
-            data: 'model-input=kelas&key-input=id_kelas&value-input=' + x,
+            data: 'model-input=kelas&key-input=kode_kelas&value-input=' + x,
             dataType: 'json',
             type: 'POST',
             cache: false,
             success: function(json) {
                 if (json['data'].code === 1) {
-                    $("#nama-input").val(json.data.object.nama_kelas);
-                    $("#deskripsi-input").val(json.data.object.deskripsi);
+                	$("#kode_kelas-input").val(json.data.object.kode_kelas);
+                    $("#nama_kelas-input").val(json.data.object.nama_kelas);
                     $("#status-input").val(json.data.object.status);
                     $("#action-input").val("2");	//edit
                     $("#value-input").val(x);

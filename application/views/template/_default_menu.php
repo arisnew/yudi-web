@@ -14,6 +14,8 @@
 		<li><a href="#" onclick="loadContent(base_url + 'view/_table_user')"><i class="fa fa-user"></i> User</a></li>
 		<li><a href="#" onclick="loadContent(base_url + 'view/_table_guru')"><i class="fa fa-user-secret"></i> Guru</a></li>
 		<li><a href="#" onclick="loadContent(base_url + 'view/_table_siswa')"><i class="fa fa-users"></i> Siswa</a></li>
-
+		<li><a href="#" onclick="loadContent(base_url + 'view/_table_kelas')"><i class="fa fa-users"></i> Kelas</a></li>
+		<li><a href="#" onclick="loadContent(base_url + 'view/_table_jurusan')"><i class="fa fa-user-secret"></i> Jurusan</a></li>
+		<li><a href="#" onclick="loadContent(base_url + 'view/_table_matapelajaran')"><i class="fa fa-user-secret"></i> Mata Pelajaran</a></li>
 	</ul>
 </li>

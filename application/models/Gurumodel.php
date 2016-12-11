@@ -24,7 +24,7 @@ class Gurumodel extends Model {
             'level'          =>  'Guru',
             'status'         => $inputs['status-input'],
             
-        );
+            );
 
         if ($inputs['password-input'] != '') {
             $fields['password'] = md5($inputs['password-input']);
@@ -35,14 +35,14 @@ class Gurumodel extends Model {
 
     public function getRules() {    //set rule validasi form
         $nip = array(
-            'field' => 'nip-input', 'label' => 'nip',
+            'field' => 'nip-input', 'label' => 'Nip',
             'rules' => 'trim|required|max_length[20]|numeric'
-        );
+            );
 
         $nama = array(
             'field' => 'nama-input', 'label' => 'Nama',
             'rules' => 'trim|required|max_length[200]'
-        );
+            );
 
         return array($nip, $nama);
     }

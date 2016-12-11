@@ -15,7 +15,7 @@ class Usermodel extends Model {
             'email' => $inputs['email-input'],
             'level' =>  'Admin',
             'status' => $inputs['status-input']
-        );
+            );
 
         if ($inputs['password-input'] != '') {
             $fields['password'] = md5($inputs['password-input']);
@@ -29,12 +29,12 @@ class Usermodel extends Model {
         $username = array(
             'field' => 'username-input', 'label' => 'Username',
             'rules' => 'trim|required|max_length[10]'
-        );
+            );
 
         $nama = array(
             'field' => 'nama-input', 'label' => 'Nama',
             'rules' => 'trim|required|max_length[50]'
-        );
+            );
 
         return array($username, $nama);
     }
