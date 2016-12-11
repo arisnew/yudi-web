@@ -1,3 +1,7 @@
+<?php
+$data_kelas = $this->model->getList(array('table' => 'kelas', 'where' => array('status' => 'Aktif')));
+$data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => array('status' => 'Aktif')));
+?>
 <section class="content">
 	<div class="box">
 		<div class="box-header with-border">
@@ -56,10 +60,26 @@
 						<input class="form-control" type="password" name="password-input" id="password-input" value="">
 						<br>
 						<label>Kelas :</label>
-						<input class="form-control" type="text" name="kelas-input" id="kelas-input" value="">
+						<select class="form-control" name="kelas-input" id="kelas-input">
+							<?php
+							if ($data_kelas) {
+								foreach ($data_kelas as $row) {
+									echo '<option value="' . $row->kode_kelas . '">' . $row->nama_kelas . '</option>';
+								}
+							}
+							?>
+						</select>
 						<br>
 						<label>Jurusan :</label>
-						<input class="form-control" type="text" name="jurusan-input" id="jurusan-input" value="">
+						<select class="form-control" name="jurusan-input" id="jurusan-input">
+							<?php
+							if ($data_kelas) {
+								foreach ($data_jurusan as $row) {
+									echo '<option value="' . $row->kode_jurusan . '">' . $row->nama_jurusan . '</option>';
+								}
+							}
+							?>
+						</select>
 						<br>
 						<label>Status :</label>
 						<select class="form-control" name="status-input" id="status-input">
