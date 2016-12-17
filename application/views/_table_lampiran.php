@@ -1,7 +1,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Data Siswa</h3>
+            <h3 class="box-title">List Lampiran</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -12,15 +12,14 @@
                 </div>
                 <div class="box-body">
                     <div id="loading"></div>
-                    <a href="#" onclick="loadContent(base_url + 'view/_siswa_form');" class="btn btn-success pull-right"> Add Siswa</a>
-                    <table id="tabel-siswa" class="table table-bordered">
+                    <a href="#" onclick="loadContent(base_url + 'view/_lampiran_form');" class="btn btn-success pull-right"> Add Lampiran</a>
+                    <table id="tabel-lampiran" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Nis</th>
-                                <th>Nama</th>
-                                <th>Alamat</th>
-                                <th>Kelas</th>
-                                <th>Jurusan</th>
+                                <th>ID Lampiran</th>
+                                <th>ID Materi</th>
+                                <th>Nama Lampiran</th>
+                                <th>Nama File</th>
                                 <th>Pilihan</th>
                             </tr>
                         </thead>
@@ -40,17 +39,16 @@
             });
 
             function getData() {
-                if ($.fn.dataTable.isDataTable('#tabel-siswa')) {
-                    table = $('#tabel-siswa').DataTable();
+                if ($.fn.dataTable.isDataTable('#tabel-lampiran')) {
+                    table = $('#tabel-lampiran').DataTable();
                 } else {
-                    table = $('#tabel-siswa').DataTable({
-                        "ajax": base_url + 'objects/siswa',
+                    table = $('#tabel-lampiran').DataTable({
+                        "ajax": base_url + 'objects/lampiran',
                         "columns": [
-                        {"data": "nis"},
-                        {"data": "nama"},
-                        {"data": "alamat"},
-                        {"data": "kelas"},
-                        {"data": "jurusan"},
+                        {"data": "id_lampiran"},
+                        {"data": "id_materi"},
+                        {"data": "nama_lampiran"},
+                        {"data": "nama_file"},
                         {"data": "aksi"}
                         ],
                         "ordering": true,
@@ -64,11 +62,11 @@
             }
 
             function utils() {
-                $("#tabel-siswa .editBtn").on("click",function(){
-                    loadContent(base_url + 'view/_siswa_form/' + $(this).attr('href').substring(1));
+                $("#tabel-lampiran .editBtn").on("click",function(){
+                    loadContent(base_url + 'view/_lampiran_form/' + $(this).attr('href').substring(1));
                 });
 
-                $("#tabel-siswa .removeBtn").on("click",function(){
+                $("#tabel-lampiran .removeBtn").on("click",function(){
                     konfirmasiHapus($(this).attr('href').substring(1));
                 });
             }
@@ -79,7 +77,7 @@
                     setTimeout(function() {
                         $.ajax({
                             url: base_url + 'manage',
-                            data: 'model-input=siswa&key-input=nis&action-input=3&value-input=' + x,
+                            data: 'model-input=lampiran&key-input=id_lampiran&action-input=3&value-input=' + x,
                             dataType: 'json',
                             type: 'POST',
                             cache: false,
@@ -87,7 +85,7 @@
                                 loading('loading',false);
                                 if (json['data'].code === 1) {
                                     alert('Hapus data berhasil');
-                                    loadContent(base_url + "view/_table_siswa");
+                                    loadContent(base_url + "view/_table_lampiran");
                                 } else if(json['data'].code === 2){
                                     alert('Hapus data tidak berhasil!');
                                 } else{

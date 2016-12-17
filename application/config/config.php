@@ -23,7 +23,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/yudi-web.git/';
+//$config['base_url'] = 'http://localhost/yudi-web.git/';
+//jika port bukan 80
+if ($_SERVER['SERVER_PORT'] != 80) {
+	$port = ':' . $_SERVER['SERVER_PORT'];
+} else {
+	$port ='';
+}
+
+//custom
+$alamat = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . $port . '/yudi-web.git/';
+
+$config['base_url']	= $alamat;
 
 /*
 |--------------------------------------------------------------------------

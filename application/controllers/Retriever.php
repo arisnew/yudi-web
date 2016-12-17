@@ -50,8 +50,16 @@ class Retriever extends CI_Controller {
 				if ($key != 'null' && $value != 'null') {
 					$query['where'] = array($key => $value);
 				}
-				
-				$query['table'] = $table;
+
+				switch ($table) {
+					case 'materi':
+						$query['table'] = 'v_materi';	//use view
+						break;
+					
+					default:
+						$query['table'] = $table;
+						break;
+				}
 
 				$records = $this->model->getList($query);
 				$inner = '_' . $table;
@@ -208,6 +216,136 @@ class Retriever extends CI_Controller {
 				'nama_mapel' => $record->nama_mapel,
 				'status' => $record->status,
 				'aksi' => $linkBtn
+				);
+		}
+		return $data;
+	}
+
+	private function _jadwal($records, $picker = 'no') {
+		$data = array();
+
+		foreach ($records as $record) {
+			if ($picker == 'yes') {
+				$linkBtn = ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
+			} elseif ($picker == 'no') {
+				//$linkBtn = '<a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
+				$linkBtn = ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn .= ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+			}
+			
+			$data[] = array(
+				'id_jadwal'	=> $record->id_jadwal,
+				'kode_mapel' => $record->kode_mapel,
+				'nip'			=> $record->nip,
+				'kode_kelas' => $record->kode_kelas,
+				'kode_jurusan' => $record->kode_jurusan,
+				'hari' => $record->hari,
+				'jam' => $record->jam,
+				'status'	 => $record->status,
+				'aksi'		 => $linkBtn
+				);
+		}
+		return $data;
+	}
+
+	private function _materi($records, $picker = 'no') {
+		$data = array();
+
+		foreach ($records as $record) {
+			if ($picker == 'yes') {
+				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
+			} elseif ($picker == 'no') {
+				//$linkBtn = '<a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
+				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+			}
+			
+			$data[] = array(
+				'id_materi'	=> $record->id_materi,
+				'kode_mapel' => $record->kode_mapel,
+				'nama_mapel' => $record->nama_mapel,
+				'judul'			=> $record->judul,
+				'isi' => $record->isi,
+				'nip' => $record->nip,
+				'nama' => $record->nama,
+				'tgl_posting' => $record->tgl_posting,
+				'publish'	 => $record->publish,
+				'aksi'		 => $linkBtn
+				);
+		}
+		return $data;
+	}
+
+	private function _nilai_ujian($records, $picker = 'no') {
+		$data = array();
+
+		foreach ($records as $record) {
+			if ($picker == 'yes') {
+				$linkBtn = ' <a href="#' . $record->id_ujian . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
+			} elseif ($picker == 'no') {
+				$linkBtn = ' <a href="#' . $record->id_ujian . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn .= ' <a href="#' . $record->id_ujian . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+			}
+			
+			$data[] = array(
+				'id_ujian' => $record->id_ujian,
+				'nis' => $record->nis,
+				'jumlah_benar' => $record->jumlah_benar,
+				'jumlah_salah' => $record->jumlah_salah,
+				'tgl_ujian' => $record->tgl_ujian,
+				'kode_mapel' => $record->kode_mapel,
+				'nilai' => $record->nilai,
+				'aksi' => $linkBtn
+				);
+		}
+		return $data;
+	}
+
+	private function _soal($records, $picker = 'no') {
+		$data = array();
+
+		foreach ($records as $record) {
+			if ($picker == 'yes') {
+				$linkBtn = ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
+			} elseif ($picker == 'no') {
+				$linkBtn = ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn .= ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+			}
+			
+			$data[] = array(
+				'id_soal' => $record->id_soal,
+				'pertanyaan' => $record->pertanyaan,
+				'opsi_a' => $record->opsi_a,
+				'opsi_b' => $record->opsi_b,
+				'opsi_c' => $record->opsi_c,
+				'opsi_d' => $record->opsi_d,
+				'kode_mapel' => $record->kode_mapel,
+				'nip' => $record->nip,
+				'tgl_posting' => $record->tgl_posting,
+				'aksi' => $linkBtn
+				);
+		}
+		return $data;
+	}
+
+	private function _lampiran($records, $picker = 'no') {
+		$data = array();
+
+		foreach ($records as $record) {
+			if ($picker == 'yes') {
+				$linkBtn = ' <a href="#' . $record->id_lampiran . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
+			} elseif ($picker == 'no') {
+				//$linkBtn = '<a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
+				$linkBtn = ' <a href="#' . $record->id_lampiran . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn .= ' <a href="#' . $record->id_lampiran . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+			}
+			
+			$data[] = array(
+				'id_lampiran'	=> $record->id_lampiran,
+				'id_materi' => $record->id_materi,
+				'nama_lampiran'			=> $record->nama_lampiran,
+				'nama_file' => $record->nama_file,
+				'aksi'		 => $linkBtn
 				);
 		}
 		return $data;

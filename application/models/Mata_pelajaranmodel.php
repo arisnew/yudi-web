@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Matapelajaranmodel extends Model {
+class Mata_pelajaranmodel extends Model {
 
     public function __construct() {
         parent::__construct();
-        $this->table = 'matapelajaran';  //choose table
+        $this->table = 'mata_pelajaran';  //choose table
         $this->isNew = false;
     }
 
@@ -13,7 +13,7 @@ class Matapelajaranmodel extends Model {
             'kode_mapel'  => $inputs['kode_mapel-input'],
             'nama_mapel'      => $inputs['nama_mapel-input'],
             'status'    => $inputs['status-input']
-        );
+            );
 
         //if ($inputs['password-input'] != '') {
            // $fields['password'] = md5($inputs['password-input']);
@@ -27,12 +27,12 @@ class Matapelajaranmodel extends Model {
         $kode_mapel = array(
             'field' => 'kode_mapel-input', 'label' => 'Kode Matapelajaran',
             'rules' => 'trim|required|max_length[20]'
-        );
+            );
 
         $nama_mapel = array(
             'field' => 'nama_mapel-input', 'label' => 'Nama Matapelajaran ',
-            'rules' => 'trim|required|max_length[50]'
-        );
+            'rules' => 'trim|required|max_length[200]'
+            );
 
         return array($kode_mapel, $nama_mapel);
     }
