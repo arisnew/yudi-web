@@ -62,7 +62,7 @@ class Manager extends CI_Controller {
                                 '_USER_ID' => $actor->username,
                                 '_NAME' => $actor->nama,
                                 '_LEVEL' => $actor->level,
-                                //'_IMG' => $actor->foto
+                                '_IMG' => $actor->foto
                             ));
                             $code = 1;
                         } else {
