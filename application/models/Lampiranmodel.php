@@ -10,10 +10,10 @@ class Lampiranmodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            'id_lampiran'            => $inputs['id_lampiran-input'],
-            'id_materi'          => ($inputs['materi-input'] == '') ? null : $inputs['materi-input'],
-            'nama_lampiran'         => $inputs['nama_lampiran-input'],
-            'nama_file'         => $inputs['nama_file-input'],
+            'id_lampiran'     => $inputs['id_lampiran-input'],
+            'id_materi'       => ($inputs['materi-input'] == '') ? null : $inputs['materi-input'],
+            'nama_lampiran'   => $inputs['nama_lampiran-input'],
+            'nama_file'       => $inputs['nama_file-input'],
             
             );
 
@@ -26,11 +26,6 @@ class Lampiranmodel extends Model {
             'rules' => 'trim|required|max_length[11]|numeric'
             );
 
-        $id_materi = array(
-            'field' => 'id_materi-input', 'label' => 'id_materi',
-            'rules' => 'trim|required|max_length[11]|numeric'
-            );
-
-        return array($id_lampiran, $id_materi);
+        return array($id_lampiran);
     }
 }

@@ -15,15 +15,12 @@ $data_materi = $this->model->getList(array('table' => 'materi', 'where' => array
 				<div class="box-body">
 					<div id="loading"></div>
 					<form id="form-lampiran">
-						<label>ID Lampiran :</label>
-						<input class="form-control" type="text" name="id_lampiran-input" id="id_lampiran-input" value="">
-						<br>
 						<label>ID Matrei :</label>
 						<select class="form-control" name="id_materi-input" id="id_materi-input">
 							<?php
-							if ($data_materi) {
-								foreach ($data_materi as $row) {
-									echo '<option value="' . $row->id_materi . '"></option>';
+							if ($materi) {
+								foreach ($materi as $row) {
+									echo '<option value="' . $row->id_materi . '">' . $row->id_materi . ' - ' . $row->judul . '</option>';
 								}
 							}
 							?>

@@ -1,6 +1,6 @@
 <?php
 $data_siswa = $this->model->getList(array('table' => 'siswa', 'where' => array('status' => 'Aktif')));
-$data_mata_pelajaran = $this->model->getList(array('table' => 'jurusan', 'where' => array('status' => 'Aktif')));
+$data_mata_pelajaran = $this->model->getList(array('table' => 'mata_pelajaran', 'where' => array('status' => 'Aktif')));
 ?>
 <section class="content">
 	<div class="box">
@@ -17,37 +17,36 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'jurusan', 'where'
 				<div class="box-body">
 					<div id="loading"></div>
 					<form id="form-nilai_ujian">
-						<label>ID Ujian :</label>
-						<input class="form-control" type="text" name="id_ujian-input" id="id_ujian-input" value="">
-						<br>
 						<label>NIS :</label>
 						<select class="form-control" name="nis-input" id="nis-input">
-						<?php
+							<?php
 							if ($data_siswa) {
 								foreach ($data_siswa as $row) {
-									echo '<option value="' . $row->nis . '">' . $row->nama . '</option>';
+									echo '<option value="' . $row->nis . '">' . $row->nis . ' - ' .$row->nama . '</option>';
 								}
 							}
 							?>
+						</select>
 						<br>
 						<label>Jumlah Benar :</label>
-						<input class="form-control" type="text" name="email-input" id="email-input" value="">
+						<input class="form-control" type="text" name="jumlah_benar-input" id="jumlah_benar-input" value="">
 						<br>
 						<label>Jumlah Salah :</label>
 						<input class="form-control" type="text" name="jumlah_salah-input" id="jumlah_salah-input" value="">
 						<br>
 						<label>Tanggal Ujian :</label>
-						<input class="form-control" type="text" name="jumlah_salah-input" id="jumlah_salah-input" value="">
+						<input class="form-control" type="text" name="tgl_ujian-input" id="tgl_ujian-input" value="" placeholder="yyyy-mm-dd">
 						<br>
 						<label>Kode Mata Pelajaran :</label>
-						<select class="form-control" name="kode_mapel-input" id="kode_mapel-input">
-						<?php
+						<select class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input">
+							<?php
 							if ($data_mata_pelajaran) {
 								foreach ($data_mata_pelajaran as $row) {
-									echo '<option value="' . $row->kode_mapel . '">' . $row->nama_mapel . '</option>';
+									echo '<option value="' . $row->kode_mapel . '">' . $row->kode_mapel . ' - ' . $row->nama_mapel . '</option>';
 								}
 							}
 							?>
+						</select>
 						<br>
 						<label>Nilai :</label>
 						<input class="form-control" type="text" name="nilai-input" id="nilai-input" value="">

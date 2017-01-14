@@ -10,13 +10,12 @@ class Nilai_ujianmodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            'id_ujian' => $inputs['id_ujian-input'],
-            'nis' => ($inputs['siswa-input'] == '') ? null : $inputs['siswa-input'],
+            'nis' => ($inputs['nis-input'] == '') ? null : $inputs['nis-input'],
             'jumlah_benar' => $inputs['jumlah_benar-input'],
             'jumlah_salah' => $inputs['jumlah_salah-input'],
-            'tgl_ujian' => $inputs['tgl_ujian-input'],
+            'tgl_ujian' => $inputs['tgl_ujian-input'] . ' ' . date('H:i:s'),
             'kode_mapel' => ($inputs['mata_pelajaran-input'] == '') ? null : $inputs['mata_pelajaran-input'],
-            'nilai' => $inputs['nilai-input'],
+            'nilai' => $inputs['nilai-input']
             );
 
         return $fields;
@@ -24,16 +23,11 @@ class Nilai_ujianmodel extends Model {
 
     public function getRules() {    //set rule validasi form
 
-        $id_ujian = array(
-            'field' => 'id_ujian-input', 'label' => 'id_ujian',
-            'rules' => 'trim|required|max_length[11]'
-            );
-
         $nis = array(
             'field' => 'nis-input', 'label' => 'nis',
             'rules' => 'trim|required|max_length[11]'
             );
 
-        return array($id_ujian, $nis);
+        return array( $nis);
     }
 }

@@ -17,8 +17,6 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 				<div class="box-body">
 					<div id="loading"></div>
 					<form id="form-soal">
-						<label>ID Soal :</label>
-						<input class="form-control" type="text" name="id_soal-input" id="id_soal-input" value="">
 						<br>
 						<label>Pertanyaan :</label>
 						<input class="form-control" type="text" name="pertanyaan-input" id="pertanyaan-input" value="">
@@ -39,29 +37,29 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 						<input class="form-control" type="text" name="jawaban-input" id="jawaban-input" value="">
 						<br>
 						<label>Kode Mata Pelajaran :</label>
-						<select class="form-control" name="kelas-input" id="kelas-input">
+						<select class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input">
 							<?php
 							if ($data_mata_pelajaran) {
 								foreach ($data_mata_pelajaran as $row) {
-									echo '<option value="' . $row->nama_mapel . '">' . $row->kode_mapel . '</option>';
+									echo '<option value="' . $row->kode_mapel . '">' . $row->kode_mapel . ' - ' . $row->nama_mapel . '</option>';
 								}
 							}
 							?>
 						</select>
 						<br>
 						<label>NIP :</label>
-						<select class="form-control" name="kelas-input" id="kelas-input">
+						<select class="form-control" name="nip-input" id="nip-input">
 							<?php
 							if ($data_guru) {
 								foreach ($data_guru as $row) {
-									echo '<option value="' . $row->nama . '">' . $row->nip . '</option>';
+									echo '<option value="' . $row->nip . '">' . $row->nip . ' - ' . $row->nama . '</option>';
 								}
 							}
 							?>
 						</select>
 						<br>
 						<label>Tanggal Posting :</label>
-						<input class="form-control" type="datetime" name="tgl_posting-input" id="tgl_posting-input" value="" placeholder="yyyy-mm-dd">
+						<input class="form-control" type="text" name="tgl_posting-input" id="tgl_posting-input" value="" placeholder="yyyy-mm-dd">
 						<br>
 						<input type="hidden" name="model-input" id="model-input" value="soal">
 						<input type="hidden" name="action-input" id="action-input" value="1">
@@ -129,7 +127,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 							$("#opsi_b-input").val(json.data.object.opsi_b);
 							$("#opsi_c-input").val(json.data.object.opsi_c);
 							$("#opsi_d-input").val(json.data.object.opsi_d);
-							$("#jawanan-input").val(json.data.object.jawanan);
+							$("#jawaban-input").val(json.data.object.jawaban);
 							$("#kode_mapel-input").val(json.data.object.kode_mapel);
 							$("#nip-input").val(json.data.object.nip);
 							$("#tgl_posting-input").val(json.data.object.tgl_posting);

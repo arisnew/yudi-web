@@ -1,7 +1,7 @@
 <section class="content">
 	<div class="box">
 		<div class="box-header with-border">
-			<h3 class="box-title">List Soal</h3>
+			<h3 class="box-title">List Pesan</h3>
 
 			<div class="box-tools pull-right">
 				<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -12,15 +12,15 @@
                 </div>
                 <div class="box-body">
                    <div id="loading"></div>
-                   <a href="#" onclick="loadContent(base_url + 'view/_soal_form');" class="btn btn-success pull-right"> Add Soal</a>
-                   <table id="tabel-soal" class="table table-bordered">
+                   <a href="#" onclick="loadContent(base_url + 'view/_pesan_form');" class="btn btn-success pull-right"> Add Pesan</a>
+                   <table id="tabel-pesan" class="table table-bordered">
                     <thead>
                      <tr>
-                      <th>ID Soal</th>
-                      <th>Pertanyaan</th>
-                      <th>Jawaban</th>
-                      <th>Kode Mata Pelajaran</th>
-                      <th>NIP</th>
+                      <th>ID Pesan</th>
+                      <th>Judul</th>
+                      <th>Dari</th>
+                      <th>Ke</th>
+                      <th>Type Pesan</th>
                       <th>Tanggal Posting</th>
                       <th>Pilihan</th>
                   </tr>
@@ -41,18 +41,18 @@
 });
 
  function getData() {
-    if ($.fn.dataTable.isDataTable('#tabel-soal')) {
-        table = $('#tabel-soal').DataTable();
+    if ($.fn.dataTable.isDataTable('#tabel-pesan')) {
+        table = $('#tabel-pesan').DataTable();
     } else {
-        table = $('#tabel-soal').DataTable({
-            "ajax": base_url + 'objects/soal',
+        table = $('#tabel-pesan').DataTable({
+            "ajax": base_url + 'objects/pesan',
             "columns": [
-            {"data": "id_soal"},
-            {"data": "pertanyaan"},
-            {"data": "jawaban"},
-            {"data": "nama_mapel"},
-            {"data": "nama"},
-            {"data": "tgl_posting"},
+            {"data": "id_pesan"},
+            {"data": "judul"},
+            {"data": "dari"},
+            {"data": "ke"},
+            {"data": "type_pesan"},
+            {"data": "tgl_post"},
             {"data": "aksi"}
             ],
             "ordering": true,
@@ -66,11 +66,11 @@
 }
 
 function utils() {
-    $("#tabel-soal .editBtn").on("click",function(){
-        loadContent(base_url + 'view/_soal_form/' + $(this).attr('href').substring(1));
+    $("#tabel-pesan .editBtn").on("click",function(){
+        loadContent(base_url + 'view/_pesan_form/' + $(this).attr('href').substring(1));
     });
 
-    $("#tabel-soal .removeBtn").on("click",function(){
+    $("#tabel-pesan .removeBtn").on("click",function(){
         konfirmasiHapus($(this).attr('href').substring(1));
     });
 }
@@ -81,7 +81,7 @@ function konfirmasiHapus(x){
     setTimeout(function() {
         $.ajax({
             url: base_url + 'manage',
-            data: 'model-input=soal&key-input=id_soal&action-input=3&value-input=' + x,
+            data: 'model-input=pesan&key-input=id_pesan&action-input=3&value-input=' + x,
             dataType: 'json',
             type: 'POST',
             cache: false,
@@ -89,7 +89,7 @@ function konfirmasiHapus(x){
                 loading('loading',false);
                 if (json['data'].code === 1) {
                     alert('Hapus data berhasil');
-                    loadContent(base_url + "view/_table_soal");
+                    loadContent(base_url + "view/_table_pesan");
                 } else if(json['data'].code === 2){
                     alert('Hapus data tidak berhasil!');
                 } else{
