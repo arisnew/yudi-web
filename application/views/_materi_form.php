@@ -16,7 +16,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 					</div>
 					<div class="box box-body">
 						<div id="loading"></div>
-						<form id="form-materi">
+						<form id="form-materi" class="form-horizontal">
 							<div class="form-group">
 								<label for="mata_pelajaran-input" class="col-sm-2 control-label">Mata Pelajaran</label>
 								<div class="col-sm-10">

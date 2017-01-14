@@ -48,6 +48,6 @@ function loadContent(dURL){
                 alert("Unknow error");
             }
         });
-    },1000);
+    },10);
 
 }

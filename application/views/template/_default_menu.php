@@ -1,11 +1,4 @@
-<li class="treeview">
-	<a href="<?php echo base_url();?>">
-		<i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
-	</a>
-	<ul class="treeview-menu">
-		<li><a href="<?php echo base_url();?>"><i class="fa fa-circle-o"></i> Dashboard</a></li>
-	</ul>
-</li>
+<li class="active"><a href="<?php echo base_url();?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 <li class="treeview">
 	<a href="#">
 		<i class="fa fa-database"></i> <span>Data Master</span> <i class="fa fa-angle-left pull-right"></i>
