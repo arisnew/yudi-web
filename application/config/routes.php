@@ -64,3 +64,5 @@ $route['object'] = 'retriever/record';
 
 $route['login'] = 'manager/identify/acknowledge'; // login
 $route['logout'] = 'manager/identify/revoke'; // logout
+
+$route['doupload'] = 'uploader/proses_upload'; // for uploaad

@@ -18,6 +18,7 @@
 	folder instead of downloading all of them to reduce the load. -->
 	<link rel="stylesheet" href="<?php echo base_url();?>asset/dist/css/skins/_all-skins.min.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>asset/plugins/datatables/dataTables.bootstrap.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>asset/css/fileinput.min.css">
 	<script type="text/javascript">var base_url = '<?php echo base_url();?>';</script>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -160,6 +161,7 @@
 <script src="<?php echo base_url();?>asset/js/function.js"></script>
 <script src="<?php echo base_url();?>asset/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url();?>asset/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>asset/js/fileinput.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
 		<?php echo (isset($_EXTRA_JS))? $_EXTRA_JS : '';?>
