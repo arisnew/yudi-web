@@ -118,7 +118,7 @@
 				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu">
 					<li class="header">MAIN NAVIGATION</li>
-					<?php $this->load->view('template/_default_menu');?>
+					<?php $this->load->view('template/_menu_' . strtolower($this->session->userdata('_LEVEL')));?>
 				</ul>
 			</section>
 			<!-- /.sidebar -->
