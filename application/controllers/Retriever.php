@@ -56,6 +56,30 @@ class Retriever extends CI_Controller {
 						$query['table'] = 'v_materi';	//use view
 						break;
 
+					case 'soal':
+						$query['table'] = 'v_soal';	//use view
+						break;
+
+					case 'siswa':
+						$query['table'] = 'v_siswa';	//use view
+						break;
+					
+					case 'nilai_ujian':
+						$query['table'] = 'v_nilai_ujian';	//use view
+						break;
+				
+					case 'lampiran':
+						$query['table'] = 'v_lampiran';	//use view
+						break;
+			
+					case 'komentar':
+						$query['table'] = 'v_komentar';	//use view
+						break;
+		
+					case 'jadwal':
+						$query['table'] = 'v_jadwal';	//use view
+						break;
+		
 						default:
 						$query['table'] = $table;
 						break;

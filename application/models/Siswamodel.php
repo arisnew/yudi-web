@@ -20,7 +20,7 @@ class Siswamodel extends Model {
             'thn_masuk'      => $inputs['thn_masuk-input'],
             'email'          => $inputs['email-input'],
             'no_telp'        => $inputs['no_telp-input'],
-            'foto'           => '',//$inputs['foto-input'],
+            //'foto'           => $inputs['foto-input'],
             'username'       => $inputs['username-input'],
             'kelas'          => ($inputs['kelas-input'] == '') ? null : $inputs['kelas-input'],
             'jurusan'        => ($inputs['jurusan-input'] == '') ? null : $inputs['jurusan-input'],

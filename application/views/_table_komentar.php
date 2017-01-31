@@ -16,8 +16,6 @@
          <table id="tabel-komentar" class="table table-bordered">
           <thead>
            <tr>
-            <th>ID Komentar</th>
-            <th>ID Materi</th>
             <th>Komentator</th>
             <th>Level Komentator</th>
             <th>Isi</th>
@@ -48,7 +46,7 @@
       "ajax": base_url + 'objects/komentar',
       "columns": [
       {"data": "id_komentar"},
-      {"data": "id_materi"},
+      //{"data": "id_materi"},
       {"data": "komentator"},
       {"data": "level_komentator"},
       {"data": "isi"},

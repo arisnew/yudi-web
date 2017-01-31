@@ -78,7 +78,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 							<input type="hidden" name="value-input" id="value-input" value="0">
 							<div class="box-footer">
 								<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
-								<input type="reset" value="Batal" onclick="history.back()">
+								<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_materi')">
 							</div>
 						</form>
 					</div>
