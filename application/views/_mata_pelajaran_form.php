@@ -94,7 +94,7 @@
 					cache: false,
 					success: function(json) {
 						if (json['data'].code === 1) {
-							$("#kode_mapel-input").val(json.data.object.kode_mapel);
+							$("#kode-mapel-input").val(json.data.object.kode_mapel).attr("readonly","");
 							$("#nama_mapel-input").val(json.data.object.nama_mapel);
 							$("#status-input").val(json.data.object.status);
 							$("#action-input").val("2");

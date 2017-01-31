@@ -1,6 +1,6 @@
 <li class="active"><a href="<?php echo base_url();?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 <li>
-	<a href="#" onclick="loadContent(base_url + 'view/_table_jadwal')">
+	<a href="#" onclick="loadContent(base_url + 'view/_table_jadwal_guru')">
 		<i class="fa fa-calendar"></i> <span>Jadwal</span>
 	</a>
 </li>

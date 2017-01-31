@@ -10,7 +10,7 @@ class Mata_pelajaranmodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            'kode_mapel'  => $inputs['kode_mapel-input'],
+            'kode_mapel'  => $inputs['kode-mapel-input'],
             'nama_mapel'      => $inputs['nama_mapel-input'],
             'status'    => $inputs['status-input']
             );
@@ -25,7 +25,8 @@ class Mata_pelajaranmodel extends Model {
     public function getRules() {    //set rule validasi form
 
         $kode_mapel = array(
-            'field' => 'kode_mapel-input', 'label' => 'Kode Matapelajaran',
+            'field' => 'kode-mapel-input',
+            'label' => 'Kode Matapelajaran',
             'rules' => 'trim|required|max_length[20]'
             );
 

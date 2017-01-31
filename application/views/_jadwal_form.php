@@ -87,9 +87,9 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="publish-input" class="col-sm-2 control-label">Status</label>
+								<label for="status-input" class="col-sm-2 control-label">Status</label>
 								<div class="col-sm-10">								
-									<select class="form-control" name="publish-input" id="publish-input">
+									<select class="form-control" name="status-input" id="status-input">
 										<option value="Aktif">Aktif</option>
 										<option value="Nonaktif">Nonaktif</option>
 									</select>

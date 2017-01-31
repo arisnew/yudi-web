@@ -41,7 +41,7 @@
 							<div class="form-group">
 								<label for="tgl_lahir-input" class="col-sm-2 control-label">Tanggal Lahir</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="tgl_lahir-input" id="tgl_lahir-input" placeholder="yyyy-mm-dd" type="text">
+									<input class="form-control datepicker2" name="tgl_lahir-input" id="tgl_lahir-input" placeholder="yyyy-mm-dd" type="text">
 								</div>
 							</div>
 							<div class="form-group">
@@ -131,6 +131,10 @@
 					echo 'fillForm("'.$param.'");';
 				}
 				?>
+
+				$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
+					$(this).datepicker('hide');
+				});
 			});
 
 			function proses_simpan() {
