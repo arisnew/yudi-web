@@ -14,38 +14,38 @@
 						<div id="loading"></div>
 						<form id="form-guru" class="form-horizontal">
 							<div class="form-group">
-								<label for="nip-input" class="col-sm-2 control-label">nip</label>
+								<label for="nip-input" class="col-sm-2 control-label">Nip</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="nip-input" id="nip-input" placeholder="Judul" type="text">
+									<input class="form-control" name="nip-input" id="nip-input" placeholder="NIP" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="nama-input" class="col-sm-2 control-label">nama</label>
+								<label for="nama-input" class="col-sm-2 control-label">Nama</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="nama-input" id="nama-input" placeholder="Judul" type="text">
+									<input class="form-control" name="nama-input" id="nama-input" placeholder="Nama" type="text">
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label for="alamat-input" class="col-sm-2 control-label">alamat</label>
+								<label for="alamat-input" class="col-sm-2 control-label">Alamat</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="alamat-input" id="alamat-input" placeholder="Judul" type="text">
+									<input class="form-control" name="alamat-input" id="alamat-input" placeholder="Alamat" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="tempat_lahir-input" class="col-sm-2 control-label">tempat_lahir</label>
+								<label for="tempat_lahir-input" class="col-sm-2 control-label">Tempat_lahir</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="tempat_lahir-input" id="tempat_lahir-input" placeholder="Judul" type="text">
+									<input class="form-control" name="tempat_lahir-input" id="tempat_lahir-input" placeholder="Tempat Lahir" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="tgl_lahir-input" class="col-sm-2 control-label">tgl_lahir</label>
+								<label for="tgl_lahir-input" class="col-sm-2 control-label">Tanggal Lahir</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="tgl_lahir-input" id="tgl_lahir-input" placeholder="Judul" type="text">
+									<input class="form-control" name="tgl_lahir-input" id="tgl_lahir-input" placeholder="yyyy-mm-dd" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="jenis_kelamin-input" class="col-sm-2 control-label">jenis_kelamin</label>
+								<label for="jenis_kelamin-input" class="col-sm-2 control-label">Jenis Kelamin</label>
 								<div class="col-sm-10">								
 									<select class="form-control" name="jenis_kelamin-input" id="jenis_kelamin-input">
 										<option value="Laki-laki">Laki-laki</option>
@@ -54,7 +54,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="agama-input" class="col-sm-2 control-label">agama</label>
+								<label for="agama-input" class="col-sm-2 control-label">Agama</label>
 								<div class="col-sm-10">								
 									<select class="form-control" name="agama-input" id="agama-input">
 										<option value="Islam">Islam</option>
@@ -65,19 +65,19 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="no_telp-input" class="col-sm-2 control-label">no_telp</label>
+								<label for="no_telp-input" class="col-sm-2 control-label">Nomer Telpon</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="no_telp-input" id="no_telp-input" placeholder="Judul" type="text">
+									<input class="form-control" name="no_telp-input" id="no_telp-input" placeholder="No.Tlpn/HP" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email-input" class="col-sm-2 control-label">email</label>
+								<label for="email-input" class="col-sm-2 control-label">Email</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="email-input" id="email-input" placeholder="Judul" type="text">
+									<input class="form-control" name="email-input" id="email-input" placeholder="Email" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="status_pegawai-input" class="col-sm-2 control-label">status_pegawai</label>
+								<label for="status_pegawai-input" class="col-sm-2 control-label">Status Pegawai</label>
 								<div class="col-sm-10">								
 									<select class="form-control" name="status_pegawai-input" id="status_pegawai-input">
 										<option value="Tetap">Tetap</option>
@@ -86,19 +86,19 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="username-input" class="col-sm-2 control-label">username</label>
+								<label for="username-input" class="col-sm-2 control-label">Username</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="username-input" id="username-input" placeholder="Judul" type="text">
+									<input class="form-control" name="username-input" id="username-input" placeholder="Username" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="password-input" class="col-sm-2 control-label">password</label>
+								<label for="password-input" class="col-sm-2 control-label">Password</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="password-input" id="password-input" placeholder="Judul" type="text">
+									<input class="form-control" name="password-input" id="password-input" placeholder="Password" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="status-input" class="col-sm-2 control-label">status</label>
+								<label for="status-input" class="col-sm-2 control-label">Status</label>
 								<div class="col-sm-10">								
 									<select class="form-control" name="status-input" id="status-input">
 										<option value="Aktif">Aktif</option>
