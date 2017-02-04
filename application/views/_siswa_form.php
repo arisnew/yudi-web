@@ -42,9 +42,9 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="tgl_lahir-input" class="col-sm-2 control-label">Tanggal lahir</label>
+								<label for="tgl_lahir-input" class="col-sm-2 control-label">Tanggal Lahir</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="tgl_lahir-input" id="tgl_lahir-input" placeholder="Tanggal lahir" type="text">
+									<input class="form-control datepicker2" name="tgl_lahir-input" id="tgl_lahir-input" placeholder="yyyy-mm-dd" type="text">
 								</div>
 							</div>
 							<div class="form-group">
@@ -166,6 +166,10 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 		}
 		?>
 
+						$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
+					$(this).datepicker('hide');
+				});
+
 					// file upload
 					$("#file_upload").fileinput({
 						maxFileCount: 1,
@@ -241,6 +245,7 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 					$("#nama-input").val(json.data.object.nama);
 					$("#alamat-input").val(json.data.object.alamat);
 					$("#tempat_lahir-input").val(json.data.object.tempat_lahir);
+					$("#tgl_lahir-input").val(json.data.object.tgl_lahir);
 					$("#jenis_kelamin-input").val(json.data.object.jenis_kelamin);
 					$("#agama-input").val(json.data.object.agama);
 					$("#thn_masuk-input").val(json.data.object.thn_masuk);
