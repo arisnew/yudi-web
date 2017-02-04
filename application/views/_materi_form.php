@@ -60,7 +60,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 							<div class="form-group">
 								<label for="tgl_posting-input" class="col-sm-2 control-label">Tanggal Posting</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="tgl_posting-input" id="tgl_posting-input" placeholder="yyyy-mm-dd" type="text">
+									<input class="form-control datepicker2" name="tgl_posting-input" id="tgl_posting-input" placeholder="yyyy-mm-dd" type="text">
 								</div>
 							</div>
 							<div class="form-group">
@@ -143,6 +143,11 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 		        $('#file_upload').on('filebatchuploadcomplete', function(event, files, extra) {
 		        	loadContent(base_url + "view/_materi_form/" + $("#value-input").val());
 		        });
+
+				$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
+					$(this).datepicker('hide');
+				});
+
 			});
 
 			function simpan_data() {

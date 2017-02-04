@@ -29,7 +29,7 @@
 							<div class="form-group">
 								<label for="alamat-input" class="col-sm-2 control-label">Alamat</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="alamat-input" id="alamat-input" placeholder="Alamat" type="text">
+									<textarea class="form-control" name="alamat-input" id="alamat-input" placeholder="Alamat" type="text"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
@@ -179,6 +179,7 @@
 							$("#nama-input").val(json.data.object.nama);
 							$("#alamat-input").val(json.data.object.alamat);
 							$("#tempat_lahir-input").val(json.data.object.tempat_lahir);
+							$("#tgl_lahir-input").val(json.data.object.tgl_lahir);
 							$("#jenis_kelamin-input").val(json.data.object.jenis_kelamin);
 							$("#agama-input").val(json.data.object.agama);
 							$("#no_telp-input").val(json.data.object.no_telp);
