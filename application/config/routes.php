@@ -66,3 +66,4 @@ $route['login'] = 'manager/identify/acknowledge'; // login
 $route['logout'] = 'manager/identify/revoke'; // logout
 
 $route['doupload'] = 'uploader/proses_upload'; // for uploaad
+$route['doupload_materi'] = 'uploader/proses_upload_materi'; // for upload materi
