@@ -12,7 +12,7 @@ class Jurusanmodel extends Model {
         $fields = array(
             'kode_jurusan' => $inputs['kode_jurusan-input'],
             'nama_jurusan' => $inputs['nama_jurusan-input'],
-            'status' => $inputs['status-input']
+            'status'       => $inputs['status-input']
             );
 
         //if ($inputs['password-input'] != '') {

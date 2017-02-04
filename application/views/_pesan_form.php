@@ -10,7 +10,7 @@
 							<i class="fa fa-times"></i></button>
 						</div>
 					</div>
-					<div class="box box-body">
+					<div class="box-body">
 						<div id="loading"></div>
 						<form id="form-pesan" class="form-horizontal">
 							<div class="form-group">
@@ -49,9 +49,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="tgl_posting-input" class="col-sm-2 control-label">Tanggal Posting</label>
+								<label for="tgl_post-input" class="col-sm-2 control-label">Tanggal Posting</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="tgl_posting-input" id="tgl_posting-input" placeholder="yyyy-mm-dd" type="text">
+									<input class="form-control" name="tgl_post-input" id="tgl_post-input" placeholder="yyyy-mm-dd" type="text">
 								</div>
 							</div>
 							<input type="hidden" name="model-input" id="model-input" value="pesan">

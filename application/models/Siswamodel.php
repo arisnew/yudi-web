@@ -25,7 +25,7 @@ class Siswamodel extends Model {
             'kelas'          => ($inputs['kelas-input'] == '') ? null : $inputs['kelas-input'],
             'jurusan'        => ($inputs['jurusan-input'] == '') ? null : $inputs['jurusan-input'],
             'level'          =>  'Siswa',
-            'status'         => $inputs['status-input'],
+            'status'         => $inputs['status-input']
             
             );
 

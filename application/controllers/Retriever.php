@@ -172,8 +172,9 @@ class Retriever extends CI_Controller {
 				'email'			=> $record->email,
 				'no_telp'		=> $record->no_telp,
 				'username' 		=> $record->username,
-				'kelas' 		=> $record->nama_kelas,
-				'jurusan' 		=> $record->nama_jurusan,
+				'kelas' 		=> $record->kelas,
+				'jurusan' 		=> $record->jurusan,
+				'foto'			=> $record->foto,
 				'status' 		=> $record->status,
 				'aksi' 			=> $linkBtn
 				);
@@ -260,12 +261,15 @@ class Retriever extends CI_Controller {
 			$data[] = array(
 				'id_jadwal'		=> $record->id_jadwal,
 				'kode_mapel' 	=> $record->kode_mapel,
+				'nama_mapel' 	=> $record->nama_mapel,
 				'nip'			=> $record->nip,
+				'nama' 			=> $record->nama,
 				'kode_kelas' 	=> $record->kode_kelas,
+				'nama_kelas' 	=> $record->nama_kelas,
 				'kode_jurusan' 	=> $record->kode_jurusan,
+				'nama_jurusan' 	=> $record->nama_jurusan,
 				'hari' 			=> $record->hari,
 				'jam' 			=> $record->jam,
-				'status'	 	=> $record->status,
 				'aksi'		 	=> $linkBtn
 				);
 		}
@@ -305,19 +309,21 @@ class Retriever extends CI_Controller {
 
 		foreach ($records as $record) {
 			if ($picker == 'yes') {
-				$linkBtn = ' <a href="#' . $record->id_ujian . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
+				$linkBtn = ' <a href="#' . $record->id_nilai . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				$linkBtn = ' <a href="#' . $record->id_ujian . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->id_ujian . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn = ' <a href="#' . $record->id_nilai . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn .= ' <a href="#' . $record->id_nilai . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
 			}
 			
 			$data[] = array(
-				'id_ujian' 		=> $record->id_ujian,
+				'id_nilai' 		=> $record->id_nilai,
 				'nis' 			=> $record->nis,
+				'nama' 			=> $record->nama,
 				'jumlah_benar' 	=> $record->jumlah_benar,
 				'jumlah_salah' 	=> $record->jumlah_salah,
 				'tgl_ujian' 	=> $record->tgl_ujian,
 				'kode_mapel' 	=> $record->kode_mapel,
+				'nama_mapel' 	=> $record->nama_mapel,
 				'nilai' 		=> $record->nilai,
 				'aksi' 			=> $linkBtn
 				);
@@ -344,7 +350,9 @@ class Retriever extends CI_Controller {
 				'opsi_c' 		=> $record->opsi_c,
 				'opsi_d' 		=> $record->opsi_d,
 				'kode_mapel' 	=> $record->kode_mapel,
+				'nama_mapel'	=> $record->nama_mapel,
 				'nip' 			=> $record->nip,
+				'nama'			=> $record->nama,
 				'tgl_posting' 	=> $record->tgl_posting,
 				'aksi' 			=> $linkBtn
 				);
@@ -367,6 +375,7 @@ class Retriever extends CI_Controller {
 			$data[] = array(
 				'id_lampiran'	=> $record->id_lampiran,
 				'id_materi' 	=> $record->id_materi,
+				'judul'			=> $record->judul,
 				'nama_lampiran'	=> $record->nama_lampiran,
 				'nama_file' 	=> $record->nama_file,
 				'aksi'			=> $linkBtn
@@ -390,6 +399,7 @@ class Retriever extends CI_Controller {
 			$data[] = array(
 				'id_komentar'		=> $record->id_komentar,
 				'id_materi' 		=> $record->id_materi,
+				'judul'				=> $record->judul,
 				'komentator'		=> $record->komentator,
 				'level_komentator'	=> $record->level_komentator,
 				'isi'				=> $record->isi,

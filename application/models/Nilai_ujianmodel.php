@@ -10,12 +10,12 @@ class Nilai_ujianmodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            'nis' => ($inputs['nis-input'] == '') ? null : $inputs['nis-input'],
-            'jumlah_benar' => $inputs['jumlah_benar-input'],
-            'jumlah_salah' => $inputs['jumlah_salah-input'],
-            'tgl_ujian' => $inputs['tgl_ujian-input'] . ' ' . date('H:i:s'),
-            'kode_mapel' => ($inputs['mata_pelajaran-input'] == '') ? null : $inputs['mata_pelajaran-input'],
-            'nilai' => $inputs['nilai-input']
+            'nis'              => ($inputs['siswa-input'] == '') ? null : $inputs['siswa-input'],
+            'jumlah_benar'     => $inputs['jumlah_benar-input'],
+            'jumlah_salah'     => $inputs['jumlah_salah-input'],
+            'tgl_ujian'        => $inputs['tgl_ujian-input'] . ' ' . date('H:i:s'),
+            'kode_mapel'       => ($inputs['mata_pelajaran-input'] == '') ? null : $inputs['mata_pelajaran-input'],
+            'nilai'            => $inputs['nilai-input']
             );
 
         return $fields;
@@ -23,11 +23,16 @@ class Nilai_ujianmodel extends Model {
 
     public function getRules() {    //set rule validasi form
 
-        $nis = array(
-            'field' => 'nis-input', 'label' => 'nis',
-            'rules' => 'trim|required|max_length[11]'
+        $jumlah_benar = array(
+            'field' => 'jumlah_benar-input', 'label' => 'jumlah benar',
+            'rules' => 'trim|required|max_length[5]'
             );
 
-        return array( $nis);
+        $jumlah_salah = array(
+            'field' => 'jumlah_salah-input', 'label' => 'jumlah salah',
+            'rules' => 'trim|required|max_length[5]'
+            );
+
+        return array( $jumlah_benar, $jumlah_salah);
     }
 }

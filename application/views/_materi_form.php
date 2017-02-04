@@ -14,7 +14,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 							<i class="fa fa-times"></i></button>
 						</div>
 					</div>
-					<div class="box box-body">
+					<div class="box-body">
 						<div id="loading"></div>
 						<form id="form-materi" class="form-horizontal">
 							<div class="form-group">

@@ -10,11 +10,11 @@ class Usermodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            'username' => $inputs['username-input'],
-            'nama' => $inputs['nama-input'],
-            'email' => $inputs['email-input'],
-            'level' =>  'Admin',
-            'status' => $inputs['status-input']
+            'username'  => $inputs['username-input'],
+            'nama'      => $inputs['nama-input'],
+            'email'     => $inputs['email-input'],
+            'level'     =>  'Admin',
+            'status'    => $inputs['status-input']
             );
 
         if ($inputs['password-input'] != '') {

@@ -16,7 +16,6 @@
                     <table id="tabel-materi" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID_Materi</th>
                                 <th>Mata Pelajran</th>
                                 <th>Judul</th>
                                 <th>Guru</th>
@@ -47,7 +46,6 @@
                     table = $('#tabel-materi').DataTable({
                         "ajax": base_url + 'objects/materi',
                         "columns": [
-                            {"data": "id_materi"},
                             {"data": "nama_mapel"},
                             {"data": "judul"},
                             {"data": "nama"},

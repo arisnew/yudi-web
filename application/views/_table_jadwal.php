@@ -15,11 +15,10 @@
           <table id="tabel-jadwal" class="table table-bordered">
             <thead>
               <tr>
-                <th>ID Jadwal</th>
-                <th>Kode Mata Pelajaran</th>
+                <th>Mata Pelajaran</th>
                 <th>NIP</th>
-                <th>Kode Kelas</th>
-                <th>Kode Jurusan</th>
+                <th>Kelas</th>
+                <th>Jurusan</th>
                 <th>Pilihan</th>
               </tr>
             </thead>
@@ -45,11 +44,10 @@
           table = $('#tabel-jadwal').DataTable({
             "ajax": base_url + 'objects/jadwal',
             "columns": [
-            {"data": "id_jadwal"},
-            {"data": "kode_mapel"},
-            {"data": "nip"},
-            {"data": "kode_kelas"},
-            {"data": "kode_jurusan"},
+            {"data": "nama_mapel"},
+            {"data": "nama"},
+            {"data": "nama_kelas"},
+            {"data": "nama_jurusan"},
             {"data": "aksi"}
             ],
             "ordering": true,

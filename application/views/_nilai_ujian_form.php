@@ -14,7 +14,7 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'mata_pelajaran', 
 							<i class="fa fa-times"></i></button>
 						</div>
 					</div>
-					<div class="box box-body">
+					<div class="box-body">
 						<div id="loading"></div>
 						<form id="form-nilai_ujian" class="form-horizontal">
 							<div class="form-group">
@@ -71,7 +71,7 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'mata_pelajaran', 
 							</div>
 							<input type="hidden" name="model-input" id="model-input" value="nilai_ujian">
 							<input type="hidden" name="action-input" id="action-input" value="1">
-							<input type="hidden" name="key-input" id="key-input" value="id_ujian">
+							<input type="hidden" name="key-input" id="key-input" value="id_nilai">
 							<input type="hidden" name="value-input" id="value-input" value="0">
 
 							<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
@@ -123,13 +123,13 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'mata_pelajaran', 
 				function fillForm(x) {
 					$.ajax({
 						url: base_url + 'object',
-						data: 'model-input=nilai_ujian&key-input=id_ujian&value-input=' + x,
+						data: 'model-input=nilai_ujian&key-input=id_nilai&value-input=' + x,
 						dataType: 'json',
 						type: 'POST',
 						cache: false,
 						success: function(json) {
 							if (json['data'].code === 1) {
-								$("#id_ujian-input").val(json.data.object.id_ujian).attr("readonly","");
+								$("#id_nilai-input").val(json.data.object.id_nilai).attr("readonly","");
 								$("#nis-input").val(json.data.object.nis);
 								$("#jumlah_benar-input").val(json.data.object.jumlah_benar);
 								$("#jumlah_salah-input").val(json.data.object.jumlah_salah);

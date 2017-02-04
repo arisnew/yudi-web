@@ -16,7 +16,6 @@
                    <table id="tabel-pesan" class="table table-bordered">
                     <thead>
                      <tr>
-                      <th>ID Pesan</th>
                       <th>Judul</th>
                       <th>Dari</th>
                       <th>Ke</th>
@@ -47,7 +46,6 @@
         table = $('#tabel-pesan').DataTable({
             "ajax": base_url + 'objects/pesan',
             "columns": [
-            {"data": "id_pesan"},
             {"data": "judul"},
             {"data": "dari"},
             {"data": "ke"},

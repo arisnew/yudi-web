@@ -1,3 +1,6 @@
+<?php
+$data_materi = $this->model->getList(array('table' => 'materi', 'where' => array('status' => 'Aktif')));
+?>
 <div class="form-group">
 	<section class="content">
 		<div class="box box-info">
@@ -10,13 +13,27 @@
 							<i class="fa fa-times"></i></button>
 						</div>
 					</div>
-					<div class="box box-body">
+					<div class="box-body">
 						<div id="loading"></div>
 						<form id="form-komentar" class="form-horizontal">
 							<div class="form-group">
+								<label for="materi-input" class="col-sm-2 control-label">Judul</label>
+								<div class="col-sm-10">
+									<select class="form-control" name="materi-input" id="materi-input">
+										<?php
+										if ($data_materi) {
+											foreach ($data_materi as $row) {
+												echo '<option value="' . $row->id_materi . '">' . $row->judul . '</option>';
+											}
+										}
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="komentator-input" class="col-sm-2 control-label">Komentator</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="komentator-input" id="komentator-input" placeholder="Judul" type="text">
+									<input class="form-control" name="komentator-input" id="komentator-input" placeholder="nama" type="text">
 								</div>
 							</div>
 							<div class="form-group">
@@ -55,8 +72,8 @@
 				</div>
 			</section>
 		</div>
-		<script type="text/javascript">
-			$(document).ready(function () {
+<script type="text/javascript">
+$(document).ready(function () {
 				<?php
 				if ($param) {
 					echo 'fillForm("'.$param.'");';

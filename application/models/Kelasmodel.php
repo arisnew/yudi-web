@@ -10,9 +10,9 @@ class Kelasmodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            'kode_kelas' => $inputs['kode_kelas-input'],
-            'nama_kelas' => $inputs['nama_kelas-input'],
-            'status' => $inputs['status-input']
+            'kode_kelas'    => $inputs['kode_kelas-input'],
+            'nama_kelas'    => $inputs['nama_kelas-input'],
+            'status'        => $inputs['status-input']
             );
 
         //if ($inputs['password-input'] != '') {

@@ -10,10 +10,11 @@ class Komentarmodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            'komentator' => $inputs['komentator-input'],
-            'level_komentator' => $inputs['level_komentator-input'],
-            'isi' => $inputs['isi-input'],
-            'tgl_post' => $inputs['tgl_post-input'] . ' ' . date('H:i:s')
+            'id_materi'          => ($inputs['materi-input'] == '') ? null : $inputs['materi-input'],
+            'komentator'         => $inputs['komentator-input'],
+            'level_komentator'   => $inputs['level_komentator-input'],
+            'isi'                => $inputs['isi-input'],
+            'tgl_post'           => $inputs['tgl_post-input'] . ' ' . date('H:i:s')
             );
 
         

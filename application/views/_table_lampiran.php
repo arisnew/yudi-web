@@ -1,7 +1,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">List Lampiran</h3>
+            <h3 class="box-title">List materi</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -16,8 +16,7 @@
                     <table id="tabel-lampiran" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID Lampiran</th>
-                                <th>ID Materi</th>
+                                <th>Judul</th>
                                 <th>Nama Lampiran</th>
                                 <th>Nama File</th>
                                 <th>Pilihan</th>
@@ -33,6 +32,7 @@
                 </div>
             </div>
         </section>
+
         <script type="text/javascript">
             $(document).ready(function () {
                 getData();
@@ -45,8 +45,7 @@
                     table = $('#tabel-lampiran').DataTable({
                         "ajax": base_url + 'objects/lampiran',
                         "columns": [
-                        {"data": "id_lampiran"},
-                        {"data": "id_materi"},
+                        {"data": "judul"},
                         {"data": "nama_lampiran"},
                         {"data": "nama_file"},
                         {"data": "aksi"}

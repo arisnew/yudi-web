@@ -14,7 +14,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 							<i class="fa fa-times"></i></button>
 						</div>
 					</div>
-					<div class="box box-body">
+					<div class="box-body">
 						<div id="loading"></div>
 						<form id="form-soal" class="form-horizontal">
 							<div class="form-group">
@@ -26,31 +26,31 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 							<div class="form-group">
 								<label for="opsi_a-input" class="col-sm-2 control-label">Pilihan A</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" name="opsi_a-input" id="opsi_a-input" placeholder="opsi_a" type="text"></textarea>
+									<textarea class="form-control" name="opsi_a-input" id="opsi_a-input" placeholder="Opsi A" type="text"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="opsi_b-input" class="col-sm-2 control-label">Pilihan B</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" name="opsi_b-input" id="opsi_b-input" placeholder="opsi_b" type="text"></textarea>
+									<textarea class="form-control" name="opsi_b-input" id="opsi_b-input" placeholder="Opsi B" type="text"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="opsi_c-input" class="col-sm-2 control-label">Pilihan C</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" name="opsi_c-input" id="opsi_c-input" placeholder="opsi_c" type="text"></textarea>
+									<textarea class="form-control" name="opsi_c-input" id="opsi_c-input" placeholder="Opsi C" type="text"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="opsi_d-input" class="col-sm-2 control-label">Pilihan D</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" name="opsi_d-input" id="opsi_d-input" placeholder="opsi_d" type="text"></textarea>
+									<textarea class="form-control" name="opsi_d-input" id="opsi_d-input" placeholder="Opsi D" type="text"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="jawaban-input" class="col-sm-2 control-label">Jawaban</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" name="jawaban-input" id="jawaban-input" placeholder="jawaban" type="text"></textarea>
+									<input class="form-control" name="jawaban-input" id="jawaban-input" placeholder="Jawaban" type="text">
 								</div>
 							</div>
 							<div class="form-group">
@@ -68,7 +68,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="guru-input" class="col-sm-2 control-label">NIP</label>
+								<label for="guru-input" class="col-sm-2 control-label">Guru</label>
 								<div class="col-sm-10">
 									<select class="form-control" name="guru-input" id="guru-input">
 										<?php
@@ -101,6 +101,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 					</div>
 				</div>
 			</section>
+		</div>
 			<script type="text/javascript">
 				$(document).ready(function () {
 					<?php

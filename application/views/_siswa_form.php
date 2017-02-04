@@ -32,7 +32,7 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 							<div class="form-group">
 								<label for="alamat-input" class="col-sm-2 control-label">Alamat</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="alamat-input" id="alamat-input" placeholder="Alamat" type="text">
+									<textarea class="form-control" name="alamat-input" id="alamat-input" placeholder="Alamat" type="text"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
@@ -70,7 +70,7 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 							<div class="form-group">
 								<label for="thn_masuk-input" class="col-sm-2 control-label">Tahun Masuk</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="thn_masuk-input" id="thn_masuk-input" placeholder="tahun Masuk" type="text">
+									<input class="form-control" name="thn_masuk-input" id="thn_masuk-input" placeholder="Tahun Masuk" type="text">
 								</div>
 							</div>
 							<div class="form-group">
@@ -104,7 +104,7 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 										<?php
 										if ($data_kelas) {
 											foreach ($data_kelas as $row) {
-												echo '<option value="' . $row->kode_kelas . '">' . $row->kode_kelas . ' - ' . $row->nama_kelas . '</option>';
+												echo '<option value="' . $row->kode_kelas . '">' . $row->nama_kelas . '</option>';
 											}
 										}
 										?>
@@ -118,7 +118,7 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 										<?php
 										if ($data_kelas) {
 											foreach ($data_jurusan as $row) {
-												echo '<option value="' . $row->kode_jurusan . '">' . $row->kode_jurusan . ' - ' . $row->nama_jurusan. '</option>';
+												echo '<option value="' . $row->kode_jurusan . '"> ' . $row->nama_jurusan. '</option>';
 											}
 										}
 										?>
@@ -149,23 +149,22 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 							<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_siswa')">
 						</form>
 					</div>
-					<!-- /.box-body -->
-					<div class="box-footer">
-						Footer
-					</div>
-					<!-- /.box-footer-->
 				</div>
-				<!-- /.box -->
 			</section>
 		</div>
+		<!-- /.box-body -->
+		<div class="box-footer">
+			Footer
+		</div>
+		<!-- /.box-footer-->
 
-		<script type="text/javascript">
-			$(document).ready(function () {
-				<?php
-				if ($param) {
-					echo 'fillForm("'.$param.'");';
-				}
-				?>
+<script type="text/javascript">
+	$(document).ready(function () {
+		<?php
+		if ($param) {
+			echo 'fillForm("'.$param.'");';
+		}
+		?>
 
 					// file upload
 					$("#file_upload").fileinput({
@@ -200,9 +199,9 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 			        });
 			    });
 
-			function proses_simpan() {
-				loading("loading", true);
-				setTimeout(function () {
+	function proses_simpan() {
+		loading("loading", true);
+		setTimeout(function () {
 						//ajax jalan
 						$.ajax({
 							url: base_url + 'manage',
@@ -227,39 +226,39 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 							}
 						});
 					}, 100);
-			}
+	}
 
-			function fillForm(x) {
-				$.ajax({
-					url: base_url + 'object',
-					data: 'model-input=siswa&key-input=nis&value-input=' + x,
-					dataType: 'json',
-					type: 'POST',
-					cache: false,
-					success: function(json) {
-						if (json['data'].code === 1) {
-							$("#nis-input").val(json.data.object.nis);
-							$("#nama-input").val(json.data.object.nama);
-							$("#alamat-input").val(json.data.object.alamat);
-							$("#tempat_lahir-input").val(json.data.object.tempat_lahir);
-							$("#jenis_kelamin-input").val(json.data.object.jenis_kelamin);
-							$("#agama-input").val(json.data.object.agama);
-							$("#thn_masuk-input").val(json.data.object.thn_masuk);
-							$("#no_telp-input").val(json.data.object.no_telp);
-							$("#email-input").val(json.data.object.email);
-							$("#username-input").val(json.data.object.username);
-							$("#password-input").val(json.data.object.password);
-							$("#kelas-input").val(json.data.object.kelas);
-							$("#jurusan-input").val(json.data.object.jurusan);
-							$("#status-input").val(json.data.object.status);
-							if (json.data.object.foto != '') {
-								$("#div-foto").html('<img src="'+base_url+'asset/img/upload/'+json.data.object.foto+'" class="img img-thumbnail foto-profil">');
-							}
-							$("#action-input").val("2");
-							$("#value-input").val(x);
-							$("#div-upload").show();
-						}
+	function fillForm(x) {
+		$.ajax({
+			url: base_url + 'object',
+			data: 'model-input=siswa&key-input=nis&value-input=' + x,
+			dataType: 'json',
+			type: 'POST',
+			cache: false,
+			success: function(json) {
+				if (json['data'].code === 1) {
+					$("#nis-input").val(json.data.object.nis).attr("readonly","");
+					$("#nama-input").val(json.data.object.nama);
+					$("#alamat-input").val(json.data.object.alamat);
+					$("#tempat_lahir-input").val(json.data.object.tempat_lahir);
+					$("#jenis_kelamin-input").val(json.data.object.jenis_kelamin);
+					$("#agama-input").val(json.data.object.agama);
+					$("#thn_masuk-input").val(json.data.object.thn_masuk);
+					$("#no_telp-input").val(json.data.object.no_telp);
+					$("#email-input").val(json.data.object.email);
+					$("#username-input").val(json.data.object.username);
+					$("#password-input").val(json.data.object.password);
+					$("#kelas-input").val(json.data.object.kelas);
+					$("#jurusan-input").val(json.data.object.jurusan);
+					$("#status-input").val(json.data.object.status);
+					if (json.data.object.foto != '') {
+						$("#div-foto").html('<img src="'+base_url+'asset/img/upload/'+json.data.object.foto+'" class="img img-thumbnail foto-profil">');
 					}
-				});
+					$("#action-input").val("2");
+					$("#value-input").val(x);
+					$("#div-upload").show();
+				}
 			}
-		</script>
+		});
+	}
+</script>

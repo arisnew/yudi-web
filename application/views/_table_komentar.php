@@ -16,6 +16,7 @@
          <table id="tabel-komentar" class="table table-bordered">
           <thead>
            <tr>
+            <th>Judul</th>
             <th>Komentator</th>
             <th>Level Komentator</th>
             <th>Isi</th>
@@ -39,29 +40,28 @@
 });
 
  function getData() {
-  if ($.fn.dataTable.isDataTable('#tabel-komentar')) {
-    table = $('#tabel-komentar').DataTable();
-  } else {
-    table = $('#tabel-komentar').DataTable({
-      "ajax": base_url + 'objects/komentar',
-      "columns": [
-      {"data": "id_komentar"},
-      //{"data": "id_materi"},
-      {"data": "komentator"},
-      {"data": "level_komentator"},
-      {"data": "isi"},
-      {"data": "tgl_post"},
-      {"data": "aksi"}
-      ],
-      "ordering": true,
-      "deferRender": true,
-      "order": [[0, "asc"]],
-      "fnDrawCallback": function (oSettings) {
-        utils();
-      }
-    });
+    if ($.fn.dataTable.isDataTable('#tabel-komentar')) {
+      table = $('#tabel-komentar').DataTable();
+    } else {
+      table = $('#tabel-komentar').DataTable({
+        "ajax": base_url + 'objects/komentar',
+        "columns": [
+        {"data": "judul"},
+        {"data": "komentator"},
+        {"data": "level_komentator"},
+        {"data": "isi"},
+        {"data": "tgl_post"},
+        {"data": "aksi"}
+        ],
+        "ordering": true,
+        "deferRender": true,
+        "order": [[0, "asc"]],
+        "fnDrawCallback": function (oSettings) {
+          utils();
+        }
+      });
+    }
   }
-}
 
 function utils() {
   $("#tabel-komentar .editBtn").on("click",function(){

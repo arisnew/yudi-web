@@ -22,8 +22,7 @@ class Gurumodel extends Model {
             'status_pegawai' => $inputs['status_pegawai-input'],
             'username'       => $inputs['username-input'],
             'level'          =>  'Guru',
-            'status'         => $inputs['status-input'],
-            
+            'status'         => $inputs['status-input']
             );
 
         if ($inputs['password-input'] != '') {
