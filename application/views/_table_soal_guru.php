@@ -1,8 +1,7 @@
 <section class="content">
 	<div class="box">
 		<div class="box-header with-border">
-			<h3 class="box-title">Form Mata Pelajaran</h3>
-
+			<h3 class="box-title">List Soal</h3>
 			<div class="box-tools pull-right">
 				<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i></button>
@@ -11,42 +10,46 @@
                     </div>
                 </div>
                 <div class="box-body">
-                 <div id="loading"></div>
-                 <a href="#" onclick="loadContent(base_url + 'view/_mata_pelajaran_form');" class="btn btn-success pull-right">Tambah Data Mata Pelajaran</a>
-                 <table id="tabel-mata_pelajaran" class="table table-bordered">
+                   <div id="loading"></div>
+                   <a href="#" onclick="loadContent(base_url + 'view/_soal_form');" class="btn btn-success pull-right">Tambah Soal</a>
+                   <table id="tabel-soal" class="table table-bordered">
                     <thead>
-                       <tr>
-                          <th>Kode Mata Pelajaran</th>
-                          <th>Nama Mata Pelajaran</th>
-                          <th>Status</th>
-                          <th>Pilihan</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                   
-                  </tbody>
-              </table>
-          </div>
-          <div class="box-footer">
-             Footer
-         </div>
-     </div>
- </section>
- <script type="text/javascript">
-   $(document).ready(function () {
-      getData();
-  });
+                     <tr>
+                      <th>Pertanyaan</th>
+                      <th>Jawaban</th>
+                      <th>Mata Pelajaran</th>
+                      <th>Nama Guru</th>
+                      <th>Tanggal Posting</th>
+                      <th>Pilihan</th>
+                  </tr>
+              </thead>
+              <tbody>
+                 
+              </tbody>
+          </table>
+      </div>
+      <div class="box-footer">
+       Footer
+   </div>
+</div>
+</section>
+<script type="text/javascript">
+ $(document).ready(function () {
+  getData();
+});
 
-   function getData() {
-    if ($.fn.dataTable.isDataTable('#tabel-mata_pelajaran')) {
-        table = $('#tabel-mata_pelajaran').DataTable();
+ function getData() {
+    if ($.fn.dataTable.isDataTable('#tabel-soal')) {
+        table = $('#tabel-soal').DataTable();
     } else {
-        table = $('#tabel-mata_pelajaran').DataTable({
-            "ajax": base_url + 'objects/mata_pelajaran',
+        table = $('#tabel-soal').DataTable({
+            "ajax": base_url + 'objects/soal/nip/<?php echo $this->session->userdata('_ID');?>',
             "columns": [
-            {"data": "kode_mapel"},
+            {"data": "pertanyaan"},
+            {"data": "jawaban"},
             {"data": "nama_mapel"},
-            {"data": "status"},
+            {"data": "nama"},
+            {"data": "tgl_posting"},
             {"data": "aksi"}
             ],
             "ordering": true,
@@ -60,22 +63,22 @@
 }
 
 function utils() {
-    $("#tabel-mata_pelajaran .editBtn").on("click",function(){
-        loadContent(base_url + 'view/_mata_pelajaran_form/' + $(this).attr('href').substring(1));
+    $("#tabel-soal .editBtn").on("click",function(){
+        loadContent(base_url + 'view/_soal_form/' + $(this).attr('href').substring(1));
     });
 
-    $("#tabel-mata_pelajaran .removeBtn").on("click",function(){
+    $("#tabel-soal .removeBtn").on("click",function(){
         konfirmasiHapus($(this).attr('href').substring(1));
     });
 }
 
 function konfirmasiHapus(x){
-   if(confirm("Yakin Hapus Data???")){
+ if(confirm("Yakin Hapus Data???")){
     loading('loading', true);
     setTimeout(function() {
         $.ajax({
             url: base_url + 'manage',
-            data: 'model-input=mata_pelajaran&key-input=kode_mapel&action-input=3&value-input=' + x,
+            data: 'model-input=soal&key-input=id_soal&action-input=3&value-input=' + x,
             dataType: 'json',
             type: 'POST',
             cache: false,
@@ -83,7 +86,7 @@ function konfirmasiHapus(x){
                 loading('loading',false);
                 if (json['data'].code === 1) {
                     alert('Hapus Data Berhasil');
-                    loadContent(base_url + "view/_table_mata_pelajaran");
+                    loadContent(base_url + "view/_table_soal");
                 } else if(json['data'].code === 2){
                     alert('Hapus Data Tidak Berhasil!');
                 } else{

@@ -1,7 +1,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Form Kelas</h3>
+            <h3 class="box-title">Form Jurusan</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -12,12 +12,12 @@
                 </div>
                 <div class="box-body">
                     <div id="loading"></div>
-                    <a href="#" onclick="loadContent(base_url + 'view/_kelas_form');" class="btn btn-success pull-right">Tambah Data Kelas</a>
-                    <table id="tabel-kelas" class="table table-bordered">
+                    <a href="#" onclick="loadContent(base_url + 'view/_jurusan_form');" class="btn btn-success pull-right">Tambah Data Jurusan</a>
+                    <table id="tabel-jurusan" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Kode Kelas</th>
-                                <th>Nama Kelas</th>
+                                <th>Kode Jurusan</th>
+                                <th>Nama Jurusan</th>
                                 <th>Status</th>
                                 <th>Pilihan</th>
                             </tr>
@@ -38,14 +38,14 @@
             });
 
             function getData() {
-                if ($.fn.dataTable.isDataTable('#tabel-kelas')) {
-                    table = $('#tabel-kelas').DataTable();
+                if ($.fn.dataTable.isDataTable('#tabel-jurusan')) {
+                    table = $('#tabel-jurusan').DataTable();
                 } else {
-                    table = $('#tabel-kelas').DataTable({
-                        "ajax": base_url + 'objects/kelas',
+                    table = $('#tabel-jurusan').DataTable({
+                        "ajax": base_url + 'objects/jurusan/nip/<?php echo $this->session->userdata('_ID');?>',
                         "columns": [
-                        {"data": "kode_kelas"},
-                        {"data": "nama_kelas"},
+                        {"data": "kode_jurusan"},
+                        {"data": "nama_jurusan"},
                         {"data": "status"},
                         {"data": "aksi"}
                         ],
@@ -60,11 +60,11 @@
             }
 
             function utils() {
-                $("#tabel-kelas .editBtn").on("click",function(){
-                    loadContent(base_url + 'view/_kelas_form/' + $(this).attr('href').substring(1));
+                $("#tabel-jurusan .editBtn").on("click",function(){
+                    loadContent(base_url + 'view/_jurusan_form/' + $(this).attr('href').substring(1));
                 });
 
-                $("#tabel-kelas .removeBtn").on("click",function(){
+                $("#tabel-jurusan .removeBtn").on("click",function(){
                     konfirmasiHapus($(this).attr('href').substring(1));
                 });
             }
@@ -75,7 +75,7 @@
                     setTimeout(function() {
                         $.ajax({
                             url: base_url + 'manage',
-                            data: 'model-input=kelas&key-input=kode_kelas&action-input=3&value-input=' + x,
+                            data: 'model-input=jurusan&key-input=kode_jurusan&action-input=3&value-input=' + x,
                             dataType: 'json',
                             type: 'POST',
                             cache: false,
@@ -83,7 +83,7 @@
                                 loading('loading',false);
                                 if (json['data'].code === 1) {
                                     alert('Hapus Data Berhasil');
-                                    loadContent(base_url + "view/_table_kelas");
+                                    loadContent(base_url + "view/_table_jurusan");
                                 } else if(json['data'].code === 2){
                                     alert('Hapus Data Tidak Berhasil!');
                                 } else{

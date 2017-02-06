@@ -64,12 +64,11 @@
 									<img src="<?php echo base_url('asset/img/upload/' . $this->session->userdata('_IMG'));?>" class="img-circle" alt="User Image">
 
 									<p>
-										<?php echo $this->session->userdata('_NAME');?> - Web Developer
-										<small>Member since Nov. 2012</small>
+										<?php echo $this->session->userdata('_NAME');?>
 									</p>
 								</li>
 								<!-- Menu Body -->
-								<li class="user-body">
+								<!--<li class="user-body">
 									<div class="row">
 										<div class="col-xs-4 text-center">
 											<a href="#">Followers</a>
@@ -80,7 +79,7 @@
 										<div class="col-xs-4 text-center">
 											<a href="#">Friends</a>
 										</div>
-									</div>
+									</div>-->
 									<!-- /.row -->
 								</li>
 								<!-- Menu Footer-->
@@ -140,8 +139,7 @@
 			<div class="pull-right hidden-xs">
 				<b>Version</b> 1
 			</div>
-			<strong>Copyright &copy; 2016.</strong> All rights
-			reserved.
+			<strong>Copyright &copy; 2017.</strong> 
 		</footer>
 </div>
 <!-- ./wrapper -->

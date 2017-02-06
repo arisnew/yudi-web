@@ -1,7 +1,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Form Kelas</h3>
+            <h3 class="box-title">Data Siswa</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -12,13 +12,15 @@
                 </div>
                 <div class="box-body">
                     <div id="loading"></div>
-                    <a href="#" onclick="loadContent(base_url + 'view/_kelas_form');" class="btn btn-success pull-right">Tambah Data Kelas</a>
-                    <table id="tabel-kelas" class="table table-bordered">
+                    <a href="#" onclick="loadContent(base_url + 'view/_siswa_form');" class="btn btn-success pull-right">Tambah Data Siswa</a>
+                    <table id="tabel-siswa" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Kode Kelas</th>
-                                <th>Nama Kelas</th>
-                                <th>Status</th>
+                                <th>Nis</th>
+                                <th>Nama</th>
+                                <th>Alamat</th>
+                                <th>Kelas</th>
+                                <th>Jurusan</th>
                                 <th>Pilihan</th>
                             </tr>
                         </thead>
@@ -38,15 +40,17 @@
             });
 
             function getData() {
-                if ($.fn.dataTable.isDataTable('#tabel-kelas')) {
-                    table = $('#tabel-kelas').DataTable();
+                if ($.fn.dataTable.isDataTable('#tabel-siswa')) {
+                    table = $('#tabel-siswa').DataTable();
                 } else {
-                    table = $('#tabel-kelas').DataTable({
-                        "ajax": base_url + 'objects/kelas',
+                    table = $('#tabel-siswa').DataTable({
+                        "ajax": base_url + 'objects/siswa/nip/<?php echo $this->session->userdata('_ID');?>',
                         "columns": [
-                        {"data": "kode_kelas"},
-                        {"data": "nama_kelas"},
-                        {"data": "status"},
+                        {"data": "nis"},
+                        {"data": "nama"},
+                        {"data": "alamat"},
+                        {"data": "kelas"},
+                        {"data": "jurusan"},
                         {"data": "aksi"}
                         ],
                         "ordering": true,
@@ -60,11 +64,11 @@
             }
 
             function utils() {
-                $("#tabel-kelas .editBtn").on("click",function(){
-                    loadContent(base_url + 'view/_kelas_form/' + $(this).attr('href').substring(1));
+                $("#tabel-siswa .editBtn").on("click",function(){
+                    loadContent(base_url + 'view/_siswa_form/' + $(this).attr('href').substring(1));
                 });
 
-                $("#tabel-kelas .removeBtn").on("click",function(){
+                $("#tabel-siswa .removeBtn").on("click",function(){
                     konfirmasiHapus($(this).attr('href').substring(1));
                 });
             }
@@ -75,7 +79,7 @@
                     setTimeout(function() {
                         $.ajax({
                             url: base_url + 'manage',
-                            data: 'model-input=kelas&key-input=kode_kelas&action-input=3&value-input=' + x,
+                            data: 'model-input=siswa&key-input=nis&action-input=3&value-input=' + x,
                             dataType: 'json',
                             type: 'POST',
                             cache: false,
@@ -83,9 +87,9 @@
                                 loading('loading',false);
                                 if (json['data'].code === 1) {
                                     alert('Hapus Data Berhasil');
-                                    loadContent(base_url + "view/_table_kelas");
+                                    loadContent(base_url + "view/_table_siswa");
                                 } else if(json['data'].code === 2){
-                                    alert('Hapus Data Tidak Berhasil!');
+                                    alert('Hapus Data tidak berhasil!');
                                 } else{
                                     alert(json['data'].message);
                                 }

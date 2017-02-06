@@ -42,7 +42,7 @@
           table = $('#tabel-jadwal').DataTable();
         } else {
           table = $('#tabel-jadwal').DataTable({
-            "ajax": base_url + 'objects/jadwal',
+            "ajax": base_url + 'objects/jadwal/nis/<?php echo $this->session->userdata('_ID');?>',
             "columns": [
             {"data": "nama_mapel"},
             {"data": "nama"},

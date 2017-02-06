@@ -1,7 +1,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Form Kelas</h3>
+            <h3 class="box-title">List materi</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -12,13 +12,15 @@
                 </div>
                 <div class="box-body">
                     <div id="loading"></div>
-                    <a href="#" onclick="loadContent(base_url + 'view/_kelas_form');" class="btn btn-success pull-right">Tambah Data Kelas</a>
-                    <table id="tabel-kelas" class="table table-bordered">
+                    <a href="#" onclick="loadContent(base_url + 'view/_materi_form');" class="btn btn-success pull-right">Tambah Data Materi</a>
+                    <table id="tabel-materi" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Kode Kelas</th>
-                                <th>Nama Kelas</th>
-                                <th>Status</th>
+                                <th>Mata Pelajran</th>
+                                <th>Judul</th>
+                                <th>Guru</th>
+                                <th>Tanggal Posting</th>
+                                <th>Publish</th>
                                 <th>Pilihan</th>
                             </tr>
                         </thead>
@@ -38,16 +40,18 @@
             });
 
             function getData() {
-                if ($.fn.dataTable.isDataTable('#tabel-kelas')) {
-                    table = $('#tabel-kelas').DataTable();
+                if ($.fn.dataTable.isDataTable('#tabel-materi')) {
+                    table = $('#tabel-materi').DataTable();
                 } else {
-                    table = $('#tabel-kelas').DataTable({
-                        "ajax": base_url + 'objects/kelas',
+                    table = $('#tabel-materi').DataTable({
+                        "ajax": base_url + 'objects/materi/nis/<?php echo $this->session->userdata('_ID');?>',
                         "columns": [
-                        {"data": "kode_kelas"},
-                        {"data": "nama_kelas"},
-                        {"data": "status"},
-                        {"data": "aksi"}
+                            {"data": "nama_mapel"},
+                            {"data": "judul"},
+                            {"data": "nama"},
+                            {"data": "tgl_posting"},
+                            {"data": "publish"},
+                            {"data": "aksi"}
                         ],
                         "ordering": true,
                         "deferRender": true,
@@ -60,11 +64,11 @@
             }
 
             function utils() {
-                $("#tabel-kelas .editBtn").on("click",function(){
-                    loadContent(base_url + 'view/_kelas_form/' + $(this).attr('href').substring(1));
+                $("#tabel-materi .editBtn").on("click",function(){
+                    loadContent(base_url + 'view/_materi_form/' + $(this).attr('href').substring(1));
                 });
 
-                $("#tabel-kelas .removeBtn").on("click",function(){
+                $("#tabel-materi .removeBtn").on("click",function(){
                     konfirmasiHapus($(this).attr('href').substring(1));
                 });
             }
@@ -75,7 +79,7 @@
                     setTimeout(function() {
                         $.ajax({
                             url: base_url + 'manage',
-                            data: 'model-input=kelas&key-input=kode_kelas&action-input=3&value-input=' + x,
+                            data: 'model-input=materi&key-input=id_materi&action-input=3&value-input=' + x,
                             dataType: 'json',
                             type: 'POST',
                             cache: false,
@@ -83,7 +87,7 @@
                                 loading('loading',false);
                                 if (json['data'].code === 1) {
                                     alert('Hapus Data Berhasil');
-                                    loadContent(base_url + "view/_table_kelas");
+                                    loadContent(base_url + "view/_table_materi");
                                 } else if(json['data'].code === 2){
                                     alert('Hapus Data Tidak Berhasil!');
                                 } else{

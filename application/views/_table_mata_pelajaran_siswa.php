@@ -42,7 +42,7 @@
         table = $('#tabel-mata_pelajaran').DataTable();
     } else {
         table = $('#tabel-mata_pelajaran').DataTable({
-            "ajax": base_url + 'objects/mata_pelajaran',
+            "ajax": base_url + 'objects/mata_pelajaran/nis/<?php echo $this->session->userdata('_ID');?>',
             "columns": [
             {"data": "kode_mapel"},
             {"data": "nama_mapel"},

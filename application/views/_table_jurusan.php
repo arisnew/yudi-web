@@ -12,7 +12,7 @@
                 </div>
                 <div class="box-body">
                     <div id="loading"></div>
-                    <a href="#" onclick="loadContent(base_url + 'view/_jurusan_form');" class="btn btn-success pull-right"> Add Jurusan</a>
+                    <a href="#" onclick="loadContent(base_url + 'view/_jurusan_form');" class="btn btn-success pull-right">Tambah Data Jurusan</a>
                     <table id="tabel-jurusan" class="table table-bordered">
                         <thead>
                             <tr>
@@ -70,7 +70,7 @@
             }
 
             function konfirmasiHapus(x){
-                if(confirm("Yakin hapus Data???")){
+                if(confirm("Yakin Hapus Data???")){
                     loading('loading', true);
                     setTimeout(function() {
                         $.ajax({
@@ -82,10 +82,10 @@
                             success: function(json) {
                                 loading('loading',false);
                                 if (json['data'].code === 1) {
-                                    alert('Hapus data berhasil');
+                                    alert('Hapus Data Berhasil');
                                     loadContent(base_url + "view/_table_jurusan");
                                 } else if(json['data'].code === 2){
-                                    alert('Hapus data tidak berhasil!');
+                                    alert('Hapus Data Tidak Berhasil!');
                                 } else{
                                     alert(json['data'].message);
                                 }

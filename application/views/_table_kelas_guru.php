@@ -42,7 +42,7 @@
                     table = $('#tabel-kelas').DataTable();
                 } else {
                     table = $('#tabel-kelas').DataTable({
-                        "ajax": base_url + 'objects/kelas',
+                        "ajax": base_url + 'objects/kelas/nip/<?php echo $this->session->userdata('_ID');?>',
                         "columns": [
                         {"data": "kode_kelas"},
                         {"data": "nama_kelas"},

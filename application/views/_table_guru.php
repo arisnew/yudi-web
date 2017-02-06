@@ -12,7 +12,7 @@
                 </div>
                 <div class="box-body">
                  <div id="loading"></div>
-                 <a href="#" onclick="loadContent(base_url + 'view/_guru_form');" class="btn btn-success pull-right"> Add Guru</a>
+                 <a href="#" onclick="loadContent(base_url + 'view/_guru_form');" class="btn btn-success pull-right">Tambah Data Guru</a>
                  <table id="tabel-guru" class="table table-bordered">
                     <thead>
                        <tr>
@@ -74,7 +74,7 @@ function utils() {
 }
 
 function konfirmasiHapus(x){
-   if(confirm("Yakin hapus Data???")){
+   if(confirm("Yakin Hapus Data???")){
     loading('loading', true);
     setTimeout(function() {
         $.ajax({
@@ -86,10 +86,10 @@ function konfirmasiHapus(x){
             success: function(json) {
                 loading('loading',false);
                 if (json['data'].code === 1) {
-                    alert('Hapus data berhasil');
+                    alert('Hapus Data Berhasil');
                     loadContent(base_url + "view/_table_guru");
                 } else if(json['data'].code === 2){
-                    alert('Hapus data tidak berhasil!');
+                    alert('Hapus Data Tidak Berhasil!');
                 } else{
                     alert(json['data'].message);
                 }

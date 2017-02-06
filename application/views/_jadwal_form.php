@@ -34,7 +34,7 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="guru-input" class="col-sm-2 control-label">NIP</label>
+								<label for="guru-input" class="col-sm-2 control-label">Guru</label>
 								<div class="col-sm-10">
 									<select class="form-control" name="guru-input" id="guru-input">
 										<?php
@@ -65,27 +65,41 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 								<label for="jurusan-input" class="col-sm-2 control-label">Jurusan</label>
 								<div class="col-sm-10">
 									<select class="form-control" name="jurusan-input" id="jurusan-input">								<?php
-								if ($data_kelas) {
-									foreach ($data_jurusan as $row) {
-										echo '<option value="' . $row->kode_jurusan . '">' . $row->nama_jurusan . '</option>';
-									}
-								}
-								?>
-							</select>
-							</div>
+										if ($data_kelas) {
+											foreach ($data_jurusan as $row) {
+												echo '<option value="' . $row->kode_jurusan . '">' . $row->nama_jurusan . '</option>';
+											}
+										}
+										?>
+									</select>
+								</div>
 							</div>
 							<div class="form-group">
 								<label for="hari-input" class="col-sm-2 control-label">Hari</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="hari-input" id="hari-input" placeholder="Hari" type="text">
+									<select class="form-control" name="hari-input" id="hari-input">
+										<option value="1">Senin</option>
+										<option value="2">Selasa</option>
+										<option value="3">Rabu</option>
+										<option value="4">Kamis</option>
+										<option value="5">Sabtu</option>
+										<option value="6">Minggu</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="jam-input" class="col-sm-2 control-label">Jam</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="jam-input" id="jam-input" placeholder="Jam" type="text">
+									<select class="form-control" name="jam-input" id="jam-input">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+									</select>
 								</div>
-							</div>
+							</div>							
 							<div class="form-group">
 								<label for="status-input" class="col-sm-2 control-label">Status</label>
 								<div class="col-sm-10">								
