@@ -1,53 +1,33 @@
-<section class="content-header">
-	<h1>
-		Form SISWA
-		<small>it all starts here</small>
-	</h1>
-	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li><a href="#">Examples</a></li>
-		<li class="active">Blank page</li>
-	</ol>
-</section>
-<!-- Main content -->
-<section class="content">
-	<!-- Default box -->
-	<div class="box">
-		<div class="box-header with-border">
-			<h3 class="box-title">Form SISWA</h3>
-
-			<div class="box-tools pull-right">
-				<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-				<i class="fa fa-minus"></i></button>
-				<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-				<i class="fa fa-times"></i></button>
-			</div>
+<?php 
+	$table = ($this->session->userdata('_LEVEL') == 'Admin') ? 'user' : strtolower($this->session->userdata('_LEVEL'));
+	$key = ($table == 'user') ? 'username' : (($table == 'guru') ? 'nip' : 'nis');
+	$me = $this->model->getRecord(array('table' => $table, 'where' => array($key => $this->session->userdata('_ID'))));
+	if ($me != null) { ?>
+		<div class="form-group">
+			<section class="content">
+				<div class="box box-info">
+					<div class="box-header with-border">
+						<h3 class="box-title">My Profile</h3>
+						<div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+								<i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+								<i class="fa fa-times"></i>
+							</button>
+						</div>
+					</div>
+					<div class="box-body">
+						<dl class="dl-horizontal">
+							<dt>ID : </dt>
+							<dd><?php echo $this->session->userdata('_ID');?></dd>
+							<dt>Nama : </dt>
+							<dd><?php echo $me->nama;?></dd>
+						</dl>
+					</div>
+				</div>
+			</section>
 		</div>
-		<div class="box-body">
-			<form action="<?php echo base_url('siswa/simpan');?>" method="POST">
-				<label>Nis :</label>
-				<input class="form-control" type="text" name="nis" value="">
-				<br>
-				<label>Nama :</label>
-				<input class="form-control" type="text" name="nama" value="">
-				<br>
-				<label>Alamat :</label>
-				<input class="form-control" type="text" name="alamat" value="">
-				<br>
-				<label>Kelas :</label>
-				<input class="form-control" type="text" name="kelas" value="">
-				<br>
-				<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Simpan</button>
-				<input type="reset" value="Batal" onclick="history.back()">
-			</form>
-		</div>
-		<!-- /.box-body -->
-		<div class="box-footer">
-			Footer
-		</div>
-		<!-- /.box-footer-->
-	</div>
-	<!-- /.box -->
-
-</section>
-<!-- /.content -->
+	<?php
+	}
+?>

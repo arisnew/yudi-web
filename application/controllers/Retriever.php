@@ -48,7 +48,16 @@ class Retriever extends CI_Controller {
 		if ($this->activeSession != null) {
 			if (isset($table)) {
 				if ($key != 'null' && $value != 'null') {
-					$query['where'] = array($key => $value);
+					//multi conditional
+					$keys = explode('__', $key);
+					$vals = explode('__', $value);
+					if (count($keys) == 3 && count($vals) == 3) {
+						$query['where'] = array($keys[0] => $vals[0], $keys[1] => $vals[1], $keys[2] => $vals[2]);
+					} elseif (count($keys) == 2 && count($vals) == 2) {
+						$query['where'] = array($keys[0] => $vals[0], $keys[1] => $vals[1]);
+					} else {
+						$query['where'] = array($key => $value);
+					}
 				}
 
 				switch ($table) {
