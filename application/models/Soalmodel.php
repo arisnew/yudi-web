@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Soalmodel extends Model {
+class SoalModel extends Model {
 
     public function __construct() {
         parent::__construct();
@@ -10,7 +10,6 @@ class Soalmodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            //'id_soal'     => $inputs['id_soal-input'],
             'pertanyaan'    => $inputs['pertanyaan-input'],
             'opsi_a'        => $inputs['opsi_a-input'],
             'opsi_b'        => $inputs['opsi_b-input'],
@@ -22,7 +21,10 @@ class Soalmodel extends Model {
             'tgl_posting'   => $inputs['tgl_posting-input'] . ' ' . date('H:i:s')
             );
 
-           }
+        //must return
+        return $fields;
+
+    }
 
     public function getRules() {    //set rule validasi form
 

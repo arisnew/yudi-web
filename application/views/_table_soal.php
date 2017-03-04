@@ -16,7 +16,7 @@
                     <thead>
                      <tr>
                       <th>Pertanyaan</th>
-                      <th>Jawaban</th>
+                      <!-- <th>Jawaban</th> -->
                       <th>Mata Pelajaran</th>
                       <th>Nama Guru</th>
                       <th>Tanggal Posting</th>
@@ -45,12 +45,12 @@
         table = $('#tabel-soal').DataTable({
             "ajax": base_url + 'objects/soal',
             "columns": [
-            {"data": "pertanyaan"},
-            {"data": "jawaban"},
-            {"data": "nama_mapel"},
-            {"data": "nama"},
-            {"data": "tgl_posting"},
-            {"data": "aksi"}
+              {"data": "pertanyaan"},
+              /*{"data": "jawaban"},*/
+              {"data": "nama_mapel"},
+              {"data": "nama"},
+              {"data": "tgl_posting"},
+              {"data": "aksi"}
             ],
             "ordering": true,
             "deferRender": true,

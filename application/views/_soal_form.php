@@ -50,7 +50,12 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 							<div class="form-group">
 								<label for="jawaban-input" class="col-sm-2 control-label">Jawaban</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="jawaban-input" id="jawaban-input" placeholder="Jawaban" type="text">
+									<select class="form-control" name="jawaban-input" id="jawaban-input">
+										<option value="A">A</option>
+										<option value="B">B</option>
+										<option value="C">C</option>
+										<option value="D">D</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -93,7 +98,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 							<input type="hidden" name="value-input" id="value-input" value="0">
 
 							<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
-							<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_materi')">
+							<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_soal')">
 						</form>
 					</div>
 					<div class="box-footer">
@@ -110,9 +115,9 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 					}
 					?>
 
-									$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
-					$(this).datepicker('hide');
-				});
+					$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
+						$(this).datepicker('hide');
+					});
 
 				});
 
