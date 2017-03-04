@@ -106,6 +106,11 @@
 									</select>
 								</div>
 							</div>
+							<div id="div-foto"></div>
+							<div id="div-upload" style="display: none">
+								<label>Foto</label>
+								<input type="file" name="file_upload" id="file_upload" class="image" >
+							</div>
 							<input type="hidden" name="model-input" id="model-input" value="guru">
 							<input type="hidden" name="action-input" id="action-input" value="1">
 							<input type="hidden" name="key-input" id="key-input" value="nip">
@@ -135,7 +140,39 @@
 				$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
 					$(this).datepicker('hide');
 				});
-			});
+
+					// file upload
+					$("#file_upload").fileinput({
+						maxFileCount: 1,
+						browseClass: "btn btn-default",
+						browseLabel: "Pilih file",
+						browseIcon: '<i class="fa fa-file"></i> ',
+						removeClass: "btn btn-warning",
+						removeLabel: "Hapus",
+						removeIcon: '<i class="glyphicon glyphicon-trash"></i> ',
+						uploadClass: "btn btn-info",
+						uploadLabel: "Unggah",
+						uploadIcon: '<i class="fa fa-cloud-upload"></i> ',
+						previewFileType: "image",
+			            uploadUrl: "<?php echo base_url('doupload'); ?>", // your upload server url
+			            msgFilesTooMany: 'Jumlah berkas yang akan diunggah ({n}) melebihi batas jumlah yang sudah ditentukan ({m}). Coba ulangi proses unggah berkas!',
+			            msgLoading: 'Memproses berkas {index} dari {files} …',
+			            msgProgress: 'Memproses berkas {index} dari {files} - {name} - {percent}% selesai.',
+			            uploadExtraData: function() {
+			            	return {
+			            		nama_field:'file_upload',
+			            		model:'guru',
+			            		key: 'nip',
+			            		value:$("#form-guru #nip-input").val()
+			            	};
+			            }
+			        });
+
+			        //refresh if succes upload...
+			        $('#file_upload').on('filebatchuploadcomplete', function(event, files, extra) {
+			        	loadContent(base_url + "view/_guru_form/" + $("#nip-input").val());
+			        });
+			    });
 
 			function proses_simpan() {
 				loading("loading", true);
@@ -188,8 +225,12 @@
 							$("#username-input").val(json.data.object.username).attr("readonly","");
 							$("#password-input").val(json.data.object.password);
 							$("#status-input").val(json.data.object.status);
+							if (json.data.object.foto != '') {
+							$("#div-foto").html('<img src="'+base_url+'asset/img/upload/'+json.data.object.foto+'" class="img img-thumbnail foto-profil">');
+							}
 							$("#action-input").val("2");
 							$("#value-input").val(x);
+							$("#div-upload").show();
 						}
 					}
 				});

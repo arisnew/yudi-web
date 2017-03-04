@@ -155,6 +155,7 @@
 							}
 							$("#action-input").val("2");
 							$("#value-input").val(x);
+							$("#div-upload").show();
 						}
 					}
 				});

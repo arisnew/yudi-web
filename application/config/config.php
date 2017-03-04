@@ -32,7 +32,7 @@ if ($_SERVER['SERVER_PORT'] != 80) {
 }
 
 //custom
-$alamat = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . $port . '/yudi-web.git/';
+$alamat = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . $port . '/yudi-web/';
 
 $config['base_url']	= $alamat;
 

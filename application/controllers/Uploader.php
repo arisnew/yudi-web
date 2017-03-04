@@ -34,7 +34,7 @@ class Uploader extends CI_Controller {
                 //upload gambar...
                 $config['upload_path'] = 'asset/img/upload/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                $config['max_size'] = '10000';
+                $config['max_size'] = '100000';
                 //$config['max_width']  = '1940';
                 //$config['max_height']  = '900';
                 //$config['file_name']  = $image_name;
