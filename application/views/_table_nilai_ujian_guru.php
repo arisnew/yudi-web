@@ -25,7 +25,7 @@
                             }
                         ?>
                     </select>
-                    <a href="#" onclick="loadContent(base_url + 'view/_nilai_ujian_form');" class="btn btn-success pull-right">Tambah Data Nilai Ujian</a>
+                    <a href="#" onclick="loadContent(base_url + 'view/_nilai_ujian_form_guru');" class="btn btn-success pull-right">Tambah Data Nilai Ujian</a>
                     <table id="tabel-nilai_ujian" class="table table-bordered">
                         <thead>
                           <tr>            
@@ -51,6 +51,11 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 getData();
+
+                //on change mapel
+                $("#mapel").on("change", function () {
+                    refreshTable();
+                });
             });
 
             function getData() {
@@ -58,7 +63,7 @@
                     table = $('#tabel-nilai_ujian').DataTable();
                 } else {
                     table = $('#tabel-nilai_ujian').DataTable({
-                        "ajax": base_url + 'objects/nilai_ujian',
+                        "ajax": base_url + 'objects/nilai_ujian/kode_mapel/' + $('#mapel').val(),
                         "columns": [
                             {"data": "nama"},
                             {"data": "jumlah_benar"},
@@ -116,5 +121,9 @@
                         });
                     }, 1000);
                 }
+            }
+
+            function refreshTable() {
+                table.ajax.url(base_url + 'objects/nilai_ujian/kode_mapel/' + $('#mapel').val()).load();
             }
         </script>
