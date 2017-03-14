@@ -86,7 +86,7 @@
                     success: function(json) {
                         loading('loading',false);
                         if (json['data'].code === 1) {
-                           alert('Login berhasil');
+                           alert('Login Berhasil');
                             window.location = '<?php echo base_url('view/home');?>'
                         } else if(json['data'].code === 2){
                             alert("Username tidak dikenal atau tidak aktif");

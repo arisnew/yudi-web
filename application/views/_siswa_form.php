@@ -166,7 +166,7 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 		}
 		?>
 
-						$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
+					$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
 					$(this).datepicker('hide');
 				});
 

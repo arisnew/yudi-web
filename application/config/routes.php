@@ -59,7 +59,7 @@ $route['view/(:any)/(:any)'] = 'viewer/pathGuide/$1/$2';
 $route['manage'] = 'manager/process';
 
 $route['objects/(:any)'] = 'retriever/records/$1/null/null/no';
-$route['objects/(:any)/(:any)/(:any)'] = 'retriever/records/$1/$2/$3/yes';
+$route['objects/(:any)/(:any)/(:any)'] = 'retriever/records/$1/$2/$3/no';
 $route['object'] = 'retriever/record';
 
 $route['login'] = 'manager/identify/acknowledge'; // login

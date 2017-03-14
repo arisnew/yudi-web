@@ -182,7 +182,9 @@ class Retriever extends CI_Controller {
 				'no_telp'		=> $record->no_telp,
 				'username' 		=> $record->username,
 				'kelas' 		=> $record->kelas,
+				'nama_kelas'	=> $record->nama_kelas,
 				'jurusan' 		=> $record->jurusan,
+				'nama_jurusan'	=> $record->nama_jurusan,
 				'foto'			=> $record->foto,
 				'status' 		=> $record->status,
 				'aksi' 			=> $linkBtn
@@ -279,6 +281,7 @@ class Retriever extends CI_Controller {
 				'nama_jurusan' 	=> $record->nama_jurusan,
 				'hari' 			=> $record->hari,
 				'jam' 			=> $record->jam,
+				'status'		=> $record->status,
 				'aksi'		 	=> $linkBtn
 				);
 		}

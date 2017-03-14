@@ -1,3 +1,6 @@
+<?php 
+    $mapel = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('nip' => $this->session->userdata('_ID'), 'status' => 'Aktif')));
+ ?>
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
@@ -12,6 +15,16 @@
                 </div>
                 <div class="box-body">
                     <div id="loading"></div>
+                    <label>Pilihan Mata Pelajaran</label>
+                    <select id="mapel">
+                        <?php
+                            if ($mapel) {
+                                foreach ($mapel as $row) {
+                                    echo "<option value='".$row->kode_mapel."'>".$row->nama_mapel."</option>";
+                                }
+                            }
+                        ?>
+                    </select>
                     <a href="#" onclick="loadContent(base_url + 'view/_nilai_ujian_form');" class="btn btn-success pull-right">Tambah Data Nilai Ujian</a>
                     <table id="tabel-nilai_ujian" class="table table-bordered">
                         <thead>
@@ -45,7 +58,7 @@
                     table = $('#tabel-nilai_ujian').DataTable();
                 } else {
                     table = $('#tabel-nilai_ujian').DataTable({
-                        "ajax": base_url + 'objects/nilai_ujian/nip/<?php echo $this->session->userdata('_ID');?>',
+                        "ajax": base_url + 'objects/nilai_ujian',
                         "columns": [
                             {"data": "nama"},
                             {"data": "jumlah_benar"},

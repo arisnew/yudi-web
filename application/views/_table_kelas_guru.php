@@ -1,3 +1,8 @@
+<?php
+    //get data siswa (current session) 1 row
+    $me = $this->model->getRecord(array('table' => 'guru', 'where' => array('nip' => $this->session->userdata('_ID'))));
+    $kelas = $me->kelas;
+?>
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
@@ -42,7 +47,7 @@
                     table = $('#tabel-kelas').DataTable();
                 } else {
                     table = $('#tabel-kelas').DataTable({
-                        "ajax": base_url + 'objects/kelas/nip/<?php echo $this->session->userdata('_ID');?>',
+                        "ajax": base_url + 'objects/kelas/kode_kelas__status/<?php echo $kelas .'__Aktif';?>',
                         "columns": [
                         {"data": "kode_kelas"},
                         {"data": "nama_kelas"},

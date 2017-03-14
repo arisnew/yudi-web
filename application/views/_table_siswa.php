@@ -49,8 +49,8 @@
                         {"data": "nis"},
                         {"data": "nama"},
                         {"data": "alamat"},
-                        {"data": "kelas"},
-                        {"data": "jurusan"},
+                        {"data": "nama_kelas"},
+                        {"data": "nama_jurusan"},
                         {"data": "aksi"}
                         ],
                         "ordering": true,
