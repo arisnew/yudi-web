@@ -20,7 +20,7 @@ if ($param != null) {
         <div class="box-body no-padding">
             <div class="mailbox-read-info">
                 <h2><?php echo $materi->judul;?></h2>
-                <h5><?php echo $materi->nama;?> <span class="mailbox-read-time pull-right"><?php echo $materi->tgl_posting;?></span></h5>
+                <h5><?php echo $materi->nama;?> <span class="mailbox-read-time pull-right"><?php echo DateToIndo($materi->tgl_posting);?></span></h5>
             </div>
         <div class="mailbox-controls with-border text-center">
         </div>
