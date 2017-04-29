@@ -3,42 +3,38 @@
 		<div class="box-header with-border">
 			<h3 class="box-title">List Soal</h3>
 			<div class="box-tools pull-right">
-				<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                    <i class="fa fa-minus"></i></button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                        <i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                   <div id="loading"></div>
-                   <a href="#" onclick="loadContent(base_url + 'view/_soal_form');" class="btn btn-success pull-right">Tambah Soal</a>
-                   <table id="tabel-soal" class="table table-bordered">
-                    <thead>
-                     <tr>
-                      <th>Pertanyaan</th>
-                      <th>Jawaban</th>
-                      <th>Mata Pelajaran</th>
-                      <th>Nama Guru</th>
-                      <th>Tanggal Posting</th>
-                      <th>Pilihan</th>
-                  </tr>
-              </thead>
-              <tbody>
-                 
-              </tbody>
-          </table>
-      </div>
-      <div class="box-footer">
-       Footer
-   </div>
-</div>
+				<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div id="loading"></div>
+            <!-- <a href="#" onclick="loadContent(base_url + 'view/_soal_form');" class="btn btn-success pull-right">Tambah Soal</a> -->
+            <table id="tabel-soal" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Pertanyaan</th>
+                        <th>Jawaban</th>
+                        <th>Mata Pelajaran</th>
+                        <th>Nama Guru</th>
+                        <th>Tanggal Posting</th>
+                        <th>Pilihan</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer">Footer</div>
+    </div>
 </section>
 <script type="text/javascript">
- $(document).ready(function () {
-  getData();
-});
+   $(document).ready(function () {
+      getData();
+  });
 
- function getData() {
+   function getData() {
     if ($.fn.dataTable.isDataTable('#tabel-soal')) {
         table = $('#tabel-soal').DataTable();
     } else {
@@ -73,7 +69,7 @@ function utils() {
 }
 
 function konfirmasiHapus(x){
- if(confirm("Yakin Hapus Data???")){
+   if(confirm("Yakin Hapus Data???")){
     loading('loading', true);
     setTimeout(function() {
         $.ajax({

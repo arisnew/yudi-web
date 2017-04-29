@@ -47,7 +47,7 @@
         table = $('#tabel-mata_pelajaran').DataTable();
     } else {
         table = $('#tabel-mata_pelajaran').DataTable({
-            "ajax": base_url + 'objects/jadwal/kode_mapel__status/<?php echo $kelas . '__'.$mata_pelajaran.'__Aktif';?>',
+            "ajax": base_url + 'objects/mata_pelajaran/kode_mapel__status/<?php echo $kelas . '__'.$mata_pelajaran.'__Aktif';?>',
             "columns": [
             {"data": "kode_mapel"},
             {"data": "nama_mapel"},

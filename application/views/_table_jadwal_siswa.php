@@ -7,7 +7,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">List Jadwal</h3>
+            <h3 class="box-title">List Jadwal Siswa</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i></button>
@@ -16,8 +16,8 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <div id="loading"></div>
-                    <a href="#" onclick="loadContent(base_url + 'view/_jadwal_form');" class="btn btn-success pull-right">Tambah Data Jadwal</a>
+                    <!-- <div id="loading"></div>
+                    <a href="#" onclick="loadContent(base_url + 'view/_jadwal_form');" class="btn btn-success pull-right">Tambah Data Jadwal</a> -->
                     <table id="tabel-jadwal" class="table table-bordered">
                         <thead>
                             <tr>
@@ -69,6 +69,10 @@
             function utils() {
                 $("#tabel-jadwal .editBtn").on("click",function(){
                     loadContent(base_url + 'view/_jadwal_form/' + $(this).attr('href').substring(1));
+                });
+
+                $("#tabel-materi .readBtn").on("click",function(){
+                    loadContent(base_url + 'view/_view_jadwal_siswa/' + $(this).attr('href').substring(1));
                 });
 
                 $("#tabel-jadwal .removeBtn").on("click",function(){

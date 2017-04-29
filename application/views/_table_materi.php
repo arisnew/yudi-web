@@ -68,6 +68,10 @@
                     loadContent(base_url + 'view/_materi_form/' + $(this).attr('href').substring(1));
                 });
 
+                $("#tabel-materi .readBtn").on("click",function(){
+                    loadContent(base_url + 'view/_view_materi/' + $(this).attr('href').substring(1));
+                });
+
                 $("#tabel-materi .removeBtn").on("click",function(){
                     konfirmasiHapus($(this).attr('href').substring(1));
                 });

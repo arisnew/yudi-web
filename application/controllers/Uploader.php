@@ -92,7 +92,7 @@ class Uploader extends CI_Controller {
             } else {
                 //upload gambar...
                 $config['upload_path'] = 'asset/files/';
-                $config['allowed_types'] = 'gif|jpg|png|jpeg|xls|xlsx|doc|docx|pdf|ppt|pptx|txt';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg|xls|xlsx|doc|docx|pdf|ppt|pptx|txt|rar|zip|7zip';
                 $config['max_size'] = '10000';
                 //$config['max_width']  = '1940';
                 //$config['max_height']  = '900';

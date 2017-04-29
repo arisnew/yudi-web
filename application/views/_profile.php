@@ -23,6 +23,8 @@
 							<dd><?php echo $this->session->userdata('_ID');?></dd>
 							<dt>Nama : </dt>
 							<dd><?php echo $me->nama;?></dd>
+							<dt>Level : </dt>
+							<dd><?php echo $me->level;?></dd>
 						</dl>
 					</div>
 				</div>
