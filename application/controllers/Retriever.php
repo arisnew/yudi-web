@@ -295,8 +295,8 @@ class Retriever extends CI_Controller {
 			if ($picker == 'yes') {
 				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				//$linkBtn = '<a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
 				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-warning readBtn"><i class="fa fa-eye"></i> Read</a>';
 				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
 			}
 			
