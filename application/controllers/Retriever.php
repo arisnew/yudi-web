@@ -361,6 +361,7 @@ class Retriever extends CI_Controller {
 				'opsi_b' 		=> $record->opsi_b,
 				'opsi_c' 		=> $record->opsi_c,
 				'opsi_d' 		=> $record->opsi_d,
+				'jawaban'		=> $record->jawaban,
 				'kode_mapel' 	=> $record->kode_mapel,
 				'nama_mapel'	=> $record->nama_mapel,
 				'nip' 			=> $record->nip,

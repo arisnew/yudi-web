@@ -8,7 +8,6 @@ if ($param != null) {
 ?>
 
 <section class="content">
-    <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title"><?php echo $materi->nama_mapel;?></h3>
@@ -24,7 +23,6 @@ if ($param != null) {
             </div>
             <div class="mailbox-controls with-border text-center">
             </div>
-
             <div class="mailbox-read-message"><?php echo $materi->isi;?>
             </div>
             <?php
@@ -38,53 +36,91 @@ if ($param != null) {
                 }
             }
             ?>
-    <div class="box-footer box-comments">
-        <div class="box-comment">
-            <!-- User image -->
-            <img alt="User Image" src="../dist/img/user3-128x128.jpg" class="img-circle img-sm">
+            <div class="box-footer box-comments">
 
-            <div class="comment-text">
-                <span class="username">
-                    Maria Gonzales
-                    <span class="text-muted pull-right">8:03 PM Today</span>
-                </span><!-- /.username -->
-                    It is a long established fact that a reader will be distracted
-                    by the readable content of a page when looking at its layout.
-            </div>
-            <!-- /.comment-text -->
-        </div>
-        <!-- /.box-comment -->
-        <div class="box-comment">
-            <!-- User image -->
-            <img alt="User Image" src="../dist/img/user4-128x128.jpg" class="img-circle img-sm">
+                <?php
+                $komentars = $this->model->getList(array('table' => 'komentar', 'where' => array('id_materi' => $param)));
+                if ($komentars) {
+                    foreach ($komentars as $row) {
+                        if ($row->level_komentator == 'guru') {
+                            $id = 'nip';
+                        } elseif ($row->level_komentator == 'siswa') {
+                            $id = 'nis';
+                        }
+                        //siapa?
+                        $profil = $this->model->getRecord(array('table' => $row->level_komentator, 'where' => array($id => $row->komentator)));
+                        if ($profil) {
+                        ?>
+                            <div class="box-comment">
+                                <img alt="User Image" src="<?php echo base_url('asset/img/upload/' . $profil->foto);?>" class="img-circle img-sm">
+                                <div class="comment-text">
+                                    <span class="username">
+                                        <?php echo $profil->nama;?>
+                                    </span>
+                                    <span class="text-muted pull-right"><?php echo $row->tgl_post;?></span>
+                                    <?php echo $row->isi;?>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                    }
+                }
+                ?>
+                
 
-            <div class="comment-text">
-                <span class="username">
-                    Luna Stark
-                    <span class="text-muted pull-right">8:03 PM Today</span>
-                </span><!-- /.username -->
-            It is a long established fact that a reader will be distracted
-            by the readable content of a page when looking at its layout.
             </div>
-        <!-- /.comment-text -->
+            <div class="box-footer">
+                <form id="form-comment">
+                    <img alt="Alt Text" src="<?php echo base_url('asset/img/upload/' . $this->session->userdata('_IMG'));?>" class="img-responsive img-circle img-sm">
+                    <div class="img-push">
+                        <input type="hidden" name="model-input" id="model-input" value="komentar">
+                        <input type="hidden" name="key-input" id="key-input" value="id_komentar">
+                        <input type="hidden" name="action-input" id="action-input" value="1">
+                        <input type="hidden" name="value-input" id="value-input" value="0">
+                        <input type="hidden" name="materi-input" id="materi-input" value="<?php echo $param;?>">
+                        <input type="hidden" name="level-input" id="level-input" value="guru">
+                        <input type="text" name="msg-input" id="msg-input" placeholder="Press enter to post comment" class="form-control input-sm">
+                        <input type="submit" name="kirim" id="kirim" style="display: none;" onclick="kirimKomentar(); return false;">
+                  </div>
+              </form>
+          </div>
+          <div class="box-footer pull-right">
+            <input type="reset" onclick="loadContent(base_url + 'view/_table_materi_guru')" value="Kembali">
         </div>
-            <!-- /.box-comment -->
+
+        </div>
     </div>
-    <div class="box-footer">
-      <form method="post" action="#">
-        <img alt="Alt Text" src="../dist/img/user4-128x128.jpg" class="img-responsive img-circle img-sm">
-        <!-- .img-push is used to add margin to elements next to floating images -->
-        <div class="img-push">
-          <input type="text" placeholder="Press enter to post comment" class="form-control input-sm">
-      </div>
-  </form>
-</div>
-<!-- /.box-body -->
-<div class="box-footer pull-right">
-    <input type="reset" onclick="loadContent(base_url + 'view/_table_materi_guru')" value="Kembali">
-</div>
-<!-- /.box-footer-->
-</div>
-<!-- /.box -->
-</div>
 </section>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //here
+    });
+
+    function kirimKomentar() {
+        loading("loading", true);
+        setTimeout(function () {
+            $.ajax({
+                url: base_url + 'manage',
+                type: 'POST',
+                dataType: "json",
+                data: $("#form-comment").serialize(),
+                cache: false,
+                success: function (json) {
+                    loading("loading", false);
+                    if (json.data.code == 1) {
+                        alert("Komentar berhasil di kirim.");
+                        loadContent(base_url + 'view/_view_materi_guru/<?php echo $param;?>');
+                    } else if(json.data.code == 2) {
+                        alert("Komentar gagal!");
+                    } else{
+                        alert(json.data.message);
+                    }
+                },
+                error: function () {
+                    loading("loading", false);
+                    alert("Respon server gagal!");
+                }
+            });
+        }, 100);
+    }
+</script>
