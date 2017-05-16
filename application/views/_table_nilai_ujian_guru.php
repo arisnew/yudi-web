@@ -85,7 +85,7 @@
 
             function utils() {
                 $("#tabel-nilai_ujian .editBtn").on("click",function(){
-                    loadContent(base_url + 'view/_nilai_ujian_form/' + $(this).attr('href').substring(1));
+                    loadContent(base_url + 'view/_nilai_ujian_form_guru/' + $(this).attr('href').substring(1));
                 });
 
                 $("#tabel-nilai_ujian .removeBtn").on("click",function(){
@@ -107,7 +107,7 @@
                                 loading('loading',false);
                                 if (json['data'].code === 1) {
                                     alert('Hapus Data Berhasil');
-                                    loadContent(base_url + "view/_table_nilai_ujian");
+                                    loadContent(base_url + "view/_table_nilai_ujian_guru");
                                 } else if(json['data'].code === 2){
                                     alert('Hapus Data Tidak Berhasil!');
                                 } else{

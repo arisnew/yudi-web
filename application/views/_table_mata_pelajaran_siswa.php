@@ -1,9 +1,6 @@
-<?php
-    //get data siswa (current session) 1 row
-$me = $this->model->getRecord(array('table' => 'siswa', 'where' => array('nis' => $this->session->userdata('_ID'))));
-$mata_pelajaran = $me->mata_pelajaran;
-$guru = $me->guru;
-?>
+<?php 
+    $guru = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('nip' => $this->session->userdata('_ID'))));
+ ?>
 <section class="content">
 	<div class="box">
 		<div class="box-header with-border">
@@ -16,13 +13,21 @@ $guru = $me->guru;
         </div>
         <div class="box-body">
             <div id="loading"></div>
+                                <label>Pilihan Guru</label>
+                    <select id="guru">
+                        <?php
+                            if ($guru) {
+                                foreach ($guru as $row) {
+                                    echo "<option value='".$row->nip."'>".$row->nama."</option>";
+                                }
+                            }
+                        ?>
+                    </select>
                 <!---<a href="#" onclick="loadContent(base_url + 'view/_mata_pelajaran_form');" class="btn btn-success pull-right">Tambah Data Mata Pelajaran</a> -->
                 <table id="tabel-mata_pelajaran" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Nama Mata Pelajaran</th>
-                            <th>Guru</th>
-                            <th>Pilihan</th>
                         </tr>
                     </thead>
                 <tbody>
@@ -43,10 +48,8 @@ $guru = $me->guru;
            table = $('#tabel-mata_pelajaran').DataTable();
        } else {
            table = $('#tabel-mata_pelajaran').DataTable({
-              "ajax": base_url + 'objects/mata_pelajaran/kode_mapel__nip__status/<?php echo $mata_pelajaran . '__'.$guru.'__Aktif';?>',
-              {"data": "nama_mapel"},
-              {"data": "nama_guru"},
-              {"data": "aksi"}
+              "ajax": base_url + 'objects/v_jadwal/kode_mapel/<?php echo $mata_pelajaran?>',
+              {"data": "nama_mapel"}
               ],
               "ordering": true,
               "deferRender": true,

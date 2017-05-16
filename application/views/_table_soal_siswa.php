@@ -1,3 +1,6 @@
+<?php 
+    $mapel = $this->model->getList(array('table' => 'v_nilai_ujian', 'where' => array('nis' => $this->session->userdata('_ID'))));
+ ?>
 <section class="content">
 	<div class="box">
 		<div class="box-header with-border">
@@ -9,6 +12,16 @@
         </div>
         <div class="box-body">
             <div id="loading"></div>
+                                <label>Pilihan Mata Pelajaran</label>
+                    <select id="mapel">
+                        <?php
+                            if ($mapel) {
+                                foreach ($mapel as $row) {
+                                    echo "<option value='".$row->kode_mapel."'>".$row->nama_mapel."</option>";
+                                }
+                            }
+                        ?>
+                    </select>
             <!-- <a href="#" onclick="loadContent(base_url + 'view/_soal_form');" class="btn btn-success pull-right">Tambah Soal</a> -->
             <table id="tabel-soal" class="table table-bordered">
                 <thead>
@@ -18,7 +31,6 @@
                         <th>Mata Pelajaran</th>
                         <th>Nama Guru</th>
                         <th>Tanggal Posting</th>
-                        <th>Pilihan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,14 +51,13 @@
         table = $('#tabel-soal').DataTable();
     } else {
         table = $('#tabel-soal').DataTable({
-            "ajax": base_url + 'objects/soal/nis/<?php echo $this->session->userdata('_ID');?>',
+            "ajax": base_url + 'objects/nilai_ujian/nis/' + $('#mapel').val(),
             "columns": [
             {"data": "pertanyaan"},
             {"data": "jawaban"},
             {"data": "nama_mapel"},
             {"data": "nama"},
-            {"data": "tgl_posting"},
-            {"data": "aksi"}
+            {"data": "tgl_posting"}
             ],
             "ordering": true,
             "deferRender": true,

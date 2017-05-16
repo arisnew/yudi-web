@@ -21,6 +21,6 @@
 </li>
 <li>
 	<a href="#" onclick="loadContent(base_url + 'view/_table_mata_pelajaran_siswa')">
-		<i class="fa fa-comment-o"></i> <span>Mata Pelajaran</span>
+		<i class="fa fa-book-o"></i> <span>Mata Pelajaran</span>
 	</a>
 </li>

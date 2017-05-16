@@ -1,7 +1,7 @@
 <?php
     //get data siswa (current session) 1 row
-    $me = $this->model->getRecord(array('table' => 'siswa', 'where' => array('nis' => $this->session->userdata('_ID'))));
-    $mata_pelajaran = $me->mata_pelajaran;
+$me = $this->model->getList(array('table' => 'siswa', 'where' => array('nis' => $this->session->userdata('_ID'))));
+$mata_pelajaran = $me->mata_pelajaran;
 ?>
 
 <section class="content">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="box-body">
                     <div id="loading"></div>
-                   <!-- <a href="#" onclick="loadContent(base_url + 'view/_materi_form');" class="btn btn-success pull-right">Tambah Data Materi</a> -->
+                    <!-- <a href="#" onclick="loadContent(base_url + 'view/_materi_form');" class="btn btn-success pull-right">Tambah Data Materi</a> -->
                     <table id="tabel-materi" class="table table-bordered">
                         <thead>
                             <tr>
@@ -31,7 +31,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -53,12 +53,12 @@
                         "ajax": base_url + 'objects/materi/nama_mapel_/<?php echo $mata_pelajaran;?>',
 
                         "columns": [
-                            {"data": "nama_mapel"},
-                            {"data": "judul"},
-                            {"data": "nama"},
-                            {"data": "tgl_posting"},
-                            {"data": "publish"},
-                            {"data": "aksi"}
+                        {"data": "nama_mapel"},
+                        {"data": "judul"},
+                        {"data": "nama"},
+                        {"data": "tgl_posting"},
+                        {"data": "publish"},
+                        {"data": "aksi"}
                         ],
                         "ordering": true,
                         "deferRender": true,
@@ -71,16 +71,11 @@
             }
 
             function utils() {
-               // $("#tabel-materi .editBtn").on("click",function(){
-                   // loadContent(base_url + 'view/_materi_form/' + $(this).attr('href').substring(1));
-               // });
+
                 $("#tabel-materi .readBtn").on("click",function(){
-                    loadContent(base_url + 'view/_view_materi/' + $(this).attr('href').substring(1));
+                    loadContent(base_url + 'view/_view_materi_siswa/' + $(this).attr('href').substring(1));
                 });
 
-               // $("#tabel-materi .removeBtn").on("click",function(){
-                 //   konfirmasiHapus($(this).attr('href').substring(1));
-                //});
             }
 
             function konfirmasiHapus(x){

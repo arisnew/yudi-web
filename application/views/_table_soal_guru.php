@@ -11,7 +11,7 @@
                 </div>
                 <div class="box-body">
                    <div id="loading"></div>
-                   <a href="#" onclick="loadContent(base_url + 'view/_soal_form');" class="btn btn-success pull-right">Tambah Soal</a>
+                   <a href="#" onclick="loadContent(base_url + 'view/_soal_form_guru');" class="btn btn-success pull-right">Tambah Soal</a>
                    <table id="tabel-soal" class="table table-bordered">
                     <thead>
                      <tr>
@@ -64,7 +64,7 @@
 
 function utils() {
     $("#tabel-soal .editBtn").on("click",function(){
-        loadContent(base_url + 'view/_soal_form/' + $(this).attr('href').substring(1));
+        loadContent(base_url + 'view/_soal_form_guru/' + $(this).attr('href').substring(1));
     });
 
     $("#tabel-soal .removeBtn").on("click",function(){
@@ -86,7 +86,7 @@ function konfirmasiHapus(x){
                 loading('loading',false);
                 if (json['data'].code === 1) {
                     alert('Hapus Data Berhasil');
-                    loadContent(base_url + "view/_table_soal");
+                    loadContent(base_url + "view/_table_soal_guru");
                 } else if(json['data'].code === 2){
                     alert('Hapus Data Tidak Berhasil!');
                 } else{

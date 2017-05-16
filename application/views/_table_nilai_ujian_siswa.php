@@ -10,17 +10,14 @@
         </div>
         <div class="box-body">
             <div id="loading"></div>
-            <a href="#" onclick="loadContent(base_url + 'view/_nilai_ujian_form');" class="btn btn-success pull-right">Tambah Data Nilai Ujian</a>
             <table id="tabel-nilai_ujian" class="table table-bordered">
                 <thead>
                     <tr>            
-                        <th>Nama Siswa</th>
+                        <th>Mata Pelajaran</th>
                         <th>Jumlah Benar</th>
                         <th>Jumlah Salah</th>
                         <th>Tanggal Ujian</th>
-                        <th>Mata Pelajaran</th>
                         <th>Nilai</th>
-                        <th>Pilihan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,13 +40,11 @@
             table = $('#tabel-nilai_ujian').DataTable({
                 "ajax": base_url + 'objects/nilai_ujian/nis/<?php echo $this->session->userdata('_ID');?>',
                 "columns": [
-                {"data": "nama"},
+                {"data": "nama_mapel"},
                 {"data": "jumlah_benar"},
                 {"data": "jumlah_salah"},
                 {"data": "tgl_ujian"},
-                {"data": "nama_mapel"},
-                {"data": "nilai"},
-                {"data": "aksi"}
+                {"data": "nilai"}
                 ],
                 "ordering": true,
                 "deferRender": true,

@@ -1,8 +1,6 @@
-<?php
-    //get data siswa (current session) 1 row
-    $me = $this->model->getRecord(array('table' => 'guru', 'where' => array('nip' => $this->session->userdata('_ID'))));
-    $kelas = $me->mata_pelajaran;
-?>
+<?php 
+    $mapel = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('nip' => $this->session->userdata('_ID'), 'status' => 'Aktif')));
+ ?>
 <section class="content">
 	<div class="box">
 		<div class="box-header with-border">
@@ -17,14 +15,11 @@
                 </div>
                 <div class="box-body">
                  <div id="loading"></div>
-                 <a href="#" onclick="loadContent(base_url + 'view/_mata_pelajaran_form');" class="btn btn-success pull-right">Tambah Data Mata Pelajaran</a>
                  <table id="tabel-mata_pelajaran" class="table table-bordered">
                     <thead>
                        <tr>
                           <th>Kode Mata Pelajaran</th>
                           <th>Nama Mata Pelajaran</th>
-                          <th>Status</th>
-                          <th>Pilihan</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -47,12 +42,10 @@
         table = $('#tabel-mata_pelajaran').DataTable();
     } else {
         table = $('#tabel-mata_pelajaran').DataTable({
-            "ajax": base_url + 'objects/mata_pelajaran/kode_mapel__status/<?php echo $kelas . '__'.$mata_pelajaran.'__Aktif';?>',
+            "ajax": base_url + 'objects/mata_pelajaran/kode_mapel/' + $('#mapel').val(),,
             "columns": [
             {"data": "kode_mapel"},
-            {"data": "nama_mapel"},
-            {"data": "status"},
-            {"data": "aksi"}
+            {"data": "nama_mapel"}
             ],
             "ordering": true,
             "deferRender": true,
