@@ -31,7 +31,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	config.removeButtons = 'Flash,Save,NewPage,BidiLtr,BidiRtl,Language';
 
-	config.filebrowserBrowseUrl='http://localhost/yedi-web/asset/plugins/fileman/index.html';
-	config.filebrowserImageBrowseUrl='http://localhost/yedi-web/asset/plugins/fileman/index.html'+'?type=image';
+	config.filebrowserBrowseUrl='http://localhost/yudi-web/asset/plugins/fileman/index.html';
+	config.filebrowserImageBrowseUrl='http://localhost/yudi-web/asset/plugins/fileman/index.html'+'?type=image';
 	config.removeDialogTabs= 'link:upload;image:upload';
 };

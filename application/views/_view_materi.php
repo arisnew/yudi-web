@@ -30,9 +30,10 @@ if ($param != null) {
       </div>
       <div class="mailbox-read-message">
         <?php echo $materi->isi;?>
+        <div class="clearfix"></div>
       </div>
       <div class="mailbox-attachment-info">
-        <a class="mailbox-attachment-name" href="#"><i class="fa fa-paperclip"></i><?php echo $lampiran->nama_file;?></a>
+        <a class="mailbox-attachment-name" href="#"><i class="fa fa-paperclip"></i><?php echo ($lampiran) ? $lampiran->nama_file : '';?></a>
         <span class="mailbox-attachment-size">
           <a class="btn btn-default btn-xs pull-right" href="#"><i class="fa fa-cloud-download"></i></a>
         </span>

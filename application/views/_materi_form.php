@@ -148,10 +148,13 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 					$(this).datepicker('hide');
 				});
 
+				CKEDITOR.replace('isi-input');
+
 			});
 
 			function simpan_data() {
 				loading('loading', true);
+				CKupdate();
 				setTimeout(function() {
 					$.ajax({
 						url: base_url + 'manage',

@@ -51,3 +51,8 @@ function loadContent(dURL){
     },10);
 
 }
+
+function CKupdate(){
+    for ( instance in CKEDITOR.instances )
+        CKEDITOR.instances[instance].updateElement();
+}
