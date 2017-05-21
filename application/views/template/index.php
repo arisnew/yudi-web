@@ -162,6 +162,7 @@
 <script src="<?php echo base_url();?>asset/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script src="<?php echo base_url();?>asset/js/fileinput.min.js"></script>
 <script src="<?php echo base_url();?>asset/js/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url();?>asset/plugins/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
 		<?php echo (isset($_EXTRA_JS))? $_EXTRA_JS : '';?>
