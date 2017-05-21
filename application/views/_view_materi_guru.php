@@ -57,7 +57,7 @@ if ($param != null) {
                                     <span class="username">
                                         <?php echo $profil->nama;?>
                                     </span>
-                                    <span class="text-muted pull-right"><?php echo $row->tgl_post;?></span>
+                                    <span class="text-muted pull-right"><?php echo DateToIndo($row->tgl_post);?></span>
                                     <?php echo $row->isi;?>
                                 </div>
                             </div>

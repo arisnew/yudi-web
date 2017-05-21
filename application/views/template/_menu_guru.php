@@ -20,17 +20,7 @@
 	</a>
 </li>
 <li>
-	<a href="#" onclick="loadContent(base_url + 'view/_table_siswa_guru')">
-		<i class="fa fa-user-o"></i> <span>Siswa</span>
-	</a>
-</li>
-<li>
-	<a href="#" onclick="loadContent(base_url + 'view/_table_mata_pelajaran_guru')">
-		<i class="fa fa-book"></i> <span>Mata Pelajaran</span>
-	</a>
-</li>
-<li>
-	<a href="#" onclick="loadContent(base_url + 'view/_table_kelas_guru')">
-		<i class="fa fa-institution"></i> <span>Kelas</span>
+	<a href="#" onclick="loadContent(base_url + 'view/view_pesan_masuk')">
+		<i class="fa fa-comments"></i> <span>Pesan</span>
 	</a>
 </li>
