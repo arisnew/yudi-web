@@ -68,6 +68,35 @@
 					</div>
 				</div>
 			</section>
+		</div>
+		<div id="modalPickSiswa" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Cari Siswa</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class='row'>
+                            <div class="col-md-12">
+                                <table id="table-siswa-picker" class="table table-bordered table-striped" cellspacing="0" >
+                                    <thead>
+                                        <tr>
+                                            <th>NIS</th>
+                                            <th>Nama Siswa</th>
+                                            <th>Kelas</th>
+			                                <th>Jurusan</th>
+                                            <th>Pilih</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 			<script type="text/javascript">
 				$(document).ready(function () {
 					<?php

@@ -67,3 +67,5 @@ $route['logout'] = 'manager/identify/revoke'; // logout
 
 $route['doupload'] = 'uploader/proses_upload'; // for uploaad
 $route['doupload_materi'] = 'uploader/proses_upload_materi'; // for upload materi
+
+$route['pick/(:any)/(:any)/(:any)'] = 'retriever/records/$1/$2/$3/yes'; // read/retrieve list with param for picker
