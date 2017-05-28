@@ -223,7 +223,7 @@
 							$("#email-input").val(json.data.object.email);
 							$("#status_pegawai-input").val(json.data.object.status_pegawai);
 							$("#username-input").val(json.data.object.username).attr("readonly","");
-							$("#password-input").val(json.data.object.password);
+							//$("#password-input").val(json.data.object.password);
 							$("#status-input").val(json.data.object.status);
 							if (json.data.object.foto != '') {
 							$("#div-foto").html('<img src="'+base_url+'asset/img/upload/'+json.data.object.foto+'" class="img img-thumbnail foto-profil">');
