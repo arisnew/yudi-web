@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 31, 2017 at 02:02 PM
+-- Host: localhost
+-- Generation Time: May 28, 2017 at 06:45 
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -49,10 +49,11 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`nip`, `nama`, `alamat`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `no_telp`, `email`, `foto`, `status_pegawai`, `username`, `password`, `level`, `status`) VALUES
-('098765', 'oke', 'ok', 'jakarta', '1992-12-10', 'Laki-laki', 'Islam', '0987654321', 'sfhulyofuy', '', 'Tetap', 'rusruger', '75ca40df413da497c4c1d40706816e82', 'Guru', 'Aktif'),
-('12345', 'udin', 'klari', 'sragen', '1991-10-13', 'Laki-laki', 'Islam', '7207207320273', 'yudi.gmail.co.id', '', 'Kontrak', 'yudisl', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif'),
-('123456', 'agus', 'karawang', 'sragen', '1992-10-01', 'Laki-laki', 'Islam', '7747453377775', 'agus.gmail.com', '', 'Tetap', 'aguscs', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif'),
-('123456789', 'Agus Badrusalam', 'Karawang', 'Karawang', '1992-10-01', 'Laki-laki', 'Islam', '08999999999', 'agus@gmail.com', '', 'Tetap', 'agus_bs', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif');
+('0001', 'Bayu Priatna', 'Karawang', 'Karawang', '1991-01-01', 'Laki-laki', 'Islam', '0909090909', 'bayu.p@gmail.com', 'Bebek_Petelur1.jpg', 'Tetap', 'bayu_p', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif'),
+('0002', 'Oman Komarudin', 'Karawang', 'Kuningan', '1980-01-01', 'Laki-laki', 'Islam', '010101001', 'oman_k@gmail.com', '14358923_10207444111881111_8656192210053472435_n.jpg', 'Tetap', 'oman', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif'),
+('0003', 'Aris Suharso', 'Karawang', 'Bandung', '1980-01-02', 'Laki-laki', 'Islam', '020020202', 'aris_s@gmail.com', '15822990_10208479856423044_2984600514706423699_n.jpg', 'Tetap', 'aris', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif'),
+('0004', 'Ade Andri', 'Karawang', 'Bandung', '1981-02-01', 'Laki-laki', 'Islam', '03030303003', 'ade@gmail.com', '17862360_10212864289108421_3258731541955068427_n.jpg', 'Tetap', 'ade', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif'),
+('0005', 'Yuni Sulastri', 'Karawang', 'Karawang', '1993-01-01', 'Perempuan', 'Islam', '0808080808', 'yuni.s@gmail.com', '12265868_762473120545849_109936360050780045_o.jpg', 'Tetap', 'yuni_s', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -67,8 +68,23 @@ CREATE TABLE `jadwal` (
   `kode_kelas` varchar(20) NOT NULL,
   `kode_jurusan` varchar(20) NOT NULL,
   `hari` int(1) NOT NULL,
+  `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif',
   `jam` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jadwal`
+--
+
+INSERT INTO `jadwal` (`id_jadwal`, `kode_mapel`, `nip`, `kode_kelas`, `kode_jurusan`, `hari`, `status`, `jam`) VALUES
+(5, '03', '0002', '1', '2', 3, 'Aktif', '2'),
+(6, '01', '0003', '1', '2', 1, 'Aktif', '1'),
+(8, '04', '0004', '1', '2', 4, 'Aktif', '1'),
+(9, '05', '0005', '1', '2', 2, 'Aktif', '1'),
+(10, '02', '0001', '1', '2', 5, 'Aktif', '1'),
+(11, '01', '0001', '1', '2', 1, 'Aktif', '1'),
+(12, '02', '0002', '1', '2', 2, 'Aktif', '2'),
+(13, '05', '0003', '1', '2', 3, 'Aktif', '3');
 
 -- --------------------------------------------------------
 
@@ -87,10 +103,8 @@ CREATE TABLE `jurusan` (
 --
 
 INSERT INTO `jurusan` (`kode_jurusan`, `nama_jurusan`, `status`) VALUES
-('1', 'tsm', 'Aktif'),
-('2', 'tkj', 'Aktif'),
-('3', 'Akuntansi', 'Aktif'),
-('4', 'teknik listrik', 'Aktif');
+('1', 'TSM', 'Aktif'),
+('2', 'TKJ', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -110,8 +124,11 @@ CREATE TABLE `kelas` (
 
 INSERT INTO `kelas` (`kode_kelas`, `nama_kelas`, `status`) VALUES
 ('1', '10 TKJ', 'Aktif'),
-('2', 'TSM', 'Aktif'),
-('3', '11TKJ', 'Aktif');
+('2', '11 TKJ', 'Aktif'),
+('3', '12 TKJ', 'Aktif'),
+('4', '10 TSM', 'Aktif'),
+('5', '11 TSM', 'Aktif'),
+('6', '12 TSM', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -128,6 +145,16 @@ CREATE TABLE `komentar` (
   `tgl_post` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `komentar`
+--
+
+INSERT INTO `komentar` (`id_komentar`, `id_materi`, `komentator`, `level_komentator`, `isi`, `tgl_post`) VALUES
+(1, 16, '0001', 'guru', 'test', '2017-05-16 15:04:35'),
+(2, 16, '0001', 'guru', 'saya komen', '2017-05-16 15:18:44'),
+(3, 16, '0001', 'guru', 'test lagi bro', '2017-05-16 15:20:53'),
+(4, 11, '0005', 'guru', 'ok', '2017-05-17 07:12:14');
+
 -- --------------------------------------------------------
 
 --
@@ -140,6 +167,19 @@ CREATE TABLE `lampiran` (
   `nama_lampiran` varchar(255) NOT NULL,
   `nama_file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lampiran`
+--
+
+INSERT INTO `lampiran` (`id_lampiran`, `id_materi`, `nama_lampiran`, `nama_file`) VALUES
+(1, 11, 'KAJIAN_JURNAL.docx', 'KAJIAN_JURNAL.docx'),
+(2, 11, 'jbptunikompp-gdl-diannurhar-30168-10-unikom_d-a.pdf', 'jbptunikompp-gdl-diannurhar-30168-10-unikom_d-a.pdf'),
+(3, 11, 'Lamaran_Pekerjaan.rar', 'Lamaran_Pekerjaan.rar'),
+(4, 15, '2012-1-00015-SI_Bab2001.doc', '2012-1-00015-SI_Bab2001.doc'),
+(5, 15, '2012-1-00015-SI_Bab2001.pdf', '2012-1-00015-SI_Bab2001.pdf'),
+(6, 16, 'IMG_20160404_0001.pdf', 'IMG_20160404_0001.pdf'),
+(7, 16, 'KEAMANAN_DATABASE.doc', 'KEAMANAN_DATABASE.doc');
 
 -- --------------------------------------------------------
 
@@ -158,7 +198,11 @@ CREATE TABLE `mata_pelajaran` (
 --
 
 INSERT INTO `mata_pelajaran` (`kode_mapel`, `nama_mapel`, `status`) VALUES
-('01', 'ipa', 'Aktif');
+('01', 'K3LH', 'Aktif'),
+('02', 'Teknik Elektronika Analog dan Digital Dasar', 'Aktif'),
+('03', 'Perakitan dan Perawatan PC', 'Aktif'),
+('04', 'Fungsi dan Perbaikan Peripheral', 'Aktif'),
+('05', 'Sistem Operasi Dasar', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -168,7 +212,7 @@ INSERT INTO `mata_pelajaran` (`kode_mapel`, `nama_mapel`, `status`) VALUES
 
 CREATE TABLE `materi` (
   `id_materi` int(11) NOT NULL,
-  `kode_mapel` varchar(20) NOT NULL,
+  `id_jadwal` int(11) DEFAULT NULL,
   `judul` varchar(255) NOT NULL,
   `isi` text NOT NULL,
   `nip` varchar(20) NOT NULL,
@@ -180,10 +224,13 @@ CREATE TABLE `materi` (
 -- Dumping data for table `materi`
 --
 
-INSERT INTO `materi` (`id_materi`, `kode_mapel`, `judul`, `isi`, `nip`, `tgl_posting`, `publish`) VALUES
-(1, '01', 'test-materi', 'isi', '098765', '0000-00-00 00:00:00', 'Ya'),
-(3, '01', 'test-2', 'isi', '123456', '2016-12-17 11:16:38', 'Ya'),
-(4, '01', 'chek', 'blabla', '098765', '2016-12-15 14:42:48', 'Ya');
+INSERT INTO `materi` (`id_materi`, `id_jadwal`, `judul`, `isi`, `nip`, `tgl_posting`, `publish`) VALUES
+(10, NULL, 'Menerapkan Keselamatan, Kesehatan Kerja dan Lingkungan Hidup (K3LH)', 'Sekolah Menengah Kejuruan (SMK) merupakan salah satu lembaga pendidikan kejuruan yang memiliki tugas untuk mempersiapkan peserta didiknya untuk dapat bekerja pada bidang-bidang tertentu. Pendidikan SMK merupakan lanjutan pendidikan dasar yang mempunyai tujuan utama untuk menyiapkan tenaga kerja sesuai tuntutan dunia kerja, meliputi pengembangan diri baik dalam dimensi fisik, intelektual, emosional dan spiritual.', '0003', '2017-04-22 17:11:03', 'Ya'),
+(11, NULL, 'Menerapkan Teknik Elektronika Analog dan Digital Dasar', 'Dalam perkembangannya, SMK dituntut harus mampu menghasilkan Sumber Daya Manusia yang berkualitas, yang berakselerasi dengan kamajuan ilmu pengetahuan dan juga teknologi. Siswa SMK dituntut untuk lebih pro aktif dalam mengikuti perkembangan teknologi terutama teknologi informasi yang saat ini sangat dibutuhan oleh setiap aspek kehidupan manusia.', '0005', '2017-04-28 13:45:54', 'Ya'),
+(12, NULL, 'Mendiagnosis Permasalahan Pengoperasian PC dan Peripheral', 'Untuk mewujudkan hal tersebut, siswa-siswi SMK mulai memberdayakan teknologi-teknologi yang ada untuk membantu kegiatan belajar di sekolah ataupun di luar sekolah. Demikian pula guru SMK dituntut untuk ikut aktif dalam menyikapi perkembangan teknologi saat ini, terutama dalam membantu Kegiatan Belajar Mengajar (KBM) di dalam kelas.', '0002', '2017-04-20 17:13:16', 'Ya'),
+(13, NULL, 'Menerapkan Fungsi Peripheral dan Instalasi PC', 'Guru harus tahu bagaimana menghadapi peserta didik, membantu memecahkan masalah, mengelola kelas, menata bahan ajar, menentukan kegiatan kelas, menyusun asesmen belajar, menentukan metode atau media, dan bahkan menjawab pertanyaan dengan bijaksana. Untuk itu, diharapkan guru dapat meningkatkan kualitas pembelajaran dengan mengembangkan metode-metode belajar dan memanfaatkan media belajar yang berbasiskan teknologi.', '0004', '2017-04-18 17:14:09', 'Ya'),
+(15, NULL, 'ok', 'lanjutkan', '0005', '2017-04-28 13:46:14', 'Ya'),
+(16, NULL, 'tester', 'isi edited again', '0001', '2017-04-28 07:52:55', 'Ya');
 
 -- --------------------------------------------------------
 
@@ -206,8 +253,12 @@ CREATE TABLE `nilai_ujian` (
 --
 
 INSERT INTO `nilai_ujian` (`id_nilai`, `nis`, `jumlah_benar`, `jumlah_salah`, `tgl_ujian`, `kode_mapel`, `nilai`) VALUES
-(1, 1234, 1, 9, '2016-12-15', '01', '10'),
-(2, 12345, 9, 1, '2016-12-15', '01', '90');
+(1, 12001, 10, 0, '2017-04-17', '01', '10'),
+(2, 12002, 9, 1, '2017-04-17', '01', '9'),
+(3, 12003, 9, 1, '2017-04-17', '01', '9'),
+(4, 12004, 8, 2, '2017-04-17', '01', '8'),
+(5, 12001, 10, 0, '2017-04-28', '05', '10'),
+(6, 12001, 3, 7, '2017-05-15', '02', '30');
 
 -- --------------------------------------------------------
 
@@ -224,14 +275,6 @@ CREATE TABLE `pesan` (
   `type_pesan` enum('siswa-siswa','guru-guru','siswa-guru','guru-siswa') NOT NULL,
   `tgl_post` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pesan`
---
-
-INSERT INTO `pesan` (`id_pesan`, `judul`, `isi`, `dari`, `ke`, `type_pesan`, `tgl_post`) VALUES
-(1, 'ok', 'ok', 'yudi', 'agus', 'siswa-siswa', '2016-12-20 00:00:00'),
-(2, 'sisi datar', 'ok', 'agus', 'yudi', 'siswa-siswa', '2016-12-20 06:04:25');
 
 -- --------------------------------------------------------
 
@@ -264,9 +307,10 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`nis`, `nama`, `alamat`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `thn_masuk`, `email`, `no_telp`, `foto`, `username`, `password`, `level`, `kelas`, `jurusan`, `status`) VALUES
-(1234, 'yudi', 'karawang', 'sragen', '0000-00-00', 'Laki-laki', 'Islam', 2012, 'yufi.gmail.com', '5336666', '', 'yudi123', 'd9b1d7db4cd6e70935368a1efb10e377', 'Siswa', '1', '2', 'Aktif'),
-(12345, 'Agus', 'Rawamerta', 'Karawang', '0000-00-00', 'Laki-laki', 'Islam', 0000, '', '', '', '', NULL, 'Siswa', '1', '1', 'Aktif'),
-(123214124, 'gdfgdgioh', 'gdghg', 'gjgiohdgio', '1992-10-01', 'Laki-laki', 'Islam', 2014, 'yufi.gmail.com', '09876655354', '', 'yudi_s', '202cb962ac59075b964b07152d234b70', 'Siswa', '1', '2', 'Aktif');
+(12001, 'Yayan Suhendar', 'Karawang', 'Bandung', '1990-01-01', 'Laki-laki', 'Islam', 2012, 'yayan@gmail.com', '11111111111', '18237979_1867937873231872_2443356029093134493_o.jpg', 'yayan_s', '202cb962ac59075b964b07152d234b70', 'Siswa', '1', '2', 'Aktif'),
+(12002, 'Gunawan', 'Karawang', 'Solo', '1990-02-01', 'Laki-laki', 'Islam', 2012, 'gunawan@gmail.com', '22222222', '11696446_10205841904420948_269840450207694746_o.jpg', 'gunawan', '202cb962ac59075b964b07152d234b70', 'Siswa', '1', '2', 'Aktif'),
+(12003, 'Tapri Andi', 'Karawang', 'Tegal', '1992-01-01', 'Laki-laki', 'Islam', 2012, 'tapri_andi@gmail.com', '333333333', '17039025_650521525131757_8142750548456191075_o.jpg', 'tapri_andi', '202cb962ac59075b964b07152d234b70', 'Siswa', '1', '2', 'Aktif'),
+(12004, 'Agus Badrusalam', 'Karawang', 'Karawang', '1993-01-01', 'Laki-laki', 'Islam', 2012, 'agus@gmail.com', '444444444', '16179690_10206369224308296_215463652483554150_o.jpg', 'agus', '202cb962ac59075b964b07152d234b70', 'Siswa', '1', '2', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -282,10 +326,18 @@ CREATE TABLE `soal` (
   `opsi_c` text NOT NULL,
   `opsi_d` text NOT NULL,
   `jawaban` varchar(5) NOT NULL,
-  `kode_mapel` varchar(20) NOT NULL,
+  `id_jadwal` int(11) DEFAULT NULL,
   `nip` varchar(20) NOT NULL,
   `tgl_posting` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `soal`
+--
+
+INSERT INTO `soal` (`id_soal`, `pertanyaan`, `opsi_a`, `opsi_b`, `opsi_c`, `opsi_d`, `jawaban`, `id_jadwal`, `nip`, `tgl_posting`) VALUES
+(1, 'tess', 'vdsjvhsiz;ofhsoi', 'ivjzfdibhzfdlbhfz', 'dkvjdflbhfdzlbhz;', 'fibjhfdibhfdilbhd', 'C', NULL, '0005', '2017-04-28 14:10:58'),
+(2, 'Testing', 'Test', 'test', 'tesst', 'Testing', 'D', NULL, '0001', '2017-05-15 07:00:48');
 
 -- --------------------------------------------------------
 
@@ -300,7 +352,7 @@ CREATE TABLE `user` (
   `level` enum('Admin') NOT NULL DEFAULT 'Admin',
   `password` varchar(32) NOT NULL,
   `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif',
-  `foto` varchar(255) NOT NULL
+  `foto` varchar(255) NOT NULL DEFAULT 'default-user.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -308,11 +360,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `nama`, `email`, `level`, `password`, `status`, `foto`) VALUES
-('agus_cs', 'agus b', 'agus.gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default.user.png'),
-('didin_05', 'Didin W', 'didin@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', ''),
-('yd_sl', 'yudis', 'yudi.gmail.co.id', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default.user.png'),
-('yudi123', 'yudi sl', 'yudi123.gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default.user.png'),
-('yudi_sl', 'yudi', 'yudi.gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default.user.png');
+('admin', 'Admin', 'admin123@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'IMG_6917.JPG'),
+('yudi_sl', 'yudi', 'yudi.gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png');
 
 -- --------------------------------------------------------
 
@@ -330,6 +379,7 @@ CREATE TABLE `v_jadwal` (
 ,`kode_jurusan` varchar(20)
 ,`nama_jurusan` varchar(50)
 ,`hari` int(1)
+,`status` enum('Aktif','Nonaktif')
 ,`jam` varchar(15)
 );
 
@@ -368,6 +418,7 @@ CREATE TABLE `v_lampiran` (
 --
 CREATE TABLE `v_materi` (
 `id_materi` int(11)
+,`id_jadwal` int(11)
 ,`kode_mapel` varchar(20)
 ,`nama_mapel` varchar(200)
 ,`judul` varchar(255)
@@ -435,6 +486,7 @@ CREATE TABLE `v_soal` (
 ,`opsi_c` text
 ,`opsi_d` text
 ,`jawaban` varchar(5)
+,`id_jadwal` int(11)
 ,`kode_mapel` varchar(20)
 ,`nama_mapel` varchar(200)
 ,`nip` varchar(20)
@@ -449,7 +501,7 @@ CREATE TABLE `v_soal` (
 --
 DROP TABLE IF EXISTS `v_jadwal`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_jadwal`  AS  select `ja`.`id_jadwal` AS `id_jadwal`,`ja`.`kode_mapel` AS `kode_mapel`,`mp`.`nama_mapel` AS `nama_mapel`,`ja`.`nip` AS `nip`,`g`.`nama` AS `nama`,`ja`.`kode_kelas` AS `kode_kelas`,`ke`.`nama_kelas` AS `nama_kelas`,`ja`.`kode_jurusan` AS `kode_jurusan`,`ju`.`nama_jurusan` AS `nama_jurusan`,`ja`.`hari` AS `hari`,`ja`.`jam` AS `jam` from ((((`jadwal` `ja` join `mata_pelajaran` `mp` on((`ja`.`kode_mapel` = `mp`.`kode_mapel`))) join `guru` `g` on((`ja`.`nip` = `g`.`nip`))) join `kelas` `ke` on((`ja`.`kode_kelas` = `ke`.`kode_kelas`))) join `jurusan` `ju` on((`ja`.`kode_jurusan` = `ju`.`kode_jurusan`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_jadwal`  AS  select `ja`.`id_jadwal` AS `id_jadwal`,`ja`.`kode_mapel` AS `kode_mapel`,`mp`.`nama_mapel` AS `nama_mapel`,`ja`.`nip` AS `nip`,`g`.`nama` AS `nama`,`ja`.`kode_kelas` AS `kode_kelas`,`ke`.`nama_kelas` AS `nama_kelas`,`ja`.`kode_jurusan` AS `kode_jurusan`,`ju`.`nama_jurusan` AS `nama_jurusan`,`ja`.`hari` AS `hari`,`ja`.`status` AS `status`,`ja`.`jam` AS `jam` from ((((`jadwal` `ja` join `mata_pelajaran` `mp` on((`ja`.`kode_mapel` = `mp`.`kode_mapel`))) join `guru` `g` on((`ja`.`nip` = `g`.`nip`))) join `kelas` `ke` on((`ja`.`kode_kelas` = `ke`.`kode_kelas`))) join `jurusan` `ju` on((`ja`.`kode_jurusan` = `ju`.`kode_jurusan`))) ;
 
 -- --------------------------------------------------------
 
@@ -458,7 +510,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_komentar`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_komentar`  AS  select `ko`.`id_komentar` AS `id_komentar`,`ko`.`id_materi` AS `id_materi`,`m`.`judul` AS `judul`,`ko`.`komentator` AS `komentator`,`ko`.`level_komentator` AS `level_komentator`,`ko`.`isi` AS `isi`,`ko`.`tgl_post` AS `tgl_post` from (`komentar` `ko` join `materi` `m` on((`ko`.`id_materi` = `m`.`judul`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_komentar`  AS  select `ko`.`id_komentar` AS `id_komentar`,`ko`.`id_materi` AS `id_materi`,`m`.`judul` AS `judul`,`ko`.`komentator` AS `komentator`,`ko`.`level_komentator` AS `level_komentator`,`ko`.`isi` AS `isi`,`ko`.`tgl_post` AS `tgl_post` from (`komentar` `ko` join `materi` `m` on((`ko`.`id_materi` = `m`.`id_materi`))) ;
 
 -- --------------------------------------------------------
 
@@ -467,7 +519,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_lampiran`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_lampiran`  AS  select `l`.`id_lampiran` AS `id_lampiran`,`l`.`id_materi` AS `id_materi`,`m`.`judul` AS `judul`,`l`.`nama_lampiran` AS `nama_lampiran`,`l`.`nama_file` AS `nama_file` from (`lampiran` `l` join `materi` `m` on((`l`.`id_materi` = `m`.`judul`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_lampiran`  AS  select `l`.`id_lampiran` AS `id_lampiran`,`l`.`id_materi` AS `id_materi`,`m`.`judul` AS `judul`,`l`.`nama_lampiran` AS `nama_lampiran`,`l`.`nama_file` AS `nama_file` from (`lampiran` `l` join `materi` `m` on((`l`.`id_materi` = `m`.`id_materi`))) ;
 
 -- --------------------------------------------------------
 
@@ -476,7 +528,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_materi`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_materi`  AS  select `m`.`id_materi` AS `id_materi`,`m`.`kode_mapel` AS `kode_mapel`,`mp`.`nama_mapel` AS `nama_mapel`,`m`.`judul` AS `judul`,`m`.`isi` AS `isi`,`m`.`nip` AS `nip`,`g`.`nama` AS `nama`,`m`.`tgl_posting` AS `tgl_posting`,`m`.`publish` AS `publish` from ((`materi` `m` join `guru` `g` on((`m`.`nip` = `g`.`nip`))) join `mata_pelajaran` `mp` on((`m`.`kode_mapel` = `mp`.`kode_mapel`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_materi`  AS  select `m`.`id_materi` AS `id_materi`,`m`.`id_jadwal` AS `id_jadwal`,`j`.`kode_mapel` AS `kode_mapel`,`j`.`nama_mapel` AS `nama_mapel`,`m`.`judul` AS `judul`,`m`.`isi` AS `isi`,`m`.`nip` AS `nip`,`g`.`nama` AS `nama`,`m`.`tgl_posting` AS `tgl_posting`,`m`.`publish` AS `publish` from ((`materi` `m` left join `guru` `g` on((`m`.`nip` = `g`.`nip`))) left join `v_jadwal` `j` on((`m`.`id_jadwal` = `j`.`id_jadwal`))) ;
 
 -- --------------------------------------------------------
 
@@ -485,7 +537,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_nilai_ujian`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_nilai_ujian`  AS  select `ni`.`id_nilai` AS `id_nilai`,`ni`.`nis` AS `nis`,`si`.`nama` AS `nama`,`ni`.`jumlah_benar` AS `jumlah_benar`,`ni`.`jumlah_salah` AS `jumlah_salah`,`ni`.`tgl_ujian` AS `tgl_ujian`,`ni`.`kode_mapel` AS `kode_mapel`,`mp`.`nama_mapel` AS `nama_mapel`,`ni`.`nilai` AS `nilai` from ((`nilai_ujian` `ni` join `siswa` `si` on((`ni`.`nis` = `si`.`nis`))) join `mata_pelajaran` `mp` on((`ni`.`kode_mapel` = `mp`.`kode_mapel`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_nilai_ujian`  AS  select `nu`.`id_nilai` AS `id_nilai`,`nu`.`nis` AS `nis`,`si`.`nama` AS `nama`,`nu`.`jumlah_benar` AS `jumlah_benar`,`nu`.`jumlah_salah` AS `jumlah_salah`,`nu`.`tgl_ujian` AS `tgl_ujian`,`nu`.`kode_mapel` AS `kode_mapel`,`mp`.`nama_mapel` AS `nama_mapel`,`nu`.`nilai` AS `nilai` from ((`nilai_ujian` `nu` join `siswa` `si` on((`nu`.`nis` = `si`.`nis`))) join `mata_pelajaran` `mp` on((`nu`.`kode_mapel` = `mp`.`kode_mapel`))) ;
 
 -- --------------------------------------------------------
 
@@ -494,7 +546,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_siswa`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_siswa`  AS  select `si`.`nis` AS `nis`,`si`.`nama` AS `nama`,`si`.`alamat` AS `alamat`,`si`.`tempat_lahir` AS `tempat_lahir`,`si`.`tgl_lahir` AS `tgl_lahir`,`si`.`jenis_kelamin` AS `jenis_kelamin`,`si`.`agama` AS `agama`,`si`.`thn_masuk` AS `thn_masuk`,`si`.`email` AS `email`,`si`.`no_telp` AS `no_telp`,`si`.`foto` AS `foto`,`si`.`username` AS `username`,`si`.`password` AS `password`,`si`.`level` AS `level`,`si`.`kelas` AS `kelas`,`ke`.`nama_kelas` AS `nama_kelas`,`si`.`jurusan` AS `jurusan`,`ju`.`nama_jurusan` AS `nama_jurusan`,`si`.`status` AS `status` from ((`siswa` `si` join `kelas` `ke` on((`si`.`kelas` = `ke`.`nama_kelas`))) join `jurusan` `ju` on((`si`.`jurusan` = `ju`.`nama_jurusan`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_siswa`  AS  select `si`.`nis` AS `nis`,`si`.`nama` AS `nama`,`si`.`alamat` AS `alamat`,`si`.`tempat_lahir` AS `tempat_lahir`,`si`.`tgl_lahir` AS `tgl_lahir`,`si`.`jenis_kelamin` AS `jenis_kelamin`,`si`.`agama` AS `agama`,`si`.`thn_masuk` AS `thn_masuk`,`si`.`email` AS `email`,`si`.`no_telp` AS `no_telp`,`si`.`foto` AS `foto`,`si`.`username` AS `username`,`si`.`password` AS `password`,`si`.`level` AS `level`,`si`.`kelas` AS `kelas`,`ke`.`nama_kelas` AS `nama_kelas`,`si`.`jurusan` AS `jurusan`,`ju`.`nama_jurusan` AS `nama_jurusan`,`si`.`status` AS `status` from ((`siswa` `si` join `kelas` `ke` on((`si`.`kelas` = `ke`.`kode_kelas`))) join `jurusan` `ju` on((`si`.`jurusan` = `ju`.`kode_jurusan`))) ;
 
 -- --------------------------------------------------------
 
@@ -503,7 +555,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_soal`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_soal`  AS  select `so`.`id_soal` AS `id_soal`,`so`.`pertanyaan` AS `pertanyaan`,`so`.`opsi_a` AS `opsi_a`,`so`.`opsi_b` AS `opsi_b`,`so`.`opsi_c` AS `opsi_c`,`so`.`opsi_d` AS `opsi_d`,`so`.`jawaban` AS `jawaban`,`so`.`kode_mapel` AS `kode_mapel`,`mp`.`nama_mapel` AS `nama_mapel`,`so`.`nip` AS `nip`,`g`.`nama` AS `nama`,`so`.`tgl_posting` AS `tgl_posting` from ((`soal` `so` join `mata_pelajaran` `mp` on((`so`.`kode_mapel` = `mp`.`kode_mapel`))) join `guru` `g` on((`so`.`nip` = `g`.`nip`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_soal`  AS  select `so`.`id_soal` AS `id_soal`,`so`.`pertanyaan` AS `pertanyaan`,`so`.`opsi_a` AS `opsi_a`,`so`.`opsi_b` AS `opsi_b`,`so`.`opsi_c` AS `opsi_c`,`so`.`opsi_d` AS `opsi_d`,`so`.`jawaban` AS `jawaban`,`so`.`id_jadwal` AS `id_jadwal`,`j`.`kode_mapel` AS `kode_mapel`,`j`.`nama_mapel` AS `nama_mapel`,`so`.`nip` AS `nip`,`g`.`nama` AS `nama`,`so`.`tgl_posting` AS `tgl_posting` from ((`soal` `so` left join `v_jadwal` `j` on((`so`.`id_jadwal` = `j`.`id_jadwal`))) left join `guru` `g` on((`so`.`nip` = `g`.`nip`))) ;
 
 --
 -- Indexes for dumped tables
@@ -562,8 +614,8 @@ ALTER TABLE `mata_pelajaran`
 --
 ALTER TABLE `materi`
   ADD PRIMARY KEY (`id_materi`),
-  ADD KEY `kode_mapel` (`kode_mapel`),
-  ADD KEY `nip` (`nip`);
+  ADD KEY `nip` (`nip`),
+  ADD KEY `id_jadwal` (`id_jadwal`);
 
 --
 -- Indexes for table `nilai_ujian`
@@ -592,7 +644,6 @@ ALTER TABLE `siswa`
 --
 ALTER TABLE `soal`
   ADD PRIMARY KEY (`id_soal`),
-  ADD KEY `kode_mapel` (`kode_mapel`),
   ADD KEY `nip` (`nip`);
 
 --
@@ -609,7 +660,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `komentar`
 --
@@ -619,27 +670,27 @@ ALTER TABLE `komentar`
 -- AUTO_INCREMENT for table `lampiran`
 --
 ALTER TABLE `lampiran`
-  MODIFY `id_lampiran` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_lampiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `nilai_ujian`
 --
 ALTER TABLE `nilai_ujian`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pesan`
 --
 ALTER TABLE `pesan`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
@@ -669,8 +720,8 @@ ALTER TABLE `lampiran`
 -- Constraints for table `materi`
 --
 ALTER TABLE `materi`
-  ADD CONSTRAINT `materi_ibfk_1` FOREIGN KEY (`kode_mapel`) REFERENCES `mata_pelajaran` (`kode_mapel`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `materi_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `guru` (`nip`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `materi_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `guru` (`nip`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `materi_ibfk_3` FOREIGN KEY (`id_jadwal`) REFERENCES `jadwal` (`id_jadwal`);
 
 --
 -- Constraints for table `nilai_ujian`
@@ -690,7 +741,6 @@ ALTER TABLE `siswa`
 -- Constraints for table `soal`
 --
 ALTER TABLE `soal`
-  ADD CONSTRAINT `soal_ibfk_1` FOREIGN KEY (`kode_mapel`) REFERENCES `mata_pelajaran` (`kode_mapel`) ON UPDATE CASCADE,
   ADD CONSTRAINT `soal_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `guru` (`nip`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,19 +1,30 @@
 <?php
-    //get data siswa (current session) 1 row
-$me = $this->model->getList(array('table' => 'siswa', 'where' => array('nis' => $this->session->userdata('_ID'))));
-$mata_pelajaran = $me->mata_pelajaran;
+//get data siswa (current session) 1 row
+$me = $this->model->getRecord(array('table' => 'siswa', 'where' => array('nis' => $this->session->userdata('_ID'))));
+$jadwal = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('status' => 'Aktif', 'kode_kelas' => $me->kelas, 'kode_jurusan' => $me->jurusan)));
+
 ?>
 
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">List Materi Siswa</h3>
-
+            <select id="pilih-jadwal">
+                <?php
+                if ($jadwal) {
+                    foreach ($jadwal as $row) {
+                        echo '<option value="'.$row->id_jadwal.'">'.$row->nama_mapel.'</option>';
+                    }
+                }
+                ?>
+            </select>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                    <i class="fa fa-minus"></i></button>
+                    <i class="fa fa-minus"></i>
+                    </button>
                     <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                        <i class="fa fa-times"></i></button>
+                        <i class="fa fa-times"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="box-body">
@@ -51,14 +62,13 @@ $mata_pelajaran = $me->mata_pelajaran;
                 } else {
                     table = $('#tabel-materi').DataTable({
                         "ajax": base_url + 'objects/materi/nama_mapel_/<?php echo $mata_pelajaran;?>',
-
                         "columns": [
-                        {"data": "nama_mapel"},
-                        {"data": "judul"},
-                        {"data": "nama"},
-                        {"data": "tgl_posting"},
-                        {"data": "publish"},
-                        {"data": "aksi"}
+                            {"data": "nama_mapel"},
+                            {"data": "judul"},
+                            {"data": "nama"},
+                            {"data": "tgl_posting"},
+                            {"data": "publish"},
+                            {"data": "aksi"}
                         ],
                         "ordering": true,
                         "deferRender": true,

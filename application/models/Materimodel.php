@@ -10,8 +10,7 @@ class Materimodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
-            //'id_materi'   => $inputs['id_materi-input'],
-            'kode_mapel'    => ($inputs['mata_pelajaran-input'] == '') ? null : $inputs['mata_pelajaran-input'],
+            'id_jadwal'   => $inputs['jadwal-input'],
             'judul'         => $inputs['judul-input'],
             'isi'           => $inputs['isi-input'],
             'nip'           => ($inputs['guru-input'] == '') ? null : $inputs['guru-input'],
@@ -28,7 +27,11 @@ class Materimodel extends Model {
             'field' => 'judul-input', 'label' => 'judul',
             'rules' => 'trim|required|max_length[255]'
             );
+        $jadwal = array(
+            'field' => 'jadwal-input', 'label' => 'ID Jadwal',
+            'rules' => 'trim|required|max_length[11]'
+            );
 
-        return array($judul);
+        return array($judul, $jadwal);
     }
 }
