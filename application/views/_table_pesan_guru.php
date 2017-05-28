@@ -12,7 +12,7 @@
                 </div>
                 <div class="box-body">
                    <div id="loading"></div>
-                   <a href="#" onclick="loadContent(base_url + 'view/View_pesan_baru');" class="btn btn-success pull-right">Tambah Pesan</a>
+                   <a href="#" onclick="loadContent(base_url + 'view/_pesan_form_guru');" class="btn btn-success pull-right">Tambah Pesan</a>
                    <table id="tabel-pesan" class="table table-bordered">
                     <thead>
                      <tr>

@@ -20,7 +20,7 @@
 	</a>
 </li>
 <li>
-	<a href="#" onclick="loadContent(base_url + 'view/view_pesan_masuk')">
+	<a href="#" onclick="loadContent(base_url + 'view/_table_pesan_guru')">
 		<i class="fa fa-comments"></i> <span>Pesan</span>
 	</a>
 </li>

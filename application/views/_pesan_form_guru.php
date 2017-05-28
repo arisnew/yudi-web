@@ -1,3 +1,8 @@
+<?php
+$data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('status' => 'Aktif')));
+?>
+
+
 <div class="form-group">
 	<section class="content">
 		<div class="box box-info">
@@ -14,15 +19,15 @@
 						<div id="loading"></div>
 						<form id="form-pesan" class="form-horizontal">
 							<div class="form-group">
-								<label for="judul-input" class="col-sm-2 control-label">Judul</label>
+								<label for="ke-input" class="col-sm-2 control-label">Ke</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="judul-input" id="judul-input" placeholder="Judul" type="text">
+									<input class="form-control" name="ke-input" id="ke-input" placeholder="ke" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="isi-input" class="col-sm-2 control-label">Isi</label>
+								<label for="judul-input" class="col-sm-2 control-label">Judul</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" name="isi-input" id="isi-input" placeholder="Isi" type="text"></textarea>
+									<input class="form-control" name="judul-input" id="judul-input" placeholder="Judul" type="text">
 								</div>
 							</div>
 							<div class="form-group">
@@ -37,30 +42,24 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="dari-input" class="col-sm-2 control-label">Dari</label>
+								<label for="isi-input" class="col-sm-2 control-label">Isi</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="dari-input" id="dari-input" placeholder="dari" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="ke-input" class="col-sm-2 control-label">Ke</label>
-								<div class="col-sm-10">
-									<input class="form-control" name="ke-input" id="ke-input" placeholder="ke" type="text">
+									<textarea class="form-control" name="isi-input" id="isi-input" placeholder="Isi" type="text"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="tgl_post-input" class="col-sm-2 control-label">Tanggal Posting</label>
 								<div class="col-sm-10">
-									<input class="form-control" name="tgl_post-input" id="tgl_post-input" placeholder="yyyy-mm-dd" type="text">
+									<input class="form-control datepicker2" name="tgl_post-input" id="tgl_post-input" placeholder="yyyy-mm-dd" type="text">
 								</div>
-							</div>
+							</div>							
 							<input type="hidden" name="model-input" id="model-input" value="pesan">
 							<input type="hidden" name="action-input" id="action-input" value="1">
 							<input type="hidden" name="key-input" id="key-input" value="id_pesan">
 							<input type="hidden" name="value-input" id="value-input" value="0">
 
-							<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
-							<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_pesan')">
+							<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Kirim</button>
+							<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_pesan_guru')">
 						</form>
 					</div>
 					<div class="box-footer">
@@ -104,10 +103,17 @@
 						echo 'fillForm("'.$param.'");';
 					}
 					?>
-				});
 
+					$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
+						$(this).datepicker('hide');
+					});
+
+					CKEDITOR.replace('isi-input');
+
+				});
 				function simpan_data() {
 					loading('loading', true);
+					CKupdate();
 					setTimeout(function() {
 						$.ajax({
 							url: base_url + 'manage',

@@ -105,10 +105,13 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
 						$(this).datepicker('hide');
 					});
 
+					CKEDITOR.replace('pertanyaan-input');
+
 				});
 
 				function simpan_data() {
 					loading('loading', true);
+					CKupdate();
 					setTimeout(function() {
 						$.ajax({
 							url: base_url + 'manage',

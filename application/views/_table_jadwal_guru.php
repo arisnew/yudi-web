@@ -12,8 +12,8 @@
 			<table id="tabel-jadwal" class="table table-bordered">
 				<thead>
 					<tr>
-						<th>Kode Mata Pelajaran</th>
-						<th>NIP</th>
+						<th>Mata Pelajaran</th>
+						<th>Guru</th>
 						<th>Nama Kelas</th>
 						<th>Nama Jurusan</th>
 					</tr>
@@ -38,8 +38,8 @@
 			table = $('#tabel-jadwal').DataTable({
 				"ajax": base_url + 'objects/jadwal/nip/<?php echo $this->session->userdata('_ID');?>',
 				"columns": [
-				{"data": "kode_mapel"},
-				{"data": "nip"},
+				{"data": "nama_mapel"},
+				{"data": "nama"},
 				{"data": "nama_kelas"},
 				{"data": "nama_jurusan"}
 				],
