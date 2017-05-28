@@ -54,6 +54,10 @@ $jadwal = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('s
         <script type="text/javascript">
             $(document).ready(function () {
                 getData();
+
+                $("#pilih-jadwal").on("change", function () {
+                    refresh_table();
+                });
             });
 
             function getData() {
@@ -61,7 +65,7 @@ $jadwal = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('s
                     table = $('#tabel-materi').DataTable();
                 } else {
                     table = $('#tabel-materi').DataTable({
-                        "ajax": base_url + 'objects/materi/nama_mapel_/<?php echo $mata_pelajaran;?>',
+                        "ajax": base_url + 'objects/materi/id_jadwal/' + $("#pilih-jadwal").val(),
                         "columns": [
                             {"data": "nama_mapel"},
                             {"data": "judul"},
@@ -116,5 +120,9 @@ $jadwal = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('s
                         });
                     }, 1000);
                 }
+            }
+
+            function refresh_table(){
+                table.ajax.url(base_url + 'objects/materi/id_jadwal/' + $("#pilih-jadwal").val()).load();
             }
         </script>
