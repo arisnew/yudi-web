@@ -21,11 +21,11 @@
 </li>
 <li>
 	<a href="#" onclick="loadContent(base_url + 'view/_table_mata_pelajaran_siswa')">
-		<i class="fa fa-book-o"></i> <span>Mata Pelajaran</span>
+		<i class="fa fa-book"></i> <span>Mata Pelajaran</span>
 	</a>
 </li>
 <li>
-	<a href="#" onclick="loadContent(base_url + 'view/view_pesan_masuk')">
+	<a href="#" onclick="loadContent(base_url + 'view/_table_pesan_siswa')">
 		<i class="fa fa-comments"></i> <span>Pesan</span>
 	</a>
 </li>

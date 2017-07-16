@@ -9,13 +9,23 @@ class Pesanmodel extends Model {
     }
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
+        if ($inputs['type_pesan-input'] == 'Guru-Guru') {
+            $ke = $inputs['to-guru-id'];
+        } elseif ($inputs['type_pesan-input'] == 'Guru-Siswa') {
+            $ke = $inputs['to-id'];
+        } elseif ($inputs['type_pesan-input'] == 'Siswa-Guru') {
+            $ke = $inputs['to-guru-id'];
+        } elseif ($inputs['type_pesan-input'] == 'Siswa-Siswa') {
+            $ke = $inputs['to-id'];
+        }
+        
         $fields = array(
             'judul'     => $inputs['judul-input'],
             'isi'       => $inputs['isi-input'],
-            'dari'      => $inputs['dari-input'],
-            'ke'        => $inputs['ke-input'],
+            'dari'      => $this->session->userdata('_ID'),
+            'ke'        => $ke,
             'type_pesan'=> $inputs['type_pesan-input'],
-            'tgl_post'  => $inputs['tgl_post-input'] . ' ' . date('H:i:s')
+            'tgl_post'  => date('Y-m-d H:i:s')
             );
         
         return $fields;
@@ -28,16 +38,6 @@ class Pesanmodel extends Model {
             'rules' => 'trim|required|max_length[255]'
             );
 
-        $dari = array(
-            'field' => 'dari-input', 'label' => 'dari',
-            'rules' => 'trim|required|max_length[25]'
-            );
-
-        $ke = array(
-            'field' => 'ke-input', 'label' => 'ke',
-            'rules' => 'trim|required|max_length[25]'
-            );
-
-        return array($judul, $dari, $ke);
+        return array($judul);
     }
 }

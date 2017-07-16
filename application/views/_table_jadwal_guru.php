@@ -13,9 +13,10 @@
 				<thead>
 					<tr>
 						<th>Mata Pelajaran</th>
-						<th>Guru</th>
 						<th>Nama Kelas</th>
 						<th>Nama Jurusan</th>
+						<th>Hari</th>
+						<th>Jam</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,9 +40,10 @@
 				"ajax": base_url + 'objects/jadwal/nip/<?php echo $this->session->userdata('_ID');?>',
 				"columns": [
 				{"data": "nama_mapel"},
-				{"data": "nama"},
 				{"data": "nama_kelas"},
-				{"data": "nama_jurusan"}
+				{"data": "nama_jurusan"},
+				{"data": "hari"},
+				{"data": "jam"}
 				],
 				"ordering": true,
 				"deferRender": true,

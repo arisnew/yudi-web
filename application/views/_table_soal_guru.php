@@ -67,6 +67,10 @@ function utils() {
         loadContent(base_url + 'view/_soal_form_guru/' + $(this).attr('href').substring(1));
     });
 
+    $("#tabel-soal .readBtn").on("click",function(){
+        loadContent(base_url + 'view/_view_soal_guru/' +$(this).attr('href').substring(1));
+    });
+
     $("#tabel-soal .removeBtn").on("click",function(){
         konfirmasiHapus($(this).attr('href').substring(1));
     });

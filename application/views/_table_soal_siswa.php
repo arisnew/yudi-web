@@ -1,27 +1,29 @@
 <?php 
-    $mapel = $this->model->getList(array('table' => 'v_nilai_ujian', 'where' => array('nis' => $this->session->userdata('_ID'))));
- ?>
+$mapel = $this->model->getList(array('table' => 'v_nilai_ujian', 'where' => array('nis' => $this->session->userdata('_ID'))));
+?>
 <section class="content">
 	<div class="box">
 		<div class="box-header with-border">
 			<h3 class="box-title">List Soal</h3>
 			<div class="box-tools pull-right">
-				<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+				<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i>
+                </button>
             </div>
-        </div>
+        </div>                      
         <div class="box-body">
             <div id="loading"></div>
-                                <label>Pilihan Mata Pelajaran</label>
-                    <select id="mapel">
-                        <?php
-                            if ($mapel) {
-                                foreach ($mapel as $row) {
-                                    echo "<option value='".$row->kode_mapel."'>".$row->nama_mapel."</option>";
-                                }
-                            }
-                        ?>
-                    </select>
+            <label>Pilihan Mata Pelajaran</label>
+            <select id="mapel">
+                <?php
+                if ($mapel) {
+                    foreach ($mapel as $row) {
+                        echo "<option value='".$row->kode_mapel."'>".$row->nama_mapel."</option>";
+                    }
+                }
+                ?>
+            </select>
             <!-- <a href="#" onclick="loadContent(base_url + 'view/_soal_form');" class="btn btn-success pull-right">Tambah Soal</a> -->
             <table id="tabel-soal" class="table table-bordered">
                 <thead>
@@ -42,16 +44,16 @@
     </div>
 </section>
 <script type="text/javascript">
-   $(document).ready(function () {
-      getData();
-  });
+ $(document).ready(function () {
+  getData();
+});
 
-   function getData() {
+ function getData() {
     if ($.fn.dataTable.isDataTable('#tabel-soal')) {
         table = $('#tabel-soal').DataTable();
     } else {
         table = $('#tabel-soal').DataTable({
-            "ajax": base_url + 'objects/nilai_ujian/nis/' + $('#mapel').val(),
+            "ajax": base_url + 'objects/soal/nis/' + $('#mapel').val(),
             "columns": [
             {"data": "pertanyaan"},
             {"data": "jawaban"},
@@ -70,9 +72,6 @@
 }
 
 function utils() {
-    $("#tabel-soal .editBtn").on("click",function(){
-        loadContent(base_url + 'view/_soal_form/' + $(this).attr('href').substring(1));
-    });
 
     $("#tabel-soal .removeBtn").on("click",function(){
         konfirmasiHapus($(this).attr('href').substring(1));
@@ -80,7 +79,7 @@ function utils() {
 }
 
 function konfirmasiHapus(x){
-   if(confirm("Yakin Hapus Data???")){
+ if(confirm("Yakin Hapus Data???")){
     loading('loading', true);
     setTimeout(function() {
         $.ajax({
@@ -93,7 +92,7 @@ function konfirmasiHapus(x){
                 loading('loading',false);
                 if (json['data'].code === 1) {
                     alert('Hapus Data Berhasil');
-                    loadContent(base_url + "view/_table_soal");
+                    loadContent(base_url + "view/_table_soal_siswa");
                 } else if(json['data'].code === 2){
                     alert('Hapus Data Tidak Berhasil!');
                 } else{

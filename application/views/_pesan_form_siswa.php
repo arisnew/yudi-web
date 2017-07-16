@@ -19,12 +19,12 @@
 						<label for="publish-input" class="col-sm-2 control-label">Type Pesan</label>
 						<div class="col-sm-10">								
 							<select class="form-control" name="type_pesan-input" id="type_pesan-input">
-								<option value="Guru-Guru" selected="">Guru-Guru</option>
-								<option value="Guru-Siswa">Guru-Siswa</option>
+								<option value="Siswa-Siswa" selected="">Siswa-Siswa</option>
+								<option value="Siswa-Guru">Siswa-Guru</option>
 							</select>
 						</div>
 					</div>
-					<div class="form-group" id="siswa" style="display: none;">
+					<div class="form-group" id="siswa">
 						<label for="to-input" class="col-sm-2 control-label">Ke</label>
 						<div class="col-sm-5">
 							<div class="input-group">
@@ -38,7 +38,7 @@
 						</div>   
 					</div>
 
-					<div class="form-group" id="guru">
+					<div class="form-group" id="guru" style="display: none;">
 						<label for="to-guru-id-input" class="col-sm-2 control-label">Ke</label>
 						<div class="col-sm-5">
 							<div class="input-group">
@@ -160,12 +160,12 @@
 
 		$("#type_pesan-input").on("change", function () {
 			var k = $(this).val();
-			if (k == 'Guru-Guru') {
-				$("#guru").show();
-				$("#siswa").hide();
-			} else {
+			if (k == 'Siswa-Siswa') {
 				$("#siswa").show();
 				$("#guru").hide();
+			} else {
+				$("#guru").show();
+				$("#siswa").hide();
 			}
 
 		})
@@ -187,7 +187,7 @@
 						alert('Pengiriman Pesan Berhasil');
 						loadContent(base_url + 'view/_table_pesan_guru');
 					} else if(json['data'].code === 2){
-						alert('Pengiriman Pesan Tidak Berhasil');
+						alert('Pengirirman Pesan Tidak Berhasil');
 					} else{
 						alert(json['data'].message);
 					}
