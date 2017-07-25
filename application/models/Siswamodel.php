@@ -37,9 +37,11 @@ class Siswamodel extends Model {
     }
 
     public function getRules() {    //set rule validasi form
+        //if new record validate the nis
+        $newRule = ($this->isNew) ? '|is_unique[' . $this->table . '.nis]' : '';
         $nis = array(
             'field' => 'nis-input', 'label' => 'Nis',
-            'rules' => 'trim|required|max_length[20]|numeric'
+            'rules' => 'trim|required|max_length[20]|numeric' . $newRule
             );
 
         $nama = array(
