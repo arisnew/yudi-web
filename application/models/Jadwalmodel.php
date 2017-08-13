@@ -10,6 +10,7 @@ class Jadwalmodel extends Model {
 
     public function getField($inputs = array()) { // set data input for model (mapping db vs form input)
         $fields = array(
+            //'id_jadwal'         => ($inputs['jadwal-input'] == '') ? null : $inputs['jadwal-input'],
             'kode_mapel'        => ($inputs['mata_pelajaran-input'] == '') ? null : $inputs['mata_pelajaran-input'],
             'nip'               => ($inputs['guru-input'] == '') ? null : $inputs['guru-input'],
             'kode_kelas'        => ($inputs['kelas-input'] == '') ? null : $inputs['kelas-input'],

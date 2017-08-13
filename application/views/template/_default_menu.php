@@ -13,13 +13,13 @@
 	</ul>
 </li>
 <li>
-	<a href="#" onclick="loadContent(base_url + 'view/_table_materi')">
-		<i class="fa fa-book"></i> <span>Materi</span>
+	<a href="#" onclick="loadContent(base_url + 'view/_table_jadwal')">
+		<i class="fa fa-calendar"></i> <span>Jadwal</span>
 	</a>
 </li>
 <li>
-	<a href="#" onclick="loadContent(base_url + 'view/_table_nilai_ujian')">
-		<i class="fa fa-calculator"></i> <span> Nilai Ujian</span>
+	<a href="#" onclick="loadContent(base_url + 'view/_table_materi')">
+		<i class="fa fa-book"></i> <span>Materi</span>
 	</a>
 </li>
 <li>
@@ -28,8 +28,8 @@
 	</a>
 </li>
 <li>
-	<a href="#" onclick="loadContent(base_url + 'view/_table_jadwal')">
-		<i class="fa fa-calendar"></i> <span>Jadwal</span>
+	<a href="#" onclick="loadContent(base_url + 'view/_table_nilai_ujian')">
+		<i class="fa fa-calculator"></i> <span> Nilai Ujian</span>
 	</a>
 </li>
 <li>
@@ -38,12 +38,12 @@
 	</a>
 </li>
 <li>
-	<a href="#" onclick="loadContent(base_url + 'view/_table_pesan')">
-		<i class="fa fa-comment-o"></i> <span>pesan</span>
+	<a href="#" onclick="loadContent(base_url + 'view/_table_komentar')">
+		<i class="fa fa-comments"></i> <span>Komentar</span>
 	</a>
 </li>
 <li>
-	<a href="#" onclick="loadContent(base_url + 'view/_table_komentar')">
-		<i class="fa fa-comments"></i> <span>Komentar</span>
+	<a href="#" onclick="loadContent(base_url + 'view/_table_pesan')">
+		<i class="fa fa-comment-o"></i> <span>pesan</span>
 	</a>
 </li>

@@ -1,5 +1,5 @@
 <?php 
-$mapel = $this->model->getList(array('table' => 'v_nilai_ujian', 'where' => array('nis' => $this->session->userdata('_ID'))));
+$jadwal = $this->model->getList(array('table' => 'v_materi', 'where' => array('nis' => $this->session->userdata('_ID'), 'status' => 'Aktif')));
 ?>
 <section class="content">
 	<div class="box">
@@ -15,21 +15,18 @@ $mapel = $this->model->getList(array('table' => 'v_nilai_ujian', 'where' => arra
         <div class="box-body">
             <div id="loading"></div>
             <label>Pilihan Mata Pelajaran</label>
-            <select id="mapel">
+            <select id="jadwal">
                 <?php
-                if ($mapel) {
-                    foreach ($mapel as $row) {
-                        echo "<option value='".$row->kode_mapel."'>".$row->nama_mapel."</option>";
+                if ($jadwal) {
+                    foreach ($jadwal as $row) {
+                        echo "<option value='".$row->id_jadwal."'>".$row->nama_mapel."</option>";
                     }
                 }
                 ?>
             </select>
-            <!-- <a href="#" onclick="loadContent(base_url + 'view/_soal_form');" class="btn btn-success pull-right">Tambah Soal</a> -->
             <table id="tabel-soal" class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Pertanyaan</th>
-                        <th>Jawaban</th>
                         <th>Mata Pelajaran</th>
                         <th>Nama Guru</th>
                         <th>Tanggal Posting</th>
@@ -46,6 +43,11 @@ $mapel = $this->model->getList(array('table' => 'v_nilai_ujian', 'where' => arra
 <script type="text/javascript">
  $(document).ready(function () {
   getData();
+
+  //on change jadwal
+  $("#jadwal").on("change", function () {
+    refreshTable();
+});
 });
 
  function getData() {
@@ -53,10 +55,8 @@ $mapel = $this->model->getList(array('table' => 'v_nilai_ujian', 'where' => arra
         table = $('#tabel-soal').DataTable();
     } else {
         table = $('#tabel-soal').DataTable({
-            "ajax": base_url + 'objects/soal/nis/' + $('#mapel').val(),
+            "ajax": base_url + 'objects/soal/id_jadwal/' + $('#jadwal').val(),
             "columns": [
-            {"data": "pertanyaan"},
-            {"data": "jawaban"},
             {"data": "nama_mapel"},
             {"data": "nama"},
             {"data": "tgl_posting"}
@@ -72,6 +72,10 @@ $mapel = $this->model->getList(array('table' => 'v_nilai_ujian', 'where' => arra
 }
 
 function utils() {
+
+    $("#tabel-soal .warningBtn").on("click",function(){
+        loadContent(base_url + 'view/_view_soal_siswa/' + $(this).attr('href').substring(1));
+    });
 
     $("#tabel-soal .removeBtn").on("click",function(){
         konfirmasiHapus($(this).attr('href').substring(1));
@@ -106,5 +110,8 @@ function konfirmasiHapus(x){
         });
     }, 1000);
 }
+}
+function refreshTable() {
+    table.ajax.url(base_url + 'objects/soal/id_jadwal/' + $('#jadwal').val()).load();
 }
 </script>

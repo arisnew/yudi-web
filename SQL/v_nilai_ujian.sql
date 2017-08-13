@@ -27,11 +27,10 @@ SELECT `nu`.`id_nilai`      AS `id_nilai`,
        `nu`.`jumlah_benar`  AS `jumlah_benar`,
        `nu`.`jumlah_salah`  AS `jumlah_salah`,
        `nu`.`tgl_ujian`     AS `tgl_ujian`,
-       `nu`.`kode_mapel`    AS `kode_mapel`,
-       `mp`.`nama_mapel`    AS `nama_mapel`,
+       `nu`.`id_materi`     AS `id_materi`,
        `nu`.`nilai`         AS `nilai`
 FROM   ((`elearning`.`nilai_ujian` `nu`
 JOIN   `elearning`.`siswa` `si` 
 ON((   `nu`.`nis` = `si`.`nis`)))
-JOIN   `elearning`.`mata_pelajaran` `mp`
-ON((   `nu`.`kode_mapel` = `mp`.`kode_mapel`)))
+JOIN   `elearning`.`materi` `m`
+ON((   `nu`.`id_materi` = `m`.`id_materi`)))

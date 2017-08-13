@@ -264,8 +264,8 @@ class Retriever extends CI_Controller {
 			if ($picker == 'yes') {
 				$linkBtn = ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				//$linkBtn = '<a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
 				$linkBtn = ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn .= ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-warning readBtn"><i class="fa fa-book"></i> Tambah Materi</a>';
 				$linkBtn .= ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
 			}
 			
@@ -296,12 +296,14 @@ class Retriever extends CI_Controller {
 				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
 				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-warning readBtn"><i class="fa fa-eye"></i> Read</a>';
+				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-info writeBtn"><i class="fa fa-book"></i> Tambah Soal</a>';
+				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-warning readBtn"><i class="fa fa-book"></i> Lihat Materi</a>';
 				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
 			}
 			
 			$data[] = array(
 				'id_materi'		=> $record->id_materi,
+				'id_jadwal'		=> $record->id_jadwal,
 				'kode_mapel' 	=> $record->kode_mapel,
 				'nama_mapel' 	=> $record->nama_mapel,
 				'judul'			=> $record->judul,
@@ -357,14 +359,13 @@ class Retriever extends CI_Controller {
 			
 			$data[] = array(
 				'id_soal' 		=> $record->id_soal,
+				'id_materi' 	=> $record->id_materi,
 				'pertanyaan' 	=> $record->pertanyaan,
 				'opsi_a' 		=> $record->opsi_a,
 				'opsi_b' 		=> $record->opsi_b,
 				'opsi_c' 		=> $record->opsi_c,
 				'opsi_d' 		=> $record->opsi_d,
 				'jawaban'		=> $record->jawaban,
-				'kode_mapel' 	=> $record->kode_mapel,
-				'nama_mapel'	=> $record->nama_mapel,
 				'nip' 			=> $record->nip,
 				'nama'			=> $record->nama,
 				'tgl_posting' 	=> $record->tgl_posting,

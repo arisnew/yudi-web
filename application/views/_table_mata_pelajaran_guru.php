@@ -59,7 +59,7 @@
 
 function utils() {
     $("#tabel-mata_pelajaran .editBtn").on("click",function(){
-        loadContent(base_url + 'view/_mata_pelajaran_form/' + $(this).attr('href').substring(1));
+        loadContent(base_url + 'view/_form_mata_pelajaran/' + $(this).attr('href').substring(1));
     });
 
     $("#tabel-mata_pelajaran .removeBtn").on("click",function(){

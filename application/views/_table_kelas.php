@@ -12,7 +12,7 @@
                 </div>
                 <div class="box-body">
                     <div id="loading"></div>
-                    <a href="#" onclick="loadContent(base_url + 'view/_kelas_form');" class="btn btn-success pull-right">Tambah Data Kelas</a>
+                    <a href="#" onclick="loadContent(base_url + 'view/_form_kelas');" class="btn btn-success pull-right">Tambah Data Kelas</a>
                     <table id="tabel-kelas" class="table table-bordered">
                         <thead>
                             <tr>
@@ -61,7 +61,7 @@
 
             function utils() {
                 $("#tabel-kelas .editBtn").on("click",function(){
-                    loadContent(base_url + 'view/_kelas_form/' + $(this).attr('href').substring(1));
+                    loadContent(base_url + 'view/_form_kelas/' + $(this).attr('href').substring(1));
                 });
 
                 $("#tabel-kelas .removeBtn").on("click",function(){

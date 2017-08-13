@@ -25,15 +25,15 @@
                             }
                         ?>
                     </select>
-                    <a href="#" onclick="loadContent(base_url + 'view/_nilai_ujian_form_guru');" class="btn btn-success pull-right">Tambah Data Nilai Ujian</a>
+                    <a href="#" onclick="loadContent(base_url + 'view/_form_nilai_ujian_guru');" class="btn btn-success pull-right">Tambah Data Nilai Ujian</a>
                     <table id="tabel-nilai_ujian" class="table table-bordered">
                         <thead>
-                          <tr>            
+                          <tr>
+                              <th>Nama Materi</th>          
                               <th>Nama Siswa</th>
                               <th>Jumlah Benar</th>
                               <th>Jumlah Salah</th>
                               <th>Tanggal Ujian</th>
-                              <th>Mata Pelajaran</th>
                               <th>Nilai</th>
                               <th>Pilihan</th>
                           </tr>
@@ -65,11 +65,11 @@
                     table = $('#tabel-nilai_ujian').DataTable({
                         "ajax": base_url + 'objects/nilai_ujian/kode_mapel/' + $('#mapel').val(),
                         "columns": [
+                            {"data": "judul"},
                             {"data": "nama"},
                             {"data": "jumlah_benar"},
                             {"data": "jumlah_salah"},
                             {"data": "tgl_ujian"},
-                            {"data": "nama_mapel"},
                             {"data": "nilai"},
                             {"data": "aksi"}
                         ],
@@ -85,7 +85,7 @@
 
             function utils() {
                 $("#tabel-nilai_ujian .editBtn").on("click",function(){
-                    loadContent(base_url + 'view/_nilai_ujian_form_guru/' + $(this).attr('href').substring(1));
+                    loadContent(base_url + 'view/_form_nilai_ujian_guru/' + $(this).attr('href').substring(1));
                 });
 
                 $("#tabel-nilai_ujian .removeBtn").on("click",function(){

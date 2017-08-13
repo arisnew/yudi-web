@@ -12,11 +12,9 @@
                 </div>
                 <div class="box-body">
                     <div id="loading"></div>
-                    <a href="#" onclick="loadContent(base_url + 'view/_materi_form');" class="btn btn-success pull-right">Tambah Data Materi</a>
                     <table id="tabel-materi" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Mata Pelajran</th>
                                 <th>Judul</th>
                                 <th>Guru</th>
                                 <th>Tanggal Posting</th>
@@ -25,15 +23,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
                     </table>
                 </div>
-                <div class="box-footer">
-                    Footer
-                </div>
+            <div class="box-footer">
+                Footer
             </div>
-        </section>
+    </div>
+</section>
         <script type="text/javascript">
             $(document).ready(function () {
                 getData();
@@ -46,12 +44,11 @@
                     table = $('#tabel-materi').DataTable({
                         "ajax": base_url + 'objects/materi',
                         "columns": [
-                            {"data": "nama_mapel"},
-                            {"data": "judul"},
-                            {"data": "nama"},
-                            {"data": "tgl_posting"},
-                            {"data": "publish"},
-                            {"data": "aksi"}
+                        {"data": "judul"},
+                        {"data": "nama"},
+                        {"data": "tgl_posting"},
+                        {"data": "publish"},
+                        {"data": "aksi"}
                         ],
                         "ordering": true,
                         "deferRender": true,
@@ -65,7 +62,11 @@
 
             function utils() {
                 $("#tabel-materi .editBtn").on("click",function(){
-                    loadContent(base_url + 'view/_materi_form/' + $(this).attr('href').substring(1));
+                    loadContent(base_url + 'view/_form_materi_admin/x__' + $(this).attr('href').substring(1));
+                });
+
+                $("#tabel-materi .writeBtn").on("click",function(){
+                    loadContent(base_url + 'view/_form_soal/' + $(this).attr('href').substring(1));
                 });
 
                 $("#tabel-materi .readBtn").on("click",function(){

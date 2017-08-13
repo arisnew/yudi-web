@@ -17,6 +17,7 @@
 						<th>Nama Jurusan</th>
 						<th>Hari</th>
 						<th>Jam</th>
+						<th>Pilihan</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -43,7 +44,8 @@
 				{"data": "nama_kelas"},
 				{"data": "nama_jurusan"},
 				{"data": "hari"},
-				{"data": "jam"}
+				{"data": "jam"},
+				{"data": "aksi"}
 				],
 				"ordering": true,
 				"deferRender": true,
@@ -56,8 +58,13 @@
 	}
 
 	function utils() {
-		$("#tabel-jadwal .editBtn").on("click",function(){
-			loadContent(base_url + 'view/_jadwal_form/' + $(this).attr('href').substring(1));
+
+        $("#tabel-jadwal .editBtn").on("click",function(){
+          //  loadContent(base_url + 'view/_form_jadwal_guru/x__' + $(this).attr('href').substring(1));
+        });
+
+		$("#tabel-jadwal .readBtn").on("click",function(){
+			loadContent(base_url + 'view/_form_materi_guru/' + $(this).attr('href').substring(1));
 		});
 
 		$("#tabel-jadwal .removeBtn").on("click",function(){
@@ -79,7 +86,7 @@
 						loading('loading',false);
 						if (json['data'].code === 1) {
 							alert('Hapus data berhasil');
-							loadContent(base_url + "view/_table_jadwal");
+							loadContent(base_url + "view/_table_jadwal_guru");
 						} else if(json['data'].code === 2){
 							alert('Hapus data tidak berhasil!');
 						} else{

@@ -6,12 +6,12 @@ SELECT
 	so.opsi_c,
 	so.opsi_d,
 	so.jawaban,
-	so.id_jadwal,
+	so.id_materi,
 	j.kode_mapel,
 	j.nama_mapel,
 	so.nip,
 	g.nama,
 	so.tgl_posting
 FROM soal so
-LEFT JOIN v_jadwal j ON so.id_jadwal = j.id_jadwal
+LEFT JOIN v_materi j ON so.id_materi = j.id_materi
 LEFT JOIN guru g ON so.nip = g.nip

@@ -10,18 +10,13 @@
 	</a>
 </li>
 <li>
-	<a href="#" onclick="loadContent(base_url + 'view/_table_nilai_ujian_siswa')">
-		<i class="fa fa-calculator"></i> <span> Data Nilai</span>
-	</a>
-</li>
-<li>
 	<a href="#" onclick="loadContent(base_url + 'view/_table_soal_siswa')">
 		<i class="fa fa-file-text"></i> <span> Soal</span>
 	</a>
 </li>
 <li>
-	<a href="#" onclick="loadContent(base_url + 'view/_table_mata_pelajaran_siswa')">
-		<i class="fa fa-book"></i> <span>Mata Pelajaran</span>
+	<a href="#" onclick="loadContent(base_url + 'view/_table_nilai_ujian_siswa')">
+		<i class="fa fa-calculator"></i> <span> Data Nilai</span>
 	</a>
 </li>
 <li>

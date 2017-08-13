@@ -11,12 +11,12 @@
         </div>
         <div class="box-body">
           <div id="loading"></div>
-          <a href="#" onclick="loadContent(base_url + 'view/_jadwal_form');" class="btn btn-success pull-right">Tambah Data Jadwal</a>
+          <a href="#" onclick="loadContent(base_url + 'view/_form_jadwal');" class="btn btn-success pull-right">Tambah Data Jadwal</a>
           <table id="tabel-jadwal" class="table table-bordered">
             <thead>
               <tr>
                 <th>Mata Pelajaran</th>
-                <th>NIP</th>
+                <th>Guru</th>
                 <th>Kelas</th>
                 <th>Jurusan</th>
                 <th>Pilihan</th>
@@ -61,8 +61,12 @@
       }
 
       function utils() {
+        $("#tabel-jadwal .readBtn").on("click",function(){
+          loadContent(base_url + 'view/_form_materi_admin/' + $(this).attr('href').substring(1));
+        });
+                
         $("#tabel-jadwal .editBtn").on("click",function(){
-          loadContent(base_url + 'view/_jadwal_form/' + $(this).attr('href').substring(1));
+          loadContent(base_url + 'view/_form_jadwal/' + $(this).attr('href').substring(1));
         });
 
         $("#tabel-jadwal .removeBtn").on("click",function(){

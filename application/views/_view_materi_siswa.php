@@ -78,7 +78,7 @@ if ($param != null) {
                         <input type="hidden" name="action-input" id="action-input" value="1">
                         <input type="hidden" name="value-input" id="value-input" value="0">
                         <input type="hidden" name="materi-input" id="materi-input" value="<?php echo $param;?>">
-                        <input type="hidden" name="level-input" id="level-input" value="guru">
+                        <input type="hidden" name="level-input" id="level-input" value="siswa">
                         <input type="text" name="msg-input" id="msg-input" placeholder="Press enter to post comment" class="form-control input-sm">
                         <input type="submit" name="kirim" id="kirim" style="display: none;" onclick="kirimKomentar(); return false;">
                   </div>

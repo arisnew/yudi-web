@@ -33,6 +33,7 @@ class Gurumodel extends Model {
     }
 
     public function getRules() {    //set rule validasi form
+        $newRule = ($this->isNew) ? '|is_unique[' . $this->table . '.nip]' : '';
         $nip = array(
             'field' => 'nip-input', 'label' => 'Nip',
             'rules' => 'trim|required|max_length[20]|numeric'

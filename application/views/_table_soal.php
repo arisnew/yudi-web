@@ -11,13 +11,11 @@
                 </div>
                 <div class="box-body">
                    <div id="loading"></div>
-                   <a href="#" onclick="loadContent(base_url + 'view/_soal_form');" class="btn btn-success pull-right">Tambah Soal</a>
                    <table id="tabel-soal" class="table table-bordered">
                     <thead>
                      <tr>
                       <th>Pertanyaan</th>
-                      <!-- <th>Jawaban</th> -->
-                      <th>Mata Pelajaran</th>
+                      <th>Jawaban</th>
                       <th>Nama Guru</th>
                       <th>Tanggal Posting</th>
                       <th>Pilihan</th>
@@ -46,8 +44,7 @@
             "ajax": base_url + 'objects/soal',
             "columns": [
               {"data": "pertanyaan"},
-              /*{"data": "jawaban"},*/
-              {"data": "nama_mapel"},
+              {"data": "jawaban"},
               {"data": "nama"},
               {"data": "tgl_posting"},
               {"data": "aksi"}
@@ -64,7 +61,7 @@
 
 function utils() {
     $("#tabel-soal .editBtn").on("click",function(){
-        loadContent(base_url + 'view/_soal_form/' + $(this).attr('href').substring(1));
+        loadContent(base_url + 'view/_form_soal/x__' + $(this).attr('href').substring(1));
     });
 
     $("#tabel-soal .removeBtn").on("click",function(){

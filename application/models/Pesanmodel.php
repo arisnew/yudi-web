@@ -34,7 +34,7 @@ class Pesanmodel extends Model {
     public function getRules() {    //set rule validasi form
 
         $judul = array(
-            'field' => 'judul-input', 'label' => 'judul',
+            'field' => 'judul-input', 'label' => 'Judul',
             'rules' => 'trim|required|max_length[255]'
             );
 

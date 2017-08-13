@@ -12,13 +12,10 @@
         </div>
         <div class="box-body">
             <div id="loading"></div>
-            <a href="#" onclick="loadContent(base_url + 'view/_materi_form_guru');" class="btn btn-success pull-right">Tambah Data Materi</a>
             <table id="tabel-materi" class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Mata Pelajran</th>
                         <th>Judul</th>
-                        <th>Guru</th>
                         <th>Tanggal Posting</th>
                         <th>Publish</th>
                         <th>Pilihan</th>
@@ -46,9 +43,7 @@
             table = $('#tabel-materi').DataTable({
                 "ajax": base_url + 'objects/materi/nip/<?php echo $this->session->userdata('_ID');?>',
                 "columns": [
-                {"data": "nama_mapel"},
                 {"data": "judul"},
-                {"data": "nama"},
                 {"data": "tgl_posting"},
                 {"data": "publish"},
                 {"data": "aksi"}
@@ -65,13 +60,16 @@
 
     function utils() {
         $("#tabel-materi .editBtn").on("click",function(){
-            loadContent(base_url + 'view/_materi_form_guru/' + $(this).attr('href').substring(1));
+            loadContent(base_url + 'view/_form_materi_guru/x__' + $(this).attr('href').substring(1));
+        });
+
+        $("#tabel-materi .writeBtn").on("click",function(){
+            loadContent(base_url + 'view/_form_soal_guru/' + $(this).attr('href').substring(1));
         });
 
         $("#tabel-materi .readBtn").on("click",function(){
             loadContent(base_url + 'view/_view_materi_guru/' + $(this).attr('href').substring(1));
         });
-
 
         $("#tabel-materi .removeBtn").on("click",function(){
             konfirmasiHapus($(this).attr('href').substring(1));
@@ -92,7 +90,7 @@
                         loading('loading',false);
                         if (json['data'].code === 1) {
                             alert('Hapus Data Berhasil');
-                            loadContent(base_url + "view/_table_materi");
+                            loadContent(base_url + "view/_table_materi_guru");
                         } else if(json['data'].code === 2){
                             alert('Hapus Data Tidak Berhasil!');
                         } else{

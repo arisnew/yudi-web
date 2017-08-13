@@ -16,7 +16,7 @@ class SoalModel extends Model {
             'opsi_c'        => $inputs['opsi_c-input'],
             'opsi_d'        => $inputs['opsi_d-input'],
             'jawaban'       => $inputs['jawaban-input'],
-            'id_jadwal'    => ($inputs['jadwal-input'] == '') ? null : $inputs['jadwal-input'],
+            'id_materi'     => ($inputs['id_materi'] == '') ? null : $inputs['id_materi'],
             'nip'           => ($inputs['guru-input'] == '') ? null : $inputs['guru-input'],
             'tgl_posting'   => $inputs['tgl_posting-input'] . ' ' . date('H:i:s')
             );
@@ -32,11 +32,11 @@ class SoalModel extends Model {
             'field' => 'jawaban-input', 'label' => 'jawaban',
             'rules' => 'trim|required|max_length[5]'
             );
-        $jadwal = array(
-            'field' => 'jadwal-input', 'label' => 'ID Jadwal',
+        $materi = array(
+            'field' => 'id_materi', 'label' => 'ID materi',
             'rules' => 'trim|required|max_length[11]'
             );
 
-        return array($jawaban, $jadwal);
+        return array($jawaban, $materi);
     }
 }

@@ -25,10 +25,10 @@ class Usermodel extends Model {
     }
 
     public function getRules() {    //set rule validasi form
-
+        $newRule = ($this->isNew) ? '|is_unique[' . $this->table . '.username]' : '';
         $username = array(
             'field' => 'username-input', 'label' => 'Username',
-            'rules' => 'trim|required|max_length[10]'
+            'rules' => 'trim|required|max_length[10]' . $newRule
             );
 
         $nama = array(

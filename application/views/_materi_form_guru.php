@@ -17,20 +17,6 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
 						<div id="loading"></div>
 						<form id="form-materi" class="form-horizontal">
 							<div class="form-group">
-								<label for="mata_pelajaran-input" class="col-sm-2 control-label">Mata Pelajaran</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input">
-										<?php
-										if ($data_mata_pelajaran) {
-											foreach ($data_mata_pelajaran as $row) {
-												echo '<option value="' . $row->kode_mapel . '">' . $row->kode_mapel . ' - ' . $row->nama_mapel . '</option>';
-											}
-										}
-										?>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
 								<label for="judul-input" class="col-sm-2 control-label">Judul</label>
 								<div class="col-sm-10">
 									<input class="form-control" name="judul-input" id="judul-input" placeholder="Judul" type="text">
@@ -177,7 +163,6 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
 					success: function(json) {
 						if (json['data'].code === 1) {
 							$("#id_materi-input").val(json.data.object.id_materi).attr("readonly","");
-							$("#kode_mapel-input").val(json.data.object.kode_mapel);
 							$("#judul-input").val(json.data.object.judul);
 							$("#isi-input").val(json.data.object.isi);
 							$("#nip-input").val(json.data.object.nip);

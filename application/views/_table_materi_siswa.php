@@ -1,23 +1,14 @@
 <?php
 //get data siswa (current session) 1 row
 $me = $this->model->getRecord(array('table' => 'siswa', 'where' => array('nis' => $this->session->userdata('_ID'))));
-//$jadwal = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('status' => 'Aktif', 'kode_kelas' => $me->kelas, 'kode_jurusan' => $me->jurusan)));
-
+$jadwal = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('status' => 'Aktif', 'kode_kelas' => $me->kelas, 'kode_jurusan' => $me->jurusan)));
+$kelas = $me->kelas;
+$jurusan = $me->jurusan;
 ?>
-
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">List Materi Siswa</h3>
-            <select id="pilih-jadwal">
-                <?php
-                if ($jadwal) {
-                    foreach ($jadwal as $row) {
-                        echo '<option value="'.$row->id_jadwal.'">'.$row->nama_mapel.'</option>';
-                    }
-                }
-                ?>
-            </select>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -29,6 +20,16 @@ $me = $this->model->getRecord(array('table' => 'siswa', 'where' => array('nis' =
         </div>
         <div class="box-body">
             <div id="loading"></div>
+                <label>Pilihan Mata Pelajaran</label>
+                <select id="pilih-jadwal">
+                    <?php
+                    if ($jadwal) {
+                        foreach ($jadwal as $row) {
+                            echo "<option value='".$row->kode_mapel."'>".$row->nama_mapel."</option>";
+                        }
+                    }
+                    ?>
+                </select>
             <!-- <a href="#" onclick="loadContent(base_url + 'view/_materi_form');" class="btn btn-success pull-right">Tambah Data Materi</a> -->
             <table id="tabel-materi" class="table table-bordered">
                 <thead>
@@ -55,7 +56,7 @@ $me = $this->model->getRecord(array('table' => 'siswa', 'where' => array('nis' =
     $(document).ready(function () {
         getData();
 
-        $("#pilih-materi").on("change", function () {
+        $("#pilih-jadwal").on("change", function () {
             refresh_table();
         });
     });
@@ -65,7 +66,7 @@ $me = $this->model->getRecord(array('table' => 'siswa', 'where' => array('nis' =
             table = $('#tabel-materi').DataTable();
         } else {
             table = $('#tabel-materi').DataTable({
-                "ajax": base_url + 'objects/materi/id_jadwal/' + $("#pilih-jadwal").val(),
+                "ajax": base_url + 'objects/materi/kode_mapel/<?php echo $this->session->userdata('_ID');?>' + $("#pilih-jadwal").val(),
                 "columns": [
                 {"data": "nama_mapel"},
                 {"data": "judul"},
@@ -123,6 +124,6 @@ $me = $this->model->getRecord(array('table' => 'siswa', 'where' => array('nis' =
     }
 
     function refresh_table(){
-        table.ajax.url(base_url + 'objects/materi/id_jadwal/' + $("#pilih-jadwal").val()).load();
+        table.ajax.url(base_url + 'objects/materi/kode_mapel/' + $("#pilih-jadwal").val()).load();
     }
 </script>

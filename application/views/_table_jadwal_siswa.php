@@ -1,5 +1,6 @@
 <?php
     //get data siswa (current session) 1 row
+$mapel = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('status' => 'Aktif', 'kode_kelas' => $me->kelas, 'kode_jurusan' => $me->jurusan)));
 $me = $this->model->getRecord(array('table' => 'siswa', 'where' => array('nis' => $this->session->userdata('_ID'))));
 $kelas = $me->kelas;
 $jurusan = $me->jurusan;
@@ -17,6 +18,7 @@ $jurusan = $me->jurusan;
                 </div>
                 <div class="box-body">
                    <div id="loading"></div>
+                   <div>
                    <label>Pilihan Mata Pelajaran</label>
                    <select id="mapel">
                     <?php
@@ -27,6 +29,7 @@ $jurusan = $me->jurusan;
                     }
                     ?>
                 </select>
+                </div>
                 <!--<a href="#" onclick="loadContent(base_url + 'view/_jadwal_form');" class="btn btn-success pull-right">Tambah Data Jadwal</a> -->
                 <table id="tabel-jadwal" class="table table-bordered">
                     <thead>
@@ -50,15 +53,21 @@ $jurusan = $me->jurusan;
     </section>
     <script type="text/javascript">
         $(document).ready(function () {
-            getData();
-        });
+                getData();
+
+                //on change mapel
+                $("#mapel").on("change", function () {
+                    refreshTable();
+                });
+            });
 
         function getData() {
             if ($.fn.dataTable.isDataTable('#tabel-jadwal')) {
                 table = $('#tabel-jadwal').DataTable();
             } else {
                 table = $('#tabel-jadwal').DataTable({
-                    "ajax": base_url + 'objects/jadwal/kode_kelas__kode_jurusan__status/<?php echo $kelas . '__'.$jurusan.'__Aktif';?>',
+                    "ajax": base_url + 'objects/kode_mapel/kode_kelas__kode_jurusan__status/<?php echo $kelas . '__'.$jurusan.'__Aktif';?>' + $('#mapel').val(),
+
                     "columns": [
                     {"data": "nama_mapel"},
                     {"data": "nama"},
@@ -119,4 +128,7 @@ $jurusan = $me->jurusan;
                 }, 1000);
             }
         }
+        function refreshTable() {
+                table.ajax.url(base_url + 'objects/jadwal/kode_kelas__kode_jurusan__status/' + $('#mapel').val()).load();
+            }
     </script>
