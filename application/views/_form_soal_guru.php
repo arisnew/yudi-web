@@ -169,6 +169,9 @@ if ($param) {
 									clear_form();
 									//dec
 									$("#jumlah_pertanyaan-input").val($("#jumlah_pertanyaan-input").val() - 1);
+									if ($("#jumlah_pertanyaan-input").val() == 0) {
+										loadContent(base_url + 'view/_table_soal_guru');
+									}
 								} else {
 									loadContent(base_url + 'view/_table_soal_guru');
 								}
