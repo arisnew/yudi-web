@@ -48,47 +48,23 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
 </section>
 <script type="text/javascript">
     $(document).ready(function () {
+        //isi datatables materi
         getData();
 
-        getMateri($("#mata_pelajaran-input").val());
-
-        $("#mata_pelajaran").on("change", function () {
-            refreshTable();
-        });
-
-            //jika dropdown mata_pelajaran atau mapel di ganti maka akan me-lookup materi
-            $("#mata_pelajaran-input").on('change', function () {
-                getMateri($("#mata_pelajaran-input").val());
-                setTimeout(function () {
-                    refreshTable();
-                }, 1000);
-            });
-
+        //jika dropdown mata_pelajaran atau mapel di ganti maka akan me-lookup materi
         $("#mata_pelajaran-input").on('change', function () {
             refreshTable();
         });
 
     });
 
-    function getMateri(kode_mapel) {
-        $.ajax({
-            url: base_url + 'retriever/get_materi_by_mapel/' + kode_mapel,
-            data: 'id=0',
-            dataType: 'html',
-            type: 'POST',
-            cache: false,
-            success: function(html) {
-                $("#materi-input").html(html);
-            }
-        });
-    }
-
+    //isi datatables materi
     function getData() {
         if ($.fn.dataTable.isDataTable('#tabel-materi')) {
             table = $('#tabel-materi').DataTable();
         } else {
             table = $('#tabel-materi').DataTable({
-                "ajax": base_url + 'objects/materi/nip__kode_mapel/<?php echo $this->session->userdata('_ID');?>' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val(),
+                "ajax": base_url + 'objects/materi/nip__id_jadwal/<?php echo $this->session->userdata('_ID');?>' + '__' + $("#mata_pelajaran-input").val(),
                 "columns": [
                 {"data": "nama_mapel"},
                 {"data": "judul"},
@@ -106,6 +82,7 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
         }
     }
 
+    //ketika tombol diklik di datatables
     function utils() {
         $("#tabel-materi .editBtn").on("click",function(){
             loadContent(base_url + 'view/_form_materi_guru/x__' + $(this).attr('href').substring(1));
@@ -124,6 +101,7 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
         });
     }
 
+    //konfirmasi hapus
     function konfirmasiHapus(x){
         if(confirm("Yakin Hapus Data???")){
             loading('loading', true);
@@ -153,7 +131,9 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
             }, 1000);
         }
     }
+
+    //reload url ajax datatables
     function refreshTable() {
-    table.ajax.url(base_url + 'objects/materi/nip__kode_mapel/<?php echo $this->session->userdata('_ID');?>' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val()).load();
-}
+        table.ajax.url(base_url + 'objects/materi/nip__id_jadwal/<?php echo $this->session->userdata('_ID');?>' + '__' + $("#mata_pelajaran-input").val()).load();
+    }
 </script>
