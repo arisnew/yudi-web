@@ -358,6 +358,7 @@ class Retriever extends CI_Controller {
 			$data[] = array(
 				'id_soal' 		=> $record->id_soal,
 				'id_materi' 	=> $record->id_materi,
+				'judul' 		=> $record->judul,
 				'pertanyaan' 	=> $record->pertanyaan,
 				'opsi_a' 		=> $record->opsi_a,
 				'opsi_b' 		=> $record->opsi_b,

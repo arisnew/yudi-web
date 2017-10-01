@@ -36,6 +36,7 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
                             <th>Pertanyaan</th>
                             <th>Jawaban</th>
                             <th>Tanggal Posting</th>
+                            <th>Materi</th>
                             <th>Pilihan</th>
                         </tr>
                     </thead>
@@ -52,39 +53,24 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
 </section>
     <script type="text/javascript">
         $(document).ready(function () {
-            getData();
+            getMateri($("#mata_pelajaran-input").val(), function () {
+                getData();
+            });
 
-            getMateri($("#mata_pelajaran-input").val());
-
-            $("#mata_pelajaran").on("change", function () {
-                refreshTable();
+            $("#mata_pelajaran-input").on("change", function () {
+                getMateri($("#mata_pelajaran-input").val(), function () {
+                    refreshTable();
+                });
             });
 
             $("#materi").on("change", function () {
                 refreshTable();
             });
 
-                    //jika dropdown guru atau mapel di ganti maka akan me-lookup materi
+        });
 
-                    $("#mata_pelajaran-input").on('change', function () {
-                        getMateri($("#mata_pelajaran-input").val());
-                        setTimeout(function () {
-                            refreshTable();
-                        }, 1000);
-                    });
-
-                    $("#mata_pelajaran-input").on('change', function () {
-                        refreshTable();
-                    });
-
-                    $("#materi-input").on('change', function () {
-                        refreshTable();
-                    });
-
-                });
-
-
-        function getMateri(id_jadwal) {
+        //untuk menampilkan materi pada saat jadwal di ubah
+        function getMateri(id_jadwal, callback) {
             $.ajax({
                 url: base_url + 'retriever/get_materi_by_jadwal/' + id_jadwal,
                 data: 'id=0',
@@ -93,6 +79,11 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
                 cache: false,
                 success: function(html) {
                     $("#materi-input").html(html);
+                    if (typeof callback == 'function') {
+                        setTimeout(function () {
+                            callback();
+                        }, 500);
+                    }
                 }
             });
         }
@@ -102,12 +93,13 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
                 table = $('#tabel-soal').DataTable();
             } else {
                 table = $('#tabel-soal').DataTable({
-                    "ajax": base_url + 'objects/soal/kode_mapel__id_materi/<?php echo $this->session->userdata('_ID');?>' + $("#mata_pelajaran-input").val() + '__' + $("#materi-input").val(),
+                    "ajax": base_url + 'objects/soal/id_materi/' + $("#materi-input").val(),
                     "columns": [
-                    {"data": "pertanyaan"},
-                    {"data": "jawaban"},
-                    {"data": "tgl_posting"},
-                    {"data": "aksi"}
+                        {"data": "pertanyaan"},
+                        {"data": "jawaban"},
+                        {"data": "tgl_posting"},
+                        {"data": "judul"},
+                        {"data": "aksi"}
                     ],
                     "ordering": true,
                     "deferRender": true,
@@ -164,6 +156,6 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
         }
 
         function refreshTable() {
-            table.ajax.url(base_url + 'objects/soal/kode_mapel__id_materi/<?php echo $this->session->userdata('_ID');?>' + $("#mata_pelajaran-input").val() + '__' + $("#materi-input").val()).load();
+            table.ajax.url(base_url + 'objects/soal/id_materi/' + $("#materi-input").val()).load();
         }
     </script>
