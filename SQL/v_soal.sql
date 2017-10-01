@@ -11,7 +11,8 @@ SELECT
 	j.nama_mapel,
 	so.nip,
 	g.nama,
-	so.tgl_posting
+	so.tgl_posting,
+	so.durasi
 FROM soal so
 LEFT JOIN v_materi j ON so.id_materi = j.id_materi
 LEFT JOIN guru g ON so.nip = g.nip

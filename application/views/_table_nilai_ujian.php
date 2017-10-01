@@ -20,7 +20,6 @@
                               <th>Jumlah Benar</th>
                               <th>Jumlah Salah</th>
                               <th>Tanggal Ujian</th>
-                              <th>Mata Pelajaran</th>
                               <th>Nilai</th>
                               <th>Pilihan</th>
                           </tr>
@@ -51,7 +50,6 @@
                             {"data": "jumlah_benar"},
                             {"data": "jumlah_salah"},
                             {"data": "tgl_ujian"},
-                            {"data": "nama_mapel"},
                             {"data": "nilai"},
                             {"data": "aksi"}
                         ],

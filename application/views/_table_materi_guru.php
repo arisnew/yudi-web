@@ -1,21 +1,36 @@
+<?php
+$data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('status' => 'Aktif','nip' => $this->session->userdata('_ID'))));
+?>
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">Materi Guru</h3>
-
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i>
-                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
             </div>
         </div>
         <div class="box-body">
             <div id="loading"></div>
+                <div class="form-group">
+                    <label for="mata_pelajaran-input" class="col-sm-2 control-label">Mata Pelajaran</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input">
+                            <?php
+                            if ($data_mata_pelajaran) {
+                                foreach ($data_mata_pelajaran as $row) {
+                                    echo '<option value="' . $row->id_jadwal . '">' . $row->nama_mapel . '</option>';
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
             <table id="tabel-materi" class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Judul</th>
+                        <th>Mata Pelajaran</th>
+                        <th>Judul Materi</th>
                         <th>Tanggal Posting</th>
                         <th>Publish</th>
                         <th>Pilihan</th>
@@ -34,15 +49,48 @@
 <script type="text/javascript">
     $(document).ready(function () {
         getData();
+
+        getMateri($("#mata_pelajaran-input").val());
+
+        $("#mata_pelajaran").on("change", function () {
+            refreshTable();
+        });
+
+            //jika dropdown mata_pelajaran atau mapel di ganti maka akan me-lookup materi
+            $("#mata_pelajaran-input").on('change', function () {
+                getMateri($("#mata_pelajaran-input").val());
+                setTimeout(function () {
+                    refreshTable();
+                }, 1000);
+            });
+
+        $("#mata_pelajaran-input").on('change', function () {
+            refreshTable();
+        });
+
     });
+
+    function getMateri(kode_mapel) {
+        $.ajax({
+            url: base_url + 'retriever/get_materi_by_mapel/' + kode_mapel,
+            data: 'id=0',
+            dataType: 'html',
+            type: 'POST',
+            cache: false,
+            success: function(html) {
+                $("#materi-input").html(html);
+            }
+        });
+    }
 
     function getData() {
         if ($.fn.dataTable.isDataTable('#tabel-materi')) {
             table = $('#tabel-materi').DataTable();
         } else {
             table = $('#tabel-materi').DataTable({
-                "ajax": base_url + 'objects/materi/nip/<?php echo $this->session->userdata('_ID');?>',
+                "ajax": base_url + 'objects/materi/nip__kode_mapel/<?php echo $this->session->userdata('_ID');?>' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val(),
                 "columns": [
+                {"data": "nama_mapel"},
                 {"data": "judul"},
                 {"data": "tgl_posting"},
                 {"data": "publish"},
@@ -105,4 +153,7 @@
             }, 1000);
         }
     }
+    function refreshTable() {
+    table.ajax.url(base_url + 'objects/materi/nip__kode_mapel/<?php echo $this->session->userdata('_ID');?>' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val()).load();
+}
 </script>

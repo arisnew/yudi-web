@@ -72,8 +72,8 @@ $data_materi = $this->model->getList(array('table' => 'materi', 'where' => array
 				</div>
 			</section>
 		</div>
-<script type="text/javascript">
-$(document).ready(function () {
+		<script type="text/javascript">
+			$(document).ready(function () {
 				<?php
 				if ($param) {
 					echo 'fillForm("'.$param.'");';

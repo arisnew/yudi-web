@@ -4,69 +4,67 @@
 			<div class="box-header with-border">
 				<h3 class="box-title">Form Admin</h3>
 				<div class="box-tools pull-right">
-					<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-						<i class="fa fa-minus"></i></button>
-						<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-							<i class="fa fa-times"></i></button>
+					<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+				</div>
+			</div>
+			<div class="box box-body">
+				<div id="loading"></div>
+				<form id="form-user" class="form-horizontal">
+					<div class="form-group">
+						<label for="username-input" class="col-sm-2 control-label">Username</label>
+						<div class="col-sm-10">
+							<input class="form-control" name="username-input" id="username-input" placeholder="Username" type="text">
 						</div>
 					</div>
-					<div class="box box-body">
-						<div id="loading"></div>
-						<form id="form-user" class="form-horizontal">
-							<div class="form-group">
-								<label for="username-input" class="col-sm-2 control-label">Username</label>
-								<div class="col-sm-10">
-									<input class="form-control" name="username-input" id="username-input" placeholder="Username" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="nama-input" class="col-sm-2 control-label">Nama</label>
-								<div class="col-sm-10">
-									<input class="form-control" name="nama-input" id="nama-input" placeholder="Nama" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="email-input" class="col-sm-2 control-label">Email</label>
-								<div class="col-sm-10">
-									<input class="form-control" name="email-input" id="email-input" placeholder="Email" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="password-input" class="col-sm-2 control-label">Password</label>
-								<div class="col-sm-10">
-									<input class="form-control" name="password-input" id="password-input" placeholder="Password" type="password">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="status-input" class="col-sm-2 control-label">Status</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="status-input" id="status-input">
-										<option value="Aktif">Aktif</option>
-										<option value="Nonaktif">Nonaktif</option>
-									</select>
-								</div>
-							</div>
-							<div id="div-foto">
-							</div>
-							<div id="div-upload" style="display: none">
-								<label>Foto</label>
-								<input type="file" name="file_upload" id="file_upload" class="image" >
-							</div>
-							<input type="hidden" name="model-input" id="model-input" value="user">
-							<input type="hidden" name="action-input" id="action-input" value="1">
-							<input type="hidden" name="key-input" id="key-input" value="username">
-							<input type="hidden" name="value-input" id="value-input" value="0">
+					<div class="form-group">
+						<label for="nama-input" class="col-sm-2 control-label">Nama</label>
+						<div class="col-sm-10">
+							<input class="form-control" name="nama-input" id="nama-input" placeholder="Nama" type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email-input" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-10">
+							<input class="form-control" name="email-input" id="email-input" placeholder="Email" type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password-input" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-10">
+							<input class="form-control" name="password-input" id="password-input" placeholder="Password" type="password">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="status-input" class="col-sm-2 control-label">Status</label>
+						<div class="col-sm-10">
+							<select class="form-control" name="status-input" id="status-input">
+								<option value="Aktif">Aktif</option>
+								<option value="Nonaktif">Nonaktif</option>
+							</select>
+						</div>
+					</div>
+					<div id="div-foto">
+					</div>
+					<div id="div-upload" style="display: none">
+						<label>Foto</label>
+						<input type="file" name="file_upload" id="file_upload" class="image" >
+					</div>
+					<input type="hidden" name="model-input" id="model-input" value="user">
+					<input type="hidden" name="action-input" id="action-input" value="1">
+					<input type="hidden" name="key-input" id="key-input" value="username">
+					<input type="hidden" name="value-input" id="value-input" value="0">
 
-							<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
-							<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_user')">
-						</form>
-					</div>
-					<div class="box-footer">
-						Footer
-					</div>
-				</div>
-			</section>
+					<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
+					<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_user')">
+				</form>
+			</div>
+			<div class="box-footer">
+				Footer
+			</div>
 		</div>
+	</section>
+</div>
 		<script type="text/javascript">
 			$(document).ready(function () {
 				<?php
@@ -104,7 +102,7 @@
 
 			        //refresh if succes upload...
 			        $('#file_upload').on('filebatchuploadcomplete', function(event, files, extra) {
-			        	loadContent(base_url + "view/_user_form/" + $("#username-input").val());
+			        	loadContent(base_url + "view/_form_user/" + $("#username-input").val());
 			        });
 			    });
 

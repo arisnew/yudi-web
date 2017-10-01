@@ -336,8 +336,6 @@ class Retriever extends CI_Controller {
 				'jumlah_benar' 	=> $record->jumlah_benar,
 				'jumlah_salah' 	=> $record->jumlah_salah,
 				'tgl_ujian' 	=> $record->tgl_ujian,
-				'kode_mapel' 	=> $record->kode_mapel,
-				'nama_mapel' 	=> $record->nama_mapel,
 				'nilai' 		=> $record->nilai,
 				'aksi' 			=> $linkBtn
 				);
@@ -353,7 +351,7 @@ class Retriever extends CI_Controller {
 				$linkBtn = ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
 				$linkBtn = ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-warning readBtn"><i class="fa fa-eye"></i> Read</a>';
+				$linkBtn .= ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-warning readBtn"><i class="fa fa-eye"></i> Lihat</a>';
 				$linkBtn .= ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
 			}
 			
@@ -369,6 +367,7 @@ class Retriever extends CI_Controller {
 				'nip' 			=> $record->nip,
 				'nama'			=> $record->nama,
 				'tgl_posting' 	=> $record->tgl_posting,
+				'durasi'		=> $record->durasi,
 				'aksi' 			=> $linkBtn
 				);
 		}
@@ -450,5 +449,55 @@ class Retriever extends CI_Controller {
 				);
 		}
 		return $data;
+	}
+
+	/*
+	* get data materi by id_mapel
+	* return string '<option value=""></option>'
+	*/
+
+	public function get_mapel_by_guru($nip = null)
+	{
+		$result = '';
+		if ($nip != null) {
+			$data_mata_pelajaran = $this->model->getList(array('table' => 'v_materi', 'where' => array('nip' => $nip)));
+			if ($data_mata_pelajaran) {
+				foreach ($data_mata_pelajaran as $row) {
+					$result .= '<option value="'.$row->kode_mapel.'">'.$row->nama_mapel.'</option>';
+				}
+			}
+		}
+
+		echo $result;
+	}
+
+	public function get_materi_by_mapel($kode_mapel = null)
+	{
+		$result = '';
+		if ($kode_mapel != null) {
+			$data_materi = $this->model->getList(array('table' => 'v_materi', 'where' => array('kode_mapel' => $kode_mapel)));
+			if ($data_materi) {
+				foreach ($data_materi as $row) {
+					$result .= '<option value="'.$row->id_materi.'">'.$row->judul.'</option>';
+				}
+			}
+		}
+
+		echo $result;
+	}
+
+	public function get_materi_by_jadwal($id_jadwal = null)
+	{
+		$result = '';
+		if ($id_jadwal != null) {
+			$data_materi = $this->model->getList(array('table' => 'v_materi', 'where' => array('id_jadwal' => $id_jadwal)));
+			if ($data_materi) {
+				foreach ($data_materi as $row) {
+					$result .= '<option value="'.$row->id_materi.'">'.$row->judul.'</option>';
+				}
+			}
+		}
+
+		echo $result;
 	}
 }

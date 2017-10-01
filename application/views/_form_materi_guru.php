@@ -139,7 +139,7 @@ if ($param) {
 				            	return {
 				            		nama_field:'file_upload',
 				            		model:'lampiran',
-				            		key: 'materi_id',
+				            		key: 'id_materi',
 				            		value:$("#form-materi #value-input").val()
 				            	};
 				            }

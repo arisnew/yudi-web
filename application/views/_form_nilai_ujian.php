@@ -1,6 +1,29 @@
 <?php
+//harus ada param
+//jika edit tambahkan pemisah __
+//contoh 1__2 maka edit, jika cuma 1 maka insert
+$edit = false;
+$id_materi = 0;
+if ($param) {
+ 	$params = explode("__", $param);
+ 	if (count($params) == 2) {
+		//maka edit
+ 		$edit = true;
+ 		$id_nilai = $params[1];
+ 		$nilai_ujian = $this->model->getRecord(array('table' => 'v_materi', 'where' => array('id_nilai' => $id_nilai)));
+ 		if ($nilai_ujian) {
+ 			$id_materi = $nilai_ujian->id_materi;
+ 		}
+ 	} else {
+		//maka insert
+ 		$id_materi = $param;
+ 	}
+
+ 	$materi = $this->model->getRecord(array('table' => 'v_materi', 'where' => array('id_materi' => $id_materi)));
+ 	if ($materi) {
+
+
 $data_siswa = $this->model->getList(array('table' => 'siswa', 'where' => array('status' => 'Aktif')));
-$data_mata_pelajaran = $this->model->getList(array('table' => 'mata_pelajaran', 'where' => array('status' => 'Aktif')));
 ?>
 <div class="form-group">
 	<section class="content">
@@ -49,20 +72,15 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'mata_pelajaran', 
 									<input class="form-control datepicker2" name="tgl_ujian-input" id="tgl_ujian-input" placeholder="yyyy-mm-dd" type="text">
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="mata_pelajaran-input" class="col-sm-2 control-label">Mata Pelajaran</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input">
-										<?php
-										if ($data_mata_pelajaran) {
-											foreach ($data_mata_pelajaran as $row) {
-												echo '<option value="' . $row->kode_mapel . '">' . $row->kode_mapel . ' - ' . $row->nama_mapel . '</option>';
-											}
-										}
-										?>
-									</select>
-								</div>
-							</div>
+
+							<input type="hidden" name="id_materi" id="id_materi" value="<?php echo $materi->id_materi;?>">
+
+ 							<div class="form-group">
+ 								<label for="mata_pelajaran-input" class="col-sm-2 control-label">Mata Pelajaran</label>
+ 								<div class="col-sm-10">
+ 									<input type =" text" value="<?php echo $materi->nama_mapel;?>" class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input" >
+ 								</div>
+ 							</div>							
 							<div class="form-group">
 								<label for="nilai-input" class="col-sm-2 control-label">Nilai</label>
 								<div class="col-sm-10">
@@ -87,7 +105,7 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'mata_pelajaran', 
 				$(document).ready(function () {
 					<?php
 					if ($param) {
-						echo 'fillForm("'.$param.'");';
+						echo 'fillForm("'.$param[1].'");';
 					}
 					?>
 
@@ -134,11 +152,12 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'mata_pelajaran', 
 						success: function(json) {
 							if (json['data'].code === 1) {
 								$("#id_nilai-input").val(json.data.object.id_nilai).attr("readonly","");
-								$("#nis-input").val(json.data.object.nis);
+								$("#siswa-input").val(json.data.object.nis);
 								$("#jumlah_benar-input").val(json.data.object.jumlah_benar);
 								$("#jumlah_salah-input").val(json.data.object.jumlah_salah);
 								$("#tgl_ujian-input").val(json.data.object.tgl_ujian);
-								$("#kode_mapel-input").val(json.data.object.kode_mapel);
+								$("#mata_pelajaran-input").val(json.data.object.kode_mapel);
+								$("#id_materi").val(json.data.object.id_materi);
 								$("#nilai-input").val(json.data.object.nilai);
 								$("#action-input").val("2");
 								$("#value-input").val(x);
@@ -147,3 +166,7 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'mata_pelajaran', 
 					});
 				}
 			</script>
+		 <?php
+ 	}
+ }
+ ?>

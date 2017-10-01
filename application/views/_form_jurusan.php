@@ -72,10 +72,10 @@
 				success: function(json) {
 					loading('loading',false);
 					if (json['data'].code === 1) {
-						alert('Penyimpanan data berhasil');
+						alert('Penyimpanan Data Berhasil');
 						loadContent(base_url + 'view/_table_jurusan');
 					} else if(json['data'].code === 2){
-						alert('Penyimpanan data tidak berhasil');
+						alert('Penyimpanan Data Tidak Berhasil');
 					} else{
 						alert(json['data'].message);
 					}
@@ -97,7 +97,7 @@
 			cache: false,
 			success: function(json) {
 				if (json['data'].code === 1) {
-					$("#kode_jurusan-input").val(json.data.object.kode_jurusan);
+					$("#kode_jurusan-input").val(json.data.object.kode_jurusan).attr("readonly","");
 					$("#nama_jurusan-input").val(json.data.object.nama_jurusan);
 					$("#status-input").val(json.data.object.status);
 					$("#action-input").val("2");

@@ -59,17 +59,13 @@
 
 	function utils() {
 
-        $("#tabel-jadwal .editBtn").on("click",function(){
-          //  loadContent(base_url + 'view/_form_jadwal_guru/x__' + $(this).attr('href').substring(1));
-        });
+        $("#tabel-jadwal .editBtn").hide();
 
 		$("#tabel-jadwal .readBtn").on("click",function(){
 			loadContent(base_url + 'view/_form_materi_guru/' + $(this).attr('href').substring(1));
 		});
 
-		$("#tabel-jadwal .removeBtn").on("click",function(){
-			konfirmasiHapus($(this).attr('href').substring(1));
-		});
+		$("#tabel-jadwal .removeBtn").hide();
 	}
 
 	function konfirmasiHapus(x){

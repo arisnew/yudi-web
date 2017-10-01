@@ -1,5 +1,5 @@
 <?php 
-    $guru = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('nip' => $this->session->userdata('_ID'))));
+    $mapel = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('nip' => $this->session->userdata('_ID'))));
  ?>
 <section class="content">
 	<div class="box">

@@ -1,54 +1,60 @@
 <?php
-//get data siswa (current session) 1 row
-$me = $this->model->getRecord(array('table' => 'siswa', 'where' => array('nis' => $this->session->userdata('_ID'))));
-$jadwal = $this->model->getList(array('table' => 'v_jadwal', 'where' => array('status' => 'Aktif', 'kode_kelas' => $me->kelas, 'kode_jurusan' => $me->jurusan)));
-$kelas = $me->kelas;
-$jurusan = $me->jurusan;
+$data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('status' => 'Aktif')));
 ?>
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">List Materi Siswa</h3>
+            <h3 class="box-title">Tabel materi</h3>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                    <i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                    <i class="fa fa-times"></i>
-                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
             </div>
-        </div>
-        <div class="box-body">
-            <div id="loading"></div>
-                <label>Pilihan Mata Pelajaran</label>
-                <select id="pilih-jadwal">
-                    <?php
-                    if ($jadwal) {
-                        foreach ($jadwal as $row) {
-                            echo "<option value='".$row->kode_mapel."'>".$row->nama_mapel."</option>";
-                        }
-                    }
-                    ?>
-                </select>
-            <!-- <a href="#" onclick="loadContent(base_url + 'view/_materi_form');" class="btn btn-success pull-right">Tambah Data Materi</a> -->
-            <table id="tabel-materi" class="table table-bordered">
-                <thead>
+            <div class="box-body">
+                <div id="loading"></div>
+                <div class="form-group">
+                    <label for="guru-input" class="col-sm-1 control-label">Guru</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name="guru-input" id="guru-input">
+                            <?php
+                            if ($data_guru) {
+                                foreach ($data_guru as $row) {
+                                    echo '<option value="' . $row->nip . '">' . $row->nama . '</option>';
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <label for="mata_pelajaran-input" class="col-sm-1 control-label">Mata Pelajaran</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input">
+                        </select>
+                    </div>
+                    <label for="materi-input" class="col-sm-1 control-label">Materi</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name="materi-input" id="materi-input">
+                        </select>
+                    </div>
+                </div>
+                <!--<a href="#" onclick="loadContent(base_url + 'view/_form_jadwal');" class="btn btn-success pull-right">Tambah Data materi</a>-->
+                <table id="tabel-materi" class="table table-bordered">
+                    <thead>
                     <tr>
-                        <th>Mata Pelajran</th>
-                        <th>Judul</th>
                         <th>Guru</th>
+                        <th>Mata Pelajran</th>
+                        <th>Judul Materi</th>
                         <th>Tanggal Posting</th>
                         <th>Publish</th>
                         <th>Pilihan</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
 
-                </tbody>
-            </table>
-        </div>
-        <div class="box-footer">
-            Footer
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+                Footer
+            </div>
         </div>
     </div>
 </section>
@@ -56,34 +62,96 @@ $jurusan = $me->jurusan;
     $(document).ready(function () {
         getData();
 
-        $("#pilih-jadwal").on("change", function () {
-            refresh_table();
+        $("#guru").on("change", function () {
+            refreshTable();
         });
-    });
+
+        $("#mata_pelajaran").on("change", function () {
+            refreshTable();
+        });
+
+        $("#materi").on("change", function () {
+            refreshTable();
+        });
+
+            //jika dropdown guru atau mapel di ganti maka akan me-lookup materi
+            $("#guru-input").on('change', function () {
+                getMata_Pelajaran($("#guru-input").val());
+                setTimeout(function () {
+                    refreshTable();
+                }, 1000);
+            });
+                    
+            $("#mata_pelajaran-input").on('change', function () {
+                getMateri($("#mata_pelajaran-input").val());    
+                setTimeout(function () {
+                refreshTable();
+                }, 1000);
+            });
+
+            $("#guru-input").on('change', function () {
+                refreshTable();
+            });
+
+            $("#mata_pelajaran-input").on('change', function () {
+                refreshTable();
+            });
+
+            $("#materi-input").on('change', function () {
+                refreshTable();
+            });
+
+        });
+
+    function getMata_Pelajaran(nip) {
+        $.ajax({
+            url: base_url + 'retriever/get_mapel_by_guru/' + nip,
+            data: 'id=0',
+            dataType: 'html',
+            type: 'POST',
+            cache: false,
+            success: function(html) {
+                $("#mata_pelajaran-input").html(html);
+            }
+        });
+    }
+
+    function getMateri(kode_mapel) {
+            $.ajax({
+                url: base_url + 'retriever/get_materi_by_mapel/' + kode_mapel,
+                data: 'id=0',
+                dataType: 'html',
+                type: 'POST',
+                cache: false,
+                success: function(html) {
+                    $("#materi-input").html(html);
+                }
+            });
+        }
 
     function getData() {
         if ($.fn.dataTable.isDataTable('#tabel-materi')) {
-            table = $('#tabel-materi').DataTable();
-        } else {
-            table = $('#tabel-materi').DataTable({
-                "ajax": base_url + 'objects/materi/kode_mapel/<?php echo $this->session->userdata('_ID');?>' + $("#pilih-jadwal").val(),
-                "columns": [
+          table = $('#tabel-materi').DataTable();
+      } else {
+          table = $('#tabel-materi').DataTable({
+            "ajax": base_url + 'objects/materi',
+            "columns": [
+                {"data": "nama"},
                 {"data": "nama_mapel"},
                 {"data": "judul"},
-                {"data": "nama"},
                 {"data": "tgl_posting"},
                 {"data": "publish"},
                 {"data": "aksi"}
                 ],
-                "ordering": true,
-                "deferRender": true,
-                "order": [[0, "asc"]],
-                "fnDrawCallback": function (oSettings) {
-                    utils();
-                }
-            });
-        }
-    }
+            "ordering": true,
+            "deferRender": true,
+            "order": [[0, "asc"]],
+            "fnDrawCallback": function (oSettings) {
+              utils();
+          }
+      });
+      }
+  }
 
     function utils() {
 
@@ -91,39 +159,44 @@ $jurusan = $me->jurusan;
             loadContent(base_url + 'view/_view_materi_siswa/' + $(this).attr('href').substring(1));
         });
 
-    }
+        $("#tabel-materi .editBtn").hide();
+        $("#tabel-materi .removeBtn").hide();
+        $("#tabel-materi .writeBtn").hide();
 
-    function konfirmasiHapus(x){
-        if(confirm("Yakin Hapus Data???")){
-            loading('loading', true);
-            setTimeout(function() {
-                $.ajax({
-                    url: base_url + 'manage',
-                    data: 'model-input=materi&key-input=id_materi&action-input=3&value-input=' + x,
-                    dataType: 'json',
-                    type: 'POST',
-                    cache: false,
-                    success: function(json) {
-                        loading('loading',false);
-                        if (json['data'].code === 1) {
-                            alert('Hapus Data Berhasil');
-                            loadContent(base_url + "view/_table_materi");
-                        } else if(json['data'].code === 2){
-                            alert('Hapus Data Tidak Berhasil!');
-                        } else{
-                            alert(json['data'].message);
-                        }
-                    },
-                    error: function () {
-                        loading('loading',false);
-                        alert('Hapus data tidak berhasil, terjadi kesalahan!');
+
+    }
+function konfirmasiHapus(x){
+    if(confirm("Yakin Hapus Data???")){
+        loading('loading', true);
+        setTimeout(function() {
+            $.ajax({
+                url: base_url + 'manage',
+                data: 'model-input=materi&key-input=id_materi&action-input=3&value-input=' + x,
+                dataType: 'json',
+                type: 'POST',
+                cache: false,
+                success: function(json) {
+                    loading('loading',false);
+                    if (json['data'].code === 1) {
+                        alert('Hapus Data Berhasil');
+                        loadContent(base_url + "view/_table_materi_siswa");
+                    } else if(json['data'].code === 2){
+                        alert('Hapus Data Tidak Berhasil!');
+                    } else{
+                        alert(json['data'].message);
                     }
-                });
-            }, 1000);
-        }
+                },
+                error: function () {
+                    loading('loading',false);
+                    alert('Hapus data tidak berhasil, terjadi kesalahan!');
+                }
+            });
+        }, 1000);
     }
+}
 
-    function refresh_table(){
-        table.ajax.url(base_url + 'objects/materi/kode_mapel/' + $("#pilih-jadwal").val()).load();
-    }
+function refreshTable() {
+            table.ajax.url(base_url + 'objects/materi/nip__kode_mapel__id_materi/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val() + '__' + $("#materi-input").val()).load();
+        }
 </script>
+
