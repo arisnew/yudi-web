@@ -7,6 +7,7 @@ SELECT
 	so.opsi_d,
 	so.jawaban,
 	so.id_materi,
+	j.judul,
 	j.kode_mapel,
 	j.nama_mapel,
 	so.nip,
