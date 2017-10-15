@@ -137,7 +137,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="col-md-6 panel">
                     <div class="panel-body">
                         <p class="text-right">
-                            Copyright &copy; 2017. Template by srilaksono_yudi <a href="" rel="develop">Fasilkom Unsika</a>
+                            Copyright &copy; 2017. yudi_srilaksono <a href="" rel="develop">Fasilkom Unsika</a>
                         </p>
                     </div>
                 </div>

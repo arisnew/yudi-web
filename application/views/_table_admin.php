@@ -1,32 +1,29 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">List Nilai Ujian</h3>
-
+            <h3 class="box-title">Data Admin</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
         </div>
         <div class="box-body">
             <div id="loading"></div>
-            <a href="#" onclick="loadContent(base_url + 'view/_form_nilai_ujian');" class="btn btn-success pull-right">Tambah Data Nilai Ujian</a>
-            <table id="tabel-nilai_ujian" class="table table-bordered">
+            <a href="#" onclick="loadContent(base_url + 'view/_form_admin');" class="btn btn-success pull-right">Tambah Administrator</a>
+            <table id="tabel-admin" class="table table-bordered">
                 <thead>
-                  <tr>            
-                      <th>Nama Siswa</th>
-                      <th>Jumlah Benar</th>
-                      <th>Jumlah Salah</th>
-                      <th>Tanggal Ujian</th>
-                      <th>Nilai</th>
-                      <th>Pilihan</th>
-                  </tr>
-              </thead>
-              <tbody>
-                
-              </tbody>
-          </table>
-      </div>
-  </div>
+                    <tr>
+                        <th>Username</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Pilihan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </section>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -34,17 +31,16 @@
     });
 
     function getData() {
-        if ($.fn.dataTable.isDataTable('#tabel-nilai_ujian')) {
-            table = $('#tabel-nilai_ujian').DataTable();
+        if ($.fn.dataTable.isDataTable('#tabel-admin')) {
+            table = $('#tabel-admin').DataTable();
         } else {
-            table = $('#tabel-nilai_ujian').DataTable({
-                "ajax": base_url + 'objects/nilai_ujian',
+            table = $('#tabel-admin').DataTable({
+                "ajax": base_url + 'objects/admin',
                 "columns": [
+                {"data": "username"},
                 {"data": "nama"},
-                {"data": "jumlah_benar"},
-                {"data": "jumlah_salah"},
-                {"data": "tgl_ujian"},
-                {"data": "nilai"},
+                {"data": "email"},
+                {"data": "status"},
                 {"data": "aksi"}
                 ],
                 "ordering": true,
@@ -58,11 +54,11 @@
     }
 
     function utils() {
-        $("#tabel-nilai_ujian .editBtn").on("click",function(){
-            loadContent(base_url + 'view/_form_nilai_ujian/x__' + $(this).attr('href').substring(1));
+        $("#tabel-admin .editBtn").on("click",function(){
+            loadContent(base_url + 'view/_form_admin/' + $(this).attr('href').substring(1));
         });
 
-        $("#tabel-nilai_ujian .removeBtn").on("click",function(){
+        $("#tabel-admin .removeBtn").on("click",function(){
             konfirmasiHapus($(this).attr('href').substring(1));
         });
     }
@@ -73,7 +69,7 @@
             setTimeout(function() {
                 $.ajax({
                     url: base_url + 'manage',
-                    data: 'model-input=nilai_ujian&key-input=id_nilai&action-input=3&value-input=' + x,
+                    data: 'model-input=admin&key-input=username&action-input=3&value-input=' + x,
                     dataType: 'json',
                     type: 'POST',
                     cache: false,
@@ -81,7 +77,7 @@
                         loading('loading',false);
                         if (json['data'].code === 1) {
                             alert('Hapus Data Berhasil');
-                            loadContent(base_url + "view/_table_nilai_ujian");
+                            loadContent(base_url + "view/_table_admin");
                         } else if(json['data'].code === 2){
                             alert('Hapus Data Tidak Berhasil!');
                         } else{

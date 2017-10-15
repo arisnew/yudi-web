@@ -4,7 +4,7 @@
 		<i class="fa fa-database"></i> <span>Data Master</span> <i class="fa fa-angle-left pull-right"></i>
 	</a>
 	<ul class="treeview-menu">
-		<li><a href="#" onclick="loadContent(base_url + 'view/_table_user')"><i class="fa fa-user"></i> User</a></li>
+		<li><a href="#" onclick="loadContent(base_url + 'view/_table_admin')"><i class="fa fa-user"></i> Admin</a></li>
 		<li><a href="#" onclick="loadContent(base_url + 'view/_table_guru')"><i class="fa fa-user-secret"></i> Guru</a></li>
 		<li><a href="#" onclick="loadContent(base_url + 'view/_table_siswa')"><i class="fa fa-users"></i> Siswa</a></li>
 		<li><a href="#" onclick="loadContent(base_url + 'view/_table_kelas')"><i class="fa fa-institution"></i> Kelas</a></li>
@@ -14,12 +14,12 @@
 </li>
 <li>
 	<a href="#" onclick="loadContent(base_url + 'view/_table_jadwal')">
-		<i class="fa fa-calendar"></i> <span>Jadwal</span>
+		<i class="fa fa-calendar"></i> <span> Jadwal</span>
 	</a>
 </li>
 <li>
 	<a href="#" onclick="loadContent(base_url + 'view/_table_materi')">
-		<i class="fa fa-book"></i> <span>Materi</span>
+		<i class="fa fa-book"></i> <span> Materi</span>
 	</a>
 </li>
 <li>
@@ -34,16 +34,16 @@
 </li>
 <li>
 	<a href="#" onclick="loadContent(base_url + 'view/_table_lampiran')">
-		<i class="fa fa-file-o"></i> <span>lampiran</span>
+		<i class="fa fa-file-o"></i> <span> Lampiran</span>
 	</a>
 </li>
 <li>
 	<a href="#" onclick="loadContent(base_url + 'view/_table_komentar')">
-		<i class="fa fa-comments"></i> <span>Komentar</span>
+		<i class="fa fa-comments"></i> <span> Komentar</span>
 	</a>
 </li>
 <li>
 	<a href="#" onclick="loadContent(base_url + 'view/_table_pesan')">
-		<i class="fa fa-comment-o"></i> <span>pesan</span>
+		<i class="fa fa-comment-o"></i> <span> Pesan</span>
 	</a>
 </li>

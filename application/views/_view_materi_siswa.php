@@ -21,10 +21,8 @@ if ($param != null) {
                 <h2><?php echo $materi->judul;?></h2>
                 <h5><?php echo $materi->nama;?> <span class="mailbox-read-time pull-right"><?php echo DateToIndo($materi->tgl_posting);?></span></h5>
             </div>
-            <div class="mailbox-controls with-border text-center">
-            </div>
-            <div class="mailbox-read-message"><?php echo $materi->isi;?>
-            </div>
+            <div class="mailbox-controls with-border text-center"></div>
+            <div class="mailbox-read-message"><?php echo $materi->isi;?></div>
             <?php
             if ($lampiran) {
                 foreach ($lampiran as $row) {
@@ -37,7 +35,6 @@ if ($param != null) {
             }
             ?>
             <div class="box-footer box-comments">
-
                 <?php
                 $komentars = $this->model->getList(array('table' => 'komentar', 'where' => array('id_materi' => $param)));
                 if ($komentars) {
@@ -50,7 +47,7 @@ if ($param != null) {
                         //siapa?
                         $profil = $this->model->getRecord(array('table' => $row->level_komentator, 'where' => array($id => $row->komentator)));
                         if ($profil) {
-                        ?>
+                            ?>
                             <div class="box-comment">
                                 <img alt="User Image" src="<?php echo base_url('asset/img/upload/' . $profil->foto);?>" class="img-circle img-sm">
                                 <div class="comment-text">
@@ -61,13 +58,11 @@ if ($param != null) {
                                     <?php echo $row->isi;?>
                                 </div>
                             </div>
-                        <?php
+                            <?php
                         }
                     }
                 }
                 ?>
-                
-
             </div>
             <div class="box-footer">
                 <form id="form-comment">
@@ -81,13 +76,12 @@ if ($param != null) {
                         <input type="hidden" name="level-input" id="level-input" value="siswa">
                         <input type="text" name="msg-input" id="msg-input" placeholder="Press enter to post comment" class="form-control input-sm">
                         <input type="submit" name="kirim" id="kirim" style="display: none;" onclick="kirimKomentar(); return false;">
-                  </div>
-              </form>
-          </div>
-          <div class="box-footer pull-right">
-            <input type="reset" onclick="loadContent(base_url + 'view/_table_materi_siswa')" value="Kembali">
-        </div>
-
+                    </div>
+                </form>
+            </div>
+            <div class="box-footer pull-right">
+                <input type="reset" onclick="loadContent(base_url + 'view/_table_materi_siswa')" value="Kembali">
+            </div>
         </div>
     </div>
 </section>

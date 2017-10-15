@@ -7,7 +7,6 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
             <h3 class="box-title">List Nilai</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
             </div>
             <div class="box-body">
                 <div id="loading"></div>
@@ -45,9 +44,6 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
 
                     </tbody>
                 </table>
-            </div>
-            <div class="box-footer">
-                Footer
             </div>
         </div>
     </div>

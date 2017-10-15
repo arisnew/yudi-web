@@ -4,10 +4,9 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Tabel materi</h3>
+        <h3 class="box-title">Tabel Materi</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
             </div>
             <div class="box-body">
                 <div id="loading"></div>
@@ -29,7 +28,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
                         <select class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input">
                         </select>
                     </div>
-                    <label for="materi-input" class="col-sm-1 control-label">Materi</label>
+                    <label for="materi-input" class="col-sm-1 control-label">Judul Materi</label>
                     <div class="col-sm-3">
                         <select class="form-control" name="materi-input" id="materi-input">
                         </select>
@@ -38,22 +37,18 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
                 <!--<a href="#" onclick="loadContent(base_url + 'view/_form_jadwal');" class="btn btn-success pull-right">Tambah Data materi</a>-->
                 <table id="tabel-materi" class="table table-bordered">
                     <thead>
-                    <tr>
-                        <th>Guru</th>
-                        <th>Mata Pelajran</th>
-                        <th>Judul Materi</th>
-                        <th>Tanggal Posting</th>
-                        <th>Publish</th>
-                        <th>Pilihan</th>
-                    </tr>
+                        <tr>
+                            <th>Guru</th>
+                            <th>Mata Pelajran</th>
+                            <th>Materi</th>
+                            <th>Tanggal Posting</th>
+                            <th>Publish</th>
+                            <th>Pilihan</th>
+                        </tr>
                     </thead>
                     <tbody>
-
                     </tbody>
                 </table>
-            </div>
-            <div class="box-footer">
-                Footer
             </div>
         </div>
     </div>
@@ -74,34 +69,34 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
             refreshTable();
         });
 
-            //jika dropdown guru atau mapel di ganti maka akan me-lookup materi
-            $("#guru-input").on('change', function () {
-                getMata_Pelajaran($("#guru-input").val());
-                setTimeout(function () {
-                    refreshTable();
-                }, 1000);
-            });
-                    
-            $("#mata_pelajaran-input").on('change', function () {
-                getMateri($("#mata_pelajaran-input").val());    
-                setTimeout(function () {
+        //jika dropdown guru atau mapel di ganti maka akan me-lookup materi
+        $("#guru-input").on('change', function () {
+            getMata_Pelajaran($("#guru-input").val());
+            setTimeout(function () {
                 refreshTable();
-                }, 1000);
-            });
-
-            $("#guru-input").on('change', function () {
-                refreshTable();
-            });
-
-            $("#mata_pelajaran-input").on('change', function () {
-                refreshTable();
-            });
-
-            $("#materi-input").on('change', function () {
-                refreshTable();
-            });
-
+            }, 1000);
         });
+
+        $("#mata_pelajaran-input").on('change', function () {
+            getMateri($("#mata_pelajaran-input").val());    
+            setTimeout(function () {
+                refreshTable();
+            }, 1000);
+        });
+
+        $("#guru-input").on('change', function () {
+            refreshTable();
+        });
+
+        $("#mata_pelajaran-input").on('change', function () {
+            refreshTable();
+        });
+
+        $("#materi-input").on('change', function () {
+            refreshTable();
+        });
+
+    });
 
     function getMata_Pelajaran(nip) {
         $.ajax({
@@ -117,25 +112,25 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
     }
 
     function getMateri(kode_mapel) {
-            $.ajax({
-                url: base_url + 'retriever/get_materi_by_mapel/' + kode_mapel,
-                data: 'id=0',
-                dataType: 'html',
-                type: 'POST',
-                cache: false,
-                success: function(html) {
-                    $("#materi-input").html(html);
-                }
-            });
-        }
+        $.ajax({
+            url: base_url + 'retriever/get_materi_by_mapel/' + kode_mapel,
+            data: 'id=0',
+            dataType: 'html',
+            type: 'POST',
+            cache: false,
+            success: function(html) {
+                $("#materi-input").html(html);
+            }
+        });
+    }
 
     function getData() {
         if ($.fn.dataTable.isDataTable('#tabel-materi')) {
-          table = $('#tabel-materi').DataTable();
-      } else {
-          table = $('#tabel-materi').DataTable({
-            "ajax": base_url + 'objects/materi',
-            "columns": [
+            table = $('#tabel-materi').DataTable();
+        } else {
+            table = $('#tabel-materi').DataTable({
+                "ajax": base_url + 'objects/materi',
+                "columns": [
                 {"data": "nama"},
                 {"data": "nama_mapel"},
                 {"data": "judul"},
@@ -143,15 +138,15 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
                 {"data": "publish"},
                 {"data": "aksi"}
                 ],
-            "ordering": true,
-            "deferRender": true,
-            "order": [[0, "asc"]],
-            "fnDrawCallback": function (oSettings) {
-              utils();
-          }
-      });
-      }
-  }
+                "ordering": true,
+                "deferRender": true,
+                "order": [[0, "asc"]],
+                "fnDrawCallback": function (oSettings) {
+                    utils();
+                }
+            });
+        }
+    }
 
     function utils() {
 
@@ -165,38 +160,38 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 
 
     }
-function konfirmasiHapus(x){
-    if(confirm("Yakin Hapus Data???")){
-        loading('loading', true);
-        setTimeout(function() {
-            $.ajax({
-                url: base_url + 'manage',
-                data: 'model-input=materi&key-input=id_materi&action-input=3&value-input=' + x,
-                dataType: 'json',
-                type: 'POST',
-                cache: false,
-                success: function(json) {
-                    loading('loading',false);
-                    if (json['data'].code === 1) {
-                        alert('Hapus Data Berhasil');
-                        loadContent(base_url + "view/_table_materi_siswa");
-                    } else if(json['data'].code === 2){
-                        alert('Hapus Data Tidak Berhasil!');
-                    } else{
-                        alert(json['data'].message);
+    function konfirmasiHapus(x){
+        if(confirm("Yakin Hapus Data???")){
+            loading('loading', true);
+            setTimeout(function() {
+                $.ajax({
+                    url: base_url + 'manage',
+                    data: 'model-input=materi&key-input=id_materi&action-input=3&value-input=' + x,
+                    dataType: 'json',
+                    type: 'POST',
+                    cache: false,
+                    success: function(json) {
+                        loading('loading',false);
+                        if (json['data'].code === 1) {
+                            alert('Hapus Data Berhasil');
+                            loadContent(base_url + "view/_table_materi_siswa");
+                        } else if(json['data'].code === 2){
+                            alert('Hapus Data Tidak Berhasil!');
+                        } else{
+                            alert(json['data'].message);
+                        }
+                    },
+                    error: function () {
+                        loading('loading',false);
+                        alert('Hapus data tidak berhasil, terjadi kesalahan!');
                     }
-                },
-                error: function () {
-                    loading('loading',false);
-                    alert('Hapus data tidak berhasil, terjadi kesalahan!');
-                }
-            });
-        }, 1000);
-    }
-}
-
-function refreshTable() {
-            table.ajax.url(base_url + 'objects/materi/nip__kode_mapel__id_materi/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val() + '__' + $("#materi-input").val()).load();
+                });
+            }, 1000);
         }
+    }
+
+    function refreshTable() {
+        table.ajax.url(base_url + 'objects/materi/nip__kode_mapel__id_materi/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val() + '__' + $("#materi-input").val()).load();
+    }
 </script>
 

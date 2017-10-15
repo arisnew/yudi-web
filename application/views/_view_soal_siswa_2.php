@@ -4,8 +4,7 @@
          <div id="content" class="col-xs-12">
             <h3 class="page-header"><i></i> Petunjuk Mengerjakan</h3>
             <div class="alert alert-info">
-               <p>Sebelum mengerjakan ulangan online, baca dengan cermat petunjuk berikut:</p>
-
+            <p>Sebelum mengerjakan ulangan online, baca dengan cermat petunjuk berikut:</p>
                <ul>	
                   <li>Berdoalah terlebih dahulu sebelum mengerjakan ujian! </li>
                   <li>Gunakan nomor soal di sebelah kanan atau tombol di bawah soal untuk pindah ke lain soal! </li>
@@ -16,16 +15,14 @@
                   <li>Klik tombol Selesai pada nomor terakhir untuk mengakhiri ujian. Pastikan telah mengklik tombol ini sebelum logout. Jika meninggalkan komputer seblum klik tombol ini, maka nilai tidak akan diproses.</li>
                   <li>Konsultasikan dengan pengawas/proktor jika ada kendala teknis saat mengerjakan ujian, atau ada soal yang tidak dipahami. </li>
                </ul>
-
             </div>
-
-            <form class="form" onsubmit="_view_soal_siswa_3">
+            <form class="form" onsubmit="'view/_view_soal_siswa_3'">
                <div class="form-group">
                   <div class="col-md-9">
                      <input type="checkbox" required=""><b> Saya telah membaca dan memahami petunjuk mengerjakan dengan cermat</b> 
                   </div>
                   <div class="col-md-3">
-                     <button class="btn btn-primary" type="submit" onclick="loadContent(base_url + 'view/_view_soal_siswa_3');"><i class="fa fa-save"></i> Mulai Mengerjakan </button>
+                     <button class="btn btn-primary" type="submit" onclick="loadContent(base_url + 'view/_view_soal_siswa_3');"><i class="glyphicon glyphicon-log-in"></i> Mulai Mengerjakan </button>
                   </div>
                </div>
             </form>

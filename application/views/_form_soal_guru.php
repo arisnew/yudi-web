@@ -20,104 +20,104 @@ if ($param) {
 	if ($materi) {
 
 ?>
-		<div class="form-group">
-			<section class="content">
-				<div class="box box-info">
-					<div class="box-header with-border">
-						<h3 class="box-title">Form Soal</h3>
-						<div class="box-tools pull-right">
-							<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-							<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+<div class="form-group">
+	<section class="content">
+		<div class="box box-info">
+			<div class="box-header with-border">
+				<h3 class="box-title">Form Soal</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+				</div>
+			</div>
+			<div class="box-body">
+				<div id="loading"></div>
+				<form id="form-soal" class="form-horizontal">
+					<div class="form-group">
+						<label for="jumlah_pertanyaan-input" class="col-sm-2 control-label">Jumlah Pertanyaan</label>
+						<div class="col-sm-2">
+							<input class="form-control" name="jumlah_pertanyaan-input" id="jumlah_pertanyaan-input" placeholder="Jumlah Pertanyaan" type="text">
+						</div>
+						<label for="tgl_posting-input" class="col-sm-2 control-label">Tanggal Posting</label>
+						<div class="col-sm-2">
+							<input class="form-control datepicker2" name="tgl_posting-input" id="tgl_posting-input" placeholder="yyyy-mm-dd" type="text">
+						</div>
+						<label for="durasi-input" class="col-sm-2 control-label">Durasi Soal</label>
+						<div class="col-sm-2">
+							<input class="form-control" name="durasi-input" id="durasi-input" placeholder="Durasi Soal" type="text">
 						</div>
 					</div>
-					<div class="box-body">
-						<div id="loading"></div>
-						<form id="form-soal" class="form-horizontal">
-							<div class="form-group">
-								<label for="jumlah_pertanyaan-input" class="col-sm-2 control-label">Jumlah Pertanyaan</label>
-								<div class="col-sm-2">
-									<input class="form-control" name="jumlah_pertanyaan-input" id="jumlah_pertanyaan-input" placeholder="Jumlah Pertanyaan" type="text">
-								</div>
-								<label for="tgl_posting-input" class="col-sm-2 control-label">Tanggal Posting</label>
-								<div class="col-sm-2">
-									<input class="form-control datepicker2" name="tgl_posting-input" id="tgl_posting-input" placeholder="yyyy-mm-dd" type="text">
-								</div>
-								<label for="durasi-input" class="col-sm-2 control-label">Durasi Soal</label>
-								<div class="col-sm-2">
-									<input class="form-control" name="durasi-input" id="durasi-input" placeholder="Durasi Soal" type="text">
-								</div>
-							</div>
-							<button class="btn btn-primary" id="teruskan" type="button" onclick=" return false;"><i class="fa fa-save"></i> Simpan</button>
-							<div class="form-group">
-								<label for="materi-input" class="col-sm-2 control-label">Judul Materi</label>
-								<div class="col-sm-10">
-									<input type =" text" value="<?php echo $materi->judul;?>" class="form-control" name="materi-input" id="materi-input" >
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="pertanyaan-input" class="col-sm-2 control-label">Pertanyaan</label>
-								<div class="col-sm-10">
-									<textarea class="form-control" name="pertanyaan-input" id="pertanyaan-input" placeholder="Masukan Soal" type="text"></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="opsi_a-input" class="col-sm-2 control-label">Pilihan A</label>
-								<div class="col-sm-10">
-									<textarea class="form-control" name="opsi_a-input" id="opsi_a-input" placeholder="Opsi A" type="text"></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="opsi_b-input" class="col-sm-2 control-label">Pilihan B</label>
-								<div class="col-sm-10">
-									<textarea class="form-control" name="opsi_b-input" id="opsi_b-input" placeholder="Opsi B" type="text"></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="opsi_c-input" class="col-sm-2 control-label">Pilihan C</label>
-								<div class="col-sm-10">
-									<textarea class="form-control" name="opsi_c-input" id="opsi_c-input" placeholder="Opsi C" type="text"></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="opsi_d-input" class="col-sm-2 control-label">Pilihan D</label>
-								<div class="col-sm-10">
-									<textarea class="form-control" name="opsi_d-input" id="opsi_d-input" placeholder="Opsi D" type="text"></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jawaban-input" class="col-sm-2 control-label">Jawaban</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="jawaban-input" id="jawaban-input">
-										<option value="A">A</option>
-										<option value="B">B</option>
-										<option value="C">C</option>
-										<option value="D">D</option>
-									</select>
-								</div>
-							</div>
-							<input type="hidden" name="id_materi" id="id_materi" value="<?php echo $materi->id_materi;?>">
-							<input type ='hidden' name="guru-input" id="guru-input" value="<?php echo $this->session->userdata('_ID');?>">
-							<div class="form-group">
-								<label for="tgl_posting-input" class="col-sm-2 control-label">Tanggal Posting</label>
-								<div class="col-sm-10">
-									<input class="form-control datepicker2" name="tgl_posting-input" id="tgl_posting-input" placeholder="yyyy-mm-dd" type="text">
-								</div>
-							</div>
-							<input type="hidden" name="model-input" id="model-input" value="soal">
-							<input type="hidden" name="action-input" id="action-input" value="1">
-							<input type="hidden" name="key-input" id="key-input" value="id_soal">
-							<input type="hidden" name="value-input" id="value-input" value="0">
+					<button class="btn btn-primary" id="teruskan" type="button" onclick=" return false;"><i class="fa fa-save"></i> SET </button>
+					<div class="form-group">
+						<label for="materi-input" class="col-sm-2 control-label">Judul Materi</label>
+						<div class="col-sm-10">
+							<input type =" text" value="<?php echo $materi->judul;?>" class="form-control" name="materi-input" id="materi-input" >
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="pertanyaan-input" class="col-sm-2 control-label">Pertanyaan</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" name="pertanyaan-input" id="pertanyaan-input" placeholder="Masukan Soal" type="text"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="opsi_a-input" class="col-sm-2 control-label">Pilihan A</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" name="opsi_a-input" id="opsi_a-input" placeholder="Opsi A" type="text"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="opsi_b-input" class="col-sm-2 control-label">Pilihan B</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" name="opsi_b-input" id="opsi_b-input" placeholder="Opsi B" type="text"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="opsi_c-input" class="col-sm-2 control-label">Pilihan C</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" name="opsi_c-input" id="opsi_c-input" placeholder="Opsi C" type="text"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="opsi_d-input" class="col-sm-2 control-label">Pilihan D</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" name="opsi_d-input" id="opsi_d-input" placeholder="Opsi D" type="text"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="jawaban-input" class="col-sm-2 control-label">Jawaban</label>
+						<div class="col-sm-10">
+							<select class="form-control" name="jawaban-input" id="jawaban-input">
+								<option value="A">A</option>
+								<option value="B">B</option>
+								<option value="C">C</option>
+								<option value="D">D</option>
+							</select>
+						</div>
+					</div>
+					<input type="hidden" name="id_materi" id="id_materi" value="<?php echo $materi->id_materi;?>">
+					<input type ='hidden' name="guru-input" id="guru-input" value="<?php echo $this->session->userdata('_ID');?>">
+					<div class="form-group">
+						<label for="tgl_posting-input" class="col-sm-2 control-label">Tanggal Posting</label>
+						<div class="col-sm-10">
+							<input class="form-control datepicker2" name="tgl_posting-input" id="tgl_posting-input" placeholder="yyyy-mm-dd" type="text">
+						</div>
+					</div>
+					<input type="hidden" name="model-input" id="model-input" value="soal">
+					<input type="hidden" name="action-input" id="action-input" value="1">
+					<input type="hidden" name="key-input" id="key-input" value="id_soal">
+					<input type="hidden" name="value-input" id="value-input" value="0">
 
-							<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
-							<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_materi_guru')">
-						</form>
-					</div>
-					<div class="box-footer">
-						Footer
-					</div>
-				</div>
-			</section>
+					<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
+					<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_materi_guru')">
+				</form>
+			</div>
+			<div class="box-footer">
+				Footer
+			</div>
 		</div>
+	</section>
+</div>
 		<script type="text/javascript">
 			$(document).ready(function () {
 				<?php

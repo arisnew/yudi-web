@@ -11,6 +11,7 @@ class Welcome extends CI_Controller {
 	public function index() {
 		$this->load->view('template-public/index');
 	}
+	
 	public function home() 
 	{
 		$this->load->view('template-public/index');
@@ -20,11 +21,11 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('template-public/about');
 	}
+
 	public function berita()
 	{
 		$this->load->view('template-public/berita');
 	}
-
 
 	public function Kontak()
 	{

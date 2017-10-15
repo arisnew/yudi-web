@@ -1,6 +1,6 @@
 <?php 
-	$table = ($this->session->userdata('_LEVEL') == 'Admin') ? 'user' : strtolower($this->session->userdata('_LEVEL'));
-	$key = ($table == 'user') ? 'username' : (($table == 'guru') ? 'nip' : 'nis');
+	$table = ($this->session->userdata('_LEVEL') == 'Admin') ? 'admin' : strtolower($this->session->userdata('_LEVEL'));
+	$key = ($table == 'admin') ? 'username' : (($table == 'guru') ? 'nip' : 'nis');
 	$me = $this->model->getRecord(array('table' => $table, 'where' => array($key => $this->session->userdata('_ID'))));
 	if ($me != null) { ?>
 		<div class="form-group">
