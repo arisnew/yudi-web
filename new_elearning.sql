@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 01 Okt 2017 pada 04.48
+-- Generation Time: 15 Okt 2017 pada 12.17
 -- Versi Server: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -19,6 +19,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `new_elearning`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `username` varchar(20) NOT NULL,
+  `nama` varchar(200) NOT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `level` enum('Admin') NOT NULL DEFAULT 'Admin',
+  `password` varchar(32) NOT NULL,
+  `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif',
+  `foto` varchar(255) NOT NULL DEFAULT 'default-user.png'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `admin`
+--
+
+INSERT INTO `admin` (`username`, `nama`, `email`, `level`, `password`, `status`, `foto`) VALUES
+('aris_p', 'Aris Priyanto', 'aris@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png'),
+('xxx', 'xxx', 'xxx', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png'),
+('yudi_sl', 'yudi', 'yudi@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png');
 
 -- --------------------------------------------------------
 
@@ -315,30 +340,6 @@ INSERT INTO `soal` (`id_soal`, `pertanyaan`, `opsi_a`, `opsi_b`, `opsi_c`, `opsi
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
---
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `username` varchar(20) NOT NULL,
-  `nama` varchar(200) NOT NULL,
-  `email` varchar(200) DEFAULT NULL,
-  `level` enum('Admin') NOT NULL DEFAULT 'Admin',
-  `password` varchar(32) NOT NULL,
-  `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif',
-  `foto` varchar(255) NOT NULL DEFAULT 'default-user.png'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `user`
---
-
-INSERT INTO `user` (`username`, `nama`, `email`, `level`, `password`, `status`, `foto`) VALUES
-('aris_p', 'Aris Priyanto', 'aris@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png'),
-('yudi_sl', 'yudi', 'yudi@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png');
-
--- --------------------------------------------------------
-
---
 -- Stand-in structure for view `v_jadwal`
 --
 CREATE TABLE IF NOT EXISTS `v_jadwal` (
@@ -456,6 +457,7 @@ CREATE TABLE IF NOT EXISTS `v_soal` (
 ,`opsi_d` text
 ,`jawaban` varchar(5)
 ,`id_materi` int(11)
+,`judul` varchar(255)
 ,`kode_mapel` varchar(20)
 ,`nama_mapel` varchar(200)
 ,`nip` varchar(20)
@@ -524,11 +526,17 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_soal`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_soal` AS select `so`.`id_soal` AS `id_soal`,`so`.`pertanyaan` AS `pertanyaan`,`so`.`opsi_a` AS `opsi_a`,`so`.`opsi_b` AS `opsi_b`,`so`.`opsi_c` AS `opsi_c`,`so`.`opsi_d` AS `opsi_d`,`so`.`jawaban` AS `jawaban`,`so`.`id_materi` AS `id_materi`,`j`.`kode_mapel` AS `kode_mapel`,`j`.`nama_mapel` AS `nama_mapel`,`so`.`nip` AS `nip`,`g`.`nama` AS `nama`,`so`.`tgl_posting` AS `tgl_posting`,`so`.`durasi` AS `durasi` from ((`soal` `so` left join `v_materi` `j` on((`so`.`id_materi` = `j`.`id_materi`))) left join `guru` `g` on((`so`.`nip` = `g`.`nip`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_soal` AS select `so`.`id_soal` AS `id_soal`,`so`.`pertanyaan` AS `pertanyaan`,`so`.`opsi_a` AS `opsi_a`,`so`.`opsi_b` AS `opsi_b`,`so`.`opsi_c` AS `opsi_c`,`so`.`opsi_d` AS `opsi_d`,`so`.`jawaban` AS `jawaban`,`so`.`id_materi` AS `id_materi`,`j`.`judul` AS `judul`,`j`.`kode_mapel` AS `kode_mapel`,`j`.`nama_mapel` AS `nama_mapel`,`so`.`nip` AS `nip`,`g`.`nama` AS `nama`,`so`.`tgl_posting` AS `tgl_posting`,`so`.`durasi` AS `durasi` from ((`soal` `so` left join `v_materi` `j` on((`so`.`id_materi` = `j`.`id_materi`))) left join `guru` `g` on((`so`.`nip` = `g`.`nip`)));
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+ ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `guru`
@@ -601,12 +609,6 @@ ALTER TABLE `siswa`
 --
 ALTER TABLE `soal`
  ADD PRIMARY KEY (`id_soal`), ADD KEY `nip` (`nip`), ADD KEY `id_materi` (`id_materi`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
- ADD PRIMARY KEY (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
