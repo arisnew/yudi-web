@@ -14,6 +14,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
                     <label for="guru-input" class="col-sm-1 control-label">Guru</label>
                     <div class="col-sm-3">
                         <select class="form-control" name="guru-input" id="guru-input">
+                            <option></option>
                             <?php
                             if ($data_guru) {
                                 foreach ($data_guru as $row) {
@@ -40,7 +41,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
                         <tr>
                             <th>Guru</th>
                             <th>Mata Pelajran</th>
-                            <th>Materi</th>
+                            <th>Judul Materi</th>
                             <th>Tanggal Posting</th>
                             <th>Publish</th>
                             <th>Pilihan</th>
@@ -57,44 +58,26 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
     $(document).ready(function () {
         getData();
 
-        $("#guru").on("change", function () {
-            refreshTable();
-        });
-
-        $("#mata_pelajaran").on("change", function () {
-            refreshTable();
-        });
-
-        $("#materi").on("change", function () {
-            refreshTable();
-        });
-
-        //jika dropdown guru atau mapel di ganti maka akan me-lookup materi
+        //jika dropdown guru atau mapel di ganti maka akan me-lookup soal
         $("#guru-input").on('change', function () {
             getMata_Pelajaran($("#guru-input").val());
             setTimeout(function () {
                 refreshTable();
-            }, 1000);
+            }, 500);
         });
 
         $("#mata_pelajaran-input").on('change', function () {
             getMateri($("#mata_pelajaran-input").val());    
             setTimeout(function () {
                 refreshTable();
-            }, 1000);
-        });
-
-        $("#guru-input").on('change', function () {
-            refreshTable();
-        });
-
-        $("#mata_pelajaran-input").on('change', function () {
-            refreshTable();
+            }, 500);
         });
 
         $("#materi-input").on('change', function () {
             refreshTable();
         });
+
+        getMata_Pelajaran($("#guru-input").val());
 
     });
 
@@ -106,7 +89,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
             type: 'POST',
             cache: false,
             success: function(html) {
-                $("#mata_pelajaran-input").html(html);
+                $("#mata_pelajaran-input").html(html).trigger("change");
             }
         });
     }
@@ -129,7 +112,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
             table = $('#tabel-materi').DataTable();
         } else {
             table = $('#tabel-materi').DataTable({
-                "ajax": base_url + 'objects/materi',
+                "ajax": base_url + 'objects/materi/nip__kode_mapel__id_materi/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val() + '__' + $("#materi-input").val(),
                 "columns": [
                 {"data": "nama"},
                 {"data": "nama_mapel"},
