@@ -30,13 +30,13 @@ if ($param != null) {
                 <div class="col-md-9">: <b><?php echo $soal->durasi;?></b></div>
                 <br>
                 <div class="col-md-12">
-                    <button class="btn btn-primary" id="teruskan" type="button" onclick="teruskan(); return false;" return false;"><i class="glyphicon glyphicon-log-in"></i> Kerjakan </button>
+                    <button class="btn btn-primary" id="kerjakan-btn" type="button" onclick="teruskan(); return false;"><i class="glyphicon glyphicon-log-in"></i> Kerjakan </button>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<section class="content">
+<section class="content" id="content-soal" style="display: none;">
 	<div class="box">
 		<div class="box-header with-border">
 			<h3 class="box-title"><?php echo $soal->nama_mapel;?></h3>
@@ -52,29 +52,31 @@ if ($param != null) {
 			</div>
 			<div class="mailbox-controls with-border text-center"></div>
 			<div class="mailbox-read-message">
-                <?php echo $soal->pertanyaan;?>
-                <label>
-                   <input type="radio" checked="" value="option1" id="opsi_a" name="opsi_a-input">
-                   <?php echo $soal->opsi_a;?>
-               </label>
-               <br>
-               <label>
-                   <input type="radio" checked="" value="option1" id="opsi_b" name="opsi_b-input">
-                   <?php echo $soal->opsi_b;?>
-               </label>
-               <br>
-               <label>
-                   <input type="radio" checked="" value="option1" id="opsi_c" name="opsi_c-input">
-                   <?php echo $soal->opsi_c;?>
-               </label>
-               <br>
-               <label>
-                   <input type="radio" checked="" value="option1" id="opsi_d" name="opsi_d-input">
-                   <?php echo $soal->opsi_d;?>
-               </label>
-           </div>
-           <div class="box-footer">
-           </div>
+              <?php echo $soal->pertanyaan;?>
+              <label>
+                 <input type="radio" value="option1" id="opsi_a" name="opsi_a-input">
+                 <?php echo $soal->opsi_a;?>
+             </label>
+             <br>
+             <label>
+                 <input type="radio" value="option1" id="opsi_b" name="opsi_b-input">
+                 <?php echo $soal->opsi_b;?>
+             </label>
+             <br>
+             <label>
+                 <input type="radio" value="option1" id="opsi_c" name="opsi_c-input">
+                 <?php echo $soal->opsi_c;?>
+             </label>
+             <br>
+             <label>
+                 <input type="radio" value="option1" id="opsi_d" name="opsi_d-input">
+                 <?php echo $soal->opsi_d;?>
+             </label>
+         </div>
+         <div class="box-footer">
+            <button id="sebelumnya-btn" class="btn btn-primary pull-left">Sebelumnya</button>
+            <button id="selanjutnya-btn" class="btn btn-primary pull-right">Selanjutnya</button>
+         </div>
        </div>
    </div>
 </section>
@@ -83,13 +85,15 @@ if ($param != null) {
     $(document).ready(function () {
         <?php
         if ($param) {
-            echo 'fillForm("'.$param.'");';
+            //echo 'fillForm("'.$param.'");';
         }
         ?>
     });
 
     function teruskan() {
-        document.get
-        
+        //document.get
+        $("#kerjakan-btn").hide();
+        $("#content-soal").show();
+
     }
 </script>

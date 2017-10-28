@@ -146,7 +146,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
     }
 
     function refreshTable() {
-        table.ajax.url(base_url + 'objects/soal/nip/' + $("#guru-input").val()).load();
+        table.ajax.url(base_url + 'objects/soal/nip__kode_mapel/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val()).load();
     }
 </script>
 
