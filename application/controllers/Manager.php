@@ -215,6 +215,6 @@ class Manager extends CI_Controller {
             }
         }
 
-        echo json_encode(array('code' => $code, 'msg' => $msg, 'last_id' => $id_tes))
+        echo json_encode(array('code' => $code, 'msg' => $msg, 'last_id' => $id_tes));
     }
 }
