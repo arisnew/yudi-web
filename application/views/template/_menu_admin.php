@@ -1,10 +1,10 @@
-<li class="active"><a href="<?php echo base_url();?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+<li class="active"><a href="<?php echo base_url('view/home');?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 <li class="treeview">
 	<a href="#">
 		<i class="fa fa-database"></i> <span>Data Master</span> <i class="fa fa-angle-left pull-right"></i>
 	</a>
 	<ul class="treeview-menu">
-		<li><a href="#" onclick="loadContent(base_url + 'view/_table_admin')"><i class="fa fa-user"></i> Admin</a></li>
+		<li><a href="#" onclick="loadContent(base_url + 'view/_table_user')"><i class="fa fa-user"></i> Admin</a></li>
 		<li><a href="#" onclick="loadContent(base_url + 'view/_table_guru')"><i class="fa fa-user-secret"></i> Guru</a></li>
 		<li><a href="#" onclick="loadContent(base_url + 'view/_table_siswa')"><i class="fa fa-users"></i> Siswa</a></li>
 		<li><a href="#" onclick="loadContent(base_url + 'view/_table_kelas')"><i class="fa fa-institution"></i> Kelas</a></li>

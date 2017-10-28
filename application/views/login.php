@@ -27,11 +27,20 @@
 <![endif]-->
 </head>
 <body>
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a class="navbar-brand" href="<?php echo base_url( 'welcome/index');?>"> SMK AL-FATHIMIYAH</a>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
     <div id="content">
         <div class="col-md-12" style="background-color:rgba(200,200,200,0.6); color: gray">
             <div class="container">
                 <h1>SELAMAT DATANG ... </h1>
-                <p>Selamat datang di website E-Learning SMK AL-FATHIMIYAH</p>
+                <p>DI WEBSITE E-LEARNING SMK AL-FATHIMIYAH</p>
             </div>
         </div>
         <div class="container">
@@ -55,7 +64,7 @@
                                         <select class="form-control" id="type-input" name="type-input">
                                             <option value="Siswa">Siswa</option>
                                             <option value="Guru">Guru</option>
-                                            <option value="Admin" selected="">Admin</option>
+                                            <option value="User" selected="">Admin</option>
                                         </select>
                                     </div>
                                     <input type="submit" value="Login" class="btn btn-lg btn-success btn-block" onclick="proses_login(); return false;">

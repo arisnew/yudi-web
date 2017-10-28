@@ -22,9 +22,9 @@ class Welcome extends CI_Controller {
 		$this->load->view('template-public/about');
 	}
 
-	public function berita()
+	public function galeri()
 	{
-		$this->load->view('template-public/berita');
+		$this->load->view('template-public/galeri');
 	}
 
 	public function Kontak()

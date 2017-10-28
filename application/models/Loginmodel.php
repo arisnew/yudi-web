@@ -5,7 +5,7 @@ class Loginmodel extends Model {
 
     public function __construct() {
         parent::__construct();
-        $this->table = 'admin';
+        $this->table = 'user';
         $this->isNew = false;
     }
 

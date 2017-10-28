@@ -41,8 +41,7 @@ if ($param != null) {
                     <div class="col-md-8">
                         <div class="konten-ujian">
                             <div class="blok-soal soal-1 active">
-                                <div class="box">
-                                    <div class="row">
+                                <div class="row">
                                         <div class="col-xs-1">
                                             <div class="nomor">nomer</div>
                                         </div>
@@ -88,10 +87,8 @@ if ($param != null) {
                                     </div>
                                 </div>
                                 <br>
-                                <div class="row">
-                                    <div class="col-md-3 col-md-offset-1"><a onclick="" class="btn btn-danger btn-block"> Kembali </a></div>  
-                                    <div class="col-md-3 col-md-offset-1"><a onclick="" class="btn btn-info btn-block"> Lanjutkan </a></div>
-                                </div>
+                                    <button class="btn btn-danger" id="kembali" type="button" onclick=" return false;"> Kembali </button>  
+                                    <button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
                             </div>
                         </div>
                     </div>
@@ -106,3 +103,93 @@ if ($param != null) {
             </div>
         </div>
     </section>
+<script type="text/javascript">
+            $(document).ready(function () {
+                <?php
+                if ($edit == true) {
+                    echo 'fillForm("'.$params[1].'");';
+                }
+                ?>
+                //untuk meredonlykan 
+                $("#teruskan").on("click",function () {
+                    $("#j-input").attr("readonly","");
+                    $("#tgl_posting-input").attr("readonly","");
+                    $("#durasi-input").attr("readonly","");
+                })
+
+            });
+
+            function clear_form() {
+                $("#opsi_a-input").val("");
+                $("#opsi_b-input").val("");
+                $("#opsi_c-input").val("");
+                $("#opsi_d-input").val("");
+                
+            }
+
+            function simpan_data() {
+                loading('loading', true);
+                CKupdate();
+                setTimeout(function() {
+                    $.ajax({
+                        url: base_url + 'manage',
+                        data: $("#form-soal").serialize(),
+                        dataType: 'json',
+                        type: 'POST',
+                        cache: false,
+                        success: function(json) {
+                            loading('loading',false);
+                            if (json['data'].code === 1) {
+                                alert('Penyimpanan data berhasil');
+                                //loadContent(base_url + 'view/_table_soal');
+                                if ($("#jumlah_pertanyaan-input").val() > 0) {
+                                    clear_form();
+                                    //dec
+                                    $("#jumlah_pertanyaan-input").val($("#jumlah_pertanyaan-input").val() - 1);
+                                    if ($("#jumlah_pertanyaan-input").val() == 0) {
+                                        loadContent(base_url + 'view/_table_soal_guru');
+                                    }
+                                } else {
+                                    loadContent(base_url + 'view/_table_soal_guru');
+                                }
+                            } else if(json['data'].code === 2){
+                                alert('Penyimpanan data tidak berhasil');
+                            } else{
+                                alert(json['data'].message);
+                            }
+                        },
+                        error: function () {
+                            loading('loading',false);
+                            alert('An error accurred');
+                        }
+                    });
+                }, 100);
+            }
+
+            function fillForm(x) {
+                $.ajax({
+                    url: base_url + 'object',
+                    data: 'model-input=soal&key-input=id_soal&value-input=' + x,
+                    dataType: 'json',
+                    type: 'POST',
+                    cache: false,
+                    success: function(json) {
+                        if (json['data'].code === 1) {
+                            $("#id_soal-input").val(json.data.object.id_soal).attr("readonly","");
+                            $("#pertanyaan-input").val(json.data.object.pertanyaan);
+                            $("#opsi_a-input").val(json.data.object.opsi_a);
+                            $("#opsi_b-input").val(json.data.object.opsi_b);
+                            $("#opsi_c-input").val(json.data.object.opsi_c);
+                            $("#opsi_d-input").val(json.data.object.opsi_d);
+                            $("#jawaban-input").val(json.data.object.jawaban);
+                            $("#id_materi").val(json.data.object.id_materi);
+                            $("#nip-input").val(json.data.object.nip);
+                            $("#durasi-input").val(json.data.object.durasi);
+                            $("#tgl_posting-input").val(json.data.object.tgl_posting);
+                            $("#action-input").val("2");
+                            $("#value-input").val(x);
+                        }
+                    }
+                });
+            }
+        </script>

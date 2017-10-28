@@ -11,8 +11,8 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 					<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
 				</div>
 			</div>
-
 			<div class="box box-body">
+			<div id="loading"></div>
 				<div class="row">
 					<div class="col-md-6">
 						<form id="form-siswa" class="form-horizontal">
@@ -84,10 +84,6 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 									<input class="form-control" name="no_telp-input" id="no_telp-input" placeholder="Nomer Telpon/HP" type="text">
 								</div>
 							</div>
-						</form>
-					</div>
-					<div class="col-md-6">
-						<form id="form-siswa" class="form-horizontal">
 							<div class="form-group">
 								<label for="username-input" class="col-sm-2 control-label">Username</label>
 								<div class="col-sm-10">

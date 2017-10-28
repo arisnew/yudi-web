@@ -106,7 +106,7 @@ class Retriever extends CI_Controller {
 	/*
 	* inner data generator
 	*/
-	private function _admin($records, $picker = 'no') {
+	private function _user($records, $picker = 'no') {
 		$data = array();
 
 		foreach ($records as $record) {

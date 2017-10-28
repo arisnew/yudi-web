@@ -1,9 +1,3 @@
-<!--
-Author: WebThemez
-Author URL: http://webthemez.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,42 +32,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav pull-right mainNav">
-                    <li class="active"><a href="<?php echo base_url('welcome/index');?>">Home</a></li>
-                    <li><a href="<?php echo base_url('welcome/about');?>">Tentang</a></li>
-                    <li><a href="<?php echo base_url('welcome/berita');?>">Berita Sekolah</a></li>
-                    <li><a href="<?php echo base_url('welcome/galeri');?>">Galeri Sekolah</a></li>
-                    <li><a href="<?php echo base_url('welcome/kontak');?>">Kontak</a></li>
-                    <li><a href="<?php echo base_url('view/home');?>">Masuk</a></li>
+                    <li><a href="<?php echo base_url('welcome/galeri');?>">GALERI</a></li>
+                    <li><a href="<?php echo base_url('welcome/about');?>">TENTANG</a></li>
+                    <li><a href="<?php echo base_url('view/home');?>">LOGIN</a></li>
 
                 </ul>
             </div>
             <!--/.nav-collapse -->
         </div>
     </div>
-    <!-- /.navbar -->
 
-    <!-- Header -->
-    <header id="head">
-        <div class="container">
-            <div class="fluid_container">
-                <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
-                    <div data-thumb="<?php echo base_url();?>asset/template-public/assets/images/slides/thumbs/smk1.jpg" data-src="<?php echo base_url();?>asset/template-public/assets/images/slides/smk1.jpg">
-                    </div> 
-                    <div data-thumb="<?php echo base_url();?>asset/template-public/assets/images/slides/thumbs/gedung.jpg" data-src="<?php echo base_url();?>asset/template-public/assets/images/slides/smk2.jpg">
-                    </div>
-                    <div data-thumb="<?php echo base_url();?>asset/template-public/assets/images/slides/thumbs/smk3.jpg" data-src="<?php echo base_url();?>asset/template-public/assets/images/slides/smk3.jpg">
-                    </div> 
-                </div>
-            </div><!-- #camera_wrap_3 -->
-        </div><!-- .fluid_container -->
-    </header>
-    <!-- /Header -->
     <section class="container">
         <div class="row">
-            <div class="section-heading">
-                <h2>SELAMAT DATANG DI E-LEARNING SMK AL-FATHIMIYAH</h2>
-                <p>Website ini di buat untuk membantu siswa dan siswi dalam mendapatkan materi pembelajaran produktif.</p>
-            </div>
+                <div class="section-heading">
+                    <h2>SELAMAT DATANG DI E-LEARNING SMK AL-FATHIMIYAH</h2>
+                    <p>Website ini di buat untuk membantu siswa dan siswi dalam mendapatkan materi pembelajaran produktif.</p>
+                </div>
         </div>
     </section>
     <section class="container">
