@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 15 Okt 2017 pada 12.17
+-- Generation Time: 28 Okt 2017 pada 04.58
 -- Versi Server: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -19,31 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `new_elearning`
 --
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `admin`
---
-
-CREATE TABLE IF NOT EXISTS `admin` (
-  `username` varchar(20) NOT NULL,
-  `nama` varchar(200) NOT NULL,
-  `email` varchar(200) DEFAULT NULL,
-  `level` enum('Admin') NOT NULL DEFAULT 'Admin',
-  `password` varchar(32) NOT NULL,
-  `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif',
-  `foto` varchar(255) NOT NULL DEFAULT 'default-user.png'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `admin`
---
-
-INSERT INTO `admin` (`username`, `nama`, `email`, `level`, `password`, `status`, `foto`) VALUES
-('aris_p', 'Aris Priyanto', 'aris@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png'),
-('xxx', 'xxx', 'xxx', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png'),
-('yudi_sl', 'yudi', 'yudi@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png');
 
 -- --------------------------------------------------------
 
@@ -74,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `guru` (
 --
 
 INSERT INTO `guru` (`nip`, `nama`, `alamat`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `no_telp`, `email`, `foto`, `status_pegawai`, `username`, `password`, `level`, `status`) VALUES
+('00000', 'xxx', 'xxx', 'xxx', '2017-10-01', 'Laki-laki', 'Islam', '888888', 'xxx', '', 'Tetap', 'xxx', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif'),
 ('0001', 'Bayu Priatna', 'karawang', 'Karawang', '1986-05-01', 'Laki-laki', 'Islam', '12345678', 'bayu.p@gmail.com', 'Bebek_Petelur3.jpg', 'Tetap', 'bayu_p', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif'),
 ('0002', 'Yuni Sulastri', 'Karawang', 'Karawang', '1991-08-01', 'Perempuan', 'Islam', '12345678', 'yuni.s@gmail.com', '12265868_762473120545849_109936360050780045_o1.jpg', 'Tetap', 'yuni_s', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif'),
 ('0003', 'Agus Badrusalam', 'Karawang', 'Karawang', '1991-08-01', 'Laki-laki', 'Islam', '2222222', 'agus@gmail.com', '', 'Tetap', 'agus_b', '202cb962ac59075b964b07152d234b70', 'Guru', 'Aktif');
@@ -93,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `jadwal` (
   `hari` int(1) NOT NULL,
   `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif',
   `jam` varchar(15) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Dumping data untuk tabel `jadwal`
@@ -104,7 +80,8 @@ INSERT INTO `jadwal` (`id_jadwal`, `kode_mapel`, `nip`, `kode_kelas`, `kode_juru
 (27, '2', '0002', '1', '1', 1, 'Aktif', '2'),
 (28, '4', '0001', '1', '1', 3, 'Aktif', '3'),
 (29, '3', '0002', '1', '1', 4, 'Aktif', '5'),
-(30, '2', '0003', '1', '1', 5, 'Aktif', '4');
+(30, '2', '0003', '1', '1', 5, 'Aktif', '4'),
+(31, '4', '0003', '1', '1', 3, 'Aktif', '3');
 
 -- --------------------------------------------------------
 
@@ -227,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `materi` (
   `nip` varchar(20) NOT NULL,
   `tgl_posting` datetime NOT NULL,
   `publish` enum('Ya','Tidak') NOT NULL DEFAULT 'Tidak'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
 
 --
 -- Dumping data untuk tabel `materi`
@@ -238,7 +215,8 @@ INSERT INTO `materi` (`id_materi`, `id_jadwal`, `judul`, `isi`, `nip`, `tgl_post
 (46, 26, 'TES 2 BAYU', '<p>TES 2 BAYU</p>\r\n', '0001', '2017-08-20 17:24:59', 'Ya'),
 (47, 27, 'TES 3 YUNI', '<p>TES 3 YUNI</p>\r\n', '0002', '2017-08-20 17:25:30', 'Ya'),
 (48, 29, 'TES 4 YUNI', '<p>TES 4 YUNI</p>\r\n', '0002', '2017-08-20 17:26:04', 'Ya'),
-(49, 30, 'ABCD', '<p>ABCD</p>\r\n', '0003', '2017-09-08 17:03:57', 'Ya');
+(49, 30, 'ABCD', '<p>ABCD</p>\r\n', '0003', '2017-09-08 17:03:57', 'Ya'),
+(50, 31, 'Perakitan dan Perawatan PC', '<p>Perakitan dan Perawatan PC</p>\r\n', '0003', '2017-10-23 09:05:30', 'Ya');
 
 -- --------------------------------------------------------
 
@@ -303,6 +281,7 @@ CREATE TABLE IF NOT EXISTS `siswa` (
 --
 
 INSERT INTO `siswa` (`nis`, `nama`, `alamat`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `thn_masuk`, `email`, `no_telp`, `foto`, `username`, `password`, `level`, `kelas`, `jurusan`, `status`) VALUES
+(12000, 'xxx', 'xxx', 'xxx', '2017-10-01', 'Laki-laki', 'Islam', 2012, 'xxx', '0000', '', 'zzz', '202cb962ac59075b964b07152d234b70', 'Siswa', '1', '1', 'Aktif'),
 (12001, 'Yayan Suhendar', 'Karawang', 'Karawang', '1991-05-01', 'Laki-laki', 'Islam', 2014, 'yayan@gmail.com', '12345678', '18237979_1867937873231872_2443356029093134493_o1.jpg', 'yayan_s', '202cb962ac59075b964b07152d234b70', 'Siswa', '1', '1', 'Aktif'),
 (12002, 'Gunawan', 'Karawang', 'Karawang', '1990-06-01', 'Laki-laki', 'Islam', 2014, 'gunawan@gmail.com', '12345678', '11696446_10205841904420948_269840450207694746_o1.jpg', 'gunawan', '202cb962ac59075b964b07152d234b70', 'Siswa', '1', '1', 'Aktif'),
 (12003, 'Tapri Andi', 'Karawang', 'Karawang', '1991-04-01', 'Laki-laki', 'Islam', 2014, 'tapri_andi@gmail.com', '12345678', '', 'tapri', '202cb962ac59075b964b07152d234b70', 'Siswa', '1', '1', 'Aktif');
@@ -325,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `soal` (
   `nip` varchar(20) NOT NULL,
   `tgl_posting` datetime NOT NULL,
   `durasi` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data untuk tabel `soal`
@@ -335,7 +314,61 @@ INSERT INTO `soal` (`id_soal`, `pertanyaan`, `opsi_a`, `opsi_b`, `opsi_c`, `opsi
 (1, '<p>TES 1</p>\r\n', 'TES', 'TES', 'TES', 'TES', 'B', 47, '0002', '2017-08-27 23:17:06', 60),
 (2, '<p>ABCD</p>\r\n', 'A', 'B', 'C', 'D', 'A', 45, '0001', '2017-09-30 16:15:53', NULL),
 (3, '<p>abcd</p>\r\n', 'a', 'b', 'c', 'd', 'B', 45, '0001', '2017-09-30 16:16:25', NULL),
-(4, '<p>qwerty</p>\r\n', 'q', 'w', 'e', 'r', 'C', 45, '0001', '2017-09-30 16:16:48', NULL);
+(4, '<p>qwerty</p>\r\n', 'q', 'w', 'e', 'r', 'C', 45, '0001', '2017-09-30 16:16:48', NULL),
+(7, '<p>Perakitan dan Perawatan PC</p>\r\n', 'Perakitan dan Perawatan PC', 'Perakitan dan Perawatan PC', 'Perakitan dan Perawatan PC', 'Perakitan dan Perawatan PC', 'D', 50, '0003', '2017-10-24 09:09:25', NULL),
+(8, '<p>Perakitan dan Perawatan PC</p>\r\n', 'a', 'b', 'c', 'd', 'B', 47, '0002', '2017-10-23 09:12:56', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tes`
+--
+
+CREATE TABLE IF NOT EXISTS `tes` (
+`id_tes` int(11) NOT NULL,
+  `nis` int(11) NOT NULL,
+  `id_materi` int(11) NOT NULL,
+  `tgl_tes` date NOT NULL,
+  `status_tes` enum('Selesai','Belum') NOT NULL DEFAULT 'Belum'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tes_jawaban`
+--
+
+CREATE TABLE IF NOT EXISTS `tes_jawaban` (
+`id_jawaban` int(11) NOT NULL,
+  `id_tes` int(11) NOT NULL,
+  `id_soal` int(11) NOT NULL,
+  `jawaban` varchar(5) NOT NULL,
+  `status_jawaban` enum('Benar','Salah','Belum') NOT NULL DEFAULT 'Belum'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `username` varchar(20) NOT NULL,
+  `nama` varchar(200) NOT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `level` enum('Admin') NOT NULL DEFAULT 'Admin',
+  `password` varchar(32) NOT NULL,
+  `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif',
+  `foto` varchar(255) NOT NULL DEFAULT 'default-user.png'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`username`, `nama`, `email`, `level`, `password`, `status`, `foto`) VALUES
+('aris_p', 'Aris Priyanto', 'aris@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png'),
+('yudi_sl', 'yudi', 'yudi@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png');
 
 -- --------------------------------------------------------
 
@@ -533,12 +566,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 
 --
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
- ADD PRIMARY KEY (`username`);
-
---
 -- Indexes for table `guru`
 --
 ALTER TABLE `guru`
@@ -611,6 +638,24 @@ ALTER TABLE `soal`
  ADD PRIMARY KEY (`id_soal`), ADD KEY `nip` (`nip`), ADD KEY `id_materi` (`id_materi`);
 
 --
+-- Indexes for table `tes`
+--
+ALTER TABLE `tes`
+ ADD PRIMARY KEY (`id_tes`), ADD KEY `nis` (`nis`), ADD KEY `id_materi` (`id_materi`);
+
+--
+-- Indexes for table `tes_jawaban`
+--
+ALTER TABLE `tes_jawaban`
+ ADD PRIMARY KEY (`id_jawaban`), ADD KEY `id_tes` (`id_tes`), ADD KEY `id_soal` (`id_soal`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`username`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -618,7 +663,7 @@ ALTER TABLE `soal`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `komentar`
 --
@@ -633,7 +678,7 @@ MODIFY `id_lampiran` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `materi`
 --
 ALTER TABLE `materi`
-MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
+MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `nilai_ujian`
 --
@@ -648,7 +693,17 @@ MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `tes`
+--
+ALTER TABLE `tes`
+MODIFY `id_tes` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tes_jawaban`
+--
+ALTER TABLE `tes_jawaban`
+MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
@@ -701,6 +756,20 @@ ADD CONSTRAINT `siswa_ibfk_2` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`kode_ke
 ALTER TABLE `soal`
 ADD CONSTRAINT `soal_ibfk_1` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE,
 ADD CONSTRAINT `soal_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `guru` (`nip`) ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tes`
+--
+ALTER TABLE `tes`
+ADD CONSTRAINT `tes_ibfk_1` FOREIGN KEY (`nis`) REFERENCES `siswa` (`nis`) ON UPDATE CASCADE,
+ADD CONSTRAINT `tes_ibfk_2` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tes_jawaban`
+--
+ALTER TABLE `tes_jawaban`
+ADD CONSTRAINT `tes_jawaban_ibfk_1` FOREIGN KEY (`id_soal`) REFERENCES `soal` (`id_soal`) ON UPDATE CASCADE,
+ADD CONSTRAINT `tes_jawaban_ibfk_2` FOREIGN KEY (`id_tes`) REFERENCES `tes` (`id_tes`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
