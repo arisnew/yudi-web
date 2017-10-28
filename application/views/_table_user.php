@@ -1,15 +1,15 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Data Admin</h3>
+            <h3 class="box-title">Data User</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
         </div>
         <div class="box-body">
             <div id="loading"></div>
-            <a href="#" onclick="loadContent(base_url + 'view/_form_admin');" class="btn btn-success pull-right">Tambah Administrator</a>
-            <table id="tabel-admin" class="table table-bordered">
+            <a href="#" onclick="loadContent(base_url + 'view/_form_user');" class="btn btn-success pull-right">Tambah Administrator</a>
+            <table id="tabel-user" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Username</th>
@@ -31,11 +31,11 @@
     });
 
     function getData() {
-        if ($.fn.dataTable.isDataTable('#tabel-admin')) {
-            table = $('#tabel-admin').DataTable();
+        if ($.fn.dataTable.isDataTable('#tabel-user')) {
+            table = $('#tabel-user').DataTable();
         } else {
-            table = $('#tabel-admin').DataTable({
-                "ajax": base_url + 'objects/admin',
+            table = $('#tabel-user').DataTable({
+                "ajax": base_url + 'objects/user',
                 "columns": [
                 {"data": "username"},
                 {"data": "nama"},
@@ -54,11 +54,11 @@
     }
 
     function utils() {
-        $("#tabel-admin .editBtn").on("click",function(){
-            loadContent(base_url + 'view/_form_admin/' + $(this).attr('href').substring(1));
+        $("#tabel-user .editBtn").on("click",function(){
+            loadContent(base_url + 'view/_form_user/' + $(this).attr('href').substring(1));
         });
 
-        $("#tabel-admin .removeBtn").on("click",function(){
+        $("#tabel-user .removeBtn").on("click",function(){
             konfirmasiHapus($(this).attr('href').substring(1));
         });
     }
@@ -69,7 +69,7 @@
             setTimeout(function() {
                 $.ajax({
                     url: base_url + 'manage',
-                    data: 'model-input=admin&key-input=username&action-input=3&value-input=' + x,
+                    data: 'model-input=user&key-input=username&action-input=3&value-input=' + x,
                     dataType: 'json',
                     type: 'POST',
                     cache: false,
@@ -77,7 +77,7 @@
                         loading('loading',false);
                         if (json['data'].code === 1) {
                             alert('Hapus Data Berhasil');
-                            loadContent(base_url + "view/_table_admin");
+                            loadContent(base_url + "view/_table_user");
                         } else if(json['data'].code === 2){
                             alert('Hapus Data Tidak Berhasil!');
                         } else{

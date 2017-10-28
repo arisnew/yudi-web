@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Adminmodel extends Model {
+class Usermodel extends Model {
 
     public function __construct() {
         parent::__construct();
-        $this->table = 'admin';  //choose table
+        $this->table = 'user';  //choose table
         $this->isNew = false;
     }
 

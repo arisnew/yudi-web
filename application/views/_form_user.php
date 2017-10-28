@@ -10,7 +10,7 @@
 			<div class="box box-body">
 				<div class="row">
 					<div class="col-md-6">
-						<form id="form-admin" class="form-horizontal">
+						<form id="form-user" class="form-horizontal">
 							<div class="form-group">
 								<label for="username-input" class="col-sm-2 control-label">Username</label>
 								<div class="col-sm-10">
@@ -50,7 +50,7 @@
 								<label>Foto</label>
 								<input type="file" name="file_upload" id="file_upload" class="image" >
 							</div>
-							<input type="hidden" name="model-input" id="model-input" value="admin">
+							<input type="hidden" name="model-input" id="model-input" value="user">
 							<input type="hidden" name="action-input" id="action-input" value="1">
 							<input type="hidden" name="key-input" id="key-input" value="username">
 							<input type="hidden" name="value-input" id="value-input" value="0">
@@ -92,16 +92,16 @@
 			            uploadExtraData: function() {
 			            	return {
 			            		nama_field:'file_upload',
-			            		model:'admin',
+			            		model:'user',
 			            		key: 'username',
-			            		value:$("#form-admin #username-input").val()
+			            		value:$("#form-user #username-input").val()
 			            	};
 			            }
 			        });
 
 			        //refresh if succes upload...
 			        $('#file_upload').on('filebatchuploadcomplete', function(event, files, extra) {
-			        	loadContent(base_url + "view/_form_admin/" + $("#username-input").val());
+			        	loadContent(base_url + "view/_form_user/" + $("#username-input").val());
 			        });
 			    });
 
@@ -111,7 +111,7 @@
 		setTimeout(function() {
 			$.ajax({
 				url: base_url + 'manage',
-				data: $("#form-admin").serialize(),
+				data: $("#form-user").serialize(),
 				dataType: 'json',
 				type: 'POST',
 				cache: false,
@@ -119,7 +119,7 @@
 					loading('loading',false);
 					if (json['data'].code === 1) {
 						alert('Penyimpanan Data Berhasil');
-						loadContent(base_url + 'view/_table_admin');
+						loadContent(base_url + 'view/_table_user');
 					} else if(json['data'].code === 2){
 						alert('Penyimpanan Data Tidak Berhasil');
 					} else{
@@ -137,7 +137,7 @@
 	function fillForm(x) {
 		$.ajax({
 			url: base_url + 'object',
-			data: 'model-input=admin&key-input=username&value-input=' + x,
+			data: 'model-input=user&key-input=username&value-input=' + x,
 			dataType: 'json',
 			type: 'POST',
 			cache: false,
