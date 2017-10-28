@@ -161,4 +161,60 @@ class Manager extends CI_Controller {
         );
         return $model->action($query); // do...
     }
+
+    public function generate_test($id_materi, $nis)
+    {
+        $id_tes = null;
+        $msg = '';
+        $code = 0;
+        /*
+        arti code:
+        0 = tidak valid id_materi/nis
+        1 = generate sukses
+        2 = data sudah ada
+        */
+        if ($id_materi && $nis) {
+            //exist?
+            $cek = $this->model->getRecord(array('table' => 'tes', 'where' => array('id_materi' => $id_materi, 'nis' => $nis)));
+            if ($cek) {
+                $msg = 'Sudah mengerjakan test.';
+                $code = 2;
+            } else {
+                //data soal by materi
+                $soal = $this->model->getList(array('table' => 'soal', 'where' => array('id_materi' => $id_materi)));
+                if ($soal) {
+                    //simpan ke tes
+                    $data_tes = array(
+                        'nis' => $nis,
+                        'id_materi' => $id_materi,
+                        'tgl_tes' => date('Y-m-d'),
+                        'status_tes' => 'Belum'
+                        );
+                    $simpan_tes = $this->db->insert('tes', $data_tes);
+                    //jika simpan berhasil
+                    if ($simpan_tes) {
+                        //id test
+                        $id_tes = $this->db->insert_id();
+                        foreach ($soal as $row) {
+                            //setiap soal simpan ke tes_jawaban
+                            $data_jawaban = array(
+                                'id_tes' => $id_tes,
+                                'id_soal' => $row->id_soal,
+                                'jawaban' => '',
+                                'status_jawaban' => 'Belum'
+                                );
+                            //do save
+                            $this->db->insert('tes_jawaban', $data_jawaban);
+                        }
+
+                        $msg = 'Lanjut test-nya';
+                        $code = 1;
+
+                    }
+                }
+            }
+        }
+
+        echo json_encode(array('code' => $code, 'msg' => $msg, 'last_id' => $id_tes))
+    }
 }
