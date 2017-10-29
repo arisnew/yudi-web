@@ -35,8 +35,8 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
                         <tr>
                             <th>Guru</th>
                             <th>Materi</th>
-                            <th>Tanggal Posting</th>
-                            <th>Durasi</th>
+                            <th>Matpel</th>
+                            <th>Tanggal</th>
                             <th>Pilihan</th>
                         </tr>
                     </thead>
@@ -84,14 +84,13 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
             table = $('#tabel-soal').DataTable();
         } else {
             table = $('#tabel-soal').DataTable({
-                "ajax": base_url + 'objects/soal/nip__kode_mapel/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val(),
+                "ajax": base_url + 'objects/materi/nip__kode_mapel/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val(),
                 "columns": [
-                {"data": "nama"},
-                {"data": "judul"},
-                {"data": "tgl_posting"},
-                {"data": "durasi"},
-                {"data": "aksi"}
-
+                    {"data": "nama"},
+                    {"data": "judul"},
+                    {"data": "nama_mapel"},
+                    {"data": "tgl_posting"},
+                    {"data": "aksi"}
                 ],
                 "ordering": true,
                 "deferRender": true,
@@ -104,17 +103,16 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
     }
 
     function utils() {
-
         $("#tabel-soal .readBtn").on("click",function(){
-            loadContent(base_url + 'view/_view_soal/' + $(this).attr('href').substring(1));
+            /*loadContent(base_url + 'view/_view_soal/' + $(this).attr('href').substring(1));*/
+            cek_test($(this).attr('href').substring(1));
         });
 
         $("#tabel-soal .editBtn").hide();
         $("#tabel-soal .removeBtn").hide();
         $("#tabel-soal .writeBtn").hide();
-
-
     }
+
     function konfirmasiHapus(x){
         if(confirm("Yakin Hapus Data???")){
             loading('loading', true);
@@ -146,7 +144,34 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
     }
 
     function refreshTable() {
-        table.ajax.url(base_url + 'objects/soal/nip__kode_mapel/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val()).load();
+        table.ajax.url(base_url + 'objects/materi/nip__kode_mapel/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val()).load();
+    }
+
+    function cek_test(IDmateri) {
+        $.ajax({
+            url: base_url + 'generate_soal/'+IDmateri+'/<?php echo $this->session->userdata("_ID");?>',
+            data: 'id=0',
+            dataType: 'json',
+            type: 'POST',
+            cache: false,
+            success: function(json) {
+                if (json.code === 1) {
+                    alert(json.msg);
+                    //do test
+                    loadContent(base_url + 'view/_view_soal/' + json.last_id);
+                } else if(json.code === 2){
+                    alert(json.msg);
+                    //sudah test sebelumnya
+                    loadContent(base_url + 'view/_view_soal/' + json.last_id);
+                } else{
+                    alert(json.msg);
+                    //tidak valid
+                }
+            },
+            error: function () {
+                alert('An error accurred');
+            }
+        });
     }
 </script>
 

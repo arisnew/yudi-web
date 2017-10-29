@@ -179,6 +179,7 @@ class Manager extends CI_Controller {
             if ($cek) {
                 $msg = 'Sudah mengerjakan test.';
                 $code = 2;
+                $id_tes = $cek->id_tes;
             } else {
                 //data soal by materi
                 $soal = $this->model->getList(array('table' => 'soal', 'where' => array('id_materi' => $id_materi)));
