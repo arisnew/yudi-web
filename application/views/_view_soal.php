@@ -37,14 +37,11 @@ if ($tes) {
                     <div class="col-xs-3">Waktu Mengerjakan</div>
                     <div class="col-xs-9">: <b><?php echo $tes->total_durasi;?></b></div>
                     <br>
-                    <div class="col-xs-12">
-                        <button class="btn btn-primary" id="kerjakan-btn" type="button" onclick="teruskan(); return false;"><i class="glyphicon glyphicon-log-in"></i> Kerjakan </button>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="content" id="content-soal" style="display: none;">
+    <section class="content" id="content-soal">
         <div class="box">
             <div class="box-header with-border">
                 <div class="box-tools pull-right">
@@ -57,51 +54,57 @@ if ($tes) {
                     
                 </div>
                 <?php
-                $soals = $this->model->getList(array('table' => 'v_tes_jawaban', 'where' => array(
-                    'id_tes' => $param
-                    )));
+                $urutan = array();
+                $soals = $this->model->getListByQuery(" SELECT * FROM v_tes_jawaban where id_tes = $param ORDER BY id_jawaban ASC");
                 if ($soals) {
                     foreach ($soals as $soal) {
+                        $urutan[] = $soal->id_jawaban;
+                    }
+                    ?>
+                    <script type='text/javascript'>
+                        <?php
+                        $js_array = json_encode($urutan);
+                        echo "var urutan = ". $js_array . ";\n";
                         ?>
-                        <div class="mailbox-read-message">
+                    </script>
+                    <?php
+                }
+                ?>
+                    <div class="mailbox-read-message">
+                        <form id="form-test">
+                            <input type="hidden" name="id-jawaban" id="id-jawaban" value="">
                             <div id="pertanyaan">
-                                <?php echo $soal->pertanyaan;?>
                             </div>
                             <label>
                                 <input type="radio" value="A" id="opsi-input" name="opsi-input">
                                 <span id="jawaban-a">
-                                    <?php echo $soal->opsi_a;?>
                                 </span>
                             </label>
                             <br>
                             <label>
                                 <input type="radio" value="B" id="opsi-input" name="opsi-input">
                                 <span id="jawaban-b">
-                                    <?php echo $soal->opsi_b;?>
                                 </span>
                             </label>
                             <br>
                             <label>
                                 <input type="radio" value="C" id="opsi-input" name="opsi-input">
                                 <span id="jawaban-c">
-                                    <?php echo $soal->opsi_c;?>
                                 </span>
                             </label>
                             <br>
                             <label>
                                 <input type="radio" value="D" id="opsi-input" name="opsi-input">
                                 <span id="jawaban-d">
-                                    <?php echo $soal->opsi_d;?>
                                 </span>
                             </label>
-                        </div>
-                        <?php
-                    }
-                }
-                ?>
+                        </form>
+                    </div>
                 <div class="box-footer">
-                    <button id="sebelumnya-btn" class="btn btn-danger pull-left">Sebelumnya</button>
-                    <button id="selanjutnya-btn" class="btn btn-primary pull-right">Selanjutnya</button>
+                    <input type="hidden" name="id-prev" id="id-prev" value="">
+                    <input type="hidden" name="id-next" id="id-next" value="">
+                    <button id="sebelumnya-btn" class="btn btn-danger pull-left" onclick="doPrev($('#id-prev').val()); return false;">Sebelumnya</button>
+                    <button id="selanjutnya-btn" class="btn btn-primary pull-right" onclick="doNext($('#id-next').val()); return false;">Selanjutnya</button>
                 </div>
             </div>
         </div>
@@ -112,92 +115,60 @@ if ($tes) {
 ?>
 <script type="text/javascript">
     $(document).ready(function () {
+        loadSoal(urutan[0]);
         <?php
         if ($param) {
             //echo 'fillForm("'.$param.'");';
         }
         ?>
-
-                    var current = 1;
-                    widget      = $(".step");
-                    btnselanjutnya     = $(".next");
-                    btnkembali     = $(".back"); 
-                    btnsimpan   = $(".submit");
-
-                    widget.not(':eq(0)').hide();
-                    hideButtons(current);
-
-                    btnselanjutnya.click(function(){
-                        if(current < widget.length){
-                            widget.show();
-                            widget.not(':eq('+(current++)+')').hide();
-
-                            simpan(<?php echo $detiltes->id_tes; ?>);
-                        }
-                        hideButtons(current);
-                    })
-
-                    btnkembali.click(function(){
-                        if(current > 1){
-                            current = current - 2;
-                            if(current < widget.length){
-                                widget.show();
-                                widget.not(':eq('+(current++)+')').hide();
-                            }
-                            hideButtons(current);
-                        }
-                        hideButtons(current);
-                    })  
-
-                    btnsimpan.click(function() {
-                        simpan_akhir(<?php echo $detiltes->id_tes; ?>);
-                    });
     });
 
-    function teruskan() {
+    function loadSoal(n) {
         $.ajax({
-            url: base_url + 'generate_soal/<?php echo $param;?>/<?php echo $siswa->nis;?>',
-            data: 'id=0',
+            url: base_url + 'object',
+            data: 'model-input=v_tes_jawaban&key-input=id_jawaban&action-input=1&value-input=' + n,
             dataType: 'json',
             type: 'POST',
             cache: false,
             success: function(json) {
-                if (json.code === 1) {
-                    alert(json.msg + json.last_id);
+                if (json.data.code === 1) {
+                    //isi kedalam form
+                    $("#id-jawaban").val(json.data.object.id_jawaban);
+                    $("#pertanyaan").html(json.data.object.pertanyaan);
+                    $("#jawaban-a").html(json.data.object.opsi_a);
+                    $("#jawaban-b").html(json.data.object.opsi_b);
+                    $("#jawaban-c").html(json.data.object.opsi_c);
+                    $("#jawaban-d").html(json.data.object.opsi_d);
+                    //next & prev?
+
                     //do test
-                } else if(json.code === 2){
-                    alert(json.msg);
-                    //sudah test sebelumnya
                 } else{
-                    alert(json.msg);
-                    //tidak valid
+                    $("#id-jawaban").val("");
+                    $("#pertanyaan").html("");
+                    $("#jawaban-a").html("");
+                    $("#jawaban-b").html("");
+                    $("#jawaban-c").html("");
+                    $("#jawaban-d").html("");
                 }
             },
             error: function () {
                 alert('An error accurred');
             }
         });
-
-        //document.get
-        $("#kerjakan-btn").hide();
-        $("#content-soal").show();
-
     }
 
+    function doNext(idNext) {
+        //change id next & rev
 
+        //load jawaban ke idNext
+        loadSoal(idNext);
+    }
 
-    function selanjutnya() {
-        $.ajax({
-            url: base_url + 'generate_soal/<?php echo $param;?>/<?php echo $siswa->nis;?>',
-            data: 'id=0',
-            dataType: 'json',
-            type: 'POST',
-            cache: false,
-            .done(function(response) {
-         
-        });
-        return false;
-        };
+    function doPrev(idPrev) {
+        //change id next & rev
+
+        //load jawaban ke idPrev
+        loadSoal(idPrev);
     }
 
 </script>

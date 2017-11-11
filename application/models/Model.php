@@ -134,4 +134,14 @@ class Model extends CI_Model {
         return $this->table;
     }
 
+    public function getListByQuery($query = null)
+    {
+        $sql = $this->db->query($query);
+        if ($sql->num_rows() > 0) {
+            return $sql->result();
+        } else {
+            return null;
+        }
+    }
+
 }
