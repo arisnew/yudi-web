@@ -35,10 +35,8 @@
                     <li><a href="<?php echo base_url('welcome/galeri');?>">GALERI</a></li>
                     <li><a href="<?php echo base_url('welcome/about');?>">TENTANG</a></li>
                     <li><a href="<?php echo base_url('view/home');?>">LOGIN</a></li>
-
                 </ul>
             </div>
-            <!--/.nav-collapse -->
         </div>
     </div>
         <header id="head">
@@ -52,8 +50,8 @@
                     <div data-thumb="<?php echo base_url();?>asset/template-public/assets/images/slides/thumbs/smk3.jpg" data-src="<?php echo base_url();?>asset/template-public/assets/images/slides/smk3.jpg">
                     </div> 
                 </div>
-            </div><!-- #camera_wrap_3 -->
-        </div><!-- .fluid_container -->
+            </div>
+        </div>
     </header>
 <footer id="footer">
     <div class="container">
@@ -66,7 +64,6 @@
             <a href="http://mobile.alfathimiyah.com/"><i class="fa fa-mobile"></i></a>
         </div>
         <div class="clear"></div>
-        <!--CLEAR FLOATS-->
     </div>
     <div class="footer2">
         <div class="container">
@@ -86,7 +83,6 @@
                     </div>
                 </div>
             </div>
-            <!-- /row of panels -->
         </div>
     </div>
 </footer>

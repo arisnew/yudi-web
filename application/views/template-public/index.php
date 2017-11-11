@@ -35,13 +35,10 @@
                     <li><a href="<?php echo base_url('welcome/galeri');?>">GALERI</a></li>
                     <li><a href="<?php echo base_url('welcome/about');?>">TENTANG</a></li>
                     <li><a href="<?php echo base_url('view/home');?>">LOGIN</a></li>
-
                 </ul>
             </div>
-            <!--/.nav-collapse -->
         </div>
     </div>
-
     <section class="container">
         <div class="row">
                 <div class="section-heading">
@@ -50,41 +47,13 @@
                 </div>
         </div>
     </section>
-    <section class="container">
-        <div class="container content-sm">
-            <div class="row">
-                <div class="col-md-6 md-margin-bottom-10">
-                    <img class="img-responsive" src="<?php echo base_url();?>asset/template-public/assets/images/smk.jpg" alt="">
-                </div>
-                <div class="col-md-6">
-                    <br><br><br>
-                    <div class="headline-left margin-bottom-30 margin-top-0">
-                        <h2 class="headline-brd">VISI</h2>
-                        <p>Menjadi Pusat Diklat Sertifikasi (Centre of Training and Certification) yang unggul dalam mewujudkan lulusan yang beriman kepada Allah SWT, berilmu, beramal, jujur dan benar, profesional, adaptabel, dan responsif.</p>
-                    </div>
-                    <div class="headline-left margin-bottom-30">
-                        <h2 class="headline-brd">MISI</h2>
-                    </div>
-                    <ul class="list-unstyled lists-v2 margin-bottom-30">
-                        <li><i class="fa fa-check"></i> Mengembangkan Keunggulan melalui Ketelatenan dan Kebersihan dengan mengedepankan Kemandirian dan Kreatifitas serta menumbuhkan rasa Kejujuran dan Kepedulian terhadap sesama dan lingkungan.</li>
-                        <li><i class="fa fa-check"></i> Menjalin kerjasama dengan perusahaan-perusaan yang ada di kabupaten Karawang khususnya dengan memperhatikan aturan-aturan secara Islami.</li>
-                        <li><i class="fa fa-check"></i> Meningkatkan dan mengembangkan ekstrakurikuler dalam bidang pelatihan keterampilan baik yang ada kaitannya dengan bidang program keahlian, keilmuaan kesiswaan maupun yang ada kaitannya dengan pembinaan mental, akhlak Islami.</li>
-                        <li><i class="fa fa-check"></i> Meningkatkan pemahaman warga sekolah pelaksanaan kurikulum SMK KTSP.</li>
-                        <li><i class="fa fa-check"></i> Meningkatkan kompetensi guru sesuai dengan bidang tugasnya.</li>
-                        <li><i class="fa fa-check"></i> Meningkatkan sekolah dengan sarana yang memadai.</li>
-                    </ul>
-                </div><!--/end row-->
-                <br>
-                <h2 class="headline-brd">Tujuan</h2>
-            </div>
-            <ul class="list-unstyled lists-v2 margin-bottom-30">
-                <li><i class="fa fa-check"></i> Menyiapkan tamatan menjadi warga Negara yang berakhlak baik, sehat jasmani dan rohani, produktif dan kreatif serta mengembangkan sikap profesional.</li>
-                <li><i class="fa fa-check"></i> Menyiapkan tamatan menjadi tenaga kerja tingkat menengah di dunia kerja.</li>
-                <li><i class="fa fa-check"></i> Menyiapkan tamatan mampu membuka usaha sendiri.</li>
-                <li><i class="fa fa-check"></i> Menyiapkan tuntutan dapat melanjutkan kejenjang pendidikan ke tingkat yang lebih tinggi.</li>
-            </ul>
-        </div><!--/end row-->
-</section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 <footer id="footer">
     <div class="container">
         <div class="social text-center">
@@ -96,7 +65,6 @@
             <a href="http://mobile.alfathimiyah.com/"><i class="fa fa-mobile"></i></a>
         </div>
         <div class="clear"></div>
-        <!--CLEAR FLOATS-->
     </div>
     <div class="footer2">
         <div class="container">
@@ -116,7 +84,6 @@
                     </div>
                 </div>
             </div>
-            <!-- /row of panels -->
         </div>
     </div>
 </footer>

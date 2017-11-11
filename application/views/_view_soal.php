@@ -117,10 +117,45 @@ if ($tes) {
             //echo 'fillForm("'.$param.'");';
         }
         ?>
+
+                    var current = 1;
+                    widget      = $(".step");
+                    btnselanjutnya     = $(".next");
+                    btnkembali     = $(".back"); 
+                    btnsimpan   = $(".submit");
+
+                    widget.not(':eq(0)').hide();
+                    hideButtons(current);
+
+                    btnselanjutnya.click(function(){
+                        if(current < widget.length){
+                            widget.show();
+                            widget.not(':eq('+(current++)+')').hide();
+
+                            simpan(<?php echo $detiltes->id_tes; ?>);
+                        }
+                        hideButtons(current);
+                    })
+
+                    btnkembali.click(function(){
+                        if(current > 1){
+                            current = current - 2;
+                            if(current < widget.length){
+                                widget.show();
+                                widget.not(':eq('+(current++)+')').hide();
+                            }
+                            hideButtons(current);
+                        }
+                        hideButtons(current);
+                    })  
+
+                    btnsimpan.click(function() {
+                        simpan_akhir(<?php echo $detiltes->id_tes; ?>);
+                    });
     });
 
     function teruskan() {
-        /*$.ajax({
+        $.ajax({
             url: base_url + 'generate_soal/<?php echo $param;?>/<?php echo $siswa->nis;?>',
             data: 'id=0',
             dataType: 'json',
@@ -142,10 +177,29 @@ if ($tes) {
                 alert('An error accurred');
             }
         });
-*/
+
         //document.get
         $("#kerjakan-btn").hide();
         $("#content-soal").show();
 
     }
+
+
+
+    function selanjutnya() {
+        $.ajax({
+            url: base_url + 'generate_soal/<?php echo $param;?>/<?php echo $siswa->nis;?>',
+            data: 'id=0',
+            dataType: 'json',
+            type: 'POST',
+            cache: false,
+            .done(function(response) {
+         
+        });
+        return false;
+        };
+    }
+
 </script>
+
+

@@ -15,7 +15,7 @@
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?php echo base_url();?>asset/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/login.css">
-<!-- AdminLTE Skins. Choose a skin from the css/skins
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
 	folder instead of downloading all of them to reduce the load. -->
 	<link rel="stylesheet" href="<?php echo base_url();?>asset/dist/css/skins/_all-skins.min.css">
 	<script type="text/javascript">var base_url = '<?php echo base_url();?>';</script>
@@ -33,7 +33,13 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 <a class="navbar-brand" href="<?php echo base_url( 'welcome/index');?>"> SMK AL-FATHIMIYAH</a>
             </div>
-            <!--/.nav-collapse -->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav pull-right mainNav">
+                    <li><a href="<?php echo base_url('welcome/galeri');?>">GALERI</a></li>
+                    <li><a href="<?php echo base_url('welcome/about');?>">TENTANG</a></li>
+                    <li><a href="<?php echo base_url('view/home');?>">LOGIN</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div id="content">
