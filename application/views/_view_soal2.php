@@ -116,33 +116,17 @@ if ($tes) {
 
             <script type="text/javascript">     
                 $(document).ready(function(){
-                    var jam_selesai = '<?php echo $detiltes->tgl_selesai; ?>';
-
-                    $('div#clock').countdown(jam_selesai)
-                    .on('update.countdown', function (event) { 
-                        $(this).html(event.strftime('%H:%M:%S'));
-                    })
-                    .on('finish.countdown', function (event) {
-                        alert('Waktu telah selesai....!')
-                        var f_asal  = $("#_form");
-                        var form  = getFormData(f_asal);
-                        simpan_akhir(<?php echo $detiltes->id_tes; ?>);
-                        window.location.assign("<?php echo base_url(); ?>adm/sudah_selesai_ujian/<?php echo $detiltes->id_tes; ?>"); 
-
-                        return false;
-                    });
 
                     var current = 1;
-
                     widget      = $(".step");
-                    btnnext     = $(".next");
-                    btnback     = $(".back"); 
-                    btnsubmit   = $(".submit");
+                    btnselanjutnya     = $(".next");
+                    btnkembali     = $(".back"); 
+                    btnsimpan   = $(".submit");
 
                     widget.not(':eq(0)').hide();
                     hideButtons(current);
 
-                    btnnext.click(function(){
+                    btnselanjutnya.click(function(){
                         if(current < widget.length){
                             widget.show();
                             widget.not(':eq('+(current++)+')').hide();
@@ -152,7 +136,7 @@ if ($tes) {
                         hideButtons(current);
                     })
 
-                    btnback.click(function(){
+                    btnkembali.click(function(){
                         if(current > 1){
                             current = current - 2;
                             if(current < widget.length){
@@ -164,7 +148,7 @@ if ($tes) {
                         hideButtons(current);
                     })  
 
-                    btnsubmit.click(function() {
+                    btnsimpan.click(function() {
                         simpan_akhir(<?php echo $detiltes->id_tes; ?>);
                     });
 
@@ -212,9 +196,9 @@ if ($tes) {
 
                     $(".action").hide();
 
-                    if(current < limit) btnnext.show();
-                    if(current > 1) btnback.show();
-                    if (current == limit) { btnnext.hide(); btnsubmit.show(); }
+                    if(current < limit) btnselanjutnya.show();
+                    if(current > 1) btnkembali.show();
+                    if (current == limit) { btnselanjutnya.hide(); btnsimpan.show(); }
                 }
 
             </script> 

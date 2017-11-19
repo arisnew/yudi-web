@@ -159,10 +159,26 @@ if ($tes) {
 
     function doNext(idNext) {
         //change id next & rev
-
-        //load jawaban ke idNext
-        loadSoal(idNext);
-    }
+        loading("form-test", true);
+                $.ajax({
+                    url: base_url + 'object',
+                    data: 'model-input=v_tes_jawaban&key-input=id_jawaban&action-input=1&value-input=' + idNext,
+                    type: 'POST',
+                    dataType: "json",
+                    cache: false,
+                    success: function (json) {
+                        loading("loading", false);
+                        if (json.data.code == 1) {
+                            alert("Lanjutkan Soal Berikutnya?");
+                            loadContent(base_url + 'view/');
+                        } else if(json.data.code == 2) {
+                            alert("Belum Mengisi Jawaban!");
+                        } else{
+                            alert(json.data.message);
+                        }
+                    },
+                });
+        }
 
     function doPrev(idPrev) {
         //change id next & rev
