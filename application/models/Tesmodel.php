@@ -14,8 +14,21 @@ class Tesmodel extends Model {
 
         if (isset($inputs['opsi-input']) && $inputs['opsi-input'] != '') {
             $fields['jawaban'] = $inputs['opsi-input'];
+            //jawaban yg benar?
+            $soal = $this->getRecord(array('table' => 'soal', 'where' => array('id_soal' => $inputs['soal-input'])));
+            if ($soal) {
+                if ($inputs['opsi-input'] == $soal->jawaban) {
+                    $fields['status_jawaban'] = 'Benar';
+                } else {
+                    $fields['status_jawaban'] = 'Salah';
+                }
+            } else {
+                $fields['status_jawaban'] = 'Benar'; //Bonus jika tidak ada jawaban
+            }
+            
         } else {
             $fields['jawaban'] = null;
+            $fields['status_jawaban'] = 'Belum';
         }
 
         return $fields;

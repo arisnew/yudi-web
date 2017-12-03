@@ -99,6 +99,7 @@ if ($tes) {
                                 <span id="jawaban-d">
                                 </span>
                             </label>
+                            <input type="hidden" name="soal-input" id="soal-input" value="">
                             <input type="hidden" name="model-input" id="model-input" value="tes">
                             <input type="hidden" name="key-input" id="key-input" value="id_jawaban">
                             <input type="hidden" name="action-input" id="action-input" value="2">
@@ -136,6 +137,7 @@ if ($tes) {
                 if (json.data.code === 1) {
                     if (json.data.object !== null) {
                         //isi kedalam form
+                        $("#soal-input").val(json.data.object.id_soal);
                         $("#id-jawaban").val(json.data.object.id_jawaban);
                         $("#value-input").val(json.data.object.id_jawaban);
                         $("#pertanyaan").html(json.data.object.pertanyaan);
@@ -178,27 +180,43 @@ if ($tes) {
     function doNext(idNext, doSave) {
         //save (update) current jawaban
         if (doSave == true) {
-            simpan_data();
+            simpan_data(function () {
+                //load jawaban ke idNext
+                loadSoal(idNext, function (x) {
+                    //change id next & rev
+                    $("#id-prev").val(idNext);
+                    $("#id-next").val(nextId());
+                });
+            });
+        } else {
+            //load jawaban ke idNext
+            loadSoal(idNext, function (x) {
+                //change id next & rev
+                $("#id-prev").val(idNext);
+                $("#id-next").val(nextId());
+            });
         }
-        //load jawaban ke idNext
-        loadSoal(idNext, function (x) {
-            //change id next & rev
-            $("#id-prev").val(idNext);
-            $("#id-next").val(nextId());
-        });
     }
 
     function doPrev(idNext, doSave) {
         //save (update) current jawaban
         if (doSave == true) {
-            simpan_data();
+            simpan_data(function () {
+                //load jawaban ke idNext
+                loadSoal(idNext, function (x) {
+                    //change id next & rev
+                    $("#id-prev").val(prevId());
+                    $("#id-next").val(idNext);
+                });
+            });
+        } else {
+            //load jawaban ke idNext
+            loadSoal(idNext, function (x) {
+                //change id next & rev
+                $("#id-prev").val(prevId());
+                $("#id-next").val(idNext);
+            });
         }
-        //load jawaban ke idNext
-        loadSoal(idNext, function (x) {
-            //change id next & rev
-            $("#id-prev").val(prevId());
-            $("#id-next").val(idNext);
-        });
     }
 
     function nextId() {
