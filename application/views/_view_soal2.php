@@ -4,201 +4,150 @@ if ($param != null) {
     $tes = $this->model->getRecord(array('table' => 'v_tes', 'where' => array('id_tes' => $param)));
 }
 if ($tes) {
-    ?>
-
-    <?php 
-    $jam_mulai_pc = explode(" ", $detiltes->tgl_mulai);
-    $jam_selesai_pc = explode(" ", $detiltes->tgl_selesai);
-    ?>
-
-        <div class="col-lg-12 row">
-            <div class="alert alert-warning col-md-5">
-                <table class="table table-bordered" style="margin-bottom: 0px">
-                    <tr><td width="30%">Nama Peserta</td><td width="70%"><?php echo $tes->nama_siswa;?></td></tr>
-                    <tr><td>Nama Guru</td><td><b><?php echo $tes->nama;?></td></tr>
-                    <tr><td>Mata Pelajaran</td><td><?php echo $tes->nama_mapel;?></td></tr>
-                </table>
-            </div>
-            <div class="col-md-2"></div>
-            <div class="alert alert-warning col-md-5">
-                <table class="table table-bordered" style="margin-bottom: 0px">
-                    <tr><td width="30%">Nama Materi</td><td width="70%"><?php echo $tes->judul;?></td></tr>
-                    <tr><td>Jumlah Soal</td><td><?php echo $tes->jml_soal;?></td></tr>
-                    <tr><td>Waktu</td><td><?php echo $detil_soal->waktu; ?> menit (<?php echo $jam_mulai_pc[1]." s.d. ".$jam_selesai_pc[1]; ?>)</td></tr>
-                </table>
+?>
+<section class="content" id="content-soal">
+    <div class="box">
+        <div class="box-header with-border">
+            <div class="box-tools pull-right">
+                <button title="" data-toggle="tooltip" data-widget="collapse" class="btn btn-box-tool" type="button" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
         </div>
-        <div class="col-lg-12 row">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <?php 
-                    foreach ($menu as $m) {
-                        if ($uri2 == $m['url']) {
-                            echo '<a href="'.base_url().'adm/'.$m['url'].'" class="btn btn-sq btn-warning"><i class="glyphicon glyphicon-'.$m['icon'].' g3x"></i><br><br/>'.$m['text'].' </a>';
-                        } else {
-                            echo '<a href="'.base_url().'adm/'.$m['url'].'" class="btn btn-sq btn-primary"><i class="glyphicon glyphicon-'.$m['icon'].' g3x"></i><br><br/>'.$m['text'].' </a>';
-                        }
-                    }
-                    ?>
-                </div>
+
+        <div class="box-body no-padding">
+            <div class="mailbox-controls with-border text-center">
+
             </div>
-        </div>
-        <div class="row col-md-12">
-            <div class="alert alert-danger">
-                Waktu mengerjakan tinggal : <div id="clock" style="display: inline; font-weight: bold"></div>
-            </div>
-            <form role="form" name="_form" method="post" id="_form">
-                <?php 
-                $no = 1;
-                $jawaban = array("A","B","C","D","E");
-                if (!empty($data)) {
-                    foreach ($data as $d) { 
-                        echo '<input type="hidden" name="id_soal_'.$no.'" value="'.$d->id.'">';
-                        echo '<div class="step well">';
-
-                        if ($d->gambar == "") {
-                            echo '<table class="table table-form" style="font-size: 16px">
-                            <tr><td style="v-align: top">'.$no.'</td><td colspan="2">'.$d->soal.'</td></tr>';
-                            for ($j=0; $j<sizeof($jawaban);$j++) {
-                                $kecil_jawaban = strtolower($jawaban[$j]);
-                                $opsyen = "opsi_".$kecil_jawaban;
-                                $opsyens = $d->$opsyen;
-
-                                if ($jawaban[$j] == $d->jawaban) {
-                                    echo '<tr><td width="3%">'.$jawaban[$j].'</td><td width="3%"><input checked type="radio" id="opsi_'.$jawaban[$j].'_'.$d->id.'" name="opsi_'.$no.'" value="'.$jawaban[$j].'"></td><td><label for="opsi_'.$jawaban[$j].'_'.$d->id.'">'.$opsyens.'</label></td></label></tr>';
-                                } else {
-                                    echo '<tr><td width="3%">'.$jawaban[$j].'</td><td width="3%"><input type="radio" id="opsi_'.$jawaban[$j].'_'.$d->id.'" name="opsi_'.$no.'" value="'.$jawaban[$j].'"></td><td><label for="opsi_'.$jawaban[$j].'_'.$d->id.'">'.$opsyens.'</label></td></label></tr>';
-                                }
-                            }
-                            echo '</table></div>';
-                        } else {
-                            echo '<table class="table table-form" style="font-size: 16px">
-                            <tr><td rowspan="6" width="25%"><img src="'.base_url().'upload/gambar_soal/'.$d->gambar.'" class="polaroid" style="width: 300px; height: 250px"></td>
-                                <td style="v-align: top">'.$no.'</td><td colspan="2">'.$d->soal.'</td></tr>';
-                                for ($j=0; $j<sizeof($jawaban);$j++) {
-                                    $kecil_jawaban = strtolower($jawaban[$j]);
-                                    $opsyen = "opsi_".$kecil_jawaban;
-                                    $opsyens = $d->$opsyen;
-
-                                    if ($jawaban[$j] == $d->jawaban) {
-                                        echo '<tr><td width="3%">'.$jawaban[$j].'</td><td width="3%"><input checked type="radio" id="opsi_'.$jawaban[$j].'_'.$d->id.'" name="opsi_'.$no.'" value="'.$jawaban[$j].'"></td><td><label for="opsi_'.$jawaban[$j].'_'.$d->id.'">'.$opsyens.'</label></td></label></tr>';
-                                    } else {
-                                        echo '<tr><td width="3%">'.$jawaban[$j].'</td><td width="3%"><input type="radio" id="opsi_'.$jawaban[$j].'_'.$d->id.'" name="opsi_'.$no.'" value="'.$jawaban[$j].'"></td><td><label for="opsi_'.$jawaban[$j].'_'.$d->id.'">'.$opsyens.'</label></td></label></tr>';
-                                    }
-                                }
-                                echo '</table></div>';
-                            }
-
-
-                            $no++;
-                        }
-                    }
-
+            <?php
+            $urutan = array();
+            $soals = $this->model->getListByQuery(" SELECT * FROM v_tes_jawaban where id_tes = $param ORDER BY id_jawaban ASC");
+            if ($soals) {
+                foreach ($soals as $soal) {
+                    $urutan[] = $soal->id_jawaban;
+                }
+                ?>
+                <script type='text/javascript'>
+                    <?php
+                    $js_array = json_encode($urutan);
+                    echo "var urutan = ". $js_array . ";\n";
                     ?>
-
-                    <a class="action back btn btn-info btn-lg">Back</a>
-                    <a class="action next btn btn-info btn-lg">Berikutnya</a>
-                    <a class="action submit btn btn-success btn-lg">Selesai Ujian</a>
-                    <input type="hidden" name="jml_soal" value="<?php echo $no; ?>">
+                </script>
+                <?php
+            }
+            ?>
+            <div class="mailbox-read-message">
+                <form id="form-test">
+                    <input type="hidden" name="id-jawaban" id="id-jawaban" value="">
+                    <div id="pertanyaan">
+                    </div>
+                    <label>
+                        <input type="radio" value="A" id="opsi-input" name="opsi-input">
+                        <span id="jawaban-a">
+                        </span>
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" value="B" id="opsi-input" name="opsi-input">
+                        <span id="jawaban-b">
+                        </span>
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" value="C" id="opsi-input" name="opsi-input">
+                        <span id="jawaban-c">
+                        </span>
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" value="D" id="opsi-input" name="opsi-input">
+                        <span id="jawaban-d">
+                        </span>
+                    </label>
                 </form>
             </div>
-            <div class="col-md-12" style="border-top: solid 1px #eee; padding-top: 10px; margin-top: 50px; margin-bottom: 20px">
-                <div class="span12"> &copy; 2015 <a href="<?php echo base_url(); ?>adm">Aplikasi Ujian Online</a>. </div>
+            <div class="box-footer">
+                <input type="hidden" name="id-prev" id="id-prev" value="">
+                <input type="hidden" name="id-next" id="id-next" value="">
+                <button id="sebelumnya-btn" class="btn btn-danger pull-left" onclick="doPrev($('#id-prev').val()); return false;">Sebelumnya</button>
+                <button id="selanjutnya-btn" class="btn btn-primary pull-right" onclick="doNext($('#id-next').val()); return false;">Selanjutnya</button>
             </div>
+        </div>
+    </div>
+</section>
+<?php
+}
+ ?>
+<script type="text/javascript">
+    $(document).ready(function () {
+        loadSoal(urutan[0]);
+        <?php
+        if ($param) {
+            //echo 'fillForm("'.$param.'");';
+        }
+        ?>
+    });
 
-            <script src="<?php echo base_url(); ?>___/js/jquery-1.11.3.min.js"></script> 
-            <script src="<?php echo base_url(); ?>___/js/bootstrap.js"></script>
-            <script src="<?php echo base_url(); ?>___/js/jquery.countdown.min.js"></script> 
-            <script type="text/javascript">
-                var base_url = "<?php echo base_url(); ?>";
-            </script>
-            <script src="<?php echo base_url(); ?>___/js/aplikasi.js"></script> 
+    function loadSoal(n) {
+        $.ajax({
+            url: base_url + 'object',
+            data: 'model-input=v_tes_jawaban&key-input=id_jawaban&action-input=1&value-input=' + n,
+            dataType: 'json',
+            type: 'POST',
+            cache: false,
+            success: function(json) {
+                if (json.data.code === 1) {
+                    //isi kedalam form
+                    $("#id-jawaban").val(json.data.object.id_jawaban);
+                    $("#pertanyaan").html(json.data.object.pertanyaan);
+                    $("#jawaban-a").html(json.data.object.opsi_a);
+                    $("#jawaban-b").html(json.data.object.opsi_b);
+                    $("#jawaban-c").html(json.data.object.opsi_c);
+                    $("#jawaban-d").html(json.data.object.opsi_d);
+                    //next & prev?
 
-            <script type="text/javascript">     
-                $(document).ready(function(){
-
-                    var current = 1;
-                    widget      = $(".step");
-                    btnselanjutnya     = $(".next");
-                    btnkembali     = $(".back"); 
-                    btnsimpan   = $(".submit");
-
-                    widget.not(':eq(0)').hide();
-                    hideButtons(current);
-
-                    btnselanjutnya.click(function(){
-                        if(current < widget.length){
-                            widget.show();
-                            widget.not(':eq('+(current++)+')').hide();
-
-                            simpan(<?php echo $detiltes->id_tes; ?>);
-                        }
-                        hideButtons(current);
-                    })
-
-                    btnkembali.click(function(){
-                        if(current > 1){
-                            current = current - 2;
-                            if(current < widget.length){
-                                widget.show();
-                                widget.not(':eq('+(current++)+')').hide();
-                            }
-                            hideButtons(current);
-                        }
-                        hideButtons(current);
-                    })  
-
-                    btnsimpan.click(function() {
-                        simpan_akhir(<?php echo $detiltes->id_tes; ?>);
-                    });
-
-                });
-
-                simpan = function(id){
-                    var f_asal  = $("#_form");
-                    var form  = getFormData(f_asal);
-
-                    $.ajax({    
-                        type: "POST",
-                        url: base_url+"adm/ikut_ujian/simpan_satu/"+id,
-                        data: JSON.stringify(form),
-                        dataType: 'json',
-                        contentType: 'application/json; charset=utf-8'
-                    }).done(function(response) {
-
-                    });
-                    return false;
+                    //do test
+                } else{
+                    $("#id-jawaban").val("");
+                    $("#pertanyaan").html("");
+                    $("#jawaban-a").html("");
+                    $("#jawaban-b").html("");
+                    $("#jawaban-c").html("");
+                    $("#jawaban-d").html("");
                 }
+            },
+            error: function () {
+                alert('An error accurred');
+            }
+        });
+    }
 
-                simpan_akhir = function(id) {
-                    if (confirm('Anda yakin akan mengakhiri tes ini..?')) {
-                        var f_asal  = $("#_form");
-                        var form  = getFormData(f_asal);
-
-                        $.ajax({    
-                            type: "POST",
-                            url: base_url+"adm/ikut_ujian/simpan_akhir/"+id,
-                            data: JSON.stringify(form),
-                            dataType: 'json',
-                            contentType: 'application/json; charset=utf-8'
-                        }).done(function(response) {
-                            if(response.status == "ok") {
-                                window.location.assign("<?php echo base_url(); ?>adm/sudah_selesai_ujian/"+id); 
-                            }
-                        });
-
-                        return false;
-                    }
+    function doNext(idNext) {
+        //change id next & rev
+        loading("form-test", true);
+        $.ajax({
+            url: base_url + 'object',
+            data: 'model-input=v_tes_jawaban&key-input=id_jawaban&action-input=1&value-input=' + idNext,
+            type: 'POST',
+            dataType: "json",
+            cache: false,
+            success: function (json) {
+                loading("loading", false);
+                if (json.data.code == 1) {
+                    alert("Lanjutkan Soal Berikutnya?");
+                    loadContent(base_url + 'view/');
+                } else if(json.data.code == 2) {
+                    alert("Belum Mengisi Jawaban!");
+                } else{
+                    alert(json.data.message);
                 }
+            },
+        });
+    }
 
-                hideButtons = function(current){
-                    var limit = parseInt(widget.length); 
+    function doPrev(idPrev) {
+        //change id next & rev
 
-                    $(".action").hide();
+        //load jawaban ke idPrev
+        loadSoal(idPrev);
+    }
 
-                    if(current < limit) btnselanjutnya.show();
-                    if(current > 1) btnkembali.show();
-                    if (current == limit) { btnselanjutnya.hide(); btnsimpan.show(); }
-                }
-
-            </script> 
+</script>
