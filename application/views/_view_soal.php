@@ -37,82 +37,72 @@ if ($tes) {
                     <div class="col-xs-3">Waktu Mengerjakan</div>
                     <div class="col-xs-9">: <b><?php echo $tes->total_durasi;?></b></div>
                     <br>
+                    <button id="selesai-btn" class="btn btn-danger" onclick="">Selesai</button>
                 </div>
             </div>
         </div>
     </section>
     <section class="content" id="content-soal">
         <div class="box">
-            <div class="box-header with-border">
-                <div class="box-tools pull-right">
-                    <button title="" data-toggle="tooltip" data-widget="collapse" class="btn btn-box-tool" type="button" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-
-            <div class="box-body no-padding">
-                <div class="mailbox-controls with-border text-center">
-                    
-                </div>
-                <?php
-                $urutan = array();
-                $soals = $this->model->getListByQuery(" SELECT * FROM v_tes_jawaban where id_tes = $param ORDER BY id_jawaban ASC");
-                if ($soals) {
-                    foreach ($soals as $soal) {
-                        $urutan[] = $soal->id_jawaban;
-                    }
-                    ?>
-                    <script type='text/javascript'>
-                        <?php
-                        $js_array = json_encode($urutan);
-                        echo "var urutan = ". $js_array . ";\n";
-                        ?>
-                    </script>
-                    <?php
+            <?php
+            $urutan = array();
+            $soals = $this->model->getListByQuery(" SELECT * FROM v_tes_jawaban where id_tes = $param ORDER BY id_jawaban ASC");
+            if ($soals) {
+                foreach ($soals as $soal) {
+                    $urutan[] = $soal->id_jawaban;
                 }
                 ?>
-                    <div class="mailbox-read-message">
-                        <form id="form-test">
-                            <div id="loading"></div>
-                            <input type="hidden" name="id-jawaban" id="id-jawaban" value="">
-                            <div id="pertanyaan">
-                            </div>
-                            <label>
-                                <input type="radio" value="A" id="opsi-input-a" name="opsi-input">
-                                <span id="jawaban-a">
-                                </span>
-                            </label>
-                            <br>
-                            <label>
-                                <input type="radio" value="B" id="opsi-input-b" name="opsi-input">
-                                <span id="jawaban-b">
-                                </span>
-                            </label>
-                            <br>
-                            <label>
-                                <input type="radio" value="C" id="opsi-input-c" name="opsi-input">
-                                <span id="jawaban-c">
-                                </span>
-                            </label>
-                            <br>
-                            <label>
-                                <input type="radio" value="D" id="opsi-input-d" name="opsi-input">
-                                <span id="jawaban-d">
-                                </span>
-                            </label>
-                            <input type="hidden" name="soal-input" id="soal-input" value="">
-                            <input type="hidden" name="model-input" id="model-input" value="tes">
-                            <input type="hidden" name="key-input" id="key-input" value="id_jawaban">
-                            <input type="hidden" name="action-input" id="action-input" value="2">
-                            <input type="hidden" name="value-input" id="value-input" value="">
-                        </form>
+                <script type='text/javascript'>
+                    <?php
+                    $js_array = json_encode($urutan);
+                    echo "var urutan = ". $js_array . ";\n";
+                    ?>
+                </script>
+                <?php
+            }
+            ?>
+            <div class="mailbox-read-message">
+                <form id="form-test">
+                    <div id="loading"></div>
+                    <input type="hidden" name="id-jawaban" id="id-jawaban" value="">
+                    <div id="pertanyaan">
                     </div>
-                <div class="box-footer">
-                    <input type="hidden" name="current-urutan" id="current-urutan" value="0">
-                    <input type="hidden" name="id-prev" id="id-prev" value="0">
-                    <input type="hidden" name="id-next" id="id-next" value="0">
-                    <button id="sebelumnya-btn" class="btn btn-primary pull-left" onclick="doPrev($('#id-prev').val(), true); return false;">Sebelumnya</button>
-                    <button id="selanjutnya-btn" class="btn btn-primary pull-right" onclick="doNext($('#id-next').val(), true); return false;">Selanjutnya</button>
-                </div>
+                    <label>
+                        <input type="radio" value="A" id="opsi-input-a" name="opsi-input">
+                        <span id="jawaban-a">
+                        </span>
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" value="B" id="opsi-input-b" name="opsi-input">
+                        <span id="jawaban-b">
+                        </span>
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" value="C" id="opsi-input-c" name="opsi-input">
+                        <span id="jawaban-c">
+                        </span>
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" value="D" id="opsi-input-d" name="opsi-input">
+                        <span id="jawaban-d">
+                        </span>
+                    </label>
+                    <input type="hidden" name="soal-input" id="soal-input" value="">
+                    <input type="hidden" name="model-input" id="model-input" value="tes">
+                    <input type="hidden" name="key-input" id="key-input" value="id_jawaban">
+                    <input type="hidden" name="action-input" id="action-input" value="2">
+                    <input type="hidden" name="value-input" id="value-input" value="">
+                </form>
+            </div>
+            <div class="box-footer">
+                <input type="hidden" name="current-urutan" id="current-urutan" value="0">
+                <input type="hidden" name="id-prev" id="id-prev" value="0">
+                <input type="hidden" name="id-next" id="id-next" value="0">
+                <button id="sebelumnya-btn" class="btn btn-primary pull-left" onclick="doPrev($('#id-prev').val(), true); return false;">Sebelumnya</button>
+                <button id="selanjutnya-btn" class="btn btn-primary pull-right" onclick="doNext($('#id-next').val(), true); return false;">Selanjutnya</button>
             </div>
         </div>
     </section>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 29, 2017 at 04:30 
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.5.38
+-- Host: 127.0.0.1
+-- Generation Time: 03 Des 2017 pada 04.53
+-- Versi Server: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `new_elearning`
@@ -23,35 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `guru`
 --
 
-CREATE TABLE `admin` (
-  `username` varchar(20) NOT NULL,
-  `nama` varchar(200) NOT NULL,
-  `email` varchar(200) DEFAULT NULL,
-  `level` enum('Admin') NOT NULL DEFAULT 'Admin',
-  `password` varchar(32) NOT NULL,
-  `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif',
-  `foto` varchar(255) NOT NULL DEFAULT 'default-user.png'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`username`, `nama`, `email`, `level`, `password`, `status`, `foto`) VALUES
-('aris_p', 'Aris Priyanto', 'aris@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png'),
-('xxx', 'xxx', 'xxx', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png'),
-('yudi_sl', 'yudi', 'yudi@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `guru`
---
-
-CREATE TABLE `guru` (
+CREATE TABLE IF NOT EXISTS `guru` (
   `nip` varchar(20) NOT NULL,
   `nama` varchar(200) NOT NULL,
   `alamat` varchar(255) NOT NULL,
@@ -70,7 +45,7 @@ CREATE TABLE `guru` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `guru`
+-- Dumping data untuk tabel `guru`
 --
 
 INSERT INTO `guru` (`nip`, `nama`, `alamat`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `no_telp`, `email`, `foto`, `status_pegawai`, `username`, `password`, `level`, `status`) VALUES
@@ -81,11 +56,11 @@ INSERT INTO `guru` (`nip`, `nama`, `alamat`, `tempat_lahir`, `tgl_lahir`, `jenis
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jadwal`
+-- Struktur dari tabel `jadwal`
 --
 
-CREATE TABLE `jadwal` (
-  `id_jadwal` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `jadwal` (
+`id_jadwal` int(11) NOT NULL,
   `kode_mapel` varchar(20) NOT NULL,
   `nip` varchar(20) NOT NULL,
   `kode_kelas` varchar(20) NOT NULL,
@@ -93,10 +68,10 @@ CREATE TABLE `jadwal` (
   `hari` int(1) NOT NULL,
   `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif',
   `jam` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
--- Dumping data for table `jadwal`
+-- Dumping data untuk tabel `jadwal`
 --
 
 INSERT INTO `jadwal` (`id_jadwal`, `kode_mapel`, `nip`, `kode_kelas`, `kode_jurusan`, `hari`, `status`, `jam`) VALUES
@@ -109,17 +84,17 @@ INSERT INTO `jadwal` (`id_jadwal`, `kode_mapel`, `nip`, `kode_kelas`, `kode_juru
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jurusan`
+-- Struktur dari tabel `jurusan`
 --
 
-CREATE TABLE `jurusan` (
+CREATE TABLE IF NOT EXISTS `jurusan` (
   `kode_jurusan` varchar(20) NOT NULL,
   `nama_jurusan` varchar(50) NOT NULL,
   `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jurusan`
+-- Dumping data untuk tabel `jurusan`
 --
 
 INSERT INTO `jurusan` (`kode_jurusan`, `nama_jurusan`, `status`) VALUES
@@ -129,17 +104,17 @@ INSERT INTO `jurusan` (`kode_jurusan`, `nama_jurusan`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kelas`
+-- Struktur dari tabel `kelas`
 --
 
-CREATE TABLE `kelas` (
+CREATE TABLE IF NOT EXISTS `kelas` (
   `kode_kelas` varchar(20) NOT NULL,
   `nama_kelas` varchar(200) NOT NULL,
   `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kelas`
+-- Dumping data untuk tabel `kelas`
 --
 
 INSERT INTO `kelas` (`kode_kelas`, `nama_kelas`, `status`) VALUES
@@ -150,20 +125,20 @@ INSERT INTO `kelas` (`kode_kelas`, `nama_kelas`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komentar`
+-- Struktur dari tabel `komentar`
 --
 
-CREATE TABLE `komentar` (
-  `id_komentar` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `komentar` (
+`id_komentar` int(11) NOT NULL,
   `id_materi` int(11) NOT NULL,
   `komentator` varchar(25) NOT NULL,
   `level_komentator` enum('siswa','guru') NOT NULL,
   `isi` text NOT NULL,
   `tgl_post` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `komentar`
+-- Dumping data untuk tabel `komentar`
 --
 
 INSERT INTO `komentar` (`id_komentar`, `id_materi`, `komentator`, `level_komentator`, `isi`, `tgl_post`) VALUES
@@ -173,18 +148,18 @@ INSERT INTO `komentar` (`id_komentar`, `id_materi`, `komentator`, `level_komenta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lampiran`
+-- Struktur dari tabel `lampiran`
 --
 
-CREATE TABLE `lampiran` (
-  `id_lampiran` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `lampiran` (
+`id_lampiran` int(11) NOT NULL,
   `id_materi` int(11) NOT NULL,
   `nama_lampiran` varchar(255) NOT NULL,
   `nama_file` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `lampiran`
+-- Dumping data untuk tabel `lampiran`
 --
 
 INSERT INTO `lampiran` (`id_lampiran`, `id_materi`, `nama_lampiran`, `nama_file`) VALUES
@@ -194,17 +169,17 @@ INSERT INTO `lampiran` (`id_lampiran`, `id_materi`, `nama_lampiran`, `nama_file`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mata_pelajaran`
+-- Struktur dari tabel `mata_pelajaran`
 --
 
-CREATE TABLE `mata_pelajaran` (
+CREATE TABLE IF NOT EXISTS `mata_pelajaran` (
   `kode_mapel` varchar(20) NOT NULL,
   `nama_mapel` varchar(200) NOT NULL,
   `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mata_pelajaran`
+-- Dumping data untuk tabel `mata_pelajaran`
 --
 
 INSERT INTO `mata_pelajaran` (`kode_mapel`, `nama_mapel`, `status`) VALUES
@@ -216,21 +191,21 @@ INSERT INTO `mata_pelajaran` (`kode_mapel`, `nama_mapel`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `materi`
+-- Struktur dari tabel `materi`
 --
 
-CREATE TABLE `materi` (
-  `id_materi` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `materi` (
+`id_materi` int(11) NOT NULL,
   `id_jadwal` int(11) DEFAULT NULL,
   `judul` varchar(255) NOT NULL,
   `isi` text NOT NULL,
   `nip` varchar(20) NOT NULL,
   `tgl_posting` datetime NOT NULL,
   `publish` enum('Ya','Tidak') NOT NULL DEFAULT 'Tidak'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
 
 --
--- Dumping data for table `materi`
+-- Dumping data untuk tabel `materi`
 --
 
 INSERT INTO `materi` (`id_materi`, `id_jadwal`, `judul`, `isi`, `nip`, `tgl_posting`, `publish`) VALUES
@@ -238,47 +213,48 @@ INSERT INTO `materi` (`id_materi`, `id_jadwal`, `judul`, `isi`, `nip`, `tgl_post
 (46, 26, 'TES 2 BAYU', '<p>TES 2 BAYU</p>\r\n', '0001', '2017-08-20 17:24:59', 'Ya'),
 (47, 27, 'TES 3 YUNI', '<p>TES 3 YUNI</p>\r\n', '0002', '2017-08-20 17:25:30', 'Ya'),
 (48, 29, 'TES 4 YUNI', '<p>TES 4 YUNI</p>\r\n', '0002', '2017-08-20 17:26:04', 'Ya'),
-(49, 30, 'ABCD', '<p>ABCD</p>\r\n', '0003', '2017-09-08 17:03:57', 'Ya');
+(49, 30, 'ABCD', '<p>ABCD</p>\r\n', '0003', '2017-09-08 17:03:57', 'Ya'),
+(50, 29, 'Sejarah Sistem Operasi', '<ul>\r\n	<li><strong>Generasi Pertama (1945-1955)</strong>Generasi pertama merupakan awal perkembangan sistem komputasi elektronik sebagai pengganti sistem komputasi mekanik, hal itu disebabkan kecepatan manusia untuk menghitung terbatas dan manusia sangat mudah untuk membuat kecerobohan, kekeliruan bahkan kesalahan. Pada generasi ini belum ada sistem operasi, maka sistem komputer diberi instruksi yang harus dikerjakan secara langsung.</li>\r\n	<li><strong>Generasi Kedua (1955-1965)</strong>Generasi kedua memperkenalkan Batch Processing System, yaitu Job yang dikerjakan dalam satu rangkaian, lalu dieksekusi secara berurutan.Pada generasi ini sistem komputer belum dilengkapi sistem operasi, tetapi beberapa fungsi sistem operasi telah ada, contohnya fungsi sistem operasi ialah FMS dan IBSYS.</li>\r\n	<li><strong>Generasi Ketiga (1965-1980)</strong>Pada generasi ini perkembangan sistem operasi dikembangkan untuk melayani banyak pemakai sekaligus, dimana para pemakai interaktif berkomunikasi lewat terminal secara on-line ke komputer, maka sistem operasi menjadi multi-user (di gunakan banyak pengguna sekaligus) dan multi-programming (melayani banyak program sekali gus).</li>\r\n	<li><strong>Generasi Keempat (Pasca 1980an)</strong>Dewasa ini, sistem operasi dipergunakan untuk jaringan komputer dimana pemakai menyadari keberadaan komputer-komputer yang saling terhubung satu sama lainnya. Pada masa ini para pengguna juga telah dinyamankan dengan Graphical User Interface yaitu antar-muka komputer yang berbasis grafis yang sangat nyaman, pada masa ini juga dimulai era komputasi tersebar dimana komputasi-komputasi tidak lagi berpusat di satu titik, tetapi dipecah dibanyak komputer sehingga tercapai kinerja yang lebih baik.</li>\r\n</ul>\r\n', '0002', '2017-11-29 15:52:44', 'Ya');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nilai_ujian`
+-- Struktur dari tabel `nilai_ujian`
 --
 
-CREATE TABLE `nilai_ujian` (
-  `id_nilai` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `nilai_ujian` (
+`id_nilai` int(11) NOT NULL,
   `nis` int(11) NOT NULL,
   `jumlah_benar` int(5) NOT NULL,
   `jumlah_salah` int(5) NOT NULL,
   `tgl_ujian` date NOT NULL,
   `id_materi` int(11) DEFAULT NULL,
   `nilai` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pesan`
+-- Struktur dari tabel `pesan`
 --
 
-CREATE TABLE `pesan` (
-  `id_pesan` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pesan` (
+`id_pesan` int(11) NOT NULL,
   `judul` varchar(255) NOT NULL,
   `isi` text NOT NULL,
   `dari` varchar(25) NOT NULL,
   `ke` varchar(25) NOT NULL,
   `type_pesan` enum('siswa-siswa','guru-guru','siswa-guru','guru-siswa') NOT NULL,
   `tgl_post` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `siswa`
+-- Struktur dari tabel `siswa`
 --
 
-CREATE TABLE `siswa` (
+CREATE TABLE IF NOT EXISTS `siswa` (
   `nis` int(11) NOT NULL,
   `nama` varchar(200) NOT NULL,
   `alamat` varchar(255) NOT NULL,
@@ -299,7 +275,7 @@ CREATE TABLE `siswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `siswa`
+-- Dumping data untuk tabel `siswa`
 --
 
 INSERT INTO `siswa` (`nis`, `nama`, `alamat`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `thn_masuk`, `email`, `no_telp`, `foto`, `username`, `password`, `level`, `kelas`, `jurusan`, `status`) VALUES
@@ -310,11 +286,11 @@ INSERT INTO `siswa` (`nis`, `nama`, `alamat`, `tempat_lahir`, `tgl_lahir`, `jeni
 -- --------------------------------------------------------
 
 --
--- Table structure for table `soal`
+-- Struktur dari tabel `soal`
 --
 
-CREATE TABLE `soal` (
-  `id_soal` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `soal` (
+`id_soal` int(11) NOT NULL,
   `pertanyaan` text NOT NULL,
   `opsi_a` text NOT NULL,
   `opsi_b` text NOT NULL,
@@ -325,10 +301,10 @@ CREATE TABLE `soal` (
   `nip` varchar(20) NOT NULL,
   `tgl_posting` datetime NOT NULL,
   `durasi` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `soal`
+-- Dumping data untuk tabel `soal`
 --
 
 INSERT INTO `soal` (`id_soal`, `pertanyaan`, `opsi_a`, `opsi_b`, `opsi_c`, `opsi_d`, `jawaban`, `id_materi`, `nip`, `tgl_posting`, `durasi`) VALUES
@@ -340,55 +316,78 @@ INSERT INTO `soal` (`id_soal`, `pertanyaan`, `opsi_a`, `opsi_b`, `opsi_c`, `opsi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tes`
+-- Struktur dari tabel `tes`
 --
 
-CREATE TABLE `tes` (
-  `id_tes` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tes` (
+`id_tes` int(11) NOT NULL,
   `nis` int(11) NOT NULL,
   `id_materi` int(11) NOT NULL,
   `tgl_tes` date NOT NULL,
   `status_tes` enum('Selesai','Belum') NOT NULL DEFAULT 'Belum'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `tes`
+-- Dumping data untuk tabel `tes`
 --
 
 INSERT INTO `tes` (`id_tes`, `nis`, `id_materi`, `tgl_tes`, `status_tes`) VALUES
-(2, 12002, 47, '2017-10-29', 'Belum'),
-(3, 12002, 45, '2017-10-29', 'Belum');
+(1, 12002, 45, '2017-11-17', 'Belum');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tes_jawaban`
+-- Struktur dari tabel `tes_jawaban`
 --
 
-CREATE TABLE `tes_jawaban` (
-  `id_jawaban` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tes_jawaban` (
+`id_jawaban` int(11) NOT NULL,
   `id_tes` int(11) NOT NULL,
   `id_soal` int(11) NOT NULL,
   `jawaban` varchar(5) NOT NULL,
   `status_jawaban` enum('Benar','Salah','Belum') NOT NULL DEFAULT 'Belum'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `tes_jawaban`
+-- Dumping data untuk tabel `tes_jawaban`
 --
 
 INSERT INTO `tes_jawaban` (`id_jawaban`, `id_tes`, `id_soal`, `jawaban`, `status_jawaban`) VALUES
-(2, 2, 1, '', 'Belum'),
-(3, 3, 2, '', 'Belum'),
-(4, 3, 3, '', 'Belum'),
-(5, 3, 4, '', 'Belum');
+(1, 1, 2, 'A', 'Benar'),
+(2, 1, 3, 'B', 'Benar'),
+(3, 1, 4, 'C', 'Benar');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `username` varchar(20) NOT NULL,
+  `nama` varchar(200) NOT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `level` enum('Admin') NOT NULL DEFAULT 'Admin',
+  `password` varchar(32) NOT NULL,
+  `status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Aktif',
+  `foto` varchar(255) NOT NULL DEFAULT 'default-user.png'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`username`, `nama`, `email`, `level`, `password`, `status`, `foto`) VALUES
+('aris_p', 'Aris Priyanto', 'aris@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png'),
+('xxx', 'xxx', 'xxx', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png'),
+('yudi_sl', 'yudi', 'yudi@gmail.com', 'Admin', '202cb962ac59075b964b07152d234b70', 'Aktif', 'default-user.png');
 
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `v_jadwal`
 --
-CREATE TABLE `v_jadwal` (
+CREATE TABLE IF NOT EXISTS `v_jadwal` (
 `id_jadwal` int(11)
 ,`kode_mapel` varchar(20)
 ,`nama_mapel` varchar(200)
@@ -402,13 +401,12 @@ CREATE TABLE `v_jadwal` (
 ,`status` enum('Aktif','Nonaktif')
 ,`jam` varchar(15)
 );
-
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `v_komentar`
 --
-CREATE TABLE `v_komentar` (
+CREATE TABLE IF NOT EXISTS `v_komentar` (
 `id_komentar` int(11)
 ,`id_materi` int(11)
 ,`judul` varchar(255)
@@ -417,26 +415,24 @@ CREATE TABLE `v_komentar` (
 ,`isi` text
 ,`tgl_post` datetime
 );
-
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `v_lampiran`
 --
-CREATE TABLE `v_lampiran` (
+CREATE TABLE IF NOT EXISTS `v_lampiran` (
 `id_lampiran` int(11)
 ,`id_materi` int(11)
 ,`judul` varchar(255)
 ,`nama_lampiran` varchar(255)
 ,`nama_file` varchar(255)
 );
-
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `v_materi`
 --
-CREATE TABLE `v_materi` (
+CREATE TABLE IF NOT EXISTS `v_materi` (
 `id_materi` int(11)
 ,`id_jadwal` int(11)
 ,`kode_mapel` varchar(20)
@@ -452,13 +448,12 @@ CREATE TABLE `v_materi` (
 ,`jml_soal` bigint(21)
 ,`total_durasi` decimal(32,0)
 );
-
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `v_nilai_ujian`
 --
-CREATE TABLE `v_nilai_ujian` (
+CREATE TABLE IF NOT EXISTS `v_nilai_ujian` (
 `id_nilai` int(11)
 ,`nis` int(11)
 ,`jumlah_benar` int(5)
@@ -469,13 +464,12 @@ CREATE TABLE `v_nilai_ujian` (
 ,`nama` varchar(200)
 ,`judul` varchar(255)
 );
-
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `v_siswa`
 --
-CREATE TABLE `v_siswa` (
+CREATE TABLE IF NOT EXISTS `v_siswa` (
 `nis` int(11)
 ,`nama` varchar(200)
 ,`alamat` varchar(255)
@@ -496,13 +490,12 @@ CREATE TABLE `v_siswa` (
 ,`nama_jurusan` varchar(50)
 ,`status` enum('Aktif','Nonaktif')
 );
-
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `v_soal`
 --
-CREATE TABLE `v_soal` (
+CREATE TABLE IF NOT EXISTS `v_soal` (
 `id_soal` int(11)
 ,`pertanyaan` text
 ,`opsi_a` text
@@ -519,13 +512,12 @@ CREATE TABLE `v_soal` (
 ,`tgl_posting` datetime
 ,`durasi` int(11)
 );
-
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `v_tes`
 --
-CREATE TABLE `v_tes` (
+CREATE TABLE IF NOT EXISTS `v_tes` (
 `id_tes` int(11)
 ,`nis` int(11)
 ,`nama_siswa` varchar(200)
@@ -542,13 +534,12 @@ CREATE TABLE `v_tes` (
 ,`tgl_tes` date
 ,`status_tes` enum('Selesai','Belum')
 );
-
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `v_tes_jawaban`
 --
-CREATE TABLE `v_tes_jawaban` (
+CREATE TABLE IF NOT EXISTS `v_tes_jawaban` (
 `id_jawaban` int(11)
 ,`id_tes` int(11)
 ,`id_soal` int(11)
@@ -562,199 +553,180 @@ CREATE TABLE `v_tes_jawaban` (
 ,`jawaban_siswa` varchar(5)
 ,`status_jawaban` enum('Benar','Salah','Belum')
 );
-
 -- --------------------------------------------------------
 
 --
--- Structure for view `v_jadwal`
+-- Struktur untuk view `v_jadwal`
 --
 DROP TABLE IF EXISTS `v_jadwal`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_jadwal`  AS  select `ja`.`id_jadwal` AS `id_jadwal`,`ja`.`kode_mapel` AS `kode_mapel`,`mp`.`nama_mapel` AS `nama_mapel`,`ja`.`nip` AS `nip`,`g`.`nama` AS `nama`,`ja`.`kode_kelas` AS `kode_kelas`,`ke`.`nama_kelas` AS `nama_kelas`,`ja`.`kode_jurusan` AS `kode_jurusan`,`ju`.`nama_jurusan` AS `nama_jurusan`,`ja`.`hari` AS `hari`,`ja`.`status` AS `status`,`ja`.`jam` AS `jam` from ((((`jadwal` `ja` join `mata_pelajaran` `mp` on((`ja`.`kode_mapel` = `mp`.`kode_mapel`))) join `guru` `g` on((`ja`.`nip` = `g`.`nip`))) join `kelas` `ke` on((`ja`.`kode_kelas` = `ke`.`kode_kelas`))) join `jurusan` `ju` on((`ja`.`kode_jurusan` = `ju`.`kode_jurusan`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_jadwal` AS select `ja`.`id_jadwal` AS `id_jadwal`,`ja`.`kode_mapel` AS `kode_mapel`,`mp`.`nama_mapel` AS `nama_mapel`,`ja`.`nip` AS `nip`,`g`.`nama` AS `nama`,`ja`.`kode_kelas` AS `kode_kelas`,`ke`.`nama_kelas` AS `nama_kelas`,`ja`.`kode_jurusan` AS `kode_jurusan`,`ju`.`nama_jurusan` AS `nama_jurusan`,`ja`.`hari` AS `hari`,`ja`.`status` AS `status`,`ja`.`jam` AS `jam` from ((((`jadwal` `ja` join `mata_pelajaran` `mp` on((`ja`.`kode_mapel` = `mp`.`kode_mapel`))) join `guru` `g` on((`ja`.`nip` = `g`.`nip`))) join `kelas` `ke` on((`ja`.`kode_kelas` = `ke`.`kode_kelas`))) join `jurusan` `ju` on((`ja`.`kode_jurusan` = `ju`.`kode_jurusan`)));
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `v_komentar`
+-- Struktur untuk view `v_komentar`
 --
 DROP TABLE IF EXISTS `v_komentar`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_komentar`  AS  select `ko`.`id_komentar` AS `id_komentar`,`ko`.`id_materi` AS `id_materi`,`m`.`judul` AS `judul`,`ko`.`komentator` AS `komentator`,`ko`.`level_komentator` AS `level_komentator`,`ko`.`isi` AS `isi`,`ko`.`tgl_post` AS `tgl_post` from (`komentar` `ko` join `materi` `m` on((`ko`.`id_materi` = `m`.`id_materi`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_komentar` AS select `ko`.`id_komentar` AS `id_komentar`,`ko`.`id_materi` AS `id_materi`,`m`.`judul` AS `judul`,`ko`.`komentator` AS `komentator`,`ko`.`level_komentator` AS `level_komentator`,`ko`.`isi` AS `isi`,`ko`.`tgl_post` AS `tgl_post` from (`komentar` `ko` join `materi` `m` on((`ko`.`id_materi` = `m`.`id_materi`)));
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `v_lampiran`
+-- Struktur untuk view `v_lampiran`
 --
 DROP TABLE IF EXISTS `v_lampiran`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_lampiran`  AS  select `l`.`id_lampiran` AS `id_lampiran`,`l`.`id_materi` AS `id_materi`,`m`.`judul` AS `judul`,`l`.`nama_lampiran` AS `nama_lampiran`,`l`.`nama_file` AS `nama_file` from (`lampiran` `l` join `materi` `m` on((`l`.`id_materi` = `m`.`id_materi`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_lampiran` AS select `l`.`id_lampiran` AS `id_lampiran`,`l`.`id_materi` AS `id_materi`,`m`.`judul` AS `judul`,`l`.`nama_lampiran` AS `nama_lampiran`,`l`.`nama_file` AS `nama_file` from (`lampiran` `l` join `materi` `m` on((`l`.`id_materi` = `m`.`id_materi`)));
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `v_materi`
+-- Struktur untuk view `v_materi`
 --
 DROP TABLE IF EXISTS `v_materi`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_materi`  AS  select `m`.`id_materi` AS `id_materi`,`m`.`id_jadwal` AS `id_jadwal`,`j`.`kode_mapel` AS `kode_mapel`,`j`.`nama_mapel` AS `nama_mapel`,`j`.`kode_kelas` AS `kode_kelas`,`j`.`nama_kelas` AS `nama_kelas`,`m`.`judul` AS `judul`,`m`.`isi` AS `isi`,`m`.`nip` AS `nip`,`g`.`nama` AS `nama`,`m`.`tgl_posting` AS `tgl_posting`,`m`.`publish` AS `publish`,(select count(`s`.`id_soal`) from `soal` `s` where (`s`.`id_materi` = `m`.`id_materi`)) AS `jml_soal`,(select coalesce(sum(`r`.`durasi`),0) from `soal` `r` where (`r`.`id_materi` = `m`.`id_materi`)) AS `total_durasi` from ((`materi` `m` left join `guru` `g` on((`m`.`nip` = `g`.`nip`))) left join `v_jadwal` `j` on((`m`.`id_jadwal` = `j`.`id_jadwal`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_materi` AS select `m`.`id_materi` AS `id_materi`,`m`.`id_jadwal` AS `id_jadwal`,`j`.`kode_mapel` AS `kode_mapel`,`j`.`nama_mapel` AS `nama_mapel`,`j`.`kode_kelas` AS `kode_kelas`,`j`.`nama_kelas` AS `nama_kelas`,`m`.`judul` AS `judul`,`m`.`isi` AS `isi`,`m`.`nip` AS `nip`,`g`.`nama` AS `nama`,`m`.`tgl_posting` AS `tgl_posting`,`m`.`publish` AS `publish`,(select count(`s`.`id_soal`) from `soal` `s` where (`s`.`id_materi` = `m`.`id_materi`)) AS `jml_soal`,(select coalesce(sum(`r`.`durasi`),0) from `soal` `r` where (`r`.`id_materi` = `m`.`id_materi`)) AS `total_durasi` from ((`materi` `m` left join `guru` `g` on((`m`.`nip` = `g`.`nip`))) left join `v_jadwal` `j` on((`m`.`id_jadwal` = `j`.`id_jadwal`)));
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `v_nilai_ujian`
+-- Struktur untuk view `v_nilai_ujian`
 --
 DROP TABLE IF EXISTS `v_nilai_ujian`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_nilai_ujian`  AS  select `n`.`id_nilai` AS `id_nilai`,`n`.`nis` AS `nis`,`n`.`jumlah_benar` AS `jumlah_benar`,`n`.`jumlah_salah` AS `jumlah_salah`,`n`.`tgl_ujian` AS `tgl_ujian`,`n`.`id_materi` AS `id_materi`,`n`.`nilai` AS `nilai`,`s`.`nama` AS `nama`,`m`.`judul` AS `judul` from ((`nilai_ujian` `n` join `siswa` `s` on((`n`.`nis` = `s`.`nis`))) left join `materi` `m` on((`n`.`id_materi` = `m`.`id_materi`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_nilai_ujian` AS select `n`.`id_nilai` AS `id_nilai`,`n`.`nis` AS `nis`,`n`.`jumlah_benar` AS `jumlah_benar`,`n`.`jumlah_salah` AS `jumlah_salah`,`n`.`tgl_ujian` AS `tgl_ujian`,`n`.`id_materi` AS `id_materi`,`n`.`nilai` AS `nilai`,`s`.`nama` AS `nama`,`m`.`judul` AS `judul` from ((`nilai_ujian` `n` join `siswa` `s` on((`n`.`nis` = `s`.`nis`))) left join `materi` `m` on((`n`.`id_materi` = `m`.`id_materi`)));
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `v_siswa`
+-- Struktur untuk view `v_siswa`
 --
 DROP TABLE IF EXISTS `v_siswa`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_siswa`  AS  select `si`.`nis` AS `nis`,`si`.`nama` AS `nama`,`si`.`alamat` AS `alamat`,`si`.`tempat_lahir` AS `tempat_lahir`,`si`.`tgl_lahir` AS `tgl_lahir`,`si`.`jenis_kelamin` AS `jenis_kelamin`,`si`.`agama` AS `agama`,`si`.`thn_masuk` AS `thn_masuk`,`si`.`email` AS `email`,`si`.`no_telp` AS `no_telp`,`si`.`foto` AS `foto`,`si`.`username` AS `username`,`si`.`password` AS `password`,`si`.`level` AS `level`,`si`.`kelas` AS `kelas`,`ke`.`nama_kelas` AS `nama_kelas`,`si`.`jurusan` AS `jurusan`,`ju`.`nama_jurusan` AS `nama_jurusan`,`si`.`status` AS `status` from ((`siswa` `si` join `kelas` `ke` on((`si`.`kelas` = `ke`.`kode_kelas`))) join `jurusan` `ju` on((`si`.`jurusan` = `ju`.`kode_jurusan`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_siswa` AS select `si`.`nis` AS `nis`,`si`.`nama` AS `nama`,`si`.`alamat` AS `alamat`,`si`.`tempat_lahir` AS `tempat_lahir`,`si`.`tgl_lahir` AS `tgl_lahir`,`si`.`jenis_kelamin` AS `jenis_kelamin`,`si`.`agama` AS `agama`,`si`.`thn_masuk` AS `thn_masuk`,`si`.`email` AS `email`,`si`.`no_telp` AS `no_telp`,`si`.`foto` AS `foto`,`si`.`username` AS `username`,`si`.`password` AS `password`,`si`.`level` AS `level`,`si`.`kelas` AS `kelas`,`ke`.`nama_kelas` AS `nama_kelas`,`si`.`jurusan` AS `jurusan`,`ju`.`nama_jurusan` AS `nama_jurusan`,`si`.`status` AS `status` from ((`siswa` `si` join `kelas` `ke` on((`si`.`kelas` = `ke`.`kode_kelas`))) join `jurusan` `ju` on((`si`.`jurusan` = `ju`.`kode_jurusan`)));
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `v_soal`
+-- Struktur untuk view `v_soal`
 --
 DROP TABLE IF EXISTS `v_soal`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_soal`  AS  select `so`.`id_soal` AS `id_soal`,`so`.`pertanyaan` AS `pertanyaan`,`so`.`opsi_a` AS `opsi_a`,`so`.`opsi_b` AS `opsi_b`,`so`.`opsi_c` AS `opsi_c`,`so`.`opsi_d` AS `opsi_d`,`so`.`jawaban` AS `jawaban`,`so`.`id_materi` AS `id_materi`,`j`.`judul` AS `judul`,`j`.`kode_mapel` AS `kode_mapel`,`j`.`nama_mapel` AS `nama_mapel`,`so`.`nip` AS `nip`,`g`.`nama` AS `nama`,`so`.`tgl_posting` AS `tgl_posting`,`so`.`durasi` AS `durasi` from ((`soal` `so` left join `v_materi` `j` on((`so`.`id_materi` = `j`.`id_materi`))) left join `guru` `g` on((`so`.`nip` = `g`.`nip`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_soal` AS select `so`.`id_soal` AS `id_soal`,`so`.`pertanyaan` AS `pertanyaan`,`so`.`opsi_a` AS `opsi_a`,`so`.`opsi_b` AS `opsi_b`,`so`.`opsi_c` AS `opsi_c`,`so`.`opsi_d` AS `opsi_d`,`so`.`jawaban` AS `jawaban`,`so`.`id_materi` AS `id_materi`,`j`.`judul` AS `judul`,`j`.`kode_mapel` AS `kode_mapel`,`j`.`nama_mapel` AS `nama_mapel`,`so`.`nip` AS `nip`,`g`.`nama` AS `nama`,`so`.`tgl_posting` AS `tgl_posting`,`so`.`durasi` AS `durasi` from ((`soal` `so` left join `v_materi` `j` on((`so`.`id_materi` = `j`.`id_materi`))) left join `guru` `g` on((`so`.`nip` = `g`.`nip`)));
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `v_tes`
+-- Struktur untuk view `v_tes`
 --
 DROP TABLE IF EXISTS `v_tes`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_tes`  AS  select `t`.`id_tes` AS `id_tes`,`t`.`nis` AS `nis`,`s`.`nama` AS `nama_siswa`,`s`.`nama_kelas` AS `nama_kelas`,`t`.`id_materi` AS `id_materi`,`m`.`kode_mapel` AS `kode_mapel`,`m`.`nama_mapel` AS `nama_mapel`,`m`.`judul` AS `judul`,`m`.`nip` AS `nip`,`m`.`nama` AS `nama`,`m`.`jml_soal` AS `jml_soal`,`m`.`total_durasi` AS `total_durasi`,`m`.`tgl_posting` AS `tgl_posting`,`t`.`tgl_tes` AS `tgl_tes`,`t`.`status_tes` AS `status_tes` from ((`tes` `t` join `v_materi` `m` on((`t`.`id_materi` = `m`.`id_materi`))) join `v_siswa` `s` on((`t`.`nis` = `s`.`nis`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_tes` AS select `t`.`id_tes` AS `id_tes`,`t`.`nis` AS `nis`,`s`.`nama` AS `nama_siswa`,`s`.`nama_kelas` AS `nama_kelas`,`t`.`id_materi` AS `id_materi`,`m`.`kode_mapel` AS `kode_mapel`,`m`.`nama_mapel` AS `nama_mapel`,`m`.`judul` AS `judul`,`m`.`nip` AS `nip`,`m`.`nama` AS `nama`,`m`.`jml_soal` AS `jml_soal`,`m`.`total_durasi` AS `total_durasi`,`m`.`tgl_posting` AS `tgl_posting`,`t`.`tgl_tes` AS `tgl_tes`,`t`.`status_tes` AS `status_tes` from ((`tes` `t` join `v_materi` `m` on((`t`.`id_materi` = `m`.`id_materi`))) join `v_siswa` `s` on((`t`.`nis` = `s`.`nis`)));
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `v_tes_jawaban`
+-- Struktur untuk view `v_tes_jawaban`
 --
 DROP TABLE IF EXISTS `v_tes_jawaban`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_tes_jawaban`  AS  select `j`.`id_jawaban` AS `id_jawaban`,`j`.`id_tes` AS `id_tes`,`j`.`id_soal` AS `id_soal`,`s`.`pertanyaan` AS `pertanyaan`,`s`.`opsi_a` AS `opsi_a`,`s`.`opsi_b` AS `opsi_b`,`s`.`opsi_c` AS `opsi_c`,`s`.`opsi_d` AS `opsi_d`,`s`.`jawaban` AS `jawaban`,`s`.`durasi` AS `durasi`,`j`.`jawaban` AS `jawaban_siswa`,`j`.`status_jawaban` AS `status_jawaban` from (`tes_jawaban` `j` join `soal` `s` on((`j`.`id_soal` = `s`.`id_soal`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_tes_jawaban` AS select `j`.`id_jawaban` AS `id_jawaban`,`j`.`id_tes` AS `id_tes`,`j`.`id_soal` AS `id_soal`,`s`.`pertanyaan` AS `pertanyaan`,`s`.`opsi_a` AS `opsi_a`,`s`.`opsi_b` AS `opsi_b`,`s`.`opsi_c` AS `opsi_c`,`s`.`opsi_d` AS `opsi_d`,`s`.`jawaban` AS `jawaban`,`s`.`durasi` AS `durasi`,`j`.`jawaban` AS `jawaban_siswa`,`j`.`status_jawaban` AS `status_jawaban` from (`tes_jawaban` `j` join `soal` `s` on((`j`.`id_soal` = `s`.`id_soal`)));
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`username`);
-
---
 -- Indexes for table `guru`
 --
 ALTER TABLE `guru`
-  ADD PRIMARY KEY (`nip`);
+ ADD PRIMARY KEY (`nip`);
 
 --
 -- Indexes for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  ADD PRIMARY KEY (`id_jadwal`),
-  ADD KEY `kode_mapel` (`kode_mapel`),
-  ADD KEY `nip` (`nip`),
-  ADD KEY `kode_kelas` (`kode_kelas`),
-  ADD KEY `kode_jurusan` (`kode_jurusan`);
+ ADD PRIMARY KEY (`id_jadwal`), ADD KEY `kode_mapel` (`kode_mapel`), ADD KEY `nip` (`nip`), ADD KEY `kode_kelas` (`kode_kelas`), ADD KEY `kode_jurusan` (`kode_jurusan`);
 
 --
 -- Indexes for table `jurusan`
 --
 ALTER TABLE `jurusan`
-  ADD PRIMARY KEY (`kode_jurusan`);
+ ADD PRIMARY KEY (`kode_jurusan`);
 
 --
 -- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
-  ADD PRIMARY KEY (`kode_kelas`);
+ ADD PRIMARY KEY (`kode_kelas`);
 
 --
 -- Indexes for table `komentar`
 --
 ALTER TABLE `komentar`
-  ADD PRIMARY KEY (`id_komentar`),
-  ADD KEY `id_materi` (`id_materi`);
+ ADD PRIMARY KEY (`id_komentar`), ADD KEY `id_materi` (`id_materi`);
 
 --
 -- Indexes for table `lampiran`
 --
 ALTER TABLE `lampiran`
-  ADD PRIMARY KEY (`id_lampiran`),
-  ADD KEY `id_materi` (`id_materi`);
+ ADD PRIMARY KEY (`id_lampiran`), ADD KEY `id_materi` (`id_materi`);
 
 --
 -- Indexes for table `mata_pelajaran`
 --
 ALTER TABLE `mata_pelajaran`
-  ADD PRIMARY KEY (`kode_mapel`);
+ ADD PRIMARY KEY (`kode_mapel`);
 
 --
 -- Indexes for table `materi`
 --
 ALTER TABLE `materi`
-  ADD PRIMARY KEY (`id_materi`),
-  ADD KEY `id_jadwal` (`id_jadwal`),
-  ADD KEY `nip` (`nip`);
+ ADD PRIMARY KEY (`id_materi`), ADD KEY `id_jadwal` (`id_jadwal`), ADD KEY `nip` (`nip`);
 
 --
 -- Indexes for table `nilai_ujian`
 --
 ALTER TABLE `nilai_ujian`
-  ADD PRIMARY KEY (`id_nilai`),
-  ADD KEY `nis` (`nis`),
-  ADD KEY `id_materi` (`id_materi`);
+ ADD PRIMARY KEY (`id_nilai`), ADD KEY `nis` (`nis`), ADD KEY `id_materi` (`id_materi`);
 
 --
 -- Indexes for table `pesan`
 --
 ALTER TABLE `pesan`
-  ADD PRIMARY KEY (`id_pesan`);
+ ADD PRIMARY KEY (`id_pesan`);
 
 --
 -- Indexes for table `siswa`
 --
 ALTER TABLE `siswa`
-  ADD PRIMARY KEY (`nis`),
-  ADD KEY `kelas` (`kelas`),
-  ADD KEY `jurusan` (`jurusan`);
+ ADD PRIMARY KEY (`nis`), ADD KEY `kelas` (`kelas`), ADD KEY `jurusan` (`jurusan`);
 
 --
 -- Indexes for table `soal`
 --
 ALTER TABLE `soal`
-  ADD PRIMARY KEY (`id_soal`),
-  ADD KEY `nip` (`nip`),
-  ADD KEY `id_materi` (`id_materi`);
+ ADD PRIMARY KEY (`id_soal`), ADD KEY `nip` (`nip`), ADD KEY `id_materi` (`id_materi`);
 
 --
 -- Indexes for table `tes`
 --
 ALTER TABLE `tes`
-  ADD PRIMARY KEY (`id_tes`),
-  ADD KEY `nis` (`nis`),
-  ADD KEY `id_materi` (`id_materi`);
+ ADD PRIMARY KEY (`id_tes`), ADD KEY `nis` (`nis`), ADD KEY `id_materi` (`id_materi`);
 
 --
 -- Indexes for table `tes_jawaban`
 --
 ALTER TABLE `tes_jawaban`
-  ADD PRIMARY KEY (`id_jawaban`),
-  ADD KEY `id_tes` (`id_tes`),
-  ADD KEY `id_soal` (`id_soal`);
+ ADD PRIMARY KEY (`id_jawaban`), ADD KEY `id_tes` (`id_tes`), ADD KEY `id_soal` (`id_soal`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -764,113 +736,113 @@ ALTER TABLE `tes_jawaban`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id_komentar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+MODIFY `id_komentar` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `lampiran`
 --
 ALTER TABLE `lampiran`
-  MODIFY `id_lampiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+MODIFY `id_lampiran` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `nilai_ujian`
 --
 ALTER TABLE `nilai_ujian`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pesan`
 --
 ALTER TABLE `pesan`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tes`
 --
 ALTER TABLE `tes`
-  MODIFY `id_tes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+MODIFY `id_tes` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tes_jawaban`
 --
 ALTER TABLE `tes_jawaban`
-  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `jadwal`
+-- Ketidakleluasaan untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
-  ADD CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`kode_mapel`) REFERENCES `mata_pelajaran` (`kode_mapel`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `jadwal_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `guru` (`nip`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `jadwal_ibfk_3` FOREIGN KEY (`kode_kelas`) REFERENCES `kelas` (`kode_kelas`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `jadwal_ibfk_4` FOREIGN KEY (`kode_jurusan`) REFERENCES `jurusan` (`kode_jurusan`) ON UPDATE CASCADE;
+ADD CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`kode_mapel`) REFERENCES `mata_pelajaran` (`kode_mapel`) ON UPDATE CASCADE,
+ADD CONSTRAINT `jadwal_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `guru` (`nip`) ON UPDATE CASCADE,
+ADD CONSTRAINT `jadwal_ibfk_3` FOREIGN KEY (`kode_kelas`) REFERENCES `kelas` (`kode_kelas`) ON UPDATE CASCADE,
+ADD CONSTRAINT `jadwal_ibfk_4` FOREIGN KEY (`kode_jurusan`) REFERENCES `jurusan` (`kode_jurusan`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `komentar`
+-- Ketidakleluasaan untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
-  ADD CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE;
+ADD CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `lampiran`
+-- Ketidakleluasaan untuk tabel `lampiran`
 --
 ALTER TABLE `lampiran`
-  ADD CONSTRAINT `lampiran_ibfk_1` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE;
+ADD CONSTRAINT `lampiran_ibfk_1` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `materi`
+-- Ketidakleluasaan untuk tabel `materi`
 --
 ALTER TABLE `materi`
-  ADD CONSTRAINT `materi_ibfk_1` FOREIGN KEY (`id_jadwal`) REFERENCES `jadwal` (`id_jadwal`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `materi_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `guru` (`nip`) ON UPDATE CASCADE;
+ADD CONSTRAINT `materi_ibfk_1` FOREIGN KEY (`id_jadwal`) REFERENCES `jadwal` (`id_jadwal`) ON UPDATE CASCADE,
+ADD CONSTRAINT `materi_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `guru` (`nip`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `nilai_ujian`
+-- Ketidakleluasaan untuk tabel `nilai_ujian`
 --
 ALTER TABLE `nilai_ujian`
-  ADD CONSTRAINT `nilai_ujian_ibfk_2` FOREIGN KEY (`nis`) REFERENCES `siswa` (`nis`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `nilai_ujian_ibfk_3` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE;
+ADD CONSTRAINT `nilai_ujian_ibfk_2` FOREIGN KEY (`nis`) REFERENCES `siswa` (`nis`) ON UPDATE CASCADE,
+ADD CONSTRAINT `nilai_ujian_ibfk_3` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `siswa`
+-- Ketidakleluasaan untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  ADD CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`kode_jurusan`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `siswa_ibfk_2` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`kode_kelas`) ON UPDATE CASCADE;
+ADD CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`kode_jurusan`) ON UPDATE CASCADE,
+ADD CONSTRAINT `siswa_ibfk_2` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`kode_kelas`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `soal`
+-- Ketidakleluasaan untuk tabel `soal`
 --
 ALTER TABLE `soal`
-  ADD CONSTRAINT `soal_ibfk_1` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `soal_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `guru` (`nip`) ON UPDATE CASCADE;
+ADD CONSTRAINT `soal_ibfk_1` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE,
+ADD CONSTRAINT `soal_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `guru` (`nip`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `tes`
+-- Ketidakleluasaan untuk tabel `tes`
 --
 ALTER TABLE `tes`
-  ADD CONSTRAINT `tes_ibfk_1` FOREIGN KEY (`nis`) REFERENCES `siswa` (`nis`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tes_ibfk_2` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE;
+ADD CONSTRAINT `tes_ibfk_1` FOREIGN KEY (`nis`) REFERENCES `siswa` (`nis`) ON UPDATE CASCADE,
+ADD CONSTRAINT `tes_ibfk_2` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `tes_jawaban`
+-- Ketidakleluasaan untuk tabel `tes_jawaban`
 --
 ALTER TABLE `tes_jawaban`
-  ADD CONSTRAINT `tes_jawaban_ibfk_1` FOREIGN KEY (`id_soal`) REFERENCES `soal` (`id_soal`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tes_jawaban_ibfk_2` FOREIGN KEY (`id_tes`) REFERENCES `tes` (`id_tes`) ON UPDATE CASCADE;
+ADD CONSTRAINT `tes_jawaban_ibfk_1` FOREIGN KEY (`id_soal`) REFERENCES `soal` (`id_soal`) ON UPDATE CASCADE,
+ADD CONSTRAINT `tes_jawaban_ibfk_2` FOREIGN KEY (`id_tes`) REFERENCES `tes` (`id_tes`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
