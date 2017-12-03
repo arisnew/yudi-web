@@ -133,11 +133,14 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 									</select>
 								</div>
 							</div>
-							<div id="div-foto">
+							<div class="form-control">
+								<div id="preview-image"></div>
 							</div>
-							<div id="div-upload" style="display: none">
-								<label>Foto</label>
-								<input type="file" name="file_upload" id="file_upload" class="image" >
+							<div class="form-group">
+								<label class="control-label col-md-2">Foto :</label>
+								<div class="col-md-10">
+									<input type="file" class="form-control" id="foto-input" name="foto-input">
+								</div>
 							</div>
 							<input type="hidden" name="model-input" id="model-input" value="siswa">
 							<input type="hidden" name="action-input" id="action-input" value="1">
@@ -154,78 +157,54 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 	</section>
 </div>
 
-	<script type="text/javascript">
-		$(document).ready(function () {
-			<?php
-			if ($param) {
-				echo 'fillForm("'.$param.'");';
-			}
-			?>
+<script type="text/javascript">
+	$(document).ready(function () {
+		<?php
+		if ($param) {
+			echo 'fillForm("'.$param.'");';
+		}
+		?>
 
-			$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
-				$(this).datepicker('hide');
-			});
-
-					// file upload
-					$("#file_upload").fileinput({
-						maxFileCount: 1,
-						browseClass: "btn btn-default",
-						browseLabel: "Pilih file",
-						browseIcon: '<i class="fa fa-file"></i> ',
-						removeClass: "btn btn-warning",
-						removeLabel: "Hapus",
-						removeIcon: '<i class="glyphicon glyphicon-trash"></i> ',
-						uploadClass: "btn btn-info",
-						uploadLabel: "Unggah",
-						uploadIcon: '<i class="fa fa-cloud-upload"></i> ',
-						previewFileType: "image",
-			            uploadUrl: "<?php echo base_url('doupload'); ?>", // your upload server url
-			            msgFilesTooMany: 'Jumlah berkas yang akan diunggah ({n}) melebihi batas jumlah yang sudah ditentukan ({m}). Coba ulangi proses unggah berkas!',
-			            msgLoading: 'Memproses berkas {index} dari {files} …',
-			            msgProgress: 'Memproses berkas {index} dari {files} - {name} - {percent}% selesai.',
-			            uploadExtraData: function() {
-			            	return {
-			            		nama_field:'file_upload',
-			            		model:'siswa',
-			            		key: 'nis',
-			            		value:$("#form-siswa #nis-input").val()
-			            	};
-			            }
-			        });
-
-			        //refresh if succes upload...
-			        $('#file_upload').on('filebatchuploadcomplete', function(event, files, extra) {
-			        	loadContent(base_url + "view/_form_siswa/" + $("#nis-input").val());
-			        });
-			    });
+		$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
+			$(this).datepicker('hide');
+		});
 
 		function proses_simpan() {
 			loading("loading", true);
+			//re-append data form + image
+	        var formdata = new FormData();      
+	        var file1 = $('#foto-input')[0].files[0];    //untuk dokumen
+	        formdata.append('file-img', file1);
+	        $.each($('#form-siswa').serializeArray(), function(a, b){
+	            formdata.append(b.name, b.value);
+	        });
 			setTimeout(function () {
-						//ajax jalan
-						$.ajax({
-							url: base_url + 'manage',
-							type: 'POST',
-							dataType: "json",
-							data: $("#form-siswa").serialize(),
-							cache: false,
-							success: function (json) {
-								loading("loading", false);
-								if (json.data.code == 1) {
-									alert("Simpan Data Berhasil");
-									loadContent(base_url + 'view/_table_siswa');
-								} else if(json.data.code == 2) {
-									alert("Simpan Data Gagal!");
-								} else{
-									alert(json.data.message);
-								}
-							},
-							error: function () {
-								loading("loading", false);
-								alert("Respon server gagal!");
-							}
-						});
-					}, 100);
+				//ajax jalan
+				$.ajax({
+					url: base_url + 'manage',
+					type: 'POST',
+					processData: false, //must false
+                	contentType: false, //must false
+					dataType: "json",
+					data: formdata, // $("#form-siswa").serialize(),
+					cache: false,
+					success: function (json) {
+						loading("loading", false);
+						if (json.data.code == 1) {
+							alert("Simpan Data Berhasil");
+							loadContent(base_url + 'view/_table_siswa');
+						} else if(json.data.code == 2) {
+							alert("Simpan Data Gagal!");
+						} else{
+							alert(json.data.message);
+						}
+					},
+					error: function () {
+						loading("loading", false);
+						alert("Respon server gagal!");
+					}
+				});
+			}, 100);
 		}
 
 		function fillForm(x) {
@@ -248,18 +227,17 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 						$("#no_telp-input").val(json.data.object.no_telp);
 						$("#email-input").val(json.data.object.email);
 						$("#username-input").val(json.data.object.username);
-					//$("#password-input").val(json.data.object.password);
-					$("#kelas-input").val(json.data.object.kelas);
-					$("#jurusan-input").val(json.data.object.jurusan);
-					$("#status-input").val(json.data.object.status);
-					if (json.data.object.foto != '') {
-						$("#div-foto").html('<img src="'+base_url+'asset/img/upload/'+json.data.object.foto+'" class="img img-thumbnail foto-profil">');
+						$("#kelas-input").val(json.data.object.kelas);
+						$("#jurusan-input").val(json.data.object.jurusan);
+						$("#status-input").val(json.data.object.status);
+						if (json.data.object.foto != '') {
+							$("#preview-image").html('<img src="'+base_url+'asset/img/upload/thumb/'+json.data.object.foto+'" class="img img-thumbnail foto-profil">');
+						}
+						$("#action-input").val("2");
+						$("#value-input").val(x);
+						$("#div-upload").show();
 					}
-					$("#action-input").val("2");
-					$("#value-input").val(x);
-					$("#div-upload").show();
 				}
-			}
-		});
+			});
 		}
 	</script>

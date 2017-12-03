@@ -144,4 +144,47 @@ class Model extends CI_Model {
         }
     }
 
+    /*
+    * for upload file using ajax
+    * parameter in $request => input_name, folder_path, file_type, max_size,
+    */
+    function file_upload($request = array())
+    {
+        $ret = null;
+        if ($request['input_name'] != ''){
+            $fld = ($request['folder_path'] != '') ? $request['folder_path'] . '/' : 'asset/img/upload/';
+            $config['upload_path'] = $fld;
+            $config['allowed_types'] = (isset($request['file_type']) && $request['file_type'] != '') ? $request['file_type'] : '*';
+            $config['max_size'] = (isset($request['max_size']) && $request['max_size'] != '') ? $request['max_size'] : '5120';
+
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload($request['input_name']))
+            {
+                $ret = null;
+            } else {
+                $result = $this->upload->data();
+                if($result !=''){
+                    foreach ($result as $item => $value){
+                        $ret = $result['file_name'];
+                    }
+
+                    //create thumbnail if type file is IMAGE
+                    $config1['image_library'] = 'gd2';
+                    $config1['source_image'] = $config['upload_path'] . $ret;
+                    $config1['new_image'] = $config['upload_path'] . 'thumb';
+                    $config1['maintain_ratio'] = FALSE;
+                    $config1['width'] = 400;
+                    $config1['height'] = 300;
+                        
+                    $this->load->library('image_lib', $config1);
+                    //resize 
+                    @$this->image_lib->resize();
+                }
+            }
+        }
+
+        return $ret;
+    }
+
 }
