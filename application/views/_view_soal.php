@@ -37,7 +37,7 @@ if ($tes) {
                     <div class="col-xs-3">Waktu Mengerjakan</div>
                     <div class="col-xs-9">: <b><?php echo $tes->total_durasi;?></b></div>
                     <br>
-                    <button id="selesai-btn" class="btn btn-danger" onclick="">Selesai</button>
+                    <button id="selesai-btn" class="btn btn-danger" onclick="selesai(); return false;">Selesai</button>
                 </div>
             </div>
         </div>
@@ -258,6 +258,34 @@ if ($tes) {
                 }
             });
         }, 100);
+    }
+
+    function selesai(callback) {
+        loading('loading', true);
+        $.ajax({
+            url: base_url + 'akhiri_tes/<?php echo $param;?>',
+            data: 'id=1',
+            dataType: 'json',
+            type: 'POST',
+            cache: false,
+            success: function(json) {
+                loading('loading',false);
+                if (json.code === 1) {
+                    alert('Tes telah berakhir');
+                    loadContent(base_url + 'view/_table_nilai_ujian_siswa');
+                } else{
+                    alert('An Error has occured');
+                }
+
+                if (typeof callback == 'function') {
+                    callback();
+                }
+            },
+            error: function () {
+                loading('loading',false);
+                alert('An error accurred');
+            }
+        });
     }
 
 </script>

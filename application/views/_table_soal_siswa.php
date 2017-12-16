@@ -161,11 +161,12 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
                     loadContent(base_url + 'view/_view_soal/' + json.last_id);
                 } else if(json.code === 2){
                     alert(json.msg);
-                    //sudah test sebelumnya
+                    //sudah test sebelumnya tp belum selesai
                     loadContent(base_url + 'view/_view_soal/' + json.last_id);
                 } else{
+                    //code 3
                     alert(json.msg);
-                    //tidak valid
+                    loadContent(base_url + 'view/_table_nilai_ujian_siswa');
                 }
             },
             error: function () {

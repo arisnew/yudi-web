@@ -177,9 +177,16 @@ class Manager extends CI_Controller {
             //exist?
             $cek = $this->model->getRecord(array('table' => 'tes', 'where' => array('id_materi' => $id_materi, 'nis' => $nis)));
             if ($cek) {
-                $msg = 'Sudah mengerjakan test.';
-                $code = 2;
+                if ($cek->status_tes == 'Selesai') {
+                    $code = 3;
+                    $msg = 'Sudah mengerjakan test & sudah selesai!';
+                } else {
+                    $msg = 'Sudah mengerjakan test, belum selesai.';
+                    $code = 2;
+                }
+
                 $id_tes = $cek->id_tes;
+                
             } else {
                 //data soal by materi
                 $soal = $this->model->getList(array('table' => 'soal', 'where' => array('id_materi' => $id_materi)));
@@ -217,5 +224,26 @@ class Manager extends CI_Controller {
         }
 
         echo json_encode(array('code' => $code, 'msg' => $msg, 'last_id' => $id_tes));
+    }
+
+    public function akhiri_tes($id_tes)
+    {
+        $code = 0;
+        $test = $this->model->getRecord(array('table' => 'tes', 'where' => array('id_tes' => $id_tes, 'status_tes' => 'Belum')));
+        if ($test) {
+            //update status test
+            $data_to_update = array(
+                'status_tes' => 'Selesai'
+            );
+
+            //do 
+            $this->db->where('id_tes', $id_tes);
+            $doing = $this->db->update('tes', $data_to_update);
+            if ($doing) {
+                $code = 1;
+            }
+        }
+
+        echo json_encode(array('code' => $code));
     }
 }

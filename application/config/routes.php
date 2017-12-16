@@ -70,3 +70,6 @@ $route['doupload_materi'] = 'uploader/proses_upload_materi'; // for upload mater
 
 $route['pick/(:any)/(:any)/(:any)'] = 'retriever/records/$1/$2/$3/yes'; // read/retrieve list with param for picker
 $route['generate_soal/(:any)/(:any)'] = 'manager/generate_test/$1/$2'; // for uploaad
+
+//routing u/ akhiri tes
+$route['akhiri_tes/(:any)'] = 'manager/akhiri_tes/$1'; // for uploaad
