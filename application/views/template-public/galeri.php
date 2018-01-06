@@ -53,39 +53,39 @@
             </div>
         </div>
     </header>
-<footer id="footer">
-    <div class="container">
-        <div class="social text-center">
-            <a href="https://twitter.com/Yaspiyah/"><i class="fa fa-twitter"></i></a>
-            <a href="https://www.facebook.com/Yaspiyah/"><i class="fa fa-facebook"></i></a>
-            <a href="//banggaheriyanto@gmail.com/"><i class="fa fa-envelope-o"></i></a>
-            <a href="https://www.youtube.com/Yaspiyah/"><i class="fa fa-youtube"></i></a>
-            <a href="http://www.alfathimiyah.com/"><i class="fa fa-desktop"></i></a>
-            <a href="http://mobile.alfathimiyah.com/"><i class="fa fa-mobile"></i></a>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="footer2">
+    <footer id="footer">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 panel">
-                    <div class="panel-body">
-                        <p class="simplenav">
+            <div class="social text-center">
+                <a href="https://twitter.com/Yaspiyah/"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.facebook.com/Yaspiyah/"><i class="fa fa-facebook"></i></a>
+                <a href="//banggaheriyanto@gmail.com/"><i class="fa fa-envelope-o"></i></a>
+                <a href="https://www.youtube.com/Yaspiyah/"><i class="fa fa-youtube"></i></a>
+                <a href="http://www.alfathimiyah.com/"><i class="fa fa-desktop"></i></a>
+                <a href="http://mobile.alfathimiyah.com/"><i class="fa fa-mobile"></i></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="footer2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 panel">
+                        <div class="panel-body">
+                            <p class="simplenav">
 
-                        </p>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6 panel">
-                    <div class="panel-body">
-                        <p class="text-right">
-                            Copyright &copy; 2017. yudi_srilaksono <a href="" rel="develop">Fasilkom Unsika</a>
-                        </p>
+                    <div class="col-md-6 panel">
+                        <div class="panel-body">
+                            <p class="text-right">
+                                Copyright &copy; 2017. yudi_srilaksono <a href="" rel="develop">Fasilkom Unsika</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 <script src="<?php echo base_url();?>asset/template-public/assets/js/modernizr-latest.js"></script> 
 <script type='text/javascript' src='<?php echo base_url();?>asset/template-public/assets/js/jquery.min.js'></script>

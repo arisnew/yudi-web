@@ -89,7 +89,7 @@ if ($param) {
 									<tbody></tbody>
 								</table>
 							</div>
-							<div id="div-upload" style="display: none">
+							<div id="div-upload">
 								<hr>
 								<label>File Lampiran</label>
 								<input type="file" name="file_upload" id="file_upload" class="file" accept="*" >

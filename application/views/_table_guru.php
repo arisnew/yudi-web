@@ -27,71 +27,71 @@
     </div>
 </section>
 <script type="text/javascript">
-   $(document).ready(function () {
-      getData();
-  });
+    $(document).ready(function () {
+        getData();
+    });
 
-   function getData() {
-    if ($.fn.dataTable.isDataTable('#tabel-guru')) {
-        table = $('#tabel-guru').DataTable();
-    } else {
-        table = $('#tabel-guru').DataTable({
-            "ajax": base_url + 'objects/guru',
-            "columns": [
-            {"data": "nip"},
-            {"data": "nama"},
-            {"data": "jenis_kelamin"},
-            {"data": "status_pegawai"},
-            {"data": "status"},
-            {"data": "aksi"}
-            ],
-            "ordering": true,
-            "deferRender": true,
-            "order": [[0, "asc"]],
-            "fnDrawCallback": function (oSettings) {
-                utils();
-            }
+    function getData() {
+        if ($.fn.dataTable.isDataTable('#tabel-guru')) {
+            table = $('#tabel-guru').DataTable();
+        } else {
+            table = $('#tabel-guru').DataTable({
+                "ajax": base_url + 'objects/guru',
+                "columns": [
+                {"data": "nip"},
+                {"data": "nama"},
+                {"data": "jenis_kelamin"},
+                {"data": "status_pegawai"},
+                {"data": "status"},
+                {"data": "aksi"}
+                ],
+                "ordering": true,
+                "deferRender": true,
+                "order": [[0, "asc"]],
+                "fnDrawCallback": function (oSettings) {
+                    utils();
+                }
+            });
+        }   
+    }
+
+    function utils() {
+        $("#tabel-guru .editBtn").on("click",function(){
+            loadContent(base_url + 'view/_form_guru/' + $(this).attr('href').substring(1));
+        });
+
+        $("#tabel-guru .removeBtn").on("click",function(){
+            konfirmasiHapus($(this).attr('href').substring(1));
         });
     }
-}
 
-function utils() {
-    $("#tabel-guru .editBtn").on("click",function(){
-        loadContent(base_url + 'view/_form_guru/' + $(this).attr('href').substring(1));
-    });
-
-    $("#tabel-guru .removeBtn").on("click",function(){
-        konfirmasiHapus($(this).attr('href').substring(1));
-    });
-}
-
-function konfirmasiHapus(x){
-   if(confirm("Yakin Hapus Data???")){
-    loading('loading', true);
-    setTimeout(function() {
-        $.ajax({
-            url: base_url + 'manage',
-            data: 'model-input=guru&key-input=nip&action-input=3&value-input=' + x,
-            dataType: 'json',
-            type: 'POST',
-            cache: false,
-            success: function(json) {
-                loading('loading',false);
-                if (json['data'].code === 1) {
-                    alert('Hapus Data Berhasil');
-                    loadContent(base_url + "view/_table_guru");
-                } else if(json['data'].code === 2){
-                    alert('Hapus Data Tidak Berhasil!');
-                } else{
-                    alert(json['data'].message);
+    function konfirmasiHapus(x){
+       if(confirm("Yakin Hapus Data???")){
+        loading('loading', true);
+        setTimeout(function() {
+            $.ajax({
+                url: base_url + 'manage',
+                data: 'model-input=guru&key-input=nip&action-input=3&value-input=' + x,
+                dataType: 'json',
+                type: 'POST',
+                cache: false,
+                success: function(json) {
+                    loading('loading',false);
+                    if (json['data'].code === 1) {
+                        alert('Hapus Data Berhasil');
+                        loadContent(base_url + "view/_table_guru");
+                    } else if(json['data'].code === 2){
+                        alert('Hapus Data Tidak Berhasil!');
+                    } else{
+                        alert(json['data'].message);
+                    }
+                },
+                error: function () {
+                    loading('loading',false);
+                    alert('Hapus data tidak berhasil, terjadi kesalahan!');
                 }
-            },
-            error: function () {
-                loading('loading',false);
-                alert('Hapus data tidak berhasil, terjadi kesalahan!');
-            }
-        });
-    }, 1000);
-}
+            });
+        }, 1000);
+    }
 }
 </script>

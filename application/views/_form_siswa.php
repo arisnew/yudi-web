@@ -4,17 +4,17 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 ?>
 <div class="form-group">
 	<section class="content">
-		<div class="box box-info">
-			<div class="box-header with-border">
-				<h3 class="box-title">Form Siswa</h3>
-				<div class="box-tools pull-right">
-					<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-				</div>
-			</div>
-			<div class="box box-body">
-			<div id="loading"></div>
-				<div class="row">
-					<div class="col-md-6">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="box box-info">
+					<div class="box-header with-border">
+						<h3 class="box-title">Form Siswa</h3>
+						<div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+						</div>
+					</div>
+					<div class="box box-body">
+						<div id="loading"></div>
 						<form id="form-siswa" class="form-horizontal">
 							<div class="form-group">
 								<label for="nis-input" class="col-sm-2 control-label">Nis</label>
@@ -137,10 +137,8 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 								<div id="preview-image"></div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-2">Foto :</label>
-								<div class="col-md-10">
-									<input type="file" class="form-control" id="foto-input" name="foto-input">
-								</div>
+								<label>Foto :</label>
+								<input type="file" class="form-control" id="foto-input" name="foto-input">
 							</div>
 							<input type="hidden" name="model-input" id="model-input" value="siswa">
 							<input type="hidden" name="action-input" id="action-input" value="1">
@@ -168,6 +166,8 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 		$(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
 			$(this).datepicker('hide');
 		});
+
+	});
 
 		function proses_simpan() {
 			loading("loading", true);

@@ -12,8 +12,9 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
                 <div id="loading"></div>
                 <div class="form-group">
                     <label for="guru-input" class="col-sm-1 control-label">Guru</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                         <select class="form-control" name="guru-input" id="guru-input">
+                            <option></option>
                             <?php
                             if ($data_guru) {
                                 foreach ($data_guru as $row) {
@@ -24,15 +25,22 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
                         </select>
                     </div>
                     <label for="mata_pelajaran-input" class="col-sm-1 control-label">Mata Pelajaran</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                         <select class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input">
                         </select>
                     </div>
+                    <label for="materi-input" class="col-sm-1 control-label">Judul Materi</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name="materi-input" id="materi-input">
+                        </select>
+                    </div>
                 </div>
-                <!--<a href="#" onclick="loadContent(base_url + 'view/_form_jadwal');" class="btn btn-success pull-right">Tambah Data nilai_ujian</a>-->
                 <table id="tabel-nilai_ujian" class="table table-bordered">
                     <thead>
                         <tr>
+                            <th>Guru</th>
+                            <th>Mata Pelajaran</th>
+                            <th>Materi</th>
                             <th>Jumlah Benar</th>
                             <th>Jumlah Salah</th>
                             <th>Tanggal Ujian</th>
@@ -51,31 +59,28 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
     $(document).ready(function () {
         getData();
 
-        $("#guru").on("change", function () {
+        //jika dropdown guru atau mapel di ganti maka akan me-lookup soal
+        $("#guru-input").on('change', function () {
+            getMata_Pelajaran($("#guru-input").val());
+            setTimeout(function () {
+                refreshTable();
+            }, 500);
+        });
+
+        $("#mata_pelajaran-input").on('change', function () {
+            getMateri($("#mata_pelajaran-input").val());    
+            setTimeout(function () {
+                refreshTable();
+            }, 500);
+        });
+
+        $("#materi-input").on('change', function () {
             refreshTable();
         });
 
-        $("#mata_pelajaran").on("change", function () {
-            refreshTable();
-        });
+        getMata_Pelajaran($("#guru-input").val());
 
-            //jika dropdown guru atau mapel di ganti maka akan me-lookup materi
-            $("#guru-input").on('change', function () {
-                getMata_Pelajaran($("#guru-input").val());
-                setTimeout(function () {
-                    refreshTable();
-                }, 1000);
-            });
-
-            $("#guru-input").on('change', function () {
-                refreshTable();
-            });
-
-            $("#mata_pelajaran-input").on('change', function () {
-                refreshTable();
-            });
-
-        });
+    });
 
     function getMata_Pelajaran(nip) {
         $.ajax({
@@ -85,7 +90,20 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
             type: 'POST',
             cache: false,
             success: function(html) {
-                $("#mata_pelajaran-input").html(html);
+                $("#mata_pelajaran-input").html(html).trigger("change");
+            }
+        });
+    }
+
+    function getMateri(kode_mapel) {
+        $.ajax({
+            url: base_url + 'retriever/get_materi_by_mapel/' + kode_mapel,
+            data: 'id=0',
+            dataType: 'html',
+            type: 'POST',
+            cache: false,
+            success: function(html) {
+                $("#materi-input").html(html);
             }
         });
     }
@@ -95,8 +113,11 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
           table = $('#tabel-nilai_ujian').DataTable();
       } else {
           table = $('#tabel-nilai_ujian').DataTable({
-            "ajax": base_url + 'objects/nilai_ujian',
+            "ajax": base_url + 'objects/nilai_ujian/nip__kode_mapel__id_materi/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val() + '__' + $("#materi-input").val(),
             "columns": [
+            {"data": "nama"},
+            {"data": "nama_mapel"},
+            {"data": "judul"},
             {"data": "jumlah_benar"},
             {"data": "jumlah_salah"},
             {"data": "tgl_ujian"},
@@ -156,6 +177,6 @@ function konfirmasiHapus(x){
 }
 
 function refreshTable() {
-    table.ajax.url(base_url + 'objects/nilai_ujian/nip__kode_mapel/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val()).load();
+    table.ajax.url(base_url + 'objects/nilai_ujian/nip__kode_mapel__id_materi/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val() + '__' + $("#materi-input").val()).load();
 }
 </script>

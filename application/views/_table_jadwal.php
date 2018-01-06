@@ -54,7 +54,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
     $(document).ready(function () {
         getData();
 
-        //jika dropdown guru atau mapel di ganti maka akan me-lookup soal
+        //jika dropdown guru atau mapel di ganti maka akan me-lookup jadwal
         $("#guru-input").on('change', function () {
             getMata_Pelajaran($("#guru-input").val());
             setTimeout(function () {
@@ -83,73 +83,74 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 
     function getData() {
         if ($.fn.dataTable.isDataTable('#tabel-jadwal')) {
-          table = $('#tabel-jadwal').DataTable();
-      } else {
-          table = $('#tabel-jadwal').DataTable({
-            "ajax": base_url + 'objects/jadwal/nip__kode_mapel/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val(),
-            "columns": [
-            {"data": "nama"},
-            {"data": "nama_mapel"},
-            {"data": "hari"},
-            {"data": "jam"},
-            {"data": "nama_kelas"},
-            {"data": "nama_jurusan"},
-            {"data": "aksi"}
-            ],
-            "ordering": true,
-            "deferRender": true,
-            "order": [[0, "asc"]],
-            "fnDrawCallback": function (oSettings) {
-              utils();
-          }
-      });
-      }
-  }
-
-  function utils() {
-    $("#tabel-jadwal .readBtn").on("click",function(){
-      loadContent(base_url + 'view/_form_materi_admin/' + $(this).attr('href').substring(1));
-  });
-
-    $("#tabel-jadwal .editBtn").on("click",function(){
-      loadContent(base_url + 'view/_form_jadwal/' + $(this).attr('href').substring(1));
-  });
-
-    $("#tabel-jadwal .removeBtn").on("click",function(){
-      konfirmasiHapus($(this).attr('href').substring(1));
-  });
-}
-function konfirmasiHapus(x){
-    if(confirm("Yakin Hapus Data???")){
-        loading('loading', true);
-        setTimeout(function() {
-            $.ajax({
-                url: base_url + 'manage',
-                data: 'model-input=jadwal&key-input=id_jadwal&action-input=3&value-input=' + x,
-                dataType: 'json',
-                type: 'POST',
-                cache: false,
-                success: function(json) {
-                    loading('loading',false);
-                    if (json['data'].code === 1) {
-                        alert('Hapus Data Berhasil');
-                        loadContent(base_url + "view/_table_jadwal");
-                    } else if(json['data'].code === 2){
-                        alert('Hapus Data Tidak Berhasil!');
-                    } else{
-                        alert(json['data'].message);
-                    }
-                },
-                error: function () {
-                    loading('loading',false);
-                    alert('Hapus data tidak berhasil, terjadi kesalahan!');
+            table = $('#tabel-jadwal').DataTable();
+        } else {
+            table = $('#tabel-jadwal').DataTable({
+                "ajax": base_url + 'objects/jadwal/nip__kode_mapel/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val(),
+                "columns": [
+                {"data": "nama"},
+                {"data": "nama_mapel"},
+                {"data": "hari"},
+                {"data": "jam"},
+                {"data": "nama_kelas"},
+                {"data": "nama_jurusan"},
+                {"data": "aksi"}
+                ],
+                "ordering": true,
+                "deferRender": true,
+                "order": [[0, "asc"]],
+                "fnDrawCallback": function (oSettings) {
+                    utils();
                 }
             });
-        }, 1000);
+        }
     }
-}
+  
+  //ketika tombol diklik di datatables
+    function utils() {
+        $("#tabel-jadwal .readBtn").on("click",function(){
+            loadContent(base_url + 'view/_form_materi_admin/' + $(this).attr('href').substring(1));
+        });
 
-function refreshTable() {
-    table.ajax.url(base_url + 'objects/jadwal/nip/' + $("#guru-input").val()).load();
-}
+        $("#tabel-jadwal .editBtn").on("click",function(){
+            loadContent(base_url + 'view/_form_jadwal/' + $(this).attr('href').substring(1));
+        });
+
+        $("#tabel-jadwal .removeBtn").on("click",function(){
+            konfirmasiHapus($(this).attr('href').substring(1));
+        });
+    }
+    function konfirmasiHapus(x){
+        if(confirm("Yakin Hapus Data???")){
+            loading('loading', true);
+            setTimeout(function() {
+                $.ajax({
+                    url: base_url + 'manage',
+                    data: 'model-input=jadwal&key-input=id_jadwal&action-input=3&value-input=' + x,
+                    dataType: 'json',
+                    type: 'POST',
+                    cache: false,
+                    success: function(json) {
+                        loading('loading',false);
+                        if (json['data'].code === 1) {
+                            alert('Hapus Data Berhasil');
+                            loadContent(base_url + "view/_table_jadwal");
+                        } else if(json['data'].code === 2){
+                            alert('Hapus Data Tidak Berhasil!');
+                        } else{
+                            alert(json['data'].message);
+                        }
+                    },
+                    error: function () {
+                        loading('loading',false);
+                        alert('Hapus data tidak berhasil, terjadi kesalahan!');
+                    }
+                });
+            }, 1000);
+        }
+    }
+
+    function refreshTable() {
+        table.ajax.url(base_url + 'objects/jadwal/nip__kode_mapel/' + $("#guru-input").val() + '__' + $("#mata_pelajaran-input").val()).load();
+    }
 </script>

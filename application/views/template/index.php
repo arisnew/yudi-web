@@ -29,30 +29,21 @@
 <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-	<!-- Site wrapper -->
 	<div class="wrapper">
-
 		<header class="main-header">
-			<!-- Logo -->
 			<a href="<?php echo base_url();?>" class="logo">
-				<!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>E-</b>SA</span>
-				<!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>E-</b>SMK Al-Fathimiyah</span>
 			</a>
-			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top">
-				<!-- Sidebar toggle button-->
 				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
-						<!-- User Account: style can be found in dropdown.less -->
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="<?php echo base_url('asset/img/upload/' . $this->session->userdata('_IMG'));?>" class="user-image" alt="User Image">
@@ -62,27 +53,10 @@
 								<!-- User image -->
 								<li class="user-header">
 									<img src="<?php echo base_url('asset/img/upload/' . $this->session->userdata('_IMG'));?>" class="img-circle" alt="User Image">
-
 									<p>
 										<?php echo $this->session->userdata('_NAME');?>
 									</p>
 								</li>
-								<!-- Menu Body -->
-								<!--<li class="user-body">
-									<div class="row">
-										<div class="col-xs-4 text-center">
-											<a href="#">Followers</a>
-										</div>
-										<div class="col-xs-4 text-center">
-											<a href="#">Sales</a>
-										</div>
-										<div class="col-xs-4 text-center">
-											<a href="#">Friends</a>
-										</div>
-									</div>-->
-									<!-- /.row -->
-								</li>
-								<!-- Menu Footer-->
 								<li class="user-footer">
 									<div class="pull-left">
 										<a href="#" class="btn btn-default btn-flat" onclick="loadContent(base_url + 'view/_profile')">Profile</a>
@@ -98,13 +72,8 @@
 			</nav>
 		</header>
 
-		<!-- =============================================== -->
-
-		<!-- Left side column. contains the sidebar -->
 		<aside class="main-sidebar">
-			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<!-- Sidebar user panel -->
 				<div class="user-panel">
 					<div class="pull-left image">
 						<img src="<?php echo base_url('asset/img/upload/' . $this->session->userdata('_IMG'));?>" class="img-circle" alt="User Image">
@@ -114,26 +83,18 @@
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
 				</div>
-				<!-- /.search form -->
-				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu">
 					<li class="header">MAIN NAVIGATION</li>
 					<?php $this->load->view('template/_menu_' . strtolower($this->session->userdata('_LEVEL')));?>
 				</ul>
 			</section>
-			<!-- /.sidebar -->
 		</aside>
 
-		<!-- =============================================== -->
-
-		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
 			<div id="dinamic-content">
 				<?php echo (isset($_CONTENT))? $_CONTENT : '';?>
 			</div>
 		</div>
-		<!-- /.content-wrapper -->
 
 		<footer class="main-footer">
 			<div class="pull-right hidden-xs">
@@ -141,8 +102,7 @@
 			</div>
 			<strong>Copyright &copy; 2017.</strong> 
 		</footer>
-</div>
-<!-- ./wrapper -->
+	</div>
 
 <!-- jQuery 2.2.0 -->
 <script src="<?php echo base_url();?>asset/plugins/jQuery/jQuery-2.2.0.min.js"></script>

@@ -37,6 +37,9 @@ if ($tes) {
                     <div class="col-xs-3">Waktu Mengerjakan</div>
                     <div class="col-xs-9">: <b><?php echo $tes->total_durasi;?></b></div>
                     <br>
+                    <div class="alert alert-danger">
+                        Waktu mengerjakan tinggal : <div id="clock" style="display: inline; font-weight: bold"></div>
+                    </div>
                     <button id="selesai-btn" class="btn btn-danger" onclick="selesai(); return false;">Selesai</button>
                 </div>
             </div>
@@ -240,8 +243,7 @@ if ($tes) {
                 success: function(json) {
                     loading('loading',false);
                     if (json['data'].code === 1) {
-                        alert('Penyimpanan data berhasil');
-                        //loadContent(base_url + 'view/_table_pesan');
+                        //alert('Penyimpanan data berhasil');
                     } else if(json['data'].code === 2){
                         alert('Penyimpanan data tidak berhasil');
                     } else{
@@ -272,7 +274,7 @@ if ($tes) {
                 loading('loading',false);
                 if (json.code === 1) {
                     alert('Tes telah berakhir');
-                    loadContent(base_url + 'view/_table_nilai_ujian_siswa');
+                    loadContent(base_url + 'view/ujian_selesai');
                 } else{
                     alert('An Error has occured');
                 }

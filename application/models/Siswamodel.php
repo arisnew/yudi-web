@@ -56,7 +56,7 @@ class Siswamodel extends Model {
         $newRule = ($this->isNew) ? '|is_unique[' . $this->table . '.nis]' : '';
         $nis = array(
             'field' => 'nis-input', 'label' => 'Nis',
-            'rules' => 'trim|required|max_length[20]|numeric' . $newRule
+            'rules' => 'trim|required|max_length[11]|numeric' . $newRule
             );
 
         $nama = array(

@@ -114,8 +114,8 @@ class Retriever extends CI_Controller {
 				$linkBtn = ' <a href="#' . $record->username . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
 				//$linkBtn = '<a href="#' . $record->username . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
-				$linkBtn = ' <a href="#' . $record->username . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->username . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn = ' <a href="#' . $record->username . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah Data</a>';
+				$linkBtn .= ' <a href="#' . $record->username . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
 			$data[] = array(
@@ -136,8 +136,8 @@ class Retriever extends CI_Controller {
 			if ($picker == 'yes') {
 				$linkBtn = ' <a href="#' . $record->nip . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				$linkBtn = ' <a href="#' . $record->nip . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->nip . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn = ' <a href="#' . $record->nip . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah Data</a>';
+				$linkBtn .= ' <a href="#' . $record->nip . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
 			$data[] = array(
@@ -151,6 +151,7 @@ class Retriever extends CI_Controller {
 				'email'			=> $record->email,
 				'status_pegawai'=> $record->status_pegawai,
 				'username' 		=> $record->username,
+				'foto'			=> $record->foto,
 				'status' 		=> $record->status,
 				'aksi' 			=> $linkBtn
 				);
@@ -166,8 +167,8 @@ class Retriever extends CI_Controller {
 				$linkBtn = ' <a href="#' . $record->nis . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
 				//$linkBtn = '<a href="#' . $record->nis . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
-				$linkBtn = ' <a href="#' . $record->nis . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->nis . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn = ' <a href="#' . $record->nis . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah Data</a>';
+				$linkBtn .= ' <a href="#' . $record->nis . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
 			$data[] = array(
@@ -202,7 +203,7 @@ class Retriever extends CI_Controller {
 			} elseif ($picker == 'no') {
 				//$linkBtn = '<a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
 				$linkBtn = ' <a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn .= ' <a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
 			$data[] = array(
@@ -223,7 +224,7 @@ class Retriever extends CI_Controller {
 				$linkBtn = ' <a href="#' . $record->kode_jurusan . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
 				$linkBtn = ' <a href="#' . $record->kode_jurusan . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->kode_jurusan . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn .= ' <a href="#' . $record->kode_jurusan . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
 			$data[] = array(
@@ -244,7 +245,7 @@ class Retriever extends CI_Controller {
 				$linkBtn = ' <a href="#' . $record->kode_mapel . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
 				$linkBtn = ' <a href="#' . $record->kode_mapel . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->kode_mapel . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn .= ' <a href="#' . $record->kode_mapel . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
 			$data[] = array(
@@ -264,9 +265,9 @@ class Retriever extends CI_Controller {
 			if ($picker == 'yes') {
 				$linkBtn = ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				$linkBtn = ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-warning readBtn"><i class="fa fa-book"></i> Tambah Materi</a>';
-				$linkBtn .= ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn = ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah Jadwal</a>';
+				$linkBtn .= ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-primary readBtn"><i class="fa fa-plus"></i> Tambah Materi</a>';
+				$linkBtn .= ' <a href="#' . $record->id_jadwal . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Jadwal</a>';
 			}
 			
 			$data[] = array(
@@ -295,10 +296,10 @@ class Retriever extends CI_Controller {
 			if ($picker == 'yes') {
 				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-info writeBtn"><i class="fa fa-book"></i> Tambah Soal</a>';
+				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Ubah Materi</a>';
 				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-warning readBtn"><i class="fa fa-book"></i> Lihat Materi</a>';
-				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-info writeBtn"><i class="fa fa-plus"></i> Tambah Soal</a>';
+				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Materi </a>';
 			}
 			
 			$data[] = array(
@@ -325,8 +326,8 @@ class Retriever extends CI_Controller {
 			if ($picker == 'yes') {
 				$linkBtn = ' <a href="#' . $record->id_nilai . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				$linkBtn = ' <a href="#' . $record->id_nilai . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->id_nilai . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn = ' <a href="#' . $record->id_nilai . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah</a>';
+				$linkBtn .= ' <a href="#' . $record->id_nilai . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
 			$data[] = array(
@@ -350,9 +351,9 @@ class Retriever extends CI_Controller {
 			if ($picker == 'yes') {
 				$linkBtn = ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				$linkBtn = ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-warning readBtn"><i class="fa fa-eye"></i> Lihat</a>';
-				$linkBtn .= ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn = ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah</a>';
+				$linkBtn .= ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-primary readBtn"><i class="fa fa-book"></i> Lihat</a>';
+				$linkBtn .= ' <a href="#' . $record->id_soal . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus</a>';
 			}
 			
 			$data[] = array(
@@ -383,8 +384,8 @@ class Retriever extends CI_Controller {
 				$linkBtn = ' <a href="#' . $record->id_lampiran . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
 				//$linkBtn = '<a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
-				$linkBtn = ' <a href="#' . $record->id_lampiran . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->id_lampiran . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn = ' <a href="#' . $record->id_lampiran . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah Data</a>';
+				$linkBtn .= ' <a href="#' . $record->id_lampiran . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
 			$data[] = array(
@@ -407,8 +408,8 @@ class Retriever extends CI_Controller {
 				$linkBtn = ' <a href="#' . $record->id_komentar . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
 				//$linkBtn = '<a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
-				$linkBtn = ' <a href="#' . $record->id_komentar . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->id_komentar . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn = ' <a href="#' . $record->id_komentar . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah Data</a>';
+				$linkBtn .= ' <a href="#' . $record->id_komentar . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
 			$data[] = array(
@@ -433,9 +434,9 @@ class Retriever extends CI_Controller {
 				$linkBtn = ' <a href="#' . $record->id_pesan . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
 				//$linkBtn = '<a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
-				$linkBtn = ' <a href="#' . $record->id_pesan . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
-				$linkBtn .= ' <a href="#' . $record->id_pesan . '" class="btn btn-xs btn-warning readBtn"><i class="fa fa-eye"></i> Read</a>';
-				$linkBtn .= ' <a href="#' . $record->id_pesan . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Delete</a>';
+				$linkBtn .= ' <a href="#' . $record->id_pesan . '" class="btn btn-xs btn-primary readBtn"><i class="fa fa-eye"></i> Lihat Pesan</a>';
+				$linkBtn = ' <a href="#' . $record->id_pesan . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah Pesan</a>';
+				$linkBtn .= ' <a href="#' . $record->id_pesan . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Pesan</a>';
 			}
 			
 			$data[] = array(

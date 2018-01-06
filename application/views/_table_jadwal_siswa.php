@@ -30,7 +30,6 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
                         </select>
                     </div>
                 </div>
-                <!--<a href="#" onclick="loadContent(base_url + 'view/_form_jadwal');" class="btn btn-success pull-right">Tambah Data Jadwal</a>-->
                 <table id="tabel-jadwal" class="table table-bordered">
                     <thead>
                         <tr>
@@ -53,7 +52,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
     $(document).ready(function () {
         getData();
 
-        //jika dropdown guru atau mapel di ganti maka akan me-lookup soal
+        //jika dropdown guru atau mapel di ganti maka akan me-lookup jadwal
         $("#guru-input").on('change', function () {
             getMata_Pelajaran($("#guru-input").val());
             setTimeout(function () {
@@ -104,6 +103,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
       }
   }
 
+  //ketika tombol diklik di datatables
   function utils() {
     $("#tabel-jadwal .readBtn").on("click",function(){
       loadContent(base_url + 'view/_form_materi_admin/' + $(this).attr('href').substring(1));
