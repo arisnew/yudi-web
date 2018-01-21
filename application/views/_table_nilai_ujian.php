@@ -2,7 +2,6 @@
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">List Nilai Ujian</h3>
-
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
@@ -12,21 +11,21 @@
             <a href="#" onclick="loadContent(base_url + 'view/_form_nilai_ujian');" class="btn btn-success pull-right">Tambah Data Nilai Ujian</a>
             <table id="tabel-nilai_ujian" class="table table-bordered">
                 <thead>
-                  <tr>            
-                      <th>Nama Siswa</th>
-                      <th>Jumlah Benar</th>
-                      <th>Jumlah Salah</th>
-                      <th>Tanggal Ujian</th>
-                      <th>Nilai</th>
-                      <th>Pilihan</th>
-                  </tr>
-              </thead>
-              <tbody>
-                
-              </tbody>
-          </table>
-      </div>
-  </div>
+                    <tr>            
+                        <th>Nama Siswa</th>
+                        <th>Jumlah Benar</th>
+                        <th>Jumlah Salah</th>
+                        <th>Tanggal Ujian</th>
+                        <th>Nilai</th>
+                        <th>Pilihan</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 </section>
 <script type="text/javascript">
     $(document).ready(function () {

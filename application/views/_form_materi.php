@@ -8,8 +8,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 			<div class="box-header with-border">
 				<h3 class="box-title">Form Materi</h3>
 				<div class="box-tools pull-right">
-					<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-					<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+				<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
 				</div>
 			</div>
 			<div class="box-body">
@@ -110,45 +109,45 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
 		}
 		?>
 
-				// file upload
-				$("#file_upload").fileinput({
-					maxFileCount: 1,
-					browseClass: "btn btn-default",
-					browseLabel: "Pilih file",
-					browseIcon: '<i class="fa fa-file"></i> ',
-					removeClass: "btn btn-warning",
-					removeLabel: "Hapus",
-					removeIcon: '<i class="glyphicon glyphicon-trash"></i> ',
-					uploadClass: "btn btn-info",
-					uploadLabel: "Unggah",
-					uploadIcon: '<i class="fa fa-cloud-upload"></i> ',
-					previewFileType: "image",
-		            uploadUrl: "<?php echo base_url('doupload_materi'); ?>", // your upload server url
-		            msgFilesTooMany: 'Jumlah berkas yang akan diunggah ({n}) melebihi batas jumlah yang sudah ditentukan ({m}). Coba ulangi proses unggah berkas!',
-		            msgLoading: 'Memproses berkas {index} dari {files} …',
-		            msgProgress: 'Memproses berkas {index} dari {files} - {name} - {percent}% selesai.',
-		            uploadExtraData: function() {
-		            	return {
-		            		nama_field:'file_upload',
-		            		model:'lampiran',
-		            		key: 'materi_id',
-		            		value:$("#form-materi #value-input").val()
-		            	};
-		            }
-		        });
+	// file upload
+	$("#file_upload").fileinput({
+		maxFileCount: 1,
+		browseClass: "btn btn-default",
+		browseLabel: "Pilih file",
+		browseIcon: '<i class="fa fa-file"></i> ',
+		removeClass: "btn btn-warning",
+		removeLabel: "Hapus",
+		removeIcon: '<i class="glyphicon glyphicon-trash"></i> ',
+		uploadClass: "btn btn-info",
+		uploadLabel: "Unggah",
+		uploadIcon: '<i class="fa fa-cloud-upload"></i> ',
+		previewFileType: "image",
+        uploadUrl: "<?php echo base_url('doupload_materi'); ?>", // your upload server url
+        msgFilesTooMany: 'Jumlah berkas yang akan diunggah ({n}) melebihi batas jumlah yang sudah ditentukan ({m}). Coba ulangi proses unggah berkas!',
+        msgLoading: 'Memproses berkas {index} dari {files} …',
+        msgProgress: 'Memproses berkas {index} dari {files} - {name} - {percent}% selesai.',
+        uploadExtraData: function() {
+        	return {
+        		nama_field:'file_upload',
+        		model:'lampiran',
+        		key: 'materi_id',
+        		value:$("#form-materi #value-input").val()
+        	};
+        }
+    });
 
-		        //refresh if succes upload...
-		        $('#file_upload').on('filebatchuploadcomplete', function(event, files, extra) {
-		        	loadContent(base_url + "view/_form_materi/" + $("#value-input").val());
-		        });
+        //refresh if succes upload...
+        $('#file_upload').on('filebatchuploadcomplete', function(event, files, extra) {
+        	loadContent(base_url + "view/_form_materi/" + $("#value-input").val());
+        });
 
-		        $(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
-		        	$(this).datepicker('hide');
-		        });
+        $(".datepicker2").datepicker({ format: 'yyyy-mm-dd' }).on('changeDate', function(e){
+        	$(this).datepicker('hide');
+        });
 
-		        CKEDITOR.replace('isi-input');
+        CKEDITOR.replace('isi-input');
 
-		    });
+    });
 
 	function simpan_data() {
 		loading('loading', true);

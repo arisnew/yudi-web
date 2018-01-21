@@ -11,117 +11,115 @@ $data_jurusan = $this->model->getList(array('table' => 'jurusan', 'where' => arr
 				<h3 class="box-title">Form Jadwal</h3>
 				<div class="box-tools pull-right">
 					<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-					<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
 				</div>
 			</div>
-			<div class="box box-body">
-				<div class="row">
+			<div class="box-body">
+				<div id="loading"></div>
+				<form id="form-jadwal" class="form-horizontal">
 					<div class="col-md-6">
-						<form id="form-jadwal" class="form-horizontal">
-							<div class="form-group">
-								<label for="mata_pelajaran-input" class="col-sm-2 control-label">Mata Pelajaran</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input">
-										<?php
-										if ($data_mata_pelajaran) {
-											foreach ($data_mata_pelajaran as $row) {
-												echo '<option value="' . $row->kode_mapel . '">' . $row->kode_mapel . ' - ' . $row->nama_mapel . '</option>';
-											}
+						<div class="form-group">
+							<label for="mata_pelajaran-input" class="col-sm-2 control-label">Mata Pelajaran</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input">
+									<?php
+									if ($data_mata_pelajaran) {
+										foreach ($data_mata_pelajaran as $row) {
+											echo '<option value="' . $row->kode_mapel . '">' . $row->kode_mapel . ' - ' . $row->nama_mapel . '</option>';
 										}
-										?>
-									</select>
-								</div>
+									}
+									?>
+								</select>
 							</div>
-							<div class="form-group">
-								<label for="guru-input" class="col-sm-2 control-label">Guru</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="guru-input" id="guru-input">
-										<?php
-										if ($data_guru) {
-											foreach ($data_guru as $row) {
-												echo '<option value="' . $row->nip . '">' . $row->nip . ' - ' . $row->nama . '</option>';
-											}
+						</div>
+						<div class="form-group">
+							<label for="guru-input" class="col-sm-2 control-label">Guru</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="guru-input" id="guru-input">
+									<?php
+									if ($data_guru) {
+										foreach ($data_guru as $row) {
+											echo '<option value="' . $row->nip . '">' . $row->nip . ' - ' . $row->nama . '</option>';
 										}
-										?>
-									</select>
-								</div>
+									}
+									?>
+								</select>
 							</div>
-							<div class="form-group">
-								<label for="kelas-input" class="col-sm-2 control-label">Kelas</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="kelas-input" id="kelas-input">
-										<?php
-										if ($data_kelas) {
-											foreach ($data_kelas as $row) {
-												echo '<option value="' . $row->kode_kelas . '">' . $row->nama_kelas . '</option>';
-											}
+						</div>
+						<div class="form-group">
+							<label for="kelas-input" class="col-sm-2 control-label">Kelas</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="kelas-input" id="kelas-input">
+									<?php
+									if ($data_kelas) {
+										foreach ($data_kelas as $row) {
+											echo '<option value="' . $row->kode_kelas . '">' . $row->nama_kelas . '</option>';
 										}
-										?>
-									</select>
-								</div>
+									}
+									?>
+								</select>
 							</div>
-							<div class="form-group">
-								<label for="jurusan-input" class="col-sm-2 control-label">Jurusan</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="jurusan-input" id="jurusan-input">								
-										<?php
-										if ($data_kelas) {
-											foreach ($data_jurusan as $row) {
-												echo '<option value="' . $row->kode_jurusan . '">' . $row->nama_jurusan . '</option>';
-											}
+						</div>
+						<div class="form-group">
+							<label for="jurusan-input" class="col-sm-2 control-label">Jurusan</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="jurusan-input" id="jurusan-input">								
+									<?php
+									if ($data_kelas) {
+										foreach ($data_jurusan as $row) {
+											echo '<option value="' . $row->kode_jurusan . '">' . $row->nama_jurusan . '</option>';
 										}
-										?>
-									</select>
-								</div>
+									}
+									?>
+								</select>
 							</div>
-							<div class="form-group">
-								<label for="hari-input" class="col-sm-2 control-label">Hari</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="hari-input" id="hari-input">
-										<option value="1">Senin</option>
-										<option value="2">Selasa</option>
-										<option value="3">Rabu</option>
-										<option value="4">Kamis</option>
-										<option value="5">Sabtu</option>
-										<option value="6">Minggu</option>
-									</select>
-								</div>
+						</div>
+						<div class="form-group">
+							<label for="hari-input" class="col-sm-2 control-label">Hari</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="hari-input" id="hari-input">
+									<option value="1">Senin</option>
+									<option value="2">Selasa</option>
+									<option value="3">Rabu</option>
+									<option value="4">Kamis</option>
+									<option value="5">Sabtu</option>
+									<option value="6">Minggu</option>
+								</select>
 							</div>
-							<div class="form-group">
-								<label for="jam-input" class="col-sm-2 control-label">Jam</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="jam-input" id="jam-input">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-									</select>
-								</div>
-							</div>							
-							<div class="form-group">
-								<label for="status-input" class="col-sm-2 control-label">Status</label>
-								<div class="col-sm-10">								
-									<select class="form-control" name="status-input" id="status-input">
-										<option value="Aktif">Aktif</option>
-										<option value="Nonaktif">Nonaktif</option>
-									</select>
-								</div>
+						</div>
+						<div class="form-group">
+							<label for="jam-input" class="col-sm-2 control-label">Jam</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="jam-input" id="jam-input">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
 							</div>
-							<input type="hidden" name="model-input" id="model-input" value="jadwal">
-							<input type="hidden" name="action-input" id="action-input" value="1">
-							<input type="hidden" name="key-input" id="key-input" value="id_jadwal">
-							<input type="hidden" name="value-input" id="value-input" value="0">
-
-							<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
-							<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_jadwal')">
-						</form>
+						</div>							
+						<div class="form-group">
+							<label for="status-input" class="col-sm-2 control-label">Status</label>
+							<div class="col-sm-10">								
+								<select class="form-control" name="status-input" id="status-input">
+									<option value="Aktif">Aktif</option>
+									<option value="Nonaktif">Nonaktif</option>
+								</select>
+							</div>
+						</div>
+						<input type="hidden" name="model-input" id="model-input" value="jadwal">
+						<input type="hidden" name="action-input" id="action-input" value="1">
+						<input type="hidden" name="key-input" id="key-input" value="id_jadwal">
+						<input type="hidden" name="value-input" id="value-input" value="0">
+						<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Simpan</button>
+						<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_jadwal')">
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	</section>
+</div>
 </div>
 <script type="text/javascript">
 	$(document).ready(function () {

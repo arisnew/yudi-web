@@ -20,6 +20,22 @@ class Usermodel extends Model {
         if ($inputs['password-input'] != '') {
             $fields['password'] = md5($inputs['password-input']);
         }
+
+        //jika upload via ajax manual
+        //parameter upload
+        $conf_upload = array(
+            'input_name' => 'file-img',
+            'folder_path' => 'asset/img/upload/',
+            'file_type' => '*',
+            'max_size' => '5120'
+            );
+
+        $foto = $this->file_upload($conf_upload);
+
+        //jika ada simpan...
+        if ($foto) {
+            $fields['foto'] = $foto;
+        }        
         
         return $fields;
     }

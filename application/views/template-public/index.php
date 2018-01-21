@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="<?php echo base_url();?>asset/template-public/assets/css/style.css">
     <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
     <link href="asset/template-public/assets/css/content.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.countdown.css"> 
+    <script type="text/javascript" src="js/jquery.plugin.js"></script> 
+    <script type="text/javascript" src="js/jquery.countdown.js"></script>
 
     <link rel="stylesheet" id='camera-css'  href="<?php echo base_url();?>asset/template-public/assets/css/camera.css" type="text/css" media='all'> 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="<?php echo base_url();?>asset/dist/css/skins/_all-skins.min.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>asset/plugins/datatables/dataTables.bootstrap.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>asset/css/fileinput.min.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>asset/css/jquery.countdown.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>asset/css/datepicker.css">
 	<script type="text/javascript">var base_url = '<?php echo base_url();?>';</script>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -122,6 +123,8 @@
 <script src="<?php echo base_url();?>asset/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script src="<?php echo base_url();?>asset/js/fileinput.min.js"></script>
 <script src="<?php echo base_url();?>asset/js/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url();?>asset/js/jquery.countdown.js"></script>
+<script src="<?php echo base_url();?>asset/js/jquery.plugin.js"></script>
 <script src="<?php echo base_url();?>asset/plugins/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {

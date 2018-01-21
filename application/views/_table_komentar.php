@@ -8,7 +8,6 @@
         </div>
         <div class="box-body">
             <div id="loading"></div>
-            <!--<a href="#" onclick="loadContent(base_url + 'view/_komentar_form');" class="btn btn-success pull-right"> Add komentar</a>-->
             <table id="tabel-komentar" class="table table-bordered">
                 <thead>
                     <tr>

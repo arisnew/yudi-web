@@ -5,118 +5,126 @@ if ($param != null) {
 }
 if ($tes) {
     ?>
-    <section>
-        <div class="container">
-            <div class="row">
-                <div id="content" class="col-xs-12">
-                    <h3 class="page-header"><i class="glyphicon glyphicon-user"></i> Data Siswa dan Ujian</h3>
-                    <div class="col-xs-3">NIS</div>
-                    <div class="col-xs-9">: <b><?php echo $tes->nis;?> </b> </div>
-                    <br>
-                    <div class="col-xs-3">Nama Lengkap</div>
-                    <div class="col-xs-9">: <b><?php echo $tes->nama_siswa;?> </b></div>          
-                    <br>
-                    <div class="col-xs-3">Kelas</div>
-                    <div class="col-xs-9">: <b><?php echo $tes->nama_kelas;?></b></div>
-                    <br>
-                    <div class="col-xs-3">Nama Guru</div>
-                    <div class="col-xs-9">: <b><?php echo $tes->nama;?></b></div>
-                    <br>
-                    <div class="col-xs-3">Nama Mapel</div>
-                    <div class="col-xs-9">: <b><?php echo $tes->nama_mapel;?></b></div>
-                    <br>
-                    <div class="col-xs-3">Nama Materi</div>
-                    <div class="col-xs-9">: <b><?php echo $tes->judul;?></b></div>
-                    <br>
-                    <div class="col-xs-3">Tanngal Posting</div>
-                    <div class="col-xs-9">: <b><?php echo $tes->tgl_posting;?></b></div>
-                    <br>
-                    <div class="col-xs-3">Jml. Soal</div>
-                    <div class="col-xs-9">: <b><?php echo $tes->jml_soal;?></b></div>
-                    <br>
-                    <div class="col-xs-3">Waktu Mengerjakan</div>
-                    <div class="col-xs-9">: <b><?php echo $tes->total_durasi;?></b></div>
-                    <br>
-                    <div class="alert alert-danger">
-                        Waktu mengerjakan tinggal : <div id="clock" style="display: inline; font-weight: bold"></div>
-                    </div>
-                    <button id="selesai-btn" class="btn btn-danger" onclick="selesai(); return false;">Selesai</button>
-                </div>
+<section>
+    <div class="container">
+        <div class="row">
+            <div id="content" class="col-xs-12">
+                <h3 class="page-header"><i class="glyphicon glyphicon-user"></i> Data Siswa dan Ujian</h3>
+                <div class="col-xs-3">NIS</div>
+                <div class="col-xs-9">: <b><?php echo $tes->nis;?> </b> </div>
+                <br>
+                <div class="col-xs-3">Nama Lengkap</div>
+                <div class="col-xs-9">: <b><?php echo $tes->nama_siswa;?> </b></div>          
+                <br>
+                <div class="col-xs-3">Kelas</div>
+                <div class="col-xs-9">: <b><?php echo $tes->nama_kelas;?></b></div>
+                <br>
+                <div class="col-xs-3">Nama Guru</div>
+                <div class="col-xs-9">: <b><?php echo $tes->nama;?></b></div>
+                <br>
+                <div class="col-xs-3">Nama Mapel</div>
+                <div class="col-xs-9">: <b><?php echo $tes->nama_mapel;?></b></div>
+                <br>
+                <div class="col-xs-3">Nama Materi</div>
+                <div class="col-xs-9">: <b><?php echo $tes->judul;?></b></div>
+                <br>
+                <div class="col-xs-3">Tanngal Posting</div>
+                <div class="col-xs-9">: <b><?php echo $tes->tgl_posting;?></b></div>
+                <br>
+                <div class="col-xs-3">Jml. Soal</div>
+                <div class="col-xs-9">: <b><?php echo $tes->jml_soal;?></b></div>
+                <br>
+                <div class="col-xs-3">Waktu Mengerjakan</div>
+                <div class="col-xs-9">: <b><?php echo $tes->total_durasi;?></b></div>
+                <br>
+
+                <button id="selesai-btn" class="btn btn-danger" onclick="selesai(); return false;">Selesai</button>
             </div>
         </div>
-    </section>
-    <section class="content" id="content-soal">
-        <div class="box">
-            <?php
-            $urutan = array();
-            $soals = $this->model->getListByQuery(" SELECT * FROM v_tes_jawaban where id_tes = $param ORDER BY id_jawaban ASC");
-            if ($soals) {
-                foreach ($soals as $soal) {
-                    $urutan[] = $soal->id_jawaban;
-                }
-                ?>
-                <script type='text/javascript'>
-                    <?php
-                    $js_array = json_encode($urutan);
-                    echo "var urutan = ". $js_array . ";\n";
-                    ?>
-                </script>
-                <?php
+    </div>
+</section>
+<section class="content" id="content-soal">
+    <div class="box">
+        <?php
+        $urutan = array();
+        $soals = $this->model->getListByQuery(" SELECT * FROM v_tes_jawaban where id_tes = $param ORDER BY id_jawaban ASC");
+        if ($soals) {
+            foreach ($soals as $soal) {
+                $urutan[] = $soal->id_jawaban;
             }
             ?>
-            <div class="mailbox-read-message">
-                <form id="form-test">
-                    <div id="loading"></div>
-                    <input type="hidden" name="id-jawaban" id="id-jawaban" value="">
-                    <div id="pertanyaan">
-                    </div>
-                    <label>
-                        <input type="radio" value="A" id="opsi-input-a" name="opsi-input">
-                        <span id="jawaban-a">
-                        </span>
-                    </label>
-                    <br>
-                    <label>
-                        <input type="radio" value="B" id="opsi-input-b" name="opsi-input">
-                        <span id="jawaban-b">
-                        </span>
-                    </label>
-                    <br>
-                    <label>
-                        <input type="radio" value="C" id="opsi-input-c" name="opsi-input">
-                        <span id="jawaban-c">
-                        </span>
-                    </label>
-                    <br>
-                    <label>
-                        <input type="radio" value="D" id="opsi-input-d" name="opsi-input">
-                        <span id="jawaban-d">
-                        </span>
-                    </label>
-                    <input type="hidden" name="soal-input" id="soal-input" value="">
-                    <input type="hidden" name="model-input" id="model-input" value="tes">
-                    <input type="hidden" name="key-input" id="key-input" value="id_jawaban">
-                    <input type="hidden" name="action-input" id="action-input" value="2">
-                    <input type="hidden" name="value-input" id="value-input" value="">
-                </form>
-            </div>
-            <div class="box-footer">
-                <input type="hidden" name="current-urutan" id="current-urutan" value="0">
-                <input type="hidden" name="id-prev" id="id-prev" value="0">
-                <input type="hidden" name="id-next" id="id-next" value="0">
-                <button id="sebelumnya-btn" class="btn btn-primary pull-left" onclick="doPrev($('#id-prev').val(), true); return false;">Sebelumnya</button>
-                <button id="selanjutnya-btn" class="btn btn-primary pull-right" onclick="doNext($('#id-next').val(), true); return false;">Selanjutnya</button>
-            </div>
+            <script type='text/javascript'>
+                <?php
+                $js_array = json_encode($urutan);
+                echo "var urutan = ". $js_array . ";\n";
+                ?>
+            </script>
+            <?php
+        }
+        ?>
+        <div class="mailbox-read-message">
+            <form id="form-test">
+                <div id="loading"></div>
+                <input type="hidden" name="id-jawaban" id="id-jawaban" value="">
+                <div id="pertanyaan">
+                </div>
+                <label>
+                    <input type="radio" value="A" id="opsi-input-a" name="opsi-input">
+                    <span id="jawaban-a">
+                    </span>
+                </label>
+                <br>
+                <label>
+                    <input type="radio" value="B" id="opsi-input-b" name="opsi-input">
+                    <span id="jawaban-b">
+                    </span>
+                </label>
+                <br>
+                <label>
+                    <input type="radio" value="C" id="opsi-input-c" name="opsi-input">
+                    <span id="jawaban-c">
+                    </span>
+                </label>
+                <br>
+                <label>
+                    <input type="radio" value="D" id="opsi-input-d" name="opsi-input">
+                    <span id="jawaban-d">
+                    </span>
+                </label>
+                <input type="hidden" name="soal-input" id="soal-input" value="">
+                <input type="hidden" name="model-input" id="model-input" value="tes">
+                <input type="hidden" name="key-input" id="key-input" value="id_jawaban">
+                <input type="hidden" name="action-input" id="action-input" value="2">
+                <input type="hidden" name="value-input" id="value-input" value="">
+            </form>
         </div>
-    </section>
+        <div class="box-footer">
+            <input type="hidden" name="current-urutan" id="current-urutan" value="0">
+            <input type="hidden" name="id-prev" id="id-prev" value="0">
+            <input type="hidden" name="id-next" id="id-next" value="0">
+            <button id="sebelumnya-btn" class="btn btn-primary pull-left" onclick="doPrev($('#id-prev').val(), true); return false;">Sebelumnya</button>
+            <button id="selanjutnya-btn" class="btn btn-primary pull-right" onclick="doNext($('#id-next').val(), true); return false;">Selanjutnya</button>
+        </div>
+    </div>
+</section>
 
 <?php
 }
 ?>
+
 <script type="text/javascript">
     //var currentUrutan = 0;
     $(document).ready(function () {
         doNext(urutan[$("#current-urutan").val()]);
+    });
+
+    $('#newPage').countdown({until: shortly, expiryUrl: 'http://jquery.com', 
+    description: 'To go to jQuery'}); 
+     
+    $('#newPageStart').click(function() { 
+        shortly = new Date(); 
+        shortly.setSeconds(shortly.getSeconds() + 5.5); 
+        $('#newPage').countdown('option', {until: shortly}); 
     });
 
     function loadSoal(n, callback) {

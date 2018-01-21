@@ -10,9 +10,10 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
             </div>
             <div class="box-body">
                 <div id="loading"></div>
+                <a href="#" onclick="loadContent(base_url + 'view/_form_jadwal');" class="btn btn-success pull-right">Tambah Data Jadwal</a>
                 <div class="form-group">
                     <label for="guru-input" class="col-sm-2 control-label">Guru</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <select class="form-control" name="guru-input" id="guru-input">
                             <option></option>
                             <?php
@@ -25,12 +26,11 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
                         </select>
                     </div>
                     <label for="mata_pelajaran-input" class="col-sm-2 control-label">Mata Pelajaran</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <select class="form-control" name="mata_pelajaran-input" id="mata_pelajaran-input">
                         </select>
                     </div>
                 </div>
-                <a href="#" onclick="loadContent(base_url + 'view/_form_jadwal');" class="btn btn-success pull-right">Tambah Data Jadwal</a>
                 <table id="tabel-jadwal" class="table table-bordered">
                     <thead>
                         <tr>
@@ -106,7 +106,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
         }
     }
   
-  //ketika tombol diklik di datatables
+    //ketika tombol diklik di datatables
     function utils() {
         $("#tabel-jadwal .readBtn").on("click",function(){
             loadContent(base_url + 'view/_form_materi_admin/' + $(this).attr('href').substring(1));
@@ -120,6 +120,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
             konfirmasiHapus($(this).attr('href').substring(1));
         });
     }
+    
     function konfirmasiHapus(x){
         if(confirm("Yakin Hapus Data???")){
             loading('loading', true);

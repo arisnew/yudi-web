@@ -2,14 +2,14 @@
 	<div class="panel panel-info">
 		<div class="panel-heading">Selesai ujian</div>
 		<div class="panel-body">
-			<button id="selesai-btn" class="btn btn-primary pull-left" onclick="selesai(); return false;">Selesai</button>
+			<button id="selesai-btn" class="btn btn-primary pull-left" onclick="proses_selesai(); return false;">Selesai</button>
 		</div>
 	</div>
 </div>
 
 <script type="text/javascript">
 
-function selesai(callback) {
+function proses_selesai(callback) {
         loading('loading', true);
         $.ajax({
             url: base_url + 'akhiri_tes/<?php echo $param;?>',
@@ -21,7 +21,7 @@ function selesai(callback) {
                 loading('loading',false);
                 if (json.code === 1) {
                     alert('Tes telah berakhir');
-                    loadContent(base_url + 'view/ujian_selesai');
+                    loadContent(base_url + 'view/tabel_nilai_siswa');
                 } else{
                     alert('An Error has occured');
                 }

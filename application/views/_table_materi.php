@@ -55,6 +55,7 @@ $data_guru = $this->model->getList(array('table' => 'guru', 'where' => array('st
         </div>
     </div>
 </section>
+
 <script type="text/javascript">
     $(document).ready(function () {
         getData();

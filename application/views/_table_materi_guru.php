@@ -42,6 +42,7 @@ $data_mata_pelajaran = $this->model->getList(array('table' => 'v_jadwal', 'where
         </div>
     </div>
 </section>
+
 <script type="text/javascript">
     $(document).ready(function () {
         //isi datatables materi

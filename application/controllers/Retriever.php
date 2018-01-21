@@ -202,7 +202,7 @@ class Retriever extends CI_Controller {
 				$linkBtn = ' <a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
 				//$linkBtn = '<a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-warning privilegeBtn"><i class="fa fa-shield"></i> Privilege</a>';
-				$linkBtn = ' <a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn = ' <a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah Data</a>';
 				$linkBtn .= ' <a href="#' . $record->kode_kelas . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
@@ -223,7 +223,7 @@ class Retriever extends CI_Controller {
 			if ($picker == 'yes') {
 				$linkBtn = ' <a href="#' . $record->kode_jurusan . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				$linkBtn = ' <a href="#' . $record->kode_jurusan . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn = ' <a href="#' . $record->kode_jurusan . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah Data</a>';
 				$linkBtn .= ' <a href="#' . $record->kode_jurusan . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
@@ -244,7 +244,7 @@ class Retriever extends CI_Controller {
 			if ($picker == 'yes') {
 				$linkBtn = ' <a href="#' . $record->kode_mapel . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				$linkBtn = ' <a href="#' . $record->kode_mapel . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Edit</a>';
+				$linkBtn = ' <a href="#' . $record->kode_mapel . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah Data</a>';
 				$linkBtn .= ' <a href="#' . $record->kode_mapel . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Data</a>';
 			}
 			
@@ -296,8 +296,8 @@ class Retriever extends CI_Controller {
 			if ($picker == 'yes') {
 				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary pickBtn"><i class="fa fa-thumb-tack" ></i> Pilih</a>';
 			} elseif ($picker == 'no') {
-				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary editBtn"><i class="fa fa-edit"></i> Ubah Materi</a>';
-				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-warning readBtn"><i class="fa fa-book"></i> Lihat Materi</a>';
+				$linkBtn = ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-warning editBtn"><i class="fa fa-edit"></i> Ubah Materi</a>';
+				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-primary readBtn"><i class="fa fa-book"></i> Lihat Materi</a>';
 				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-info writeBtn"><i class="fa fa-plus"></i> Tambah Soal</a>';
 				$linkBtn .= ' <a href="#' . $record->id_materi . '" class="btn btn-xs btn-danger removeBtn"><i class="fa fa-trash-o"></i> Hapus Materi </a>';
 			}

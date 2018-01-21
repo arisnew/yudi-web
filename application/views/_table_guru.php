@@ -1,9 +1,9 @@
 <section class="content">
-	<div class="box">
-		<div class="box-header with-border">
-			<h3 class="box-title">Data Guru</h3>
-			<div class="box-tools pull-right">
-				<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Data Guru</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
         </div>
         <div class="box-body">
@@ -66,32 +66,32 @@
     }
 
     function konfirmasiHapus(x){
-       if(confirm("Yakin Hapus Data???")){
-        loading('loading', true);
-        setTimeout(function() {
-            $.ajax({
-                url: base_url + 'manage',
-                data: 'model-input=guru&key-input=nip&action-input=3&value-input=' + x,
-                dataType: 'json',
-                type: 'POST',
-                cache: false,
-                success: function(json) {
-                    loading('loading',false);
-                    if (json['data'].code === 1) {
-                        alert('Hapus Data Berhasil');
-                        loadContent(base_url + "view/_table_guru");
-                    } else if(json['data'].code === 2){
-                        alert('Hapus Data Tidak Berhasil!');
-                    } else{
-                        alert(json['data'].message);
+        if(confirm("Yakin Hapus Data???")){
+            loading('loading', true);
+            setTimeout(function() {
+                $.ajax({
+                    url: base_url + 'manage',
+                    data: 'model-input=guru&key-input=nip&action-input=3&value-input=' + x,
+                    dataType: 'json',
+                    type: 'POST',
+                    cache: false,
+                    success: function(json) {
+                        loading('loading',false);
+                        if (json['data'].code === 1) {
+                            alert('Hapus Data Berhasil');
+                            loadContent(base_url + "view/_table_guru");
+                        } else if(json['data'].code === 2){
+                            alert('Hapus Data Tidak Berhasil!');
+                        } else{
+                            alert(json['data'].message);
+                        }
+                    },
+                    error: function () {
+                        loading('loading',false);
+                        alert('Hapus data tidak berhasil, terjadi kesalahan!');
                     }
-                },
-                error: function () {
-                    loading('loading',false);
-                    alert('Hapus data tidak berhasil, terjadi kesalahan!');
-                }
-            });
-        }, 1000);
+                });
+            }, 1000);
+        }
     }
-}
 </script>

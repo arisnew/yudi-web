@@ -8,7 +8,6 @@
         </div>
         <div class="box-body">
             <div id="loading"></div>
-            <!--<a href="#" onclick="loadContent(base_url + 'view/_lampiran_form');" class="btn btn-success pull-right"> Add Lampiran</a>-->
             <table id="tabel-lampiran" class="table table-bordered">
                 <thead>
                     <tr>
@@ -19,7 +18,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                 </tbody>
             </table>
         </div>

@@ -4,12 +4,7 @@
 			<div class="box-header with-border">
 				<h3 class="box-title">Form Pesan</h3>
 				<div class="box-tools pull-right">
-					<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-						<i class="fa fa-minus"></i>
-					</button>
-					<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-						<i class="fa fa-times"></i>
-					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
 				</div>
 			</div>
 			<div class="box-body">
@@ -72,9 +67,6 @@
 					<button class="btn btn-primary" type="submit" onclick="simpan_data(); return false;"><i class="fa fa-save"></i> Kirim</button>
 					<input type="reset" value="Batal" onclick="loadContent(base_url + 'view/_table_pesan_guru')">
 				</form>
-			</div>
-			<div class="box-footer">
-				Footer
 			</div>
 		</div>
 	</section>
@@ -223,155 +215,155 @@
 		});
 	}
 
-// pop-up Siswa
-function searchSiswa() {
-	if ($.fn.dataTable.isDataTable('#table-siswa-picker')) {
-		tableProduk = $('#table-siswa-picker').DataTable();
-	} else {
-		tableProduk = $('#table-siswa-picker').DataTable({
-			"ajax": base_url + 'pick/siswa/status/Aktif',
-			"columns": [
-			{"data": "nis"},
-			{"data": "nama"},
-			{"data": "nama_kelas"},
-			{"data": "nama_jurusan"},
-			{"data": "aksi"}
-			],
-			"ordering": true,
-			"deferRender": true,
-			"order": [[0, "asc"]],
-			"fnDrawCallback": function (oSettings) {
-				$("#table-siswa-picker .pickBtn").on("click",function(){
-					$("#to-id").val($(this).attr('href').substring(1));
-					siswaDetail();
-					$("#modalPickSiswa").modal('hide');
-				});
+	// pop-up Siswa
+	function searchSiswa() {
+		if ($.fn.dataTable.isDataTable('#table-siswa-picker')) {
+			tableProduk = $('#table-siswa-picker').DataTable();
+		} else {
+			tableProduk = $('#table-siswa-picker').DataTable({
+				"ajax": base_url + 'pick/siswa/status/Aktif',
+				"columns": [
+				{"data": "nis"},
+				{"data": "nama"},
+				{"data": "nama_kelas"},
+				{"data": "nama_jurusan"},
+				{"data": "aksi"}
+				],
+				"ordering": true,
+				"deferRender": true,
+				"order": [[0, "asc"]],
+				"fnDrawCallback": function (oSettings) {
+					$("#table-siswa-picker .pickBtn").on("click",function(){
+						$("#to-id").val($(this).attr('href').substring(1));
+						siswaDetail();
+						$("#modalPickSiswa").modal('hide');
+					});
+				}
+			});
+		}
+
+		$("#modalPickSiswa").modal();
+	}
+
+	function siswaDetail() {
+		$.ajax({
+			url: base_url + 'object',
+			data: 'model-input=siswa&key-input=nis&value-input=' + $("#to-id").val(),
+			dataType: 'json',
+			type: 'POST',
+			cache: false,
+			success: function(json) {
+				if (json.data.code === 0) {
+					alert('Akses tidak sah');
+				} else if (json.data.object != null) {
+					$("#to-input").val(json.data.object.nis);
+					$("#nama-siswa-input").val(json.data.object.nama);
+					$("#subject-input").focus();
+				} else {
+					alert('Data siswa tidak valid!');
+					$("#to-input, #to-id, #nama-siswa-input").val("");
+					$("#to-input").focus();
+				}
 			}
 		});
 	}
 
-	$("#modalPickSiswa").modal();
-}
-
-function siswaDetail() {
-	$.ajax({
-		url: base_url + 'object',
-		data: 'model-input=siswa&key-input=nis&value-input=' + $("#to-id").val(),
-		dataType: 'json',
-		type: 'POST',
-		cache: false,
-		success: function(json) {
-			if (json.data.code === 0) {
-				alert('Akses tidak sah');
-			} else if (json.data.object != null) {
-				$("#to-input").val(json.data.object.nis);
-				$("#nama-siswa-input").val(json.data.object.nama);
-				$("#subject-input").focus();
-			} else {
-				alert('Data siswa tidak valid!');
-				$("#to-input, #to-id, #nama-siswa-input").val("");
-				$("#to-input").focus();
-			}
-		}
-	});
-}
-
-function siswaDetailByCode() {
-	$.ajax({
-		url: base_url + 'object',
-		data: 'model-input=siswa&key-input=nis&value-input=' + $("#to-input").val(),
-		dataType: 'json',
-		type: 'POST',
-		cache: false,
-		success: function(json) {
-			if (json.data.code === 0) {
-				alert('Akses tidak sah');
-			} else if (json.data.object != null) {
-				$("#to-id").val(json.data.object.nis);
-				$("#nama-siswa-input").val(json.data.object.nama);
-				$("#subject-input").focus();
-			} else {
-				alert('Data siswa tidak valid!');
-				$("#to-id").val("");
-				$("#to-input, #nama-siswa-input").val("");
-				$("#to-input").focus();
-			}
-		}
-	});
-}
-
-// pop-up Guru
-function searchGuru() {
-	if ($.fn.dataTable.isDataTable('#table-guru-picker')) {
-		tableProduk = $('#table-guru-picker').DataTable();
-	} else {
-		tableProduk = $('#table-guru-picker').DataTable({
-			"ajax": base_url + 'pick/guru/status/Aktif',
-			"columns": [
-			{"data": "nip"},
-			{"data": "nama"},
-			{"data": "aksi"}
-			],
-			"ordering": true,
-			"deferRender": true,
-			"order": [[0, "asc"]],
-			"fnDrawCallback": function (oSettings) {
-				$("#table-guru-picker .pickBtn").on("click",function(){
-					$("#to-guru-id").val($(this).attr('href').substring(1));
-					guruDetail();
-					$("#modalPickGuru").modal('hide');
-				});
+	function siswaDetailByCode() {
+		$.ajax({
+			url: base_url + 'object',
+			data: 'model-input=siswa&key-input=nis&value-input=' + $("#to-input").val(),
+			dataType: 'json',
+			type: 'POST',
+			cache: false,
+			success: function(json) {
+				if (json.data.code === 0) {
+					alert('Akses tidak sah');
+				} else if (json.data.object != null) {
+					$("#to-id").val(json.data.object.nis);
+					$("#nama-siswa-input").val(json.data.object.nama);
+					$("#subject-input").focus();
+				} else {
+					alert('Data siswa tidak valid!');
+					$("#to-id").val("");
+					$("#to-input, #nama-siswa-input").val("");
+					$("#to-input").focus();
+				}
 			}
 		});
 	}
 
-	$("#modalPickGuru").modal();
-}
-
-function guruDetail() {
-	$.ajax({
-		url: base_url + 'object',
-		data: 'model-input=guru&key-input=nip&value-input=' + $("#to-guru-id").val(),
-		dataType: 'json',
-		type: 'POST',
-		cache: false,
-		success: function(json) {
-			if (json.data.code === 0) {
-				alert('Akses tidak sah');
-			} else if (json.data.object != null) {
-				$("#to-guru-input").val(json.data.object.nip);
-				$("#nama-guru-input").val(json.data.object.nama);
-				$("#subject-input").focus();
-			} else {
-				alert('Data guru tidak valid!');
-				$("#to-guru-input, #to-guru-id, #nama-guru-input").val("");
-				$("#to-guru-input").focus();
-			}
+	// pop-up Guru
+	function searchGuru() {
+		if ($.fn.dataTable.isDataTable('#table-guru-picker')) {
+			tableProduk = $('#table-guru-picker').DataTable();
+		} else {
+			tableProduk = $('#table-guru-picker').DataTable({
+				"ajax": base_url + 'pick/guru/status/Aktif',
+				"columns": [
+				{"data": "nip"},
+				{"data": "nama"},
+				{"data": "aksi"}
+				],
+				"ordering": true,
+				"deferRender": true,
+				"order": [[0, "asc"]],
+				"fnDrawCallback": function (oSettings) {
+					$("#table-guru-picker .pickBtn").on("click",function(){
+						$("#to-guru-id").val($(this).attr('href').substring(1));
+						guruDetail();
+						$("#modalPickGuru").modal('hide');
+					});
+				}
+			});
 		}
-	});
-}
 
-function guruDetailByCode() {
-	$.ajax({
-		url: base_url + 'object',
-		data: 'model-input=guru&key-input=nip&value-input=' + $("#to-guru-input").val(),
-		dataType: 'json',
-		type: 'POST',
-		cache: false,
-		success: function(json) {
-			if (json.data.code === 0) {
-				alert('Akses tidak sah');
-			} else if (json.data.object != null) {
-				$("#to-guru-id").val(json.data.object.nip);
-				$("#nama-guru-input").val(json.data.object.nama);
-				$("#subject-input").focus();
-			} else {
-				alert('Data guru tidak valid!');
-				$("#to-guru-id").val("");
-				$("#to-guru-input, #nama-guru-input").val("");
-				$("#to-guru-input").focus();
+		$("#modalPickGuru").modal();
+	}
+
+	function guruDetail() {
+		$.ajax({
+			url: base_url + 'object',
+			data: 'model-input=guru&key-input=nip&value-input=' + $("#to-guru-id").val(),
+			dataType: 'json',
+			type: 'POST',
+			cache: false,
+			success: function(json) {
+				if (json.data.code === 0) {
+					alert('Akses tidak sah');
+				} else if (json.data.object != null) {
+					$("#to-guru-input").val(json.data.object.nip);
+					$("#nama-guru-input").val(json.data.object.nama);
+					$("#subject-input").focus();
+				} else {
+					alert('Data guru tidak valid!');
+					$("#to-guru-input, #to-guru-id, #nama-guru-input").val("");
+					$("#to-guru-input").focus();
+				}
 			}
-		}
-	});
-}
+		});
+	}
+
+	function guruDetailByCode() {
+		$.ajax({
+			url: base_url + 'object',
+			data: 'model-input=guru&key-input=nip&value-input=' + $("#to-guru-input").val(),
+			dataType: 'json',
+			type: 'POST',
+			cache: false,
+			success: function(json) {
+				if (json.data.code === 0) {
+					alert('Akses tidak sah');
+				} else if (json.data.object != null) {
+					$("#to-guru-id").val(json.data.object.nip);
+					$("#nama-guru-input").val(json.data.object.nama);
+					$("#subject-input").focus();
+				} else {
+					alert('Data guru tidak valid!');
+					$("#to-guru-id").val("");
+					$("#to-guru-input, #nama-guru-input").val("");
+					$("#to-guru-input").focus();
+				}
+			}
+		});
+	}
 </script>

@@ -50,7 +50,7 @@ if ($param != null) {
                         //siapa?
                         $profil = $this->model->getRecord(array('table' => $row->level_komentator, 'where' => array($id => $row->komentator)));
                         if ($profil) {
-                        ?>
+                            ?>
                             <div class="box-comment">
                                 <img alt="User Image" src="<?php echo base_url('asset/img/upload/' . $profil->foto);?>" class="img-circle img-sm">
                                 <div class="comment-text">
@@ -61,12 +61,12 @@ if ($param != null) {
                                     <?php echo $row->isi;?>
                                 </div>
                             </div>
-                        <?php
+                            <?php
                         }
                     }
                 }
                 ?>
-                
+
 
             </div>
             <div class="box-footer">
@@ -81,16 +81,17 @@ if ($param != null) {
                         <input type="hidden" name="level-input" id="level-input" value="guru">
                         <input type="text" name="msg-input" id="msg-input" placeholder="Press enter to post comment" class="form-control input-sm">
                         <input type="submit" name="kirim" id="kirim" style="display: none;" onclick="kirimKomentar(); return false;">
-                  </div>
-              </form>
-          </div>
-          <div class="box-footer pull-right">
-            <input type="reset" onclick="loadContent(base_url + 'view/_table_materi_guru')" value="Kembali">
-        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="box-footer pull-right">
+                <input type="reset" onclick="loadContent(base_url + 'view/_table_materi_guru')" value="Kembali">
+            </div>
 
         </div>
     </div>
 </section>
+
 <script type="text/javascript">
     $(document).ready(function () {
         //here
